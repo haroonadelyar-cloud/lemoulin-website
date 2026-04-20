@@ -1,9 +1,9 @@
 backend:
-  name: github
-  repo: haroonadelyar-cloud/lemoulin-website
+  name: git-gateway
   branch: main
 
 media_folder: images
+public_folder: /images
 
 collections:
   - name: pages
