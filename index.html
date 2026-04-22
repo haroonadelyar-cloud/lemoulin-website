@@ -54,8 +54,8 @@
     .menu-tab{padding:13px 22px;background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;color:var(--text-muted);font-family:var(--font-body);font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;transition:color 0.2s,border-color 0.2s;}
     .menu-tab:hover{color:#fff;}
     .menu-tab.active{color:var(--gold);border-bottom-color:var(--gold);}
-    .menu-panel{display:none;}
-    .menu-panel.active{display:block;}
+    .menu-panel{display:none;opacity:0;transition:opacity 0.25s ease;}
+    .menu-panel.active{display:block;opacity:1;}
     .menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));border:1px solid rgba(255,255,255,0.06);}
     .menu-cat{grid-column:1/-1;padding:9px 1.5rem;background:rgba(201,153,58,0.07);border-top:1px solid rgba(201,153,58,0.15);font-size:10px;letter-spacing:0.28em;color:var(--gold);text-transform:uppercase;font-weight:500;}
     .menu-item{padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;border-right:1px solid rgba(255,255,255,0.05);border-bottom:1px solid rgba(255,255,255,0.05);background:var(--dark2);transition:background 0.2s;}
@@ -124,7 +124,7 @@
     .footer-links a{color:var(--text-muted);font-size:13px;text-decoration:none;cursor:pointer;transition:color 0.2s;}
     .footer-links a:hover{color:#fff;}
     .footer-bottom{max-width:1140px;margin:3rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.05);display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--text-dim);flex-wrap:wrap;gap:0.5rem;}
-    @media(max-width:768px){
+    @media(max-width:1024px){
       .nav-links{display:none;}
       .hero-title{font-size:48px;}
       .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto;}
@@ -132,6 +132,12 @@
       .gallery-item{aspect-ratio:4/3;}
       .about-layout,.reservation-layout,.footer-grid{grid-template-columns:1fr;gap:2rem;}
       .about-img{height:280px;}
+      .footer-links{display:flex;flex-wrap:wrap;gap:0.25rem 1.5rem;}
+      .footer-links li{margin-bottom:0;}
+    }
+    @media(max-width:768px){
+      .promo-grid{grid-template-columns:1fr;}
+      .dessert-grid{grid-template-columns:1fr;}
     }
 
     /* PROMOTIONS */
@@ -165,7 +171,7 @@
     .mobile-menu a{color:var(--text-muted);text-decoration:none;font-size:15px;letter-spacing:0.08em;text-transform:uppercase;font-weight:500;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.05);transition:color 0.2s;}
     .mobile-menu a:hover{color:var(--gold);}
     .mobile-menu a:last-child{border-bottom:none;margin-top:0.75rem;background:var(--gold);color:var(--dark)!important;text-align:center;padding:14px;border-radius:var(--radius);font-weight:700;}
-    @media(max-width:768px){
+    @media(max-width:1024px){
       .nav-hamburger{display:flex;}
     }
 
@@ -199,7 +205,7 @@
     .bois-price{color:var(--gold);font-weight:600;white-space:nowrap;font-size:12px;text-align:right;}
     .bois-price-cols{display:flex;gap:1.5rem;}
     .bois-price-col{text-align:right;}
-    .bois-price-col-label{font-size:9px;color:var(--text-dim);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:2px;}
+    .bois-price-col-label{font-size:11px;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:2px;font-weight:500;}
     .bois-note{font-size:11px;color:var(--text-muted);padding:8px 1.25rem;font-style:italic;background:rgba(201,153,58,0.03);}
     .bois-card-compact .bois-row{padding:6px 1.25rem;}
 
@@ -278,13 +284,13 @@
         Livraison &amp; Emporter
       </div>
       <div class="promo-col-title">Super Spécial</div>
-      <p class="promo-col-sub">Le prix mentionné est pour chaque assiette — boisson Liqueur inclusee.</p>
+      <p class="promo-col-sub">Le prix mentionné est pour chaque assiette — 1 liqueur incluse.</p>
 
-      <div style="font-size:11px;color:var(--text-muted);margin-bottom:0.75rem;display:flex;align-items:center;gap:6px;"><span class="promo-pepsi-dot"></span>Liqueur incluse avec chaque repas</div>
+      <div style="font-size:11px;color:var(--text-muted);margin-bottom:0.75rem;display:flex;align-items:center;gap:6px;"><span class="promo-pepsi-dot"></span>1 liqueur incluse avec chaque repas</div>
       <div class="promo-ss-grid">
         <div class="promo-ss-item"><div class="promo-ss-num">1</div><div class="promo-ss-name">Cheeseburger (sauce et frites)</div><div class="promo-ss-price">14,95 $</div></div>
         <div class="promo-ss-item"><div class="promo-ss-num">2</div><div class="promo-ss-name">Poutine au poulet ou viande hachée</div><div class="promo-ss-price">14,95 $</div></div>
-        <div class="promo-ss-item"><div class="promo-ss-num">3</div><div class="promo-ss-name">Spaghetti spécial</div><div class="promo-ss-price">14,95 $</div></div>
+        <div class="promo-ss-item"><div class="promo-ss-num">3</div><div class="promo-ss-name">Spaghetti spécial du Moulin<br><span style="font-size:11px;color:var(--text-muted);font-weight:300;">Piment vert, oignons, champignons et pepperoni</span></div><div class="promo-ss-price">14,95 $</div></div>
         <div class="promo-ss-item"><div class="promo-ss-num">4</div><div class="promo-ss-name">Salade jardinière au poulet</div><div class="promo-ss-price">14,95 $</div></div>
         <div class="promo-ss-item"><div class="promo-ss-num">5</div><div class="promo-ss-name">Lasagne gratinée</div><div class="promo-ss-price">15,95 $</div></div>
         <div class="promo-ss-item"><div class="promo-ss-num">6</div><div class="promo-ss-name">6 croquettes de poulet (salade de chou et frites)</div><div class="promo-ss-price">15,95 $</div></div>
@@ -304,14 +310,13 @@
         Essayez-les !
       </div>
       <div class="promo-col-title">Promotions</div>
-      <p class="promo-col-sub">Combos repas complets — boisson Liqueur inclusee dans chaque offre.</p>
+      <p class="promo-col-sub">Combos repas complets — 2 liqueurs incluses dans chaque offre.</p>
 
       <div class="promo-combo-card">
         <div>
           <div class="promo-card-name">2 moyennes poutines</div>
           <div class="promo-card-desc">Sauce B.B.Q. ou brune</div>
-          <div class="promo-pepsi" style="margin-top:6px;"><span class="promo-pepsi-dot"></span>Liqueur incluse (x2)</div>
-        </div>
+          <div class="promo-pepsi" style="margin-top:6px;"><span class="promo-pepsi-dot"></span>2 liqueurs incluses</div></div>
         <div class="promo-combo-price">22,45 $</div>
       </div>
 
@@ -319,7 +324,7 @@
         <div>
           <div class="promo-card-name">1 moyenne pizza (12") + 1 petite frite</div>
           <div class="promo-card-desc">Toute garnie, pepperoni ou végétarienne</div>
-          <div class="promo-pepsi" style="margin-top:6px;"><span class="promo-pepsi-dot"></span>Liqueur incluse</div>
+          <div class="promo-pepsi" style="margin-top:6px;"><span class="promo-pepsi-dot"></span>2 liqueurs incluses</div>
         </div>
         <div class="promo-combo-price">28,45 $</div>
       </div>
@@ -328,7 +333,7 @@
         <div>
           <div class="promo-card-name">1 moyenne pizza (12") + 1 moyenne poutine</div>
           <div class="promo-card-desc">Pizza : toute garnie, pepperoni ou végétarienne · Poutine : sauce B.B.Q. ou brune</div>
-          <div class="promo-pepsi" style="margin-top:6px;"><span class="promo-pepsi-dot"></span>Liqueur incluse (x2)</div>
+          <div class="promo-pepsi" style="margin-top:6px;"><span class="promo-pepsi-dot"></span>2 liqueurs incluses</div>
         </div>
         <div class="promo-combo-price">33,45 $</div>
       </div>
@@ -370,7 +375,7 @@
 
     <!-- DÉJEUNER -->
     <div class="menu-panel active" id="panel-dejeuner">
-      <div class="menu-note"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#C9993A" stroke-width="1.5"/><line x1="8" y1="7" x2="8" y2="11" stroke="#C9993A" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="5" r="0.8" fill="#C9993A"/></svg>Servi le samedi et dimanche seulement, de 7h à 13h · Rôties pain de ménage : supplément 2,75 $</div>
+      <div class="menu-note"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#C9993A" stroke-width="1.5"/><line x1="8" y1="7" x2="8" y2="11" stroke="#C9993A" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="5" r="0.8" fill="#C9993A"/></svg>Servi le samedi et dimanche seulement, de 7h à 13h</div>
       <div class="menu-grid">
         <div class="menu-cat">Les Réguliers</div>
         <div class="menu-item"><div><div class="menu-item-name">1 œuf, rôties et café</div></div><div class="menu-item-price">9,95 $</div></div>
@@ -385,10 +390,10 @@
         <div class="menu-item"><div><div class="menu-item-name">Fromage jaune</div></div><div class="menu-item-price">14,95 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name">Jambon et fromage jaune</div></div><div class="menu-item-price">17,95 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name">Bacon et fromage jaune</div></div><div class="menu-item-price">17,95 $</div></div>
-        <div class="menu-item"><div><div class="menu-item-name">Végétarienne</div></div><div class="menu-item-price">17,95 $</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Végétarienne</div><div class="menu-item-desc">Champignons, oignons et tomates</div></div><div class="menu-item-price">17,95 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name">3 viandes</div><div class="menu-item-desc">Bacon, saucisses (porc et bœuf) et jambon</div></div><div class="menu-item-price">19,95 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name">Fromage brie et champignons sautés</div></div><div class="menu-item-price">19,95 $</div></div>
-        <div class="menu-item"><div><div class="menu-item-name">Western</div></div><div class="menu-item-price">19,95 $</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Western</div><div class="menu-item-desc">Jambon, poivrons verts, oignons et fromage</div></div><div class="menu-item-price">19,95 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name">Saumon fumé</div><div class="menu-item-desc">Avec oignons sautés, câpres et fromage cheddar</div></div><div class="menu-item-price">19,95 $</div></div>
         <div class="menu-cat">Les Bénédictines — 2 œufs pochés sur muffin anglais, sauce hollandaise, patates, fruits frais et café</div>
         <div class="menu-item"><div><div class="menu-item-name">Béné au jambon et fromage suisse</div></div><div class="menu-item-price">18,95 $</div></div>
@@ -497,6 +502,7 @@
         <div class="menu-item"><div><div class="menu-item-name">Lasagne gratinée</div></div><div class="menu-item-price">Demi: 15,75 $ / Complète: 20,95 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name">Lasagne spéciale du Moulin</div><div class="menu-item-desc">Pepperoni, champignons, oignons et piments</div></div><div class="menu-item-price">Demi: 18,75 $ / Complète: 22,75 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name">Lasagne aux fruits de mer</div></div><div class="menu-item-price">23,45 $</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Spaghetti et salade César</div></div><div class="menu-item-price">16,95 $</div></div>
         <div class="menu-cat">Nos Sandwichs &amp; Sous-Marins — avec salade de chou crémeuse et frites</div>
         <div class="menu-item"><div><div class="menu-item-name">Club sandwich</div><div class="menu-item-desc">Viande blanche</div></div><div class="menu-item-price">17,95 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name">Club sandwich pour deux</div><div class="menu-item-desc">Viande blanche</div></div><div class="menu-item-price">21,95 $</div></div>
@@ -533,16 +539,16 @@
     <div class="menu-panel" id="panel-pizzas">
       <div style="margin-bottom:1.5rem;">
         <div class="menu-cat" style="grid-column:unset;display:block;margin-bottom:1rem;">Nos Pizzas</div>
-        <div style="overflow-x:auto;">
-          <table style="width:100%;border-collapse:collapse;font-size:13px;background:var(--dark2);">
+        <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+          <table style="width:100%;min-width:560px;border-collapse:collapse;font-size:13px;background:var(--dark2);">
             <thead>
               <tr style="background:rgba(201,153,58,0.12);border-bottom:1px solid rgba(201,153,58,0.3);">
                 <th style="text-align:left;padding:10px 16px;color:var(--gold);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;font-weight:500;">Pizza</th>
-                <th style="text-align:center;padding:10px 12px;color:var(--gold);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;">Mini</th>
-                <th style="text-align:center;padding:10px 12px;color:var(--gold);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;">Petite</th>
-                <th style="text-align:center;padding:10px 12px;color:var(--gold);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;">Moyenne</th>
-                <th style="text-align:center;padding:10px 12px;color:var(--gold);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;">Grande</th>
-                <th style="text-align:center;padding:10px 12px;color:var(--gold);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;">XL</th>
+                <th style="text-align:center;padding:10px 12px;color:var(--gold);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;">Mini<br><span style="font-size:10px;color:var(--text-muted);letter-spacing:0;text-transform:none;font-weight:400;">2 pointes</span></th>
+                <th style="text-align:center;padding:10px 12px;color:var(--gold);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;">Petite<br><span style="font-size:10px;color:var(--text-muted);letter-spacing:0;text-transform:none;font-weight:400;">4 pointes</span></th>
+                <th style="text-align:center;padding:10px 12px;color:var(--gold);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;">Moyenne<br><span style="font-size:10px;color:var(--text-muted);letter-spacing:0;text-transform:none;font-weight:400;">6 pointes</span></th>
+                <th style="text-align:center;padding:10px 12px;color:var(--gold);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;">Grande<br><span style="font-size:10px;color:var(--text-muted);letter-spacing:0;text-transform:none;font-weight:400;">8 pointes</span></th>
+                <th style="text-align:center;padding:10px 12px;color:var(--gold);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;">XL<br><span style="font-size:10px;color:var(--text-muted);letter-spacing:0;text-transform:none;font-weight:400;">8 pointes</span></th>
               </tr>
             </thead>
             <tbody>
@@ -610,10 +616,11 @@
 
       <div class="menu-grid">
         <div class="menu-cat">Nos Combos Pizza</div>
-        <div class="menu-item"><div><div class="menu-item-name">Spaghetti et salade César</div></div><div class="menu-item-price">16,95 $</div></div>
-        <div class="menu-item"><div><div class="menu-item-name">Pizza (toute garnie) et frites</div></div><div class="menu-item-price">17,95 $</div></div>
-        <div class="menu-item"><div><div class="menu-item-name">Pizza (toute garnie) et salade César</div></div><div class="menu-item-price">18,95 $</div></div>
-        <div class="menu-item"><div><div class="menu-item-name">Pizza (toute garnie) et spaghetti</div></div><div class="menu-item-price">20,95 $</div></div>
+        <div class="menu-note" style="grid-column:1/-1;"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#C9993A" stroke-width="1.5"/><line x1="8" y1="7" x2="8" y2="11" stroke="#C9993A" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="5" r="0.8" fill="#C9993A"/></svg>Choix de pizza : plain, toute garnie, végétarienne, bacon ou pepperoni · <span style="color:var(--gold);font-weight:500;">Spéciale du Moulin ou fruits de mer : + 3,95 $</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Pizza et frites</div></div><div class="menu-item-price">17,95 $</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Pizza et salade César</div></div><div class="menu-item-price">18,95 $</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Pizza et spaghetti</div></div><div class="menu-item-price">20,95 $</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Pizza et lasagne</div></div><div class="menu-item-price"></div></div>
       </div>
     </div>
 
@@ -633,7 +640,7 @@
 
     <!-- ENFANTS -->
     <div class="menu-panel" id="panel-enfants">
-      <div class="menu-note"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#C9993A" stroke-width="1.5"/><line x1="8" y1="7" x2="8" y2="11" stroke="#C9993A" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="5" r="0.8" fill="#C9993A"/></svg>12 ans et moins · Jus au choix inclus · Servi avec salade de chou et frites maison</div>
+      <div class="menu-note"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#C9993A" stroke-width="1.5"/><line x1="8" y1="7" x2="8" y2="11" stroke="#C9993A" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="5" r="0.8" fill="#C9993A"/></svg>12 ans et moins · Servi avec salade de chou et frites maison · <span style="color:var(--gold);font-weight:500;">Jus au choix inclus en salle à manger seulement</span> <span style="color:var(--text-muted);">(pomme, raisin, orange ou punch aux fruits)</span></div>
       <div class="menu-grid">
         <div class="menu-cat">Menu pour Enfants</div>
         <div class="menu-item"><div><div class="menu-item-name">Poutine</div></div><div class="menu-item-price">9,95 $</div></div>
@@ -857,11 +864,15 @@
       <div class="form-wrap">
         <div class="form-top">
           <div class="form-top-title">Formulaire de réservation</div>
-          <div class="form-top-sub">Réponse enregistrée dans votre Google Sheets</div>
+          <div class="form-top-sub">Nous vous répondrons dans les plus brefs délais</div>
         </div>
         <iframe class="form-iframe" src="https://docs.google.com/forms/d/e/1FAIpQLSeUlMp87CEnT9q2W_nAdR3Qb82x8o1tUC7CdoKtoDbQbs1lNw/viewform?embedded=true" title="Réservation Le Moulin">Chargement…</iframe>
       </div>
       <p style="font-size:11px;color:var(--text-muted);margin-top:10px;text-align:center;">Ou appelez-nous : <a href="tel:8198324242" style="color:var(--gold);text-decoration:none;">(819) 832-4242</a></p>
+      <div class="groups-card" style="margin-top:1rem;">
+        <div class="info-label" style="font-size:10px;letter-spacing:0.28em;color:var(--gold);text-transform:uppercase;font-weight:500;margin-bottom:0.75rem;">Groupes &amp; Événements</div>
+        <p>Pour les groupes de 8 personnes et plus ou événements privés, appelez-nous au <a href="tel:8198324242">(819) 832-4242</a>.</p>
+      </div>
     </div>
     <div>
       <div class="info-card">
@@ -879,10 +890,6 @@
           <a href="tel:8198324242" style="color:var(--gold);text-decoration:none;font-size:18px;font-weight:600;display:block;margin-top:6px;">(819) 832-4242</a>
           <a href="mailto:lemoulineastangus@gmail.com" style="color:var(--gold);text-decoration:none;font-size:13px;display:block;margin-top:4px;">lemoulineastangus@gmail.com</a>
         </div>
-      </div>
-      <div class="groups-card">
-        <div class="info-label" style="font-size:10px;letter-spacing:0.28em;color:var(--gold);text-transform:uppercase;font-weight:500;margin-bottom:0.75rem;">Groupes &amp; Événements</div>
-        <p>Pour les groupes de 8 personnes et plus ou événements privés, appelez-nous au <a href="tel:8198324242">(819) 832-4242</a>.</p>
       </div>
  
     </div>
@@ -928,8 +935,7 @@
       <li><a href="#menu">Le menu</a></li>
       <li><a href="#gallery">Galerie photos</a></li>
       <li><a href="#about">À propos</a></li>
-      <li><a href="#promotions">Promotions</a>
-    <a href="#desserts">Desserts</a></li>
+      <li><a href="#promotions">Promotions</a></li>
       <li><a href="#reservation">Réservation</a></li>
       <li><a href="#order">Commande en ligne</a></li>
     </ul>
@@ -942,9 +948,6 @@
       <a href="tel:8198324242" style="color:var(--gold);text-decoration:none;font-size:15px;font-weight:500;">(819) 832-4242</a>
       <a href="mailto:lemoulineastangus@gmail.com" style="color:var(--gold);text-decoration:none;font-size:13px;display:block;margin-top:4px;">lemoulineastangus@gmail.com</a>
     </div>
-    <a href="https://www.facebook.com/RestaurantleMoulinEastAngus/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;color:#7EAEE0;font-size:12px;text-decoration:none;margin-top:1rem;">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="#1877F2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>Facebook
-    </a>
   </div>
 </div>
 <div class="footer-bottom">
@@ -979,10 +982,15 @@ document.addEventListener('click', function(e){
 
 <script>
 function switchTab(panel,btn){
-  document.querySelectorAll('.menu-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.menu-panel').forEach(p=>{
+    p.classList.remove('active');
+    p.style.opacity='0';
+  });
   document.querySelectorAll('.menu-tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById('panel-'+panel).classList.add('active');
+  const target = document.getElementById('panel-'+panel);
+  target.classList.add('active');
   btn.classList.add('active');
+  requestAnimationFrame(()=>{ target.style.opacity='1'; });
 }
 </script>
 <script>
@@ -997,6 +1005,4 @@ if (window.netlifyIdentity) {
 }
 </script>
 </body>
-</html
-
->
+</html>
