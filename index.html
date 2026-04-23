@@ -67,7 +67,7 @@
     .menu-note{display:flex;align-items:center;gap:10px;background:rgba(201,153,58,0.07);border:1px solid rgba(201,153,58,0.18);border-radius:var(--radius);padding:10px 16px;font-size:12px;color:var(--text-muted);margin-bottom:1.5rem;line-height:1.5;}
     .menu-table-note{background:rgba(201,153,58,0.05);border:1px solid rgba(201,153,58,0.15);border-radius:var(--radius);padding:12px 16px;font-size:12px;color:var(--text-muted);margin-bottom:1.5rem;line-height:1.6;}
     .gallery-section{background:var(--dark2);}
-    .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:260px 260px;gap:6px;margin-top:3rem;}
+    .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:260px;gap:6px;margin-top:3rem;}
     .gallery-item{overflow:hidden;border-radius:var(--radius);position:relative;cursor:pointer;}
     .gallery-item:nth-child(1){grid-column:1/3;grid-row:1;}
     .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease;display:block;}
@@ -131,6 +131,8 @@
       .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto;}
       .gallery-item:nth-child(1){grid-column:1/3;grid-row:auto;aspect-ratio:16/9;}
       .gallery-item{aspect-ratio:4/3;}
+      /* Sur mobile quand la galerie est repliee, ne montrer que le grand item #1 */
+      .gallery-grid.gallery-collapsed .gallery-item:not(:nth-child(1)){display:none;}
       .about-layout,.reservation-layout,.footer-grid{grid-template-columns:1fr;gap:2rem;}
       .about-img{height:280px;}
       .footer-links{display:flex;flex-wrap:wrap;gap:0.25rem 1.5rem;}
@@ -248,6 +250,35 @@
     .about-toggle:hover{background:rgba(201,153,58,0.08);border-color:var(--gold);color:var(--gold-light);}
     .about-toggle-icon{transition:transform 0.3s ease;}
     .about-toggle.is-open .about-toggle-icon{transform:rotate(180deg);}
+    /* Badge note Google */
+    .google-rating{display:inline-flex;align-items:center;gap:12px;background:rgba(201,153,58,0.06);border:1px solid rgba(201,153,58,0.25);padding:10px 18px;border-radius:var(--radius);margin:1rem 0 1.25rem;flex-wrap:wrap;}
+    .google-rating-stars{display:inline-flex;gap:1px;font-size:18px;line-height:1;}
+    .google-rating-stars .star{color:var(--gold);letter-spacing:-1px;}
+    .google-rating-stars .star.filled{color:var(--gold);}
+    .google-rating-stars .star.partial{position:relative;display:inline-block;color:rgba(201,153,58,0.25);}
+    .google-rating-stars .star.partial .star-bg{color:rgba(201,153,58,0.25);}
+    .google-rating-stars .star.partial .star-fg{position:absolute;left:0;top:0;color:var(--gold);width:20%;overflow:hidden;}
+    .google-rating-text{font-size:13px;color:var(--text);font-weight:400;}
+    .google-rating-text strong{color:#fff;font-weight:600;font-size:14px;}
+    .google-rating-count{color:var(--text-muted);font-size:12px;margin-left:4px;}
+    /* Systeme "Voir la suite du menu" pour panels longs */
+    .menu-cat.is-hidden, .menu-item.is-hidden, .bois-card.is-hidden{display:none!important;}
+    .menu-more-wrap{grid-column:1/-1;display:flex;justify-content:center;margin-top:1.5rem;}
+    .bois-grid .menu-more-wrap{grid-column:unset;width:100%;margin-top:0.5rem;}
+    .menu-more-btn{
+      display:inline-flex;align-items:center;gap:10px;
+      background:transparent;border:1px solid rgba(201,153,58,0.35);
+      color:var(--gold);font-family:var(--font-body);font-size:11px;
+      font-weight:500;letter-spacing:0.2em;text-transform:uppercase;
+      padding:12px 26px;border-radius:var(--radius);
+      cursor:pointer;transition:background 0.2s,border-color 0.2s,color 0.2s;
+    }
+    .menu-more-btn:hover{background:rgba(201,153,58,0.08);border-color:var(--gold);color:var(--gold-light);}
+    .menu-more-btn .menu-more-count{color:var(--text-muted);font-size:10px;margin-left:2px;font-weight:400;}
+    .menu-more-btn:hover .menu-more-count{color:var(--text);}
+    .menu-more-icon{transition:transform 0.3s ease;}
+    .menu-more-btn.is-open .menu-more-icon{transform:rotate(180deg);}
+    .gallery-more-wrap{margin-top:1.5rem;}
   </style>
 </head>
 <body>
@@ -472,7 +503,7 @@
     </div>
 
     <!-- DÉJEUNER -->
-    <div class="menu-panel active" id="panel-dejeuner">
+    <div class="menu-panel active" id="panel-dejeuner" data-collapsible="2">
       <div class="menu-note"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#C9993A" stroke-width="1.5"/><line x1="8" y1="7" x2="8" y2="11" stroke="#C9993A" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="5" r="0.8" fill="#C9993A"/></svg>Servi le samedi et dimanche seulement, de 7h à 13h</div>
       <div class="menu-grid">
         <div class="menu-cat">Les Réguliers</div>
@@ -488,7 +519,7 @@
         <div class="menu-item"><div><div class="menu-item-name">Fromage jaune</div></div><div class="menu-item-price">14,95 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name">Jambon et fromage jaune</div></div><div class="menu-item-price">17,95 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name">Bacon et fromage jaune</div></div><div class="menu-item-price">17,95 $</div></div>
-        <div class="menu-item"><div><div class="menu-item-name">Végétarienne</div><div class="menu-item-desc">Champignons, oignons et tomates</div></div><div class="menu-item-price">17,95 $</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Végétarienne</div><div class="menu-item-desc">Champignons, oignons, poivrons verts et tomates</div></div><div class="menu-item-price">17,95 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name">3 viandes</div><div class="menu-item-desc">Bacon, saucisses (porc et bœuf) et jambon</div></div><div class="menu-item-price">19,95 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name">Fromage brie et champignons sautés</div></div><div class="menu-item-price">19,95 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name">Western</div><div class="menu-item-desc">Jambon, poivrons verts, oignons et fromage</div></div><div class="menu-item-price">19,95 $</div></div>
@@ -523,7 +554,7 @@
     </div>
 
     <!-- DÎNER & SOUPER -->
-    <div class="menu-panel" id="panel-diner">
+    <div class="menu-panel" id="panel-diner" data-collapsible="2">
       <div class="menu-table-note">
         <strong style="color:var(--gold);">Table d'hôte disponible :</strong> Pour 13,95 $ de plus, transformez votre plat principal en table d'hôte incluant soupe, entrée, thé ou café et dessert.<br>
         <span style="font-size:11px;">Choix d'entrées : champignons à l'ail gratinés · escargots à l'ail gratinés · fondues parmesan · 6 ailes de poulet · bâtonnets de fromage</span>
@@ -756,7 +787,7 @@
     </div>
 
     <!-- BOISSONS (onglet menu) -->
-    <div class="menu-panel" id="panel-boissons">
+    <div class="menu-panel" id="panel-boissons" data-collapsible="2" data-collapsible-type="bois">
       <div class="bois-grid">
 
         <div class="bois-card">
@@ -992,7 +1023,7 @@
   <h2 class="section-title">Galerie</h2>
   <div class="gold-rule"></div>
   <p class="section-desc">Un avant-goût de ce qui vous attend — nos plats et notre salle chaleureuse.</p>
-  <div class="gallery-grid">
+  <div class="gallery-grid" data-collapsible="2" data-collapsible-type="gallery">
     <div class="gallery-item"><svg class="mill-logo gallery-placeholder" viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g class="blades"><g stroke="#C9993A" stroke-width="2.2" stroke-linecap="round" fill="none"><line x1="50" y1="48" x2="18" y2="16"/><line x1="50" y1="48" x2="82" y2="16"/><line x1="50" y1="48" x2="18" y2="80"/><line x1="50" y1="48" x2="82" y2="80"/></g><g fill="#C9993A"><circle cx="18" cy="16" r="1.8"/><circle cx="82" cy="16" r="1.8"/><circle cx="18" cy="80" r="1.8"/><circle cx="82" cy="80" r="1.8"/></g></g><circle cx="50" cy="48" r="4.5" fill="#C9993A"/><circle cx="50" cy="48" r="7.5" fill="none" stroke="#C9993A" stroke-width="1"/><line x1="42" y1="60" x2="40" y2="100" stroke="#C9993A" stroke-width="1.6" stroke-linecap="round"/><line x1="58" y1="60" x2="60" y2="100" stroke="#C9993A" stroke-width="1.6" stroke-linecap="round"/><line x1="34" y1="100" x2="66" y2="100" stroke="#C9993A" stroke-width="1.6" stroke-linecap="round"/></svg><div class="gallery-cap"><span>Notre salle à manger</span></div></div>
     <div class="gallery-item"><svg class="mill-logo gallery-placeholder" viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g class="blades"><g stroke="#C9993A" stroke-width="2.2" stroke-linecap="round" fill="none"><line x1="50" y1="48" x2="18" y2="16"/><line x1="50" y1="48" x2="82" y2="16"/><line x1="50" y1="48" x2="18" y2="80"/><line x1="50" y1="48" x2="82" y2="80"/></g><g fill="#C9993A"><circle cx="18" cy="16" r="1.8"/><circle cx="82" cy="16" r="1.8"/><circle cx="18" cy="80" r="1.8"/><circle cx="82" cy="80" r="1.8"/></g></g><circle cx="50" cy="48" r="4.5" fill="#C9993A"/><circle cx="50" cy="48" r="7.5" fill="none" stroke="#C9993A" stroke-width="1"/><line x1="42" y1="60" x2="40" y2="100" stroke="#C9993A" stroke-width="1.6" stroke-linecap="round"/><line x1="58" y1="60" x2="60" y2="100" stroke="#C9993A" stroke-width="1.6" stroke-linecap="round"/><line x1="34" y1="100" x2="66" y2="100" stroke="#C9993A" stroke-width="1.6" stroke-linecap="round"/></svg><div class="gallery-cap"><span>Ambiance chaleureuse</span></div></div>
     <div class="gallery-item"><svg class="mill-logo gallery-placeholder" viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g class="blades"><g stroke="#C9993A" stroke-width="2.2" stroke-linecap="round" fill="none"><line x1="50" y1="48" x2="18" y2="16"/><line x1="50" y1="48" x2="82" y2="16"/><line x1="50" y1="48" x2="18" y2="80"/><line x1="50" y1="48" x2="82" y2="80"/></g><g fill="#C9993A"><circle cx="18" cy="16" r="1.8"/><circle cx="82" cy="16" r="1.8"/><circle cx="18" cy="80" r="1.8"/><circle cx="82" cy="80" r="1.8"/></g></g><circle cx="50" cy="48" r="4.5" fill="#C9993A"/><circle cx="50" cy="48" r="7.5" fill="none" stroke="#C9993A" stroke-width="1"/><line x1="42" y1="60" x2="40" y2="100" stroke="#C9993A" stroke-width="1.6" stroke-linecap="round"/><line x1="58" y1="60" x2="60" y2="100" stroke="#C9993A" stroke-width="1.6" stroke-linecap="round"/><line x1="34" y1="100" x2="66" y2="100" stroke="#C9993A" stroke-width="1.6" stroke-linecap="round"/></svg><div class="gallery-cap"><span>Pizza maison</span></div></div>
@@ -1030,10 +1061,9 @@
         </div>
         <iframe class="form-iframe" src="https://docs.google.com/forms/d/e/1FAIpQLSeUlMp87CEnT9q2W_nAdR3Qb82x8o1tUC7CdoKtoDbQbs1lNw/viewform?embedded=true" title="Réservation Le Moulin">Chargement…</iframe>
       </div>
-      <p style="font-size:11px;color:var(--text-muted);margin-top:10px;text-align:center;">Ou appelez-nous : <a href="tel:8198324242" style="color:var(--gold);text-decoration:none;">(819) 832-4242</a></p>
       <div class="groups-card" style="margin-top:1rem;">
         <div class="info-label" style="font-size:10px;letter-spacing:0.28em;color:var(--gold);text-transform:uppercase;font-weight:500;margin-bottom:0.75rem;">Groupes &amp; Événements</div>
-        <p>Pour les groupes de 8 personnes et plus ou événements privés, appelez-nous au <a href="tel:8198324242">(819) 832-4242</a>.</p>
+        <p>Pour les groupes de 8 personnes et plus ou événements privés, contactez-nous directement par téléphone.</p>
       </div>
     </div>
     <div>
@@ -1070,14 +1100,14 @@
   <div style="border-radius:var(--radius);overflow:hidden;border:1px solid rgba(255,255,255,0.07);margin-top:2rem;">
     <iframe
       title="Restaurant Le Moulin - East Angus"
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2762.5234!2d-71.6737!3d45.4894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cb5a07c6dd18cc9%3A0x65db17a1a1ec2ad!2sRestaurant%20Le%20Moulin!5e0!3m2!1sfr!2sca!4v1700000000000!5m2!1sfr!2sca"
+      src="https://maps.google.com/maps?q=Restaurant+Le+Moulin,+59+Rue+Angus+N,+East+Angus,+QC&t=m&z=17&output=embed&hl=fr"
       width="100%" height="380" style="border:0;display:block;"
       allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
     </iframe>
   </div>
-  <div style="margin-top:1rem;display:flex;gap:1rem;flex-wrap:wrap;align-items:center;">
-    <a href="https://maps.google.com/?q=59+rue+Angus+Nord+East+Angus+Quebec" target="_blank" rel="noopener" class="btn-gold" style="font-size:11px;padding:10px 22px;">Ouvrir dans Google Maps</a>
-    <span style="font-size:13px;color:var(--text-muted);">59 rue Angus Nord, East Angus, Québec</span>
+  <div style="margin-top:1.5rem;display:flex;flex-direction:column;align-items:center;gap:0.9rem;">
+    <a href="https://www.google.com/maps/place/Restaurant+Le+Moulin/@45.4837921,-71.6599558,18z/data=!4m6!3m5!1s0x4cb7af5475900419:0x7a9e8107073441!8m2!3d45.4837921!4d-71.6599558!16s%2Fg%2F11c0qvk6vm" target="_blank" rel="noopener" class="btn-gold" style="font-size:11px;padding:11px 26px;">Ouvrir dans Google Maps</a>
+    <span style="font-size:13px;color:var(--text-muted);letter-spacing:0.02em;">59 rue Angus Nord, East Angus, Québec</span>
   </div>
 </div>
 </section>
@@ -1089,6 +1119,15 @@
   <div class="section-eyebrow">Ce que disent nos clients</div>
   <h2 class="section-title">Avis & Témoignages</h2>
   <div class="gold-rule"></div>
+  <div class="google-rating">
+    <div class="google-rating-stars" aria-label="Note de 4,2 sur 5">
+      <span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star partial"><span class="star-bg">★</span><span class="star-fg">★</span></span>
+    </div>
+    <div class="google-rating-text">
+      <strong>4,2 / 5</strong> sur Google
+      <span class="google-rating-count">· 328 avis</span>
+    </div>
+  </div>
   <p class="section-desc">Merci à tous nos fidèles clients qui partagent leur expérience chez Le Moulin.</p>
   <div class="reviews-grid">
     <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">« Une cuisine généreuse et authentique. Le personnel est chaleureux et l'ambiance familiale. Ça fait des années qu'on vient ici et on ne se lasse jamais ! »</p><div class="review-author">— Marie-Josée L., cliente fidèle</div></div>
@@ -1115,10 +1154,7 @@
     <div class="ueat-badge">Bientôt disponible</div>
     <div class="ueat-title">Commande en ligne via iShopFood</div>
     <p class="ueat-desc">Nous travaillons à intégrer iShopFood pour vous permettre de commander vos plats préférés en ligne — pour emporter ou en livraison. Restez à l'affût !</p>
-    <div class="ueat-actions">
-      <a href="#reservation" class="btn-gold">Réserver une table</a>
-      <a href="tel:8198324242" class="btn-ghost">(819) 832-4242</a>
-    </div>
+    <p style="font-size:12px;color:var(--text-muted);margin-top:1.25rem;letter-spacing:0.05em;">En attendant, réservez directement depuis notre formulaire plus haut.</p>
   </div>
 </div>
 </section>
@@ -1210,6 +1246,161 @@ function toggleAbout(){
     btn.setAttribute('aria-expanded','true');
     if(label) label.textContent = 'Voir moins';
   }
+}
+
+function initCollapsibleMenus(){
+  // Galerie : grille simple d'items directs
+  var galleries = document.querySelectorAll('.gallery-grid[data-collapsible]');
+  galleries.forEach(function(grid){
+    var limit = parseInt(grid.getAttribute('data-collapsible'), 10) || 2;
+    var items = Array.prototype.slice.call(grid.querySelectorAll(':scope > .gallery-item'));
+    if(items.length <= limit) return;
+
+    var hidden = items.slice(limit);
+    hidden.forEach(function(it){ it.classList.add('is-hidden'); });
+    // Marquer la grille comme repliee (pour CSS mobile)
+    grid.classList.add('gallery-collapsed');
+
+    var btnWrap = document.createElement('div');
+    btnWrap.className = 'menu-more-wrap gallery-more-wrap';
+    btnWrap.innerHTML =
+      '<button type="button" class="menu-more-btn" aria-expanded="false">' +
+        '<span class="menu-more-label">Voir toute la galerie</span>' +
+        '<span class="menu-more-count">(' + hidden.length + ' photos de plus)</span>' +
+        '<svg class="menu-more-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">' +
+          '<polyline points="3,4.5 6,7.5 9,4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>' +
+        '</svg>' +
+      '</button>';
+    // Inserer le bouton APRES la grille, pas dedans
+    grid.parentNode.insertBefore(btnWrap, grid.nextSibling);
+
+    btnWrap.querySelector('.menu-more-btn').addEventListener('click', function(){
+      toggleCollapsible(this, hidden, 'Voir toute la galerie', 'Voir moins', 'gallery', grid);
+    });
+  });
+
+  var panels = document.querySelectorAll('.menu-panel[data-collapsible]');
+  panels.forEach(function(panel){
+    var limit = parseInt(panel.getAttribute('data-collapsible'), 10) || 3;
+    var type = panel.getAttribute('data-collapsible-type') || 'menu';
+
+    if(type === 'bois'){
+      // Cartes boissons : .bois-card dans .bois-grid
+      var grid = panel.querySelector('.bois-grid');
+      if(!grid) return;
+      var cards = Array.prototype.slice.call(grid.querySelectorAll(':scope > .bois-card'));
+      if(cards.length <= limit) return;
+
+      var hidden = cards.slice(limit);
+      hidden.forEach(function(c){ c.classList.add('is-hidden'); });
+
+      var btnWrap = document.createElement('div');
+      btnWrap.className = 'menu-more-wrap';
+      btnWrap.innerHTML =
+        '<button type="button" class="menu-more-btn" aria-expanded="false">' +
+          '<span class="menu-more-label">Voir toute la carte des boissons</span>' +
+          '<span class="menu-more-count">(' + hidden.length + ' de plus)</span>' +
+          '<svg class="menu-more-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">' +
+            '<polyline points="3,4.5 6,7.5 9,4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>' +
+          '</svg>' +
+        '</button>';
+      grid.appendChild(btnWrap);
+
+      btnWrap.querySelector('.menu-more-btn').addEventListener('click', function(){
+        toggleCollapsible(this, hidden, 'Voir toute la carte des boissons', 'Voir moins');
+      });
+    } else {
+      // Panels classiques : groupes par .menu-cat dans .menu-grid
+      var grids = Array.prototype.slice.call(panel.querySelectorAll('.menu-grid'));
+      if(!grids.length) return;
+
+      // Collecter toutes les categories dans l'ordre
+      var allGroups = [];
+      grids.forEach(function(grid){
+        var children = Array.prototype.slice.call(grid.children);
+        var currentGroup = null;
+        children.forEach(function(el){
+          if(el.classList.contains('menu-cat')){
+            currentGroup = { cat:el, items:[], grid:grid };
+            allGroups.push(currentGroup);
+          } else if(currentGroup){
+            currentGroup.items.push(el);
+          }
+        });
+      });
+
+      if(allGroups.length <= limit) return;
+
+      var hiddenGroups = allGroups.slice(limit);
+      var hiddenElements = [];
+      hiddenGroups.forEach(function(g){
+        g.cat.classList.add('is-hidden');
+        hiddenElements.push(g.cat);
+        g.items.forEach(function(it){
+          it.classList.add('is-hidden');
+          hiddenElements.push(it);
+        });
+      });
+
+      // Nom selon le panel
+      var panelId = panel.id;
+      var labelMore = 'Voir la suite du menu';
+      if(panelId === 'panel-dejeuner') labelMore = 'Voir tout le menu déjeuner';
+      else if(panelId === 'panel-diner') labelMore = 'Voir tout le menu dîner';
+
+      var btnWrap = document.createElement('div');
+      btnWrap.className = 'menu-more-wrap';
+      btnWrap.innerHTML =
+        '<button type="button" class="menu-more-btn" aria-expanded="false">' +
+          '<span class="menu-more-label">' + labelMore + '</span>' +
+          '<span class="menu-more-count">(' + hiddenGroups.length + ' catégories de plus)</span>' +
+          '<svg class="menu-more-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">' +
+            '<polyline points="3,4.5 6,7.5 9,4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>' +
+          '</svg>' +
+        '</button>';
+      // Ajouter le bouton a la fin du DERNIER .menu-grid du panel
+      grids[grids.length - 1].appendChild(btnWrap);
+
+      btnWrap.querySelector('.menu-more-btn').addEventListener('click', function(){
+        toggleCollapsible(this, hiddenElements, labelMore, 'Voir moins');
+      });
+    }
+  });
+}
+
+function toggleCollapsible(btn, hiddenEls, labelMore, labelLess, scrollTargetId, gridEl){
+  var isOpen = btn.classList.contains('is-open');
+  var label = btn.querySelector('.menu-more-label');
+  var countSpan = btn.querySelector('.menu-more-count');
+  if(isOpen){
+    hiddenEls.forEach(function(el){ el.classList.add('is-hidden'); });
+    btn.classList.remove('is-open');
+    btn.setAttribute('aria-expanded','false');
+    if(label) label.textContent = labelMore;
+    if(countSpan) countSpan.style.display = '';
+    if(gridEl) gridEl.classList.add('gallery-collapsed');
+    // Remonter doucement au haut de la section concernee
+    var targetId = scrollTargetId || 'menu';
+    var target = document.getElementById(targetId);
+    if(target){
+      var top = target.getBoundingClientRect().top + window.pageYOffset - 80;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    }
+  } else {
+    hiddenEls.forEach(function(el){ el.classList.remove('is-hidden'); });
+    btn.classList.add('is-open');
+    btn.setAttribute('aria-expanded','true');
+    if(label) label.textContent = labelLess;
+    if(countSpan) countSpan.style.display = 'none';
+    if(gridEl) gridEl.classList.remove('gallery-collapsed');
+  }
+}
+
+// Initialiser au chargement
+if(document.readyState === 'loading'){
+  document.addEventListener('DOMContentLoaded', initCollapsibleMenus);
+} else {
+  initCollapsibleMenus();
 }
 
 function toggleMobileMenu(){
