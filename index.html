@@ -36,6 +36,11 @@
     .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 110%,rgba(201,153,58,0.12) 0%,transparent 70%),repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(201,153,58,0.015) 40px,rgba(201,153,58,0.015) 41px);}
     .hero-content{position:relative;text-align:center;padding:3rem 2rem;max-width:780px;animation:fadeUp 1s ease both;}
     @keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes moulinSpin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+    @keyframes logoFadeIn{from{opacity:0;transform:translateY(12px) scale(0.95);}to{opacity:1;transform:translateY(0) scale(1);}}
+    .moulin-logo{animation:logoFadeIn 1.2s cubic-bezier(0.22,1,0.36,1) both;}
+    .moulin-pales{transform-origin:50px 42px;animation:moulinSpin 14s linear infinite;}
+    @media (prefers-reduced-motion: reduce){.moulin-pales,.moulin-logo{animation:none;}}
     .hero-eyebrow{font-size:11px;letter-spacing:0.35em;color:var(--gold);text-transform:uppercase;font-weight:500;margin-bottom:1.25rem;}
     .hero-title{font-family:var(--font-display);font-size:clamp(56px,9vw,96px);font-weight:700;color:#fff;letter-spacing:0.08em;line-height:0.95;text-transform:uppercase;margin-bottom:1.5rem;}
     .hero-divider{width:60px;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);margin:0 auto 1.5rem;}
@@ -432,11 +437,21 @@
 <section class="hero" id="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
-    <svg width="100" height="84" viewBox="0 0 120 100" fill="none" style="margin-bottom:1rem;">
-      <line x1="15" y1="12" x2="105" y2="88" stroke="white" stroke-width="11" stroke-linecap="round"/>
-      <line x1="105" y1="12" x2="15" y2="88" stroke="white" stroke-width="11" stroke-linecap="round"/>
-      <rect x="51" y="43" width="18" height="18" fill="#C9993A" transform="rotate(45 60 52)"/>
-      <polygon points="60,52 73,65 60,78 47,65" fill="#C9993A" opacity="0.72"/>
+    <svg class="moulin-logo" width="104" height="116" viewBox="0 0 100 110" fill="none" style="margin-bottom:1.25rem;overflow:visible;" aria-hidden="true">
+      <!-- Pales triangulaires (rotation autour du moyeu en 50,42) -->
+      <g class="moulin-pales">
+        <polygon points="50,42 44,4 56,4" fill="#C9993A" fill-opacity="0.2" stroke="#C9993A" stroke-width="1.5" stroke-linejoin="round"/>
+        <polygon points="50,42 44,80 56,80" fill="#C9993A" fill-opacity="0.2" stroke="#C9993A" stroke-width="1.5" stroke-linejoin="round"/>
+        <polygon points="50,42 88,36 88,48" fill="#C9993A" fill-opacity="0.2" stroke="#C9993A" stroke-width="1.5" stroke-linejoin="round"/>
+        <polygon points="50,42 12,36 12,48" fill="#C9993A" fill-opacity="0.2" stroke="#C9993A" stroke-width="1.5" stroke-linejoin="round"/>
+      </g>
+      <!-- Moyeu central (par-dessus les pales) -->
+      <circle cx="50" cy="42" r="6" fill="#1F1B16" stroke="#C9993A" stroke-width="1.4"/>
+      <circle cx="50" cy="42" r="2.8" fill="#C9993A"/>
+      <!-- Tour du moulin (immobile) -->
+      <path d="M 40 54 L 60 54 L 63 100 L 37 100 Z" stroke="#C9993A" stroke-width="2" fill="none" stroke-linejoin="round"/>
+      <rect x="46" y="72" width="8" height="10" rx="1" stroke="#C9993A" stroke-width="1.3" fill="none"/>
+      <line x1="34" y1="100" x2="66" y2="100" stroke="#C9993A" stroke-width="2.2" stroke-linecap="round"/>
     </svg>
     <h1 class="hero-title">Restaurant<br>Le Moulin</h1>
     <div class="hero-eyebrow" style="margin-top:0.75rem;margin-bottom:0;">East Angus</div>
