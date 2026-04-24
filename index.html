@@ -149,6 +149,176 @@
     .menu-item-name{font-size:13px;color:#fff;font-weight:500;margin-bottom:2px;}
     .menu-item-desc{font-size:11px;color:var(--text-muted);line-height:1.5;}
     .menu-item-price{color:var(--gold);font-size:13px;font-weight:600;white-space:nowrap;flex-shrink:0;}
+    /* === Items cliquables pour ouvrir le modal photo === */
+    .menu-item.is-clickable,
+    .promo-ss-item.is-clickable,
+    .midi-item.is-clickable{cursor:pointer;position:relative;}
+    .menu-item.is-clickable:hover{background:var(--dark3);}
+    .promo-ss-item.is-clickable:hover,
+    .midi-item.is-clickable:hover{background:rgba(201,153,58,0.06);}
+    .menu-item.is-clickable::after,
+    .promo-ss-item.is-clickable::after,
+    .midi-item.is-clickable::after{
+      content:'';
+      position:absolute;
+      top:50%;
+      right:0.75rem;
+      transform:translateY(-50%);
+      width:14px;
+      height:14px;
+      border:1.5px solid var(--gold);
+      border-radius:50%;
+      opacity:0;
+      transition:opacity 0.2s;
+      pointer-events:none;
+    }
+    .menu-item.is-clickable::before,
+    .promo-ss-item.is-clickable::before,
+    .midi-item.is-clickable::before{
+      content:'';
+      position:absolute;
+      top:calc(50% + 5px);
+      right:calc(0.75rem - 2px);
+      width:5px;
+      height:1.5px;
+      background:var(--gold);
+      transform:rotate(45deg);
+      transform-origin:left center;
+      opacity:0;
+      transition:opacity 0.2s;
+      pointer-events:none;
+    }
+    .menu-item.is-clickable:hover::after,
+    .menu-item.is-clickable:hover::before,
+    .menu-item.is-clickable:focus-visible::after,
+    .menu-item.is-clickable:focus-visible::before,
+    .promo-ss-item.is-clickable:hover::after,
+    .promo-ss-item.is-clickable:hover::before,
+    .promo-ss-item.is-clickable:focus-visible::after,
+    .promo-ss-item.is-clickable:focus-visible::before,
+    .midi-item.is-clickable:hover::after,
+    .midi-item.is-clickable:hover::before,
+    .midi-item.is-clickable:focus-visible::after,
+    .midi-item.is-clickable:focus-visible::before{opacity:0.6;}
+    .menu-item.is-clickable:focus-visible,
+    .promo-ss-item.is-clickable:focus-visible,
+    .midi-item.is-clickable:focus-visible{outline:2px solid var(--gold);outline-offset:-2px;}
+    /* === Modal photo === */
+    .dish-modal{
+      position:fixed;
+      inset:0;
+      z-index:9999;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:1.5rem;
+      background:rgba(10,8,6,0.85);
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+      opacity:0;
+      transition:opacity 0.25s ease;
+    }
+    .dish-modal.is-open{display:flex;opacity:1;}
+    .dish-modal-box{
+      position:relative;
+      width:100%;
+      max-width:520px;
+      max-height:calc(100vh - 3rem);
+      background:var(--dark2);
+      border:1px solid rgba(201,153,58,0.25);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:0 20px 60px rgba(0,0,0,0.6),0 0 0 1px rgba(201,153,58,0.1);
+      transform:translateY(10px) scale(0.98);
+      transition:transform 0.3s cubic-bezier(0.22,1,0.36,1);
+      display:flex;
+      flex-direction:column;
+    }
+    .dish-modal.is-open .dish-modal-box{transform:translateY(0) scale(1);}
+    .dish-modal-close{
+      position:absolute;
+      top:12px;
+      right:12px;
+      z-index:2;
+      width:36px;
+      height:36px;
+      border-radius:50%;
+      background:rgba(10,8,6,0.7);
+      border:1px solid rgba(201,153,58,0.3);
+      color:#fff;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      transition:background 0.2s,border-color 0.2s;
+      padding:0;
+    }
+    .dish-modal-close:hover,
+    .dish-modal-close:focus-visible{background:var(--gold);border-color:var(--gold);color:var(--dark);outline:none;}
+    .dish-modal-img-wrap{
+      width:100%;
+      aspect-ratio:4/3;
+      background:var(--dark3);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      flex-shrink:0;
+    }
+    .dish-modal-img{width:100%;height:100%;object-fit:cover;display:block;}
+    .dish-modal-placeholder{
+      width:100%;
+      height:100%;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:0.75rem;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 50%,rgba(201,153,58,0.08) 0%,transparent 70%),
+        repeating-linear-gradient(45deg,transparent,transparent 20px,rgba(201,153,58,0.02) 20px,rgba(201,153,58,0.02) 21px),
+        var(--dark3);
+      color:var(--text-muted);
+    }
+    .dish-modal-placeholder svg{opacity:0.5;}
+    .dish-modal-placeholder-text{
+      font-size:11px;
+      letter-spacing:0.25em;
+      text-transform:uppercase;
+      color:var(--gold);
+      font-weight:500;
+    }
+    .dish-modal-body{padding:1.5rem 1.75rem 1.75rem;overflow-y:auto;}
+    .dish-modal-title{
+      font-family:var(--font-display);
+      font-size:24px;
+      font-weight:700;
+      color:#fff;
+      line-height:1.2;
+      margin-bottom:0.75rem;
+    }
+    .dish-modal-desc{
+      font-size:14px;
+      color:var(--text-muted);
+      line-height:1.6;
+      margin-bottom:1rem;
+    }
+    .dish-modal-price{
+      color:var(--gold);
+      font-size:18px;
+      font-weight:600;
+      padding-top:0.75rem;
+      border-top:1px solid rgba(201,153,58,0.2);
+    }
+    body.modal-open{overflow:hidden;}
+    @media (max-width:500px){
+      .dish-modal{padding:0.75rem;}
+      .dish-modal-body{padding:1.25rem 1.25rem 1.5rem;}
+      .dish-modal-title{font-size:20px;}
+    }
+    @media (prefers-reduced-motion:reduce){
+      .dish-modal,.dish-modal-box{transition:none;}
+    }
     .menu-note{display:flex;align-items:center;gap:10px;background:rgba(201,153,58,0.07);border:1px solid rgba(201,153,58,0.18);border-radius:var(--radius);padding:10px 16px;font-size:12px;color:var(--text-muted);margin-bottom:1.5rem;line-height:1.5;}
     .menu-table-note{background:rgba(201,153,58,0.05);border:1px solid rgba(201,153,58,0.15);border-radius:var(--radius);padding:12px 16px;font-size:12px;color:var(--text-muted);margin-bottom:1.5rem;line-height:1.6;}
     /* Spéciaux du midi — section vedette */
@@ -801,13 +971,11 @@ if(document.readyState === 'loading'){
   <div class="gold-rule"></div>
   <div class="about-layout">
     <div class="about-text">
-          <p data-fr="L'histoire du Restaurant Le Moulin est avant tout une histoire humaine. Dans les années 90, Ehsanuddin Adelyar quitte l'Afghanistan et arrive au Québec sans parler ni français ni anglais, sans connaître personne. Loin de se décourager, il trouve rapidement un emploi dans un petit restaurant de Sherbrooke, où il apprend son métier avec patience et détermination." data-en="The story of Restaurant Le Moulin is first and foremost a human one. In the 1990s, Ehsanuddin Adelyar left Afghanistan and arrived in Quebec speaking neither French nor English, and knowing no one. Undaunted, he quickly found work in a small restaurant in Sherbrooke, where he learned his trade with patience and determination." data-es="La historia del Restaurante Le Moulin es ante todo una historia humana. En los años 90, Ehsanuddin Adelyar dejó Afganistán y llegó a Quebec sin hablar francés ni inglés, sin conocer a nadie. Lejos de desanimarse, encontró rápidamente trabajo en un pequeño restaurante de Sherbrooke, donde aprendió su oficio con paciencia y determinación.">L'histoire du Restaurant Le Moulin est avant tout une histoire humaine. Dans les années 90, Ehsanuddin Adelyar quitte l'Afghanistan et arrive au Québec sans parler ni français ni anglais, sans connaître personne. Loin de se décourager, il trouve rapidement un emploi dans un petit restaurant de Sherbrooke, où il apprend son métier avec patience et détermination.</p>
+          <p data-fr="L'histoire du Restaurant Le Moulin est avant tout une histoire humaine, celle d'Ehsanuddin Adelyar et de sa femme Maghul. En 2000, le couple quitte l'Afghanistan avec leurs quatre enfants et arrive au Québec sans parler ni français ni anglais, sans connaître personne. Loin de se décourager, Ehsanuddin trouve rapidement un emploi dans un petit restaurant de Sherbrooke, où il apprend son métier avec patience et détermination." data-en="The story of Restaurant Le Moulin is first and foremost a human one — the story of Ehsanuddin Adelyar and his wife Maghul. In 2000, the couple left Afghanistan with their four children and arrived in Quebec speaking neither French nor English, and knowing no one. Undaunted, Ehsanuddin quickly found work in a small restaurant in Sherbrooke, where he learned his trade with patience and determination." data-es="La historia del Restaurante Le Moulin es ante todo una historia humana, la de Ehsanuddin Adelyar y su esposa Maghul. En el año 2000, la pareja dejó Afganistán con sus cuatro hijos y llegó a Quebec sin hablar francés ni inglés, sin conocer a nadie. Lejos de desanimarse, Ehsanuddin encontró rápidamente trabajo en un pequeño restaurante de Sherbrooke, donde aprendió su oficio con paciencia y determinación.">L'histoire du Restaurant Le Moulin est avant tout une histoire humaine, celle d'Ehsanuddin Adelyar et de sa femme Maghul. En 2000, le couple quitte l'Afghanistan avec leurs quatre enfants et arrive au Québec sans parler ni français ni anglais, sans connaître personne. Loin de se décourager, Ehsanuddin trouve rapidement un emploi dans un petit restaurant de Sherbrooke, où il apprend son métier avec patience et détermination.</p>
           <div class="about-more" id="aboutMore" hidden>
-            <p data-fr="Fort de cette expérience, il franchit le grand pas et ouvre le premier Restaurant Le Moulin à East Angus — un pari audacieux qui deviendra la fierté de toute une famille. Convaincu que le Québec offre un avenir meilleur, il parraine les siens un à un, grâce notamment au soutien de l'Association éducative multiculturelle de Sherbrooke." data-en="Building on this experience, he took the leap and opened the first Restaurant Le Moulin in East Angus — a bold gamble that would become the pride of an entire family. Convinced that Quebec offered a better future, he sponsored his relatives one by one, with support from the Multicultural Educational Association of Sherbrooke." data-es="Con esa experiencia, dio el gran salto y abrió el primer Restaurante Le Moulin en East Angus — una apuesta audaz que se convertiría en el orgullo de toda una familia. Convencido de que Quebec ofrecía un mejor futuro, patrocinó a sus familiares uno por uno, con el apoyo de la Asociación Educativa Multicultural de Sherbrooke.">Fort de cette expérience, il franchit le grand pas et ouvre le premier Restaurant Le Moulin à East Angus — un pari audacieux qui deviendra la fierté de toute une famille. Convaincu que le Québec offre un avenir meilleur, il parraine les siens un à un, grâce notamment au soutien de l'Association éducative multiculturelle de Sherbrooke.</p>
-            <p data-fr="Ses neveux, dont Ishan Adelyar, grandissent dans le restaurant et y consacrent d'innombrables heures. Plus de 20 ans plus tard, Le Moulin est devenu un pilier d'East Angus — un endroit où la cuisine est faite maison, où l'équipe forme une vraie famille, et où chaque client est accueilli avec chaleur et générosité. Forts de ce succès, la famille a également ouvert des restaurants à Windsor et à Weedon, poursuivant cette même mission d'offrir une cuisine généreuse et un accueil sincère dans chaque communauté." data-en="His nephews, including Ishan Adelyar, grew up in the restaurant and devoted countless hours to it. More than 20 years later, Le Moulin has become a pillar of East Angus — a place where the food is homemade, the team is a real family, and every guest is welcomed with warmth and generosity. Building on this success, the family has also opened restaurants in Windsor and Weedon, continuing the same mission of offering generous cuisine and sincere hospitality in every community." data-es="Sus sobrinos, entre ellos Ishan Adelyar, crecieron en el restaurante y le dedicaron innumerables horas. Más de 20 años después, Le Moulin se ha convertido en un pilar de East Angus — un lugar donde la cocina es casera, el equipo es una verdadera familia y cada cliente es recibido con calidez y generosidad. Con este éxito, la familia también abrió restaurantes en Windsor y Weedon, continuando la misma misión de ofrecer una cocina generosa y una acogida sincera en cada comunidad.">Ses neveux, dont Ishan Adelyar, grandissent dans le restaurant et y consacrent d'innombrables heures. Plus de 20 ans plus tard, Le Moulin est devenu un pilier d'East Angus — un endroit où la cuisine est faite maison, où l'équipe forme une vraie famille, et où chaque client est accueilli avec chaleur et générosité. Forts de ce succès, la famille a également ouvert des restaurants à Windsor et à Weedon, poursuivant cette même mission d'offrir une cuisine généreuse et un accueil sincère dans chaque communauté.</p>
+            <p data-fr="Fort de cette expérience, il franchit le grand pas et ouvre, en 2003, le premier Restaurant Le Moulin à East Angus — un pari audacieux qui deviendra la fierté de toute une famille. Convaincu que le Québec offre un avenir meilleur, il parraine les siens un à un, grâce notamment au soutien de l'Association éducative multiculturelle de Sherbrooke." data-en="Building on this experience, he took the leap and, in 2003, opened the first Restaurant Le Moulin in East Angus — a bold gamble that would become the pride of an entire family. Convinced that Quebec offered a better future, he sponsored his relatives one by one, with support from the Multicultural Educational Association of Sherbrooke." data-es="Con esa experiencia, dio el gran salto y, en 2003, abrió el primer Restaurante Le Moulin en East Angus — una apuesta audaz que se convertiría en el orgullo de toda una familia. Convencido de que Quebec ofrecía un mejor futuro, patrocinó a sus familiares uno por uno, con el apoyo de la Asociación Educativa Multicultural de Sherbrooke.">Fort de cette expérience, il franchit le grand pas et ouvre, en 2003, le premier Restaurant Le Moulin à East Angus — un pari audacieux qui deviendra la fierté de toute une famille. Convaincu que le Québec offre un avenir meilleur, il parraine les siens un à un, grâce notamment au soutien de l'Association éducative multiculturelle de Sherbrooke.</p>
+            <p data-fr="Aujourd'hui encore, à East Angus, Le Moulin reste une véritable affaire de famille : Ehsanuddin et Maghul y travaillent aux côtés de deux de leurs fils, Zaman et Haroon. Leurs filles, Seyamoy et Samiya, ont elles aussi donné beaucoup au restaurant avant de partir poursuivre leurs propres rêves — elles en font à jamais partie de l'histoire. Plus de 20 ans plus tard, Le Moulin est devenu un pilier d'East Angus — un endroit où la cuisine est faite maison, où l'équipe forme une vraie famille, et où chaque client est accueilli avec chaleur et générosité. Porté par ce même esprit, son neveu Ishan Adelyar, qui a grandi dans le restaurant, tient aujourd'hui le Moulin de Windsor, tandis qu'un autre restaurant familial a vu le jour à Weedon — poursuivant cette même mission d'offrir une cuisine généreuse et un accueil sincère dans chaque communauté." data-en="Today, in East Angus, Le Moulin remains a true family affair: Ehsanuddin and Maghul work alongside two of their sons, Zaman and Haroon. Their daughters, Seyamoy and Samiya, also gave much to the restaurant before setting off to pursue their own dreams — they will forever be part of the story. More than 20 years later, Le Moulin has become a pillar of East Angus — a place where the food is homemade, the team is a real family, and every guest is welcomed with warmth and generosity. Carried by this same spirit, his nephew Ishan Adelyar, who grew up in the restaurant, now runs Le Moulin in Windsor, while another family restaurant has opened in Weedon — all continuing the same mission of offering generous cuisine and sincere hospitality in every community." data-es="Hoy en día, en East Angus, Le Moulin sigue siendo un verdadero asunto de familia: Ehsanuddin y Maghul trabajan junto a dos de sus hijos, Zaman y Haroon. Sus hijas, Seyamoy y Samiya, también aportaron mucho al restaurante antes de partir a perseguir sus propios sueños — forman para siempre parte de la historia. Más de 20 años después, Le Moulin se ha convertido en un pilar de East Angus — un lugar donde la cocina es casera, el equipo es una verdadera familia y cada cliente es recibido con calidez y generosidad. Llevado por ese mismo espíritu, su sobrino Ishan Adelyar, que creció en el restaurante, dirige hoy Le Moulin en Windsor, mientras que otro restaurante familiar ha visto la luz en Weedon — continuando todos la misma misión de ofrecer una cocina generosa y una acogida sincera en cada comunidad.">Aujourd'hui encore, à East Angus, Le Moulin reste une véritable affaire de famille : Ehsanuddin et Maghul y travaillent aux côtés de deux de leurs fils, Zaman et Haroon. Leurs filles, Seyamoy et Samiya, ont elles aussi donné beaucoup au restaurant avant de partir poursuivre leurs propres rêves — elles en font à jamais partie de l'histoire. Plus de 20 ans plus tard, Le Moulin est devenu un pilier d'East Angus — un endroit où la cuisine est faite maison, où l'équipe forme une vraie famille, et où chaque client est accueilli avec chaleur et générosité. Porté par ce même esprit, son neveu Ishan Adelyar, qui a grandi dans le restaurant, tient aujourd'hui le Moulin de Windsor, tandis qu'un autre restaurant familial a vu le jour à Weedon — poursuivant cette même mission d'offrir une cuisine généreuse et un accueil sincère dans chaque communauté.</p>
             <ul class="about-feature-list">
-              <li><div class="about-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2,6 5,9 10,3" stroke="#C9993A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span data-fr="Plus de 20 ans au cœur d'East Angus" data-en="Over 20 years in the heart of East Angus" data-es="Más de 20 años en el corazón de East Angus">Plus de 20 ans au cœur d'East Angus</span></li>
-              <li><div class="about-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2,6 5,9 10,3" stroke="#C9993A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span data-fr="Une histoire familiale née du courage et de la persévérance" data-en="A family story born of courage and perseverance" data-es="Una historia familiar nacida del coraje y la perseverancia">Une histoire familiale née du courage et de la persévérance</span></li>
               <li><div class="about-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2,6 5,9 10,3" stroke="#C9993A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span data-fr="Cuisine maison — dîner et souper 7 jours sur 7" data-en="Homemade cuisine — lunch and dinner 7 days a week" data-es="Cocina casera — almuerzo y cena 7 días a la semana">Cuisine maison — dîner et souper 7 jours sur 7</span></li>
               <li><div class="about-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2,6 5,9 10,3" stroke="#C9993A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span data-fr="Section réservable pour groupes jusqu'à 45 personnes" data-en="Private section available for groups up to 45 people" data-es="Sección reservable para grupos de hasta 45 personas">Section réservable pour groupes jusqu'à 45 personnes</span></li>
               <li><div class="about-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2,6 5,9 10,3" stroke="#C9993A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span data-fr="Idéal pour réunions de famille, fêtes et événements d'affaires" data-en="Ideal for family gatherings, parties and business events" data-es="Ideal para reuniones familiares, fiestas y eventos empresariales">Idéal pour réunions de famille, fêtes et événements d'affaires</span></li>
@@ -833,181 +1001,6 @@ if(document.readyState === 'loading'){
   <h2 class="section-title" data-fr="Le Menu" data-en="The Menu" data-es="El Menú">Le Menu</h2>
   <div class="gold-rule"></div>
   <p class="section-desc" data-fr="Des plats préparés avec passion — du midi au soir, et le matin les fins de semaine." data-en="Dishes prepared with passion — from noon to evening, and in the morning on weekends." data-es="Platos preparados con pasión — de mediodía a la noche, y por la mañana los fines de semana.">Des plats préparés avec passion — du midi au soir, et le matin les fins de semaine.</p>
-
-  <!-- PROMOTIONS LIVRAISON & EMPORTER -->
-  <div id="promotions" class="specials-group" style="margin-top:2.5rem;">
-    <div class="specials-group-header">
-      <h3 class="specials-group-title" data-fr="Promotions livraison &amp; emporter" data-en="Delivery &amp; Takeout Specials" data-es="Promociones de entrega y para llevar">Promotions livraison &amp; emporter</h3>
-      <p class="specials-group-sub" data-fr='Des combos savoureux avec boisson incluse — commandez par téléphone au <a href="tel:+18198324242" style="color:var(--gold);text-decoration:none;font-weight:600;">(819) 832-4242</a>' data-en='Tasty combos with drink included — call to order at <a href="tel:+18198324242" style="color:var(--gold);text-decoration:none;font-weight:600;">(819) 832-4242</a>' data-es='Combos deliciosos con bebida incluida — pida por teléfono al <a href="tel:+18198324242" style="color:var(--gold);text-decoration:none;font-weight:600;">(819) 832-4242</a>'>Des combos savoureux avec boisson incluse — commandez par téléphone au <a href="tel:+18198324242" style="color:var(--gold);text-decoration:none;font-weight:600;">(819) 832-4242</a></p>
-    </div>
-    <div class="specials-stack">
-
-      <!-- SUPER SPÉCIAL -->
-      <div class="midi-featured specials-card" data-open="false">
-        <button type="button" class="midi-header specials-toggle" aria-expanded="false" onclick="toggleSpecial(this)">
-          <div class="midi-header-left">
-            <h3 class="midi-title" data-fr="Super Spécial" data-en="Super Special" data-es="Súper Especial">Super Spécial</h3>
-            <p class="midi-subtitle" data-fr="Le prix mentionné est pour chaque assiette — 1 liqueur incluse" data-en="The price shown is per plate — 1 soft drink included" data-es="El precio indicado es por cada plato — 1 bebida incluida">Le prix mentionné est pour chaque assiette — 1 liqueur incluse</p>
-          </div>
-          <div class="midi-header-right">
-            <svg class="specials-chevron" width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true"><polyline points="4,6 8,10 12,6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-        </button>
-        <div class="specials-body">
-          <div style="font-size:11px;color:var(--text-muted);margin-bottom:0.75rem;display:flex;align-items:center;gap:6px;"><span class="promo-pepsi-dot"></span><span data-fr="1 liqueur incluse avec chaque repas" data-en="1 soft drink included with each meal" data-es="1 bebida incluida con cada comida">1 liqueur incluse avec chaque repas</span></div>
-          <div class="promo-ss-grid">
-            <div class="promo-ss-item"><div class="promo-ss-num">1</div><div class="promo-ss-name" data-fr="Cheeseburger (sauce et frites)" data-en="Cheeseburger (gravy and fries)" data-es="Cheeseburger (salsa y papas fritas)">Cheeseburger (sauce et frites)</div><div class="promo-ss-price">14,95 $</div></div>
-            <div class="promo-ss-item"><div class="promo-ss-num">2</div><div class="promo-ss-name" data-fr="Poutine au poulet ou viande hachée" data-en="Chicken or ground beef poutine" data-es="Poutine de pollo o carne molida">Poutine au poulet ou viande hachée</div><div class="promo-ss-price">14,95 $</div></div>
-            <div class="promo-ss-item"><div class="promo-ss-num">3</div><div class="promo-ss-name" data-fr="Spaghetti spécial du Moulin<br><span style=&quot;font-size:11px;color:var(--text-muted);font-weight:300;&quot;>Piment vert, oignons, champignons et pepperoni</span>" data-en="Le Moulin special spaghetti<br><span style=&quot;font-size:11px;color:var(--text-muted);font-weight:300;&quot;>Green peppers, onions, mushrooms and pepperoni</span>" data-es="Espagueti Especial del Moulin<br><span style=&quot;font-size:11px;color:var(--text-muted);font-weight:300;&quot;>Pimiento verde, cebolla, champiñones y pepperoni</span>">Spaghetti spécial du Moulin<br><span style="font-size:11px;color:var(--text-muted);font-weight:300;">Piment vert, oignons, champignons et pepperoni</span></div><div class="promo-ss-price">14,95 $</div></div>
-            <div class="promo-ss-item"><div class="promo-ss-num">4</div><div class="promo-ss-name" data-fr="Salade jardinière au poulet" data-en="Garden salad with chicken" data-es="Ensalada de la casa con pollo">Salade jardinière au poulet</div><div class="promo-ss-price">14,95 $</div></div>
-            <div class="promo-ss-item"><div class="promo-ss-num">5</div><div class="promo-ss-name" data-fr="Lasagne gratinée" data-en="Lasagna au gratin" data-es="Lasaña gratinada">Lasagne gratinée</div><div class="promo-ss-price">15,95 $</div></div>
-            <div class="promo-ss-item"><div class="promo-ss-num">6</div><div class="promo-ss-name" data-fr="6 croquettes de poulet (salade de chou et frites)" data-en="6 chicken nuggets (coleslaw and fries)" data-es="6 croquetas de pollo (ensalada de repollo y papas fritas)">6 croquettes de poulet (salade de chou et frites)</div><div class="promo-ss-price">15,95 $</div></div>
-            <div class="promo-ss-item"><div class="promo-ss-num">7</div><div class="promo-ss-name" data-fr="8 ailes de poulet (sauce et frites)" data-en="8 chicken wings (sauce and fries)" data-es="8 alas de pollo (salsa y papas fritas)">8 ailes de poulet (sauce et frites)</div><div class="promo-ss-price">15,95 $</div></div>
-            <div class="promo-ss-item"><div class="promo-ss-num">8</div><div class="promo-ss-name" data-fr="10 crevettes à l'ail (beurre à l'ail, riz et frites)" data-en="10 garlic shrimp (garlic butter, rice and fries)" data-es="10 camarones al ajo (mantequilla al ajo, arroz y papas fritas)">10 crevettes à l'ail (beurre à l'ail, riz et frites)</div><div class="promo-ss-price">15,95 $</div></div>
-            <div class="promo-ss-item"><div class="promo-ss-num">9</div><div class="promo-ss-name" data-fr="Mini-pizza avec salade César" data-en="Mini pizza with Caesar salad" data-es="Mini pizza con ensalada César">Mini-pizza avec salade César</div><div class="promo-ss-price">16,95 $</div></div>
-            <div class="promo-ss-item"><div class="promo-ss-num">10</div><div class="promo-ss-name" data-fr="Doigts de poulet (avec frites)" data-en="Chicken fingers (with fries)" data-es="Dedos de pollo (con papas fritas)">Doigts de poulet (avec frites)</div><div class="promo-ss-price">16,95 $</div></div>
-            <div class="promo-ss-item"><div class="promo-ss-num">11</div><div class="promo-ss-name" data-fr="Mini-pizza (avec frites)" data-en="Mini pizza (with fries)" data-es="Mini pizza (con papas fritas)">Mini-pizza (avec frites)</div><div class="promo-ss-price">16,95 $</div></div>
-            <div class="promo-ss-item"><div class="promo-ss-num">12</div><div class="promo-ss-name" data-fr="Pita gyros ou poulet (avec frites)" data-en="Gyro or chicken pita (with fries)" data-es="Pita de gyros o pollo (con papas fritas)">Pita gyros ou poulet (avec frites)</div><div class="promo-ss-price">16,95 $</div></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- COMBOS REPAS -->
-      <div class="midi-featured specials-card" data-open="false">
-        <button type="button" class="midi-header specials-toggle" aria-expanded="false" onclick="toggleSpecial(this)">
-          <div class="midi-header-left">
-            <h3 class="midi-title" data-fr="Combos repas" data-en="Meal Combos" data-es="Combos de comida">Combos repas</h3>
-            <p class="midi-subtitle" data-fr="Combos repas complets — voir chaque offre pour les détails" data-en="Full meal combos — see each offer for details" data-es="Combos de comida completos — ver cada oferta para detalles">Combos repas complets — voir chaque offre pour les détails</p>
-          </div>
-          <div class="midi-header-right">
-            <div class="midi-badge midi-badge-alt">
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 12L8 3L13 12H3Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
-              <span data-fr="Essayez-les !" data-en="Try them!" data-es="¡Pruébelos!">Essayez-les !</span>
-            </div>
-            <svg class="specials-chevron" width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true"><polyline points="4,6 8,10 12,6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-        </button>
-        <div class="specials-body">
-          <div class="promo-combo-card">
-            <div>
-              <div class="promo-card-name" data-fr="2 moyennes poutines" data-en="2 medium poutines" data-es="2 poutines medianas">2 moyennes poutines</div>
-              <div class="promo-card-desc" data-fr="Sauce B.B.Q. ou brune" data-en="BBQ or brown gravy" data-es="Salsa B.B.Q. o marrón">Sauce B.B.Q. ou brune</div>
-              <div class="promo-pepsi" style="margin-top:6px;"><span class="promo-pepsi-dot"></span><span data-fr="2 liqueurs incluses" data-en="2 soft drinks included" data-es="2 bebidas incluidas">2 liqueurs incluses</span></div>
-            </div>
-            <div class="promo-combo-price">22,45 $</div>
-          </div>
-
-          <div class="promo-combo-card">
-            <div>
-              <div class="promo-card-name" data-fr="1 moyenne pizza (12&quot;) + 1 petite frite" data-en="1 medium pizza (12&quot;) + 1 small fries" data-es="1 pizza mediana (12&quot;) + 1 papas fritas pequeñas">1 moyenne pizza (12") + 1 petite frite</div>
-              <div class="promo-card-desc" data-fr="Toute garnie, pepperoni ou végétarienne" data-en="All-dressed, pepperoni or vegetarian" data-es="Toda guarnecida, pepperoni o vegetariana">Toute garnie, pepperoni ou végétarienne</div>
-              <div class="promo-pepsi" style="margin-top:6px;"><span class="promo-pepsi-dot"></span><span data-fr="2 liqueurs incluses" data-en="2 soft drinks included" data-es="2 bebidas incluidas">2 liqueurs incluses</span></div>
-            </div>
-            <div class="promo-combo-price">28,45 $</div>
-          </div>
-
-          <div class="promo-combo-card">
-            <div>
-              <div class="promo-card-name" data-fr="1 moyenne pizza (12&quot;) + 1 moyenne poutine" data-en="1 medium pizza (12&quot;) + 1 medium poutine" data-es="1 pizza mediana (12&quot;) + 1 poutine mediana">1 moyenne pizza (12") + 1 moyenne poutine</div>
-              <div class="promo-card-desc" data-fr="Pizza : toute garnie, pepperoni ou végétarienne · Poutine : sauce B.B.Q. ou brune" data-en="Pizza: all-dressed, pepperoni or vegetarian · Poutine: BBQ or brown gravy" data-es="Pizza: toda guarnecida, pepperoni o vegetariana · Poutine: salsa B.B.Q. o marrón">Pizza : toute garnie, pepperoni ou végétarienne · Poutine : sauce B.B.Q. ou brune</div>
-              <div class="promo-pepsi" style="margin-top:6px;"><span class="promo-pepsi-dot"></span><span data-fr="2 liqueurs incluses" data-en="2 soft drinks included" data-es="2 bebidas incluidas">2 liqueurs incluses</span></div>
-            </div>
-            <div class="promo-combo-price">33,45 $</div>
-          </div>
-
-          <div class="promo-combo-card">
-            <div>
-              <div class="promo-card-name" data-fr="2 moyennes pizzas (12&quot;)" data-en="2 medium pizzas (12&quot;)" data-es="2 pizzas medianas (12&quot;)">2 moyennes pizzas (12")</div>
-              <div class="promo-card-desc" data-fr="Toute garnie, pepperoni ou végétarienne" data-en="All-dressed, pepperoni or vegetarian" data-es="Toda guarnecida, pepperoni o vegetariana">Toute garnie, pepperoni ou végétarienne</div>
-              <div class="promo-pepsi promo-pepsi-off" style="margin-top:6px;"><span class="promo-pepsi-dot promo-pepsi-dot-off"></span><span data-fr="Liqueurs non incluses" data-en="Soft drinks not included" data-es="Bebidas no incluidas">Liqueurs non incluses</span></div>
-            </div>
-            <div class="promo-combo-price">34,45 $</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- SPÉCIAUX — SECTIONS VEDETTES REPLIABLES -->
-  <div class="specials-group" style="margin-top:3.5rem;">
-    <div class="specials-group-header">
-      <h3 class="specials-group-title" data-fr="Spéciaux en salle à manger" data-en="Dine-in Specials" data-es="Especiales en el restaurante">Spéciaux en salle à manger</h3>
-      <p class="specials-group-sub" data-fr="Nos offres à déguster sur place — du midi jusqu'en soirée" data-en="Our offers to enjoy on site — from noon through the evening" data-es="Nuestras ofertas para disfrutar en el lugar — desde el mediodía hasta la noche">Nos offres à déguster sur place — du midi jusqu'en soirée</p>
-    </div>
-    <div class="specials-stack">
-
-    <!-- SPÉCIAUX DU MIDI -->
-    <div class="midi-featured specials-card" data-open="false">
-      <button type="button" class="midi-header specials-toggle" aria-expanded="false" onclick="toggleSpecial(this)">
-        <div class="midi-header-left">
-          <h3 class="midi-title" data-fr="Spéciaux du midi" data-en="Lunch Specials" data-es="Especiales del mediodía">Spéciaux du midi</h3>
-          <p class="midi-subtitle" data-fr="Repas complets à prix doux — en salle à manger seulement" data-en="Full meals at great prices — dine-in only" data-es="Comidas completas a precios amables — solo en el restaurante">Repas complets à prix doux — en salle à manger seulement</p>
-        </div>
-        <div class="midi-header-right">
-          <div class="midi-badge">
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.5"/><polyline points="8,4.5 8,8 10.5,9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
-            <span data-fr="11h à 14h" data-en="11am to 2pm" data-es="11 h a 14 h">11h à 14h</span>
-          </div>
-          <svg class="specials-chevron" width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true"><polyline points="4,6 8,10 12,6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-      </button>
-      <div class="specials-body">
-        <div class="midi-grid">
-          <div class="midi-item"><span class="midi-item-name" data-fr="Burger au poulet &amp; frites" data-en="Chicken burger &amp; fries" data-es="Hamburguesa de pollo y papas fritas">Burger au poulet &amp; frites</span><span class="midi-item-price">16,95 $</span></div>
-          <div class="midi-item"><span class="midi-item-name" data-fr="Pizza &amp; frites" data-en="Pizza &amp; fries" data-es="Pizza y papas fritas">Pizza &amp; frites</span><span class="midi-item-price">19,95 $</span></div>
-          <div class="midi-item"><span class="midi-item-name" data-fr="Crevettes à l'ail (10)" data-en="Garlic shrimp (10)" data-es="Camarones al ajo (10)">Crevettes à l'ail (10)</span><span class="midi-item-price">18,95 $</span></div>
-          <div class="midi-item"><span class="midi-item-name" data-fr="Steak haché &amp; frites" data-en="Ground steak &amp; fries" data-es="Carne molida y papas fritas">Steak haché &amp; frites</span><span class="midi-item-price">19,95 $</span></div>
-          <div class="midi-item"><span class="midi-item-name" data-fr="Coquille de fruits de mer" data-en="Seafood shell" data-es="Concha de mariscos">Coquille de fruits de mer</span><span class="midi-item-price">19,95 $</span></div>
-          <div class="midi-item"><span class="midi-item-name" data-fr="Grillade de poulet mariné" data-en="Marinated grilled chicken" data-es="Pollo marinado a la parrilla">Grillade de poulet mariné</span><span class="midi-item-price">19,95 $</span></div>
-          <div class="midi-item"><span class="midi-item-name" data-fr="Demi-côte levée &amp; frites" data-en="Half rack of ribs &amp; fries" data-es="Media costilla y papas fritas">Demi-côte levée &amp; frites</span><span class="midi-item-price">19,95 $</span></div>
-          <div class="midi-item"><span class="midi-item-name" data-fr="Filet de sole" data-en="Sole fillet" data-es="Filete de lenguado">Filet de sole</span><span class="midi-item-price">19,95 $</span></div>
-          <div class="midi-item"><span class="midi-item-name" data-fr="Lasagne &amp; salade César" data-en="Lasagna &amp; Caesar salad" data-es="Lasaña y ensalada César">Lasagne &amp; salade César</span><span class="midi-item-price">19,95 $</span></div>
-          <div class="midi-item"><span class="midi-item-name" data-fr="Filet de saumon grillé" data-en="Grilled salmon fillet" data-es="Filete de salmón a la parrilla">Filet de saumon grillé</span><span class="midi-item-price">22,95 $</span></div>
-        </div>
-        <div class="midi-notes">
-          <div class="midi-note midi-note-highlight"><span class="midi-note-label" data-fr="Inclus" data-en="Included" data-es="Incluye">Inclus</span><span class="midi-note-text" data-fr="soupe ou crème du jour OU dessert du jour · café inclus" data-en="soup or cream of the day OR dessert of the day · coffee included" data-es="sopa o crema del día O postre del día · café incluido">soupe ou crème du jour OU dessert du jour · café inclus</span></div>
-          <div class="midi-note"><span class="midi-note-label" data-fr="Pizza" data-en="Pizza" data-es="Pizza">Pizza</span><span class="midi-note-text" data-fr="au choix : nature, végétarienne, toute garnie, pepperoni ou bacon · Spéciale du Moulin ou fruits de mer : + 3,95 $" data-en="your choice: plain, vegetarian, all-dressed, pepperoni or bacon · Le Moulin Special or seafood: + $3.95" data-es="a elegir: natural, vegetariana, toda guarnecida, pepperoni o tocineta · Especial del Moulin o mariscos: + 3,95 $">au choix : nature, végétarienne, toute garnie, pepperoni ou bacon · Spéciale du Moulin ou fruits de mer : + 3,95 $</span></div>
-          <div class="midi-note"><span class="midi-note-label" data-fr="Crevettes, coquille, grillade, filet de sole &amp; saumon" data-en="Shrimp, seafood shell, grilled chicken, sole fillet &amp; salmon" data-es="Camarones, concha, parrilla, filete de lenguado y salmón">Crevettes, coquille, grillade, filet de sole &amp; saumon</span><span class="midi-note-text" data-fr="servis avec riz, patates grecques et choix de salade (César ou verte)" data-en="served with rice, Greek potatoes and choice of salad (Caesar or garden)" data-es="servidos con arroz, papas griegas y ensalada a elegir (César o verde)">servis avec riz, patates grecques et choix de salade (César ou verte)</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SPÉCIAUX DU MOIS -->
-    <div class="midi-featured specials-card" data-open="false">
-      <button type="button" class="midi-header specials-toggle" aria-expanded="false" onclick="toggleSpecial(this)">
-        <div class="midi-header-left">
-          <h3 class="midi-title" data-fr="Spéciaux du mois" data-en="Monthly Specials" data-es="Especiales del mes">Spéciaux du mois</h3>
-          <p class="midi-subtitle" data-fr="Nos créations du moment — offertes toute la journée et en soirée" data-en="Our current creations — available all day and evening" data-es="Nuestras creaciones del momento — disponibles todo el día y la noche">Nos créations du moment — offertes toute la journée et en soirée</p>
-        </div>
-        <div class="midi-header-right">
-          <div class="midi-badge midi-badge-alt">
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2 L9.6 6.3 L14 6.6 L10.6 9.4 L11.7 13.8 L8 11.4 L4.3 13.8 L5.4 9.4 L2 6.6 L6.4 6.3 Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" fill="none"/></svg>
-            <span data-fr="Nouveau" data-en="New" data-es="Nuevo">Nouveau</span>
-          </div>
-          <svg class="specials-chevron" width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true"><polyline points="4,6 8,10 12,6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-      </button>
-      <div class="specials-body">
-        <div class="midi-grid">
-          <div class="midi-item"><span class="midi-item-name" data-fr="T-Bone (7 oz)" data-en="T-Bone (7 oz)" data-es="T-Bone (7 oz)">T-Bone (7 oz)</span><span class="midi-item-price">22,95 $</span></div>
-          <div class="midi-item"><span class="midi-item-name" data-fr="Rib Steak (7 oz)" data-en="Rib Steak (7 oz)" data-es="Rib Steak (7 oz)">Rib Steak (7 oz)</span><span class="midi-item-price">22,95 $</span></div>
-          <div class="midi-item"><span class="midi-item-name" data-fr="Filet de saumon &amp; 10 crevettes" data-en="Salmon fillet &amp; 10 shrimp" data-es="Filete de salmón y 10 camarones">Filet de saumon &amp; 10 crevettes</span><span class="midi-item-price">27,95 $</span></div>
-          <div class="midi-item"><span class="midi-item-name" data-fr="Nachos du Moulin" data-en="Nachos du Moulin" data-es="Nachos del Moulin">Nachos du Moulin</span><span class="midi-item-price">19,95 $</span></div>
-          <div class="midi-item"><span class="midi-item-name" data-fr="Pizza soufflée &amp; frites" data-en="Soufflé pizza &amp; fries" data-es="Pizza soufflé y papas fritas">Pizza soufflée &amp; frites</span><span class="midi-item-price">19,95 $</span></div>
-          <div class="midi-item"><span class="midi-item-name" data-fr="Choix du Chef (cuisse ou poitrine)" data-en="Chef's Choice (thigh or breast)" data-es="Elección del Chef (pernil o pechuga)">Choix du Chef (cuisse ou poitrine)</span><span class="midi-item-price">11,95 $</span></div>
-        </div>
-        <div class="midi-notes">
-          <div class="midi-note"><span class="midi-note-label" data-fr="T-Bone &amp; Rib Steak" data-en="T-Bone &amp; Rib Steak" data-es="T-Bone y Rib Steak">T-Bone &amp; Rib Steak</span><span class="midi-note-text" data-fr="accompagnés de champignons sautés, riz, patates grecques et salade César · ajouter 10 crevettes pour 7,95 $" data-en="served with sautéed mushrooms, rice, Greek potatoes and Caesar salad · add 10 shrimp for $7.95" data-es="acompañados de champiñones salteados, arroz, papas griegas y ensalada César · agregar 10 camarones por 7,95 $">accompagnés de champignons sautés, riz, patates grecques et salade César · ajouter 10 crevettes pour 7,95 $</span></div>
-          <div class="midi-note"><span class="midi-note-label" data-fr="Filet de saumon &amp; crevettes" data-en="Salmon fillet &amp; shrimp" data-es="Filete de salmón y camarones">Filet de saumon &amp; crevettes</span><span class="midi-note-text" data-fr="accompagné de riz, patates grecques et salade César" data-en="served with rice, Greek potatoes and Caesar salad" data-es="acompañado de arroz, papas griegas y ensalada César">accompagné de riz, patates grecques et salade César</span></div>
-          <div class="midi-note"><span class="midi-note-label" data-fr="Nachos du Moulin" data-en="Nachos du Moulin" data-es="Nachos del Moulin">Nachos du Moulin</span><span class="midi-note-text" data-fr="poivrons verts et rouges, oignons, champignons et pepperoni" data-en="green and red peppers, onions, mushrooms and pepperoni" data-es="pimientos verdes y rojos, cebolla, champiñones y pepperoni">poivrons verts et rouges, oignons, champignons et pepperoni</span></div>
-          <div class="midi-note"><span class="midi-note-label" data-fr="Choix du Chef" data-en="Chef's Choice" data-es="Elección del Chef">Choix du Chef</span><span class="midi-note-text" data-fr="inclut frites et salade de chou" data-en="includes fries and coleslaw" data-es="incluye papas fritas y ensalada de repollo">inclut frites et salade de chou</span></div>
-        </div>
-      </div>
-    </div>
-
-    </div>
-  </div>
 
   <div style="margin-top:2.5rem;">
     <div class="menu-tabs" id="menu-tabs">
@@ -1040,15 +1033,15 @@ if(document.readyState === 'loading'){
       <!-- Sous-panel : Classiques (Réguliers + Omelettes + Bénédictines) -->
       <div class="dejeuner-subpanel active" id="dejeuner-panel-classiques" role="tabpanel">
         <div class="menu-grid">
-          <div class="menu-cat" data-fr="Les Réguliers" data-en="The Regulars" data-es="Los Regulares">Les Réguliers</div>
-          <div class="menu-item"><div><div class="menu-item-name" data-fr="1 œuf, rôties et café" data-en="1 egg, toast and coffee" data-es="1 huevo, tostadas y café">1 œuf, rôties et café</div></div><div class="menu-item-price">9,95 $</div></div>
-          <div class="menu-item"><div><div class="menu-item-name" data-fr="2 œufs, rôties et café" data-en="2 eggs, toast and coffee" data-es="2 huevos, tostadas y café">2 œufs, rôties et café</div></div><div class="menu-item-price">10,25 $</div></div>
-          <div class="menu-item"><div><div class="menu-item-name" data-fr="1 œuf, viande au choix, patates, confiture, rôties et café" data-en="1 egg, choice of meat, potatoes, jam, toast and coffee" data-es="1 huevo, carne a elegir, papas, mermelada, tostadas y café">1 œuf, viande au choix, patates, confiture, rôties et café</div></div><div class="menu-item-price">11,95 $</div></div>
-          <div class="menu-item"><div><div class="menu-item-name" data-fr="2 œufs, viande au choix, patates, confiture, rôties et café" data-en="2 eggs, choice of meat, potatoes, jam, toast and coffee" data-es="2 huevos, carne a elegir, papas, mermelada, tostadas y café">2 œufs, viande au choix, patates, confiture, rôties et café</div></div><div class="menu-item-price">13,95 $</div></div>
-          <div class="menu-item"><div><div class="menu-item-name" data-fr="1 œuf, 3 viandes" data-en="1 egg, 3 meats" data-es="1 huevo, 3 carnes">1 œuf, 3 viandes</div><div class="menu-item-desc" data-fr="Bacon, saucisses (porc et bœuf) et jambon, patates, confiture, rôties et café" data-en="Bacon, sausages (pork and beef) and ham, potatoes, jam, toast and coffee" data-es="Tocineta, salchichas (cerdo y res) y jamón, papas, mermelada, tostadas y café">Bacon, saucisses (porc et bœuf) et jambon, patates, confiture, rôties et café</div></div><div class="menu-item-price">15,95 $</div></div>
-          <div class="menu-item"><div><div class="menu-item-name" data-fr="2 œufs, 3 viandes" data-en="2 eggs, 3 meats" data-es="2 huevos, 3 carnes">2 œufs, 3 viandes</div><div class="menu-item-desc" data-fr="Bacon, saucisses (porc et bœuf) et jambon, patates, confiture, rôties et café" data-en="Bacon, sausages (pork and beef) and ham, potatoes, jam, toast and coffee" data-es="Tocineta, salchichas (cerdo y res) y jamón, papas, mermelada, tostadas y café">Bacon, saucisses (porc et bœuf) et jambon, patates, confiture, rôties et café</div></div><div class="menu-item-price">17,50 $</div></div>
-          <div class="menu-item"><div><div class="menu-item-name" data-fr="2 œufs, viande au choix, gaufre aux fruits frais" data-en="2 eggs, choice of meat, fresh fruit waffle" data-es="2 huevos, carne a elegir, waffle con fruta fresca">2 œufs, viande au choix, gaufre aux fruits frais</div><div class="menu-item-desc" data-fr="Sirop, patates, fruits et café" data-en="Syrup, potatoes, fruit and coffee" data-es="Jarabe, papas, frutas y café">Sirop, patates, fruits et café</div></div><div class="menu-item-price">20,50 $</div></div>
-          <div class="menu-cat" data-fr="Les Omelettes — servies avec patates, fruits frais ou tomates, rôties et café" data-en="Omelettes — served with potatoes, fresh fruit or tomatoes, toast and coffee" data-es="Las Tortillas — servidas con papas, fruta fresca o tomates, tostadas y café">Les Omelettes — servies avec patates, fruits frais ou tomates, rôties et café</div>
+          <div class="menu-cat" data-fr="Les Réguliers — servis avec patates, fruits frais, rôties et café" data-en="The Regulars — served with potatoes, fresh fruit, toast and coffee" data-es="Los Regulares — servidos con papas, fruta fresca, tostadas y café">Les Réguliers — servis avec patates, fruits frais, rôties et café</div>
+          <div class="menu-item"><div><div class="menu-item-name" data-fr="1 œuf" data-en="1 egg" data-es="1 huevo">1 œuf</div></div><div class="menu-item-price">9,95 $</div></div>
+          <div class="menu-item"><div><div class="menu-item-name" data-fr="2 œufs" data-en="2 eggs" data-es="2 huevos">2 œufs</div></div><div class="menu-item-price">10,25 $</div></div>
+          <div class="menu-item"><div><div class="menu-item-name" data-fr="1 œuf, viande au choix" data-en="1 egg, choice of meat" data-es="1 huevo, carne a elegir">1 œuf, viande au choix</div></div><div class="menu-item-price">11,95 $</div></div>
+          <div class="menu-item"><div><div class="menu-item-name" data-fr="2 œufs, viande au choix" data-en="2 eggs, choice of meat" data-es="2 huevos, carne a elegir">2 œufs, viande au choix</div></div><div class="menu-item-price">13,95 $</div></div>
+          <div class="menu-item"><div><div class="menu-item-name" data-fr="1 œuf, 3 viandes" data-en="1 egg, 3 meats" data-es="1 huevo, 3 carnes">1 œuf, 3 viandes</div><div class="menu-item-desc" data-fr="Bacon, saucisses (porc et bœuf) et jambon" data-en="Bacon, sausages (pork and beef) and ham" data-es="Tocineta, salchichas (cerdo y res) y jamón">Bacon, saucisses (porc et bœuf) et jambon</div></div><div class="menu-item-price">15,95 $</div></div>
+          <div class="menu-item"><div><div class="menu-item-name" data-fr="2 œufs, 3 viandes" data-en="2 eggs, 3 meats" data-es="2 huevos, 3 carnes">2 œufs, 3 viandes</div><div class="menu-item-desc" data-fr="Bacon, saucisses (porc et bœuf) et jambon" data-en="Bacon, sausages (pork and beef) and ham" data-es="Tocineta, salchichas (cerdo y res) y jamón">Bacon, saucisses (porc et bœuf) et jambon</div></div><div class="menu-item-price">17,50 $</div></div>
+          <div class="menu-item"><div><div class="menu-item-name" data-fr="2 œufs, viande au choix, gaufre aux fruits frais" data-en="2 eggs, choice of meat, fresh fruit waffle" data-es="2 huevos, carne a elegir, waffle con fruta fresca">2 œufs, viande au choix, gaufre aux fruits frais</div><div class="menu-item-desc" data-fr="Avec sirop — la gaufre remplace les rôties (patates, fruits frais et café inclus)" data-en="With syrup — waffle replaces toast (potatoes, fresh fruit and coffee included)" data-es="Con jarabe — el waffle reemplaza las tostadas (papas, fruta fresca y café incluidos)">Avec sirop — la gaufre remplace les rôties (patates, fruits frais et café inclus)</div></div><div class="menu-item-price">20,50 $</div></div>
+          <div class="menu-cat" data-fr="Les Omelettes — servies avec patates, fruits frais, rôties et café" data-en="Omelettes — served with potatoes, fresh fruit, toast and coffee" data-es="Las Tortillas — servidas con papas, fruta fresca, tostadas y café">Les Omelettes — servies avec patates, fruits frais, rôties et café</div>
           <div class="menu-item"><div><div class="menu-item-name" data-fr="Nature" data-en="Plain" data-es="Natural">Nature</div></div><div class="menu-item-price">13,95 $</div></div>
           <div class="menu-item"><div><div class="menu-item-name" data-fr="Fromage jaune" data-en="Cheddar cheese" data-es="Queso amarillo">Fromage jaune</div></div><div class="menu-item-price">14,95 $</div></div>
           <div class="menu-item"><div><div class="menu-item-name" data-fr="Jambon et fromage jaune" data-en="Ham and cheddar cheese" data-es="Jamón y queso amarillo">Jambon et fromage jaune</div></div><div class="menu-item-price">17,95 $</div></div>
@@ -1440,6 +1433,17 @@ if(document.readyState === 'loading'){
             <div class="bois-row"><div><div class="bois-name">Budweiser Zéro</div><div class="bois-sub" data-fr="Sans alcool" data-en="Alcohol-free" data-es="Sin alcohol">Sans alcool</div></div><div class="bois-price">5,00 $</div></div>
             <div class="bois-row"><div><div class="bois-name" data-fr="Beck's (zéro alcool)" data-en="Beck's (alcohol-free)" data-es="Beck's (sin alcohol)">Beck's (zéro alcool)</div><div class="bois-sub" data-fr="Sans alcool" data-en="Alcohol-free" data-es="Sin alcohol">Sans alcool</div></div><div class="bois-price">5,00 $</div></div>
           </div>
+
+          <div class="bois-card">
+            <div class="bois-card-header" data-fr="Boissons Chaudes" data-en="Hot Beverages" data-es="Bebidas Calientes">Boissons Chaudes</div>
+            <div class="bois-row"><div><div class="bois-name" data-fr="Café" data-en="Coffee" data-es="Café">Café</div></div><div class="bois-price">2,95 $</div></div>
+            <div class="bois-row"><div><div class="bois-name" data-fr="Thé" data-en="Tea" data-es="Té">Thé</div><div class="bois-sub" data-fr="Vert ou noir" data-en="Green or black" data-es="Verde o negro">Vert ou noir</div></div><div class="bois-price">2,95 $</div></div>
+            <div class="bois-row"><div><div class="bois-name" data-fr="Tisane" data-en="Herbal tea" data-es="Infusión">Tisane</div><div class="bois-sub" data-fr="Camomille ou menthe poivrée" data-en="Chamomile or peppermint" data-es="Manzanilla o menta">Camomille ou menthe poivrée</div></div><div class="bois-price">2,95 $</div></div>
+            <div class="bois-row"><div><div class="bois-name" data-fr="Lait" data-en="Milk" data-es="Leche">Lait</div></div><div class="bois-price">3,25 $</div></div>
+            <div class="bois-row"><div><div class="bois-name" data-fr="Lait au chocolat" data-en="Chocolate milk" data-es="Leche con chocolate">Lait au chocolat</div></div><div class="bois-price">3,25 $</div></div>
+            <div class="bois-row"><div><div class="bois-name" data-fr="Chocolat chaud" data-en="Hot chocolate" data-es="Chocolate caliente">Chocolat chaud</div></div><div class="bois-price">4,50 $</div></div>
+            <div class="bois-row"><div><div class="bois-name" data-fr="Café du Moulin" data-en="Le Moulin Coffee" data-es="Café del Moulin">Café du Moulin</div><div class="bois-sub" data-fr="Vanille-cannelle ou caramel salé" data-en="Vanilla-cinnamon or salted caramel" data-es="Vainilla-canela o caramelo salado">Vanille-cannelle ou caramel salé</div></div><div class="bois-price">5,95 $</div></div>
+          </div>
         </div>
       </div>
 
@@ -1575,6 +1579,181 @@ if(document.readyState === 'loading'){
   </div>
   <p style="font-size:12px;color:var(--text-muted);margin-top:1.5rem;text-align:center;" data-fr="* Les photos peuvent différer des plats. Informez votre serveur de toute allergie." data-en="* Photos may differ from actual dishes. Please inform your server of any allergies." data-es="* Las fotos pueden diferir de los platos reales. Informe a su mesero de cualquier alergia.">* Les photos peuvent différer des plats. Informez votre serveur de toute allergie.</p>
 </div>
+
+  <!-- PROMOTIONS LIVRAISON & EMPORTER -->
+  <div id="promotions" class="specials-group" style="margin-top:2.5rem;">
+    <div class="specials-group-header">
+      <h3 class="specials-group-title" data-fr="Promotions livraison &amp; emporter" data-en="Delivery &amp; Takeout Specials" data-es="Promociones de entrega y para llevar">Promotions livraison &amp; emporter</h3>
+      <p class="specials-group-sub" data-fr='Des combos savoureux avec boisson incluse — commandez par téléphone au <a href="tel:+18198324242" style="color:var(--gold);text-decoration:none;font-weight:600;">(819) 832-4242</a>' data-en='Tasty combos with drink included — call to order at <a href="tel:+18198324242" style="color:var(--gold);text-decoration:none;font-weight:600;">(819) 832-4242</a>' data-es='Combos deliciosos con bebida incluida — pida por teléfono al <a href="tel:+18198324242" style="color:var(--gold);text-decoration:none;font-weight:600;">(819) 832-4242</a>'>Des combos savoureux avec boisson incluse — commandez par téléphone au <a href="tel:+18198324242" style="color:var(--gold);text-decoration:none;font-weight:600;">(819) 832-4242</a></p>
+    </div>
+    <div class="specials-stack">
+
+      <!-- SUPER SPÉCIAL -->
+      <div class="midi-featured specials-card" data-open="false">
+        <button type="button" class="midi-header specials-toggle" aria-expanded="false" onclick="toggleSpecial(this)">
+          <div class="midi-header-left">
+            <h3 class="midi-title" data-fr="Super Spécial" data-en="Super Special" data-es="Súper Especial">Super Spécial</h3>
+            <p class="midi-subtitle" data-fr="Le prix mentionné est pour chaque assiette — 1 liqueur incluse" data-en="The price shown is per plate — 1 soft drink included" data-es="El precio indicado es por cada plato — 1 bebida incluida">Le prix mentionné est pour chaque assiette — 1 liqueur incluse</p>
+          </div>
+          <div class="midi-header-right">
+            <svg class="specials-chevron" width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true"><polyline points="4,6 8,10 12,6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </button>
+        <div class="specials-body">
+          <div style="font-size:11px;color:var(--text-muted);margin-bottom:0.75rem;display:flex;align-items:center;gap:6px;"><span class="promo-pepsi-dot"></span><span data-fr="1 liqueur incluse avec chaque repas" data-en="1 soft drink included with each meal" data-es="1 bebida incluida con cada comida">1 liqueur incluse avec chaque repas</span></div>
+          <div class="promo-ss-grid">
+            <div class="promo-ss-item"><div class="promo-ss-num">1</div><div class="promo-ss-name" data-fr="Cheeseburger (sauce et frites)" data-en="Cheeseburger (gravy and fries)" data-es="Cheeseburger (salsa y papas fritas)">Cheeseburger (sauce et frites)</div><div class="promo-ss-price">14,95 $</div></div>
+            <div class="promo-ss-item"><div class="promo-ss-num">2</div><div class="promo-ss-name" data-fr="Poutine au poulet ou viande hachée" data-en="Chicken or ground beef poutine" data-es="Poutine de pollo o carne molida">Poutine au poulet ou viande hachée</div><div class="promo-ss-price">14,95 $</div></div>
+            <div class="promo-ss-item"><div class="promo-ss-num">3</div><div class="promo-ss-name" data-fr="Spaghetti spécial du Moulin<br><span style=&quot;font-size:11px;color:var(--text-muted);font-weight:300;&quot;>Piment vert, oignons, champignons et pepperoni</span>" data-en="Le Moulin special spaghetti<br><span style=&quot;font-size:11px;color:var(--text-muted);font-weight:300;&quot;>Green peppers, onions, mushrooms and pepperoni</span>" data-es="Espagueti Especial del Moulin<br><span style=&quot;font-size:11px;color:var(--text-muted);font-weight:300;&quot;>Pimiento verde, cebolla, champiñones y pepperoni</span>">Spaghetti spécial du Moulin<br><span style="font-size:11px;color:var(--text-muted);font-weight:300;">Piment vert, oignons, champignons et pepperoni</span></div><div class="promo-ss-price">14,95 $</div></div>
+            <div class="promo-ss-item"><div class="promo-ss-num">4</div><div class="promo-ss-name" data-fr="Salade jardinière au poulet" data-en="Garden salad with chicken" data-es="Ensalada de la casa con pollo">Salade jardinière au poulet</div><div class="promo-ss-price">14,95 $</div></div>
+            <div class="promo-ss-item"><div class="promo-ss-num">5</div><div class="promo-ss-name" data-fr="Lasagne gratinée" data-en="Lasagna au gratin" data-es="Lasaña gratinada">Lasagne gratinée</div><div class="promo-ss-price">15,95 $</div></div>
+            <div class="promo-ss-item"><div class="promo-ss-num">6</div><div class="promo-ss-name" data-fr="6 croquettes de poulet (salade de chou et frites)" data-en="6 chicken nuggets (coleslaw and fries)" data-es="6 croquetas de pollo (ensalada de repollo y papas fritas)">6 croquettes de poulet (salade de chou et frites)</div><div class="promo-ss-price">15,95 $</div></div>
+            <div class="promo-ss-item"><div class="promo-ss-num">7</div><div class="promo-ss-name" data-fr="8 ailes de poulet (sauce et frites)" data-en="8 chicken wings (sauce and fries)" data-es="8 alas de pollo (salsa y papas fritas)">8 ailes de poulet (sauce et frites)</div><div class="promo-ss-price">15,95 $</div></div>
+            <div class="promo-ss-item"><div class="promo-ss-num">8</div><div class="promo-ss-name" data-fr="10 crevettes à l'ail (beurre à l'ail, riz et frites)" data-en="10 garlic shrimp (garlic butter, rice and fries)" data-es="10 camarones al ajo (mantequilla al ajo, arroz y papas fritas)">10 crevettes à l'ail (beurre à l'ail, riz et frites)</div><div class="promo-ss-price">15,95 $</div></div>
+            <div class="promo-ss-item"><div class="promo-ss-num">9</div><div class="promo-ss-name" data-fr="Mini-pizza avec salade César" data-en="Mini pizza with Caesar salad" data-es="Mini pizza con ensalada César">Mini-pizza avec salade César</div><div class="promo-ss-price">16,95 $</div></div>
+            <div class="promo-ss-item"><div class="promo-ss-num">10</div><div class="promo-ss-name" data-fr="Doigts de poulet (avec frites)" data-en="Chicken fingers (with fries)" data-es="Dedos de pollo (con papas fritas)">Doigts de poulet (avec frites)</div><div class="promo-ss-price">16,95 $</div></div>
+            <div class="promo-ss-item"><div class="promo-ss-num">11</div><div class="promo-ss-name" data-fr="Mini-pizza (avec frites)" data-en="Mini pizza (with fries)" data-es="Mini pizza (con papas fritas)">Mini-pizza (avec frites)</div><div class="promo-ss-price">16,95 $</div></div>
+            <div class="promo-ss-item"><div class="promo-ss-num">12</div><div class="promo-ss-name" data-fr="Pita gyros ou poulet (avec frites)" data-en="Gyro or chicken pita (with fries)" data-es="Pita de gyros o pollo (con papas fritas)">Pita gyros ou poulet (avec frites)</div><div class="promo-ss-price">16,95 $</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COMBOS REPAS -->
+      <div class="midi-featured specials-card" data-open="false">
+        <button type="button" class="midi-header specials-toggle" aria-expanded="false" onclick="toggleSpecial(this)">
+          <div class="midi-header-left">
+            <h3 class="midi-title" data-fr="Combos repas" data-en="Meal Combos" data-es="Combos de comida">Combos repas</h3>
+            <p class="midi-subtitle" data-fr="Combos repas complets — voir chaque offre pour les détails" data-en="Full meal combos — see each offer for details" data-es="Combos de comida completos — ver cada oferta para detalles">Combos repas complets — voir chaque offre pour les détails</p>
+          </div>
+          <div class="midi-header-right">
+            <div class="midi-badge midi-badge-alt">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 12L8 3L13 12H3Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+              <span data-fr="Essayez-les !" data-en="Try them!" data-es="¡Pruébelos!">Essayez-les !</span>
+            </div>
+            <svg class="specials-chevron" width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true"><polyline points="4,6 8,10 12,6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </button>
+        <div class="specials-body">
+          <div class="promo-combo-card">
+            <div>
+              <div class="promo-card-name" data-fr="2 moyennes poutines" data-en="2 medium poutines" data-es="2 poutines medianas">2 moyennes poutines</div>
+              <div class="promo-card-desc" data-fr="Sauce B.B.Q. ou brune" data-en="BBQ or brown gravy" data-es="Salsa B.B.Q. o marrón">Sauce B.B.Q. ou brune</div>
+              <div class="promo-pepsi" style="margin-top:6px;"><span class="promo-pepsi-dot"></span><span data-fr="2 liqueurs incluses" data-en="2 soft drinks included" data-es="2 bebidas incluidas">2 liqueurs incluses</span></div>
+            </div>
+            <div class="promo-combo-price">22,45 $</div>
+          </div>
+
+          <div class="promo-combo-card">
+            <div>
+              <div class="promo-card-name" data-fr="1 moyenne pizza (12&quot;) + 1 petite frite" data-en="1 medium pizza (12&quot;) + 1 small fries" data-es="1 pizza mediana (12&quot;) + 1 papas fritas pequeñas">1 moyenne pizza (12") + 1 petite frite</div>
+              <div class="promo-card-desc" data-fr="Toute garnie, pepperoni ou végétarienne" data-en="All-dressed, pepperoni or vegetarian" data-es="Toda guarnecida, pepperoni o vegetariana">Toute garnie, pepperoni ou végétarienne</div>
+              <div class="promo-pepsi" style="margin-top:6px;"><span class="promo-pepsi-dot"></span><span data-fr="2 liqueurs incluses" data-en="2 soft drinks included" data-es="2 bebidas incluidas">2 liqueurs incluses</span></div>
+            </div>
+            <div class="promo-combo-price">28,45 $</div>
+          </div>
+
+          <div class="promo-combo-card">
+            <div>
+              <div class="promo-card-name" data-fr="1 moyenne pizza (12&quot;) + 1 moyenne poutine" data-en="1 medium pizza (12&quot;) + 1 medium poutine" data-es="1 pizza mediana (12&quot;) + 1 poutine mediana">1 moyenne pizza (12") + 1 moyenne poutine</div>
+              <div class="promo-card-desc" data-fr="Pizza : toute garnie, pepperoni ou végétarienne · Poutine : sauce B.B.Q. ou brune" data-en="Pizza: all-dressed, pepperoni or vegetarian · Poutine: BBQ or brown gravy" data-es="Pizza: toda guarnecida, pepperoni o vegetariana · Poutine: salsa B.B.Q. o marrón">Pizza : toute garnie, pepperoni ou végétarienne · Poutine : sauce B.B.Q. ou brune</div>
+              <div class="promo-pepsi" style="margin-top:6px;"><span class="promo-pepsi-dot"></span><span data-fr="2 liqueurs incluses" data-en="2 soft drinks included" data-es="2 bebidas incluidas">2 liqueurs incluses</span></div>
+            </div>
+            <div class="promo-combo-price">33,45 $</div>
+          </div>
+
+          <div class="promo-combo-card">
+            <div>
+              <div class="promo-card-name" data-fr="2 moyennes pizzas (12&quot;)" data-en="2 medium pizzas (12&quot;)" data-es="2 pizzas medianas (12&quot;)">2 moyennes pizzas (12")</div>
+              <div class="promo-card-desc" data-fr="Toute garnie, pepperoni ou végétarienne" data-en="All-dressed, pepperoni or vegetarian" data-es="Toda guarnecida, pepperoni o vegetariana">Toute garnie, pepperoni ou végétarienne</div>
+              <div class="promo-pepsi promo-pepsi-off" style="margin-top:6px;"><span class="promo-pepsi-dot promo-pepsi-dot-off"></span><span data-fr="Liqueurs non incluses" data-en="Soft drinks not included" data-es="Bebidas no incluidas">Liqueurs non incluses</span></div>
+            </div>
+            <div class="promo-combo-price">34,45 $</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SPÉCIAUX — SECTIONS VEDETTES REPLIABLES -->
+  <div class="specials-group" style="margin-top:3.5rem;">
+    <div class="specials-group-header">
+      <h3 class="specials-group-title" data-fr="Spéciaux en salle à manger" data-en="Dine-in Specials" data-es="Especiales en el restaurante">Spéciaux en salle à manger</h3>
+      <p class="specials-group-sub" data-fr="Nos offres à déguster sur place — du midi jusqu'en soirée" data-en="Our offers to enjoy on site — from noon through the evening" data-es="Nuestras ofertas para disfrutar en el lugar — desde el mediodía hasta la noche">Nos offres à déguster sur place — du midi jusqu'en soirée</p>
+    </div>
+    <div class="specials-stack">
+
+    <!-- SPÉCIAUX DU MIDI -->
+    <div class="midi-featured specials-card" data-open="false">
+      <button type="button" class="midi-header specials-toggle" aria-expanded="false" onclick="toggleSpecial(this)">
+        <div class="midi-header-left">
+          <h3 class="midi-title" data-fr="Spéciaux du midi" data-en="Lunch Specials" data-es="Especiales del mediodía">Spéciaux du midi</h3>
+          <p class="midi-subtitle" data-fr="Repas complets à prix doux — en salle à manger seulement" data-en="Full meals at great prices — dine-in only" data-es="Comidas completas a precios amables — solo en el restaurante">Repas complets à prix doux — en salle à manger seulement</p>
+        </div>
+        <div class="midi-header-right">
+          <div class="midi-badge">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.5"/><polyline points="8,4.5 8,8 10.5,9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+            <span data-fr="11h à 14h" data-en="11am to 2pm" data-es="11 h a 14 h">11h à 14h</span>
+          </div>
+          <svg class="specials-chevron" width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true"><polyline points="4,6 8,10 12,6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </button>
+      <div class="specials-body">
+        <div class="midi-grid">
+          <div class="midi-item"><span class="midi-item-name" data-fr="Burger au poulet &amp; frites" data-en="Chicken burger &amp; fries" data-es="Hamburguesa de pollo y papas fritas">Burger au poulet &amp; frites</span><span class="midi-item-price">16,95 $</span></div>
+          <div class="midi-item"><span class="midi-item-name" data-fr="Pizza &amp; frites" data-en="Pizza &amp; fries" data-es="Pizza y papas fritas">Pizza &amp; frites</span><span class="midi-item-price">19,95 $</span></div>
+          <div class="midi-item"><span class="midi-item-name" data-fr="Crevettes à l'ail (10)" data-en="Garlic shrimp (10)" data-es="Camarones al ajo (10)">Crevettes à l'ail (10)</span><span class="midi-item-price">18,95 $</span></div>
+          <div class="midi-item"><span class="midi-item-name" data-fr="Steak haché &amp; frites" data-en="Ground steak &amp; fries" data-es="Carne molida y papas fritas">Steak haché &amp; frites</span><span class="midi-item-price">19,95 $</span></div>
+          <div class="midi-item"><span class="midi-item-name" data-fr="Coquille de fruits de mer" data-en="Seafood shell" data-es="Concha de mariscos">Coquille de fruits de mer</span><span class="midi-item-price">19,95 $</span></div>
+          <div class="midi-item"><span class="midi-item-name" data-fr="Grillade de poulet mariné" data-en="Marinated grilled chicken" data-es="Pollo marinado a la parrilla">Grillade de poulet mariné</span><span class="midi-item-price">19,95 $</span></div>
+          <div class="midi-item"><span class="midi-item-name" data-fr="Demi-côte levée &amp; frites" data-en="Half rack of ribs &amp; fries" data-es="Media costilla y papas fritas">Demi-côte levée &amp; frites</span><span class="midi-item-price">19,95 $</span></div>
+          <div class="midi-item"><span class="midi-item-name" data-fr="Filet de sole" data-en="Sole fillet" data-es="Filete de lenguado">Filet de sole</span><span class="midi-item-price">19,95 $</span></div>
+          <div class="midi-item"><span class="midi-item-name" data-fr="Lasagne &amp; salade César" data-en="Lasagna &amp; Caesar salad" data-es="Lasaña y ensalada César">Lasagne &amp; salade César</span><span class="midi-item-price">19,95 $</span></div>
+          <div class="midi-item"><span class="midi-item-name" data-fr="Filet de saumon grillé" data-en="Grilled salmon fillet" data-es="Filete de salmón a la parrilla">Filet de saumon grillé</span><span class="midi-item-price">22,95 $</span></div>
+        </div>
+        <div class="midi-notes">
+          <div class="midi-note midi-note-highlight"><span class="midi-note-label" data-fr="Inclus" data-en="Included" data-es="Incluye">Inclus</span><span class="midi-note-text" data-fr="soupe ou crème du jour OU dessert du jour · café inclus" data-en="soup or cream of the day OR dessert of the day · coffee included" data-es="sopa o crema del día O postre del día · café incluido">soupe ou crème du jour OU dessert du jour · café inclus</span></div>
+          <div class="midi-note"><span class="midi-note-label" data-fr="Pizza" data-en="Pizza" data-es="Pizza">Pizza</span><span class="midi-note-text" data-fr="au choix : nature, végétarienne, toute garnie, pepperoni ou bacon · Spéciale du Moulin ou fruits de mer : + 3,95 $" data-en="your choice: plain, vegetarian, all-dressed, pepperoni or bacon · Le Moulin Special or seafood: + $3.95" data-es="a elegir: natural, vegetariana, toda guarnecida, pepperoni o tocineta · Especial del Moulin o mariscos: + 3,95 $">au choix : nature, végétarienne, toute garnie, pepperoni ou bacon · Spéciale du Moulin ou fruits de mer : + 3,95 $</span></div>
+          <div class="midi-note"><span class="midi-note-label" data-fr="Crevettes, coquille, grillade, filet de sole &amp; saumon" data-en="Shrimp, seafood shell, grilled chicken, sole fillet &amp; salmon" data-es="Camarones, concha, parrilla, filete de lenguado y salmón">Crevettes, coquille, grillade, filet de sole &amp; saumon</span><span class="midi-note-text" data-fr="servis avec riz, patates grecques et choix de salade (César ou verte)" data-en="served with rice, Greek potatoes and choice of salad (Caesar or garden)" data-es="servidos con arroz, papas griegas y ensalada a elegir (César o verde)">servis avec riz, patates grecques et choix de salade (César ou verte)</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SPÉCIAUX DU MOIS -->
+    <div class="midi-featured specials-card" data-open="false">
+      <button type="button" class="midi-header specials-toggle" aria-expanded="false" onclick="toggleSpecial(this)">
+        <div class="midi-header-left">
+          <h3 class="midi-title" data-fr="Spéciaux du mois" data-en="Monthly Specials" data-es="Especiales del mes">Spéciaux du mois</h3>
+          <p class="midi-subtitle" data-fr="Nos créations du moment — offertes toute la journée et en soirée" data-en="Our current creations — available all day and evening" data-es="Nuestras creaciones del momento — disponibles todo el día y la noche">Nos créations du moment — offertes toute la journée et en soirée</p>
+        </div>
+        <div class="midi-header-right">
+          <div class="midi-badge midi-badge-alt">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2 L9.6 6.3 L14 6.6 L10.6 9.4 L11.7 13.8 L8 11.4 L4.3 13.8 L5.4 9.4 L2 6.6 L6.4 6.3 Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" fill="none"/></svg>
+            <span data-fr="Nouveau" data-en="New" data-es="Nuevo">Nouveau</span>
+          </div>
+          <svg class="specials-chevron" width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true"><polyline points="4,6 8,10 12,6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </button>
+      <div class="specials-body">
+        <div class="midi-grid">
+          <div class="midi-item"><span class="midi-item-name" data-fr="T-Bone (7 oz)" data-en="T-Bone (7 oz)" data-es="T-Bone (7 oz)">T-Bone (7 oz)</span><span class="midi-item-price">22,95 $</span></div>
+          <div class="midi-item"><span class="midi-item-name" data-fr="Rib Steak (7 oz)" data-en="Rib Steak (7 oz)" data-es="Rib Steak (7 oz)">Rib Steak (7 oz)</span><span class="midi-item-price">22,95 $</span></div>
+          <div class="midi-item"><span class="midi-item-name" data-fr="Filet de saumon &amp; 10 crevettes" data-en="Salmon fillet &amp; 10 shrimp" data-es="Filete de salmón y 10 camarones">Filet de saumon &amp; 10 crevettes</span><span class="midi-item-price">27,95 $</span></div>
+          <div class="midi-item"><span class="midi-item-name" data-fr="Nachos du Moulin" data-en="Nachos du Moulin" data-es="Nachos del Moulin">Nachos du Moulin</span><span class="midi-item-price">19,95 $</span></div>
+          <div class="midi-item"><span class="midi-item-name" data-fr="Pizza soufflée &amp; frites" data-en="Soufflé pizza &amp; fries" data-es="Pizza soufflé y papas fritas">Pizza soufflée &amp; frites</span><span class="midi-item-price">19,95 $</span></div>
+          <div class="midi-item"><span class="midi-item-name" data-fr="Choix du Chef (cuisse ou poitrine)" data-en="Chef's Choice (thigh or breast)" data-es="Elección del Chef (pernil o pechuga)">Choix du Chef (cuisse ou poitrine)</span><span class="midi-item-price">11,95 $</span></div>
+        </div>
+        <div class="midi-notes">
+          <div class="midi-note"><span class="midi-note-label" data-fr="T-Bone &amp; Rib Steak" data-en="T-Bone &amp; Rib Steak" data-es="T-Bone y Rib Steak">T-Bone &amp; Rib Steak</span><span class="midi-note-text" data-fr="accompagnés de champignons sautés, riz, patates grecques et salade César · ajouter 10 crevettes pour 7,95 $" data-en="served with sautéed mushrooms, rice, Greek potatoes and Caesar salad · add 10 shrimp for $7.95" data-es="acompañados de champiñones salteados, arroz, papas griegas y ensalada César · agregar 10 camarones por 7,95 $">accompagnés de champignons sautés, riz, patates grecques et salade César · ajouter 10 crevettes pour 7,95 $</span></div>
+          <div class="midi-note"><span class="midi-note-label" data-fr="Filet de saumon &amp; crevettes" data-en="Salmon fillet &amp; shrimp" data-es="Filete de salmón y camarones">Filet de saumon &amp; crevettes</span><span class="midi-note-text" data-fr="accompagné de riz, patates grecques et salade César" data-en="served with rice, Greek potatoes and Caesar salad" data-es="acompañado de arroz, papas griegas y ensalada César">accompagné de riz, patates grecques et salade César</span></div>
+          <div class="midi-note"><span class="midi-note-label" data-fr="Nachos du Moulin" data-en="Nachos du Moulin" data-es="Nachos del Moulin">Nachos du Moulin</span><span class="midi-note-text" data-fr="poivrons verts et rouges, oignons, champignons et pepperoni" data-en="green and red peppers, onions, mushrooms and pepperoni" data-es="pimientos verdes y rojos, cebolla, champiñones y pepperoni">poivrons verts et rouges, oignons, champignons et pepperoni</span></div>
+          <div class="midi-note"><span class="midi-note-label" data-fr="Choix du Chef" data-en="Chef's Choice" data-es="Elección del Chef">Choix du Chef</span><span class="midi-note-text" data-fr="inclut frites et salade de chou" data-en="includes fries and coleslaw" data-es="incluye papas fritas y ensalada de repollo">inclut frites et salade de chou</span></div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+  </div>
 </section>
 <div class="section-divider"></div>
 <!-- GALERIE -->
@@ -1730,6 +1909,25 @@ if(document.readyState === 'loading'){
 </div>
 </section>
 </main>
+
+<!-- === MODAL PHOTO DES PLATS === -->
+<div class="dish-modal" id="dishModal" role="dialog" aria-modal="true" aria-labelledby="dishModalTitle" aria-hidden="true">
+  <div class="dish-modal-box" role="document">
+    <button type="button" class="dish-modal-close" id="dishModalClose" aria-label="Fermer">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <div class="dish-modal-img-wrap" id="dishModalImgWrap">
+      <!-- Contenu injecté par le script : image ou placeholder -->
+    </div>
+    <div class="dish-modal-body">
+      <h3 class="dish-modal-title" id="dishModalTitle"></h3>
+      <p class="dish-modal-desc" id="dishModalDesc"></p>
+      <div class="dish-modal-price" id="dishModalPrice"></div>
+    </div>
+  </div>
+</div>
 <!-- FOOTER -->
 <footer>
 <div class="footer-grid">
@@ -2231,6 +2429,214 @@ if (window.netlifyIdentity) {
     }
   });
 }
+</script>
+
+<!-- === SCRIPT MODAL PHOTO DES PLATS === -->
+<script>
+(function(){
+  var modal = document.getElementById('dishModal');
+  if(!modal) return;
+
+  var imgWrap = document.getElementById('dishModalImgWrap');
+  var titleEl = document.getElementById('dishModalTitle');
+  var descEl = document.getElementById('dishModalDesc');
+  var priceEl = document.getElementById('dishModalPrice');
+  var closeBtn = document.getElementById('dishModalClose');
+  var lastFocusedEl = null;
+
+  // Textes "Photo à venir" traduits
+  var placeholderTexts = {
+    fr: 'Photo à venir',
+    en: 'Photo coming soon',
+    es: 'Foto próximamente'
+  };
+
+  // SVG placeholder : assiette stylisée + fourchette/couteau (ton doré du site)
+  function getPlaceholderHTML(){
+    var lang = document.documentElement.lang || 'fr';
+    if(!['fr','en','es'].includes(lang)) lang = 'fr';
+    var label = placeholderTexts[lang];
+    return '' +
+      '<div class="dish-modal-placeholder">' +
+        '<svg width="72" height="72" viewBox="0 0 72 72" fill="none" aria-hidden="true">' +
+          '<circle cx="36" cy="36" r="26" stroke="#C9993A" stroke-width="1.5" fill="none"/>' +
+          '<circle cx="36" cy="36" r="20" stroke="#C9993A" stroke-width="1" fill="none" opacity="0.5"/>' +
+          '<path d="M20 20 L52 52 M52 20 L20 52" stroke="#C9993A" stroke-width="0.8" opacity="0.2" stroke-linecap="round"/>' +
+        '</svg>' +
+        '<div class="dish-modal-placeholder-text">' + label + '</div>' +
+      '</div>';
+  }
+
+  // Récupère le texte dans la langue courante à partir des attributs data-fr/en/es
+  function getTextForCurrentLang(el){
+    if(!el) return '';
+    var lang = document.documentElement.lang || 'fr';
+    if(!['fr','en','es'].includes(lang)) lang = 'fr';
+    var attr = 'data-' + lang;
+    return el.getAttribute(attr) || el.textContent || '';
+  }
+
+  function openModal(item){
+    lastFocusedEl = document.activeElement;
+
+    // Détecter le type d'item (menu-item, promo-ss-item, midi-item)
+    var isPromoItem = item.classList.contains('promo-ss-item');
+    var isMidiItem = item.classList.contains('midi-item');
+
+    // Récupérer nom, description et prix selon le type
+    var nameEl, descElement, priceElement;
+
+    if(isPromoItem){
+      nameEl = item.querySelector('.promo-ss-name');
+      descElement = null; // description intégrée dans le nom via <br><span>
+      priceElement = item.querySelector('.promo-ss-price');
+    } else if(isMidiItem){
+      nameEl = item.querySelector('.midi-item-name');
+      descElement = null;
+      priceElement = item.querySelector('.midi-item-price');
+    } else {
+      // menu-item classique
+      nameEl = item.querySelector('.menu-item-name');
+      descElement = item.querySelector('.menu-item-desc');
+      priceElement = item.querySelector('.menu-item-price');
+    }
+
+    // Pour les promo-ss-item, le nom contient parfois une description en <br><span>
+    // On sépare proprement le nom principal de la description secondaire
+    if(isPromoItem && nameEl){
+      var lang = document.documentElement.lang || 'fr';
+      if(!['fr','en','es'].includes(lang)) lang = 'fr';
+      var fullHTML = nameEl.getAttribute('data-' + lang) || nameEl.innerHTML;
+      // Séparer au premier <br>
+      var parts = fullHTML.split(/<br\s*\/?>/i);
+      titleEl.textContent = parts[0].replace(/<[^>]*>/g,'').trim();
+      if(parts.length > 1){
+        // Nettoyer la description : enlever les <span> mais garder le texte
+        var descText = parts.slice(1).join(' ').replace(/<[^>]*>/g,'').trim();
+        if(descText){
+          descEl.textContent = descText;
+          descEl.style.display = '';
+        } else {
+          descEl.textContent = '';
+          descEl.style.display = 'none';
+        }
+      } else {
+        descEl.textContent = '';
+        descEl.style.display = 'none';
+      }
+    } else {
+      titleEl.textContent = getTextForCurrentLang(nameEl);
+
+      if(descElement){
+        var descContent = descElement.getAttribute('data-' + (document.documentElement.lang || 'fr')) || descElement.innerHTML;
+        descEl.innerHTML = descContent;
+        descEl.style.display = '';
+      } else {
+        descEl.textContent = '';
+        descEl.style.display = 'none';
+      }
+    }
+
+    priceEl.textContent = priceElement ? (priceElement.getAttribute('data-' + (document.documentElement.lang || 'fr')) || priceElement.textContent) : '';
+
+    // Gérer l'image : data-image sur l'item
+    var imageSrc = item.getAttribute('data-image');
+    if(imageSrc){
+      var altText = titleEl.textContent;
+      imgWrap.innerHTML = '<img class="dish-modal-img" src="' + imageSrc + '" alt="' + altText.replace(/"/g,'&quot;') + '" onerror="this.parentNode.innerHTML=window.__dishModalPlaceholder;">';
+    } else {
+      imgWrap.innerHTML = getPlaceholderHTML();
+    }
+
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
+
+    // Focus sur le bouton de fermeture
+    setTimeout(function(){ closeBtn.focus(); }, 50);
+  }
+
+  function closeModal(){
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');
+    // Nettoyer l'image pour ne pas la garder en mémoire
+    setTimeout(function(){
+      if(!modal.classList.contains('is-open')){
+        imgWrap.innerHTML = '';
+      }
+    }, 300);
+    // Remettre le focus sur l'élément d'origine
+    if(lastFocusedEl && typeof lastFocusedEl.focus === 'function'){
+      lastFocusedEl.focus();
+    }
+  }
+
+  // Exposer le HTML du placeholder globalement pour le fallback onerror
+  window.__dishModalPlaceholder = getPlaceholderHTML();
+
+  // Rendre tous les items cliquables (.menu-item, .promo-ss-item, .midi-item)
+  function initMenuItems(){
+    var items = document.querySelectorAll('.menu-item, .promo-ss-item, .midi-item');
+    items.forEach(function(item){
+      // Éviter double-init
+      if(item.dataset.modalInit === '1') return;
+      item.dataset.modalInit = '1';
+
+      item.classList.add('is-clickable');
+      item.setAttribute('tabindex','0');
+      item.setAttribute('role','button');
+
+      // Récupérer le nom selon le type d'item
+      var nameEl = item.querySelector('.menu-item-name, .promo-ss-name, .midi-item-name');
+      var name = nameEl ? (nameEl.textContent || '').split('\n')[0].trim() : '';
+      item.setAttribute('aria-label', name + ' — ' + (placeholderTexts[document.documentElement.lang || 'fr'] || 'Voir la photo'));
+
+      item.addEventListener('click', function(e){
+        // Ne pas ouvrir si on clique sur un lien à l'intérieur
+        if(e.target.closest('a')) return;
+        // Ne pas ouvrir si on clique sur un bouton de toggle (ex: specials-toggle)
+        if(e.target.closest('button')) return;
+        openModal(item);
+      });
+
+      item.addEventListener('keydown', function(e){
+        if(e.key === 'Enter' || e.key === ' '){
+          e.preventDefault();
+          openModal(item);
+        }
+      });
+    });
+  }
+
+  // Fermeture du modal
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', function(e){
+    if(e.target === modal){ closeModal(); }
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && modal.classList.contains('is-open')){
+      closeModal();
+    }
+  });
+
+  // Mettre à jour le placeholder global si la langue change
+  // (au cas où l'utilisateur change de langue pendant la session)
+  var observer = new MutationObserver(function(){
+    window.__dishModalPlaceholder = getPlaceholderHTML();
+  });
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+
+  // Init au chargement
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', initMenuItems);
+  } else {
+    initMenuItems();
+  }
+
+  // Exposer pour permettre de ré-initialiser si besoin (ajouts dynamiques)
+  window.initDishModalItems = initMenuItems;
+})();
 </script>
 
 </body>
