@@ -335,6 +335,24 @@
     .info-card-sub{font-size:11px;color:var(--text-muted);line-height:1.45;margin-top:2px;}
     .info-payments{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px;}
     .info-payment-chip{font-size:10px;padding:3px 8px;background:rgba(201,153,58,0.1);border:1px solid rgba(201,153,58,0.2);border-radius:2px;color:var(--text-muted);letter-spacing:0.02em;}
+
+    /* Wi-Fi credentials */
+    .wifi-creds{display:flex;flex-direction:column;gap:8px;margin-top:8px;}
+    .wifi-cred-row{display:flex;align-items:center;gap:8px;}
+    .wifi-cred-main{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;}
+    .wifi-cred-label{color:var(--text-dim);font-size:9px;text-transform:uppercase;letter-spacing:0.12em;font-weight:500;}
+    .wifi-cred-value{font-family:'SF Mono','Monaco','Consolas','Courier New',monospace;color:var(--text);font-size:13px;letter-spacing:0.02em;font-weight:500;word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .wifi-cred-copy{flex-shrink:0;background:rgba(201,153,58,0.08);border:1px solid rgba(201,153,58,0.2);color:var(--gold);width:28px;height:28px;border-radius:2px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.2s,border-color 0.2s;padding:0;}
+    .wifi-cred-copy:hover,.wifi-cred-copy:focus-visible{background:rgba(201,153,58,0.18);border-color:var(--gold);outline:none;}
+    .wifi-cred-copy.is-copied{background:rgba(76,175,80,0.18);border-color:rgba(76,175,80,0.5);color:#7DD87F;}
+    .wifi-cred-copy svg{width:13px;height:13px;}
+
+    /* Share button */
+    .share-card{cursor:pointer;text-align:left;font-family:inherit;}
+    .share-card:hover{background:var(--dark4);border-color:rgba(201,153,58,0.35);}
+    .share-card:focus-visible{outline:2px solid var(--gold);outline-offset:-2px;}
+    .share-card.is-shared .info-card-icon{background:rgba(76,175,80,0.18);color:#7DD87F;}
+
     @media(max-width:640px){
       .info-grid{grid-template-columns:1fr;}
     }
@@ -1979,8 +1997,27 @@ if(document.readyState === 'loading'){
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
         </div>
         <div class="info-card-body">
-          <div class="info-card-label" data-fr="Wi-Fi" data-en="Wi-Fi" data-es="Wi-Fi">Wi-Fi</div>
-          <div class="info-card-value" data-fr="Gratuit pour les clients" data-en="Free for customers" data-es="Gratis para los clientes">Gratuit pour les clients</div>
+          <div class="info-card-label" data-fr="Wi-Fi gratuit" data-en="Free Wi-Fi" data-es="Wi-Fi gratis">Wi-Fi gratuit</div>
+          <div class="wifi-creds">
+            <div class="wifi-cred-row">
+              <div class="wifi-cred-main">
+                <span class="wifi-cred-label" data-fr="Réseau" data-en="Network" data-es="Red">Réseau</span>
+                <span class="wifi-cred-value" id="wifiSSID">clients</span>
+              </div>
+              <button type="button" class="wifi-cred-copy" data-copy-target="wifiSSID" aria-label="Copier le nom du réseau">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              </button>
+            </div>
+            <div class="wifi-cred-row">
+              <div class="wifi-cred-main">
+                <span class="wifi-cred-label" data-fr="Mot de passe" data-en="Password" data-es="Contraseña">Mot de passe</span>
+                <span class="wifi-cred-value" id="wifiPass">adelyar06</span>
+              </div>
+              <button type="button" class="wifi-cred-copy" data-copy-target="wifiPass" aria-label="Copier le mot de passe">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -2001,6 +2038,17 @@ if(document.readyState === 'loading'){
           </div>
         </div>
       </div>
+
+      <!-- Partager -->
+      <button type="button" id="shareBtn" class="info-card share-card" aria-label="Partager Le Moulin">
+        <div class="info-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        </div>
+        <div class="info-card-body">
+          <div class="info-card-label" data-fr="Partager" data-en="Share" data-es="Compartir">Partager</div>
+          <div class="info-card-value" id="shareBtnLabel" data-fr="Envoyer le lien à un ami" data-en="Send the link to a friend" data-es="Enviar el enlace a un amigo">Envoyer le lien à un ami</div>
+        </div>
+      </button>
     </div>
   </div>
 </div>
@@ -2820,6 +2868,142 @@ if (window.netlifyIdentity) {
       '&dirflg=d'; // d = driving (par défaut auto)
     btn.setAttribute('href', appleUrl);
   }
+})();
+</script>
+
+<!-- === Bouton Partager (Web Share API + fallback copier) === -->
+<script>
+(function(){
+  var btn = document.getElementById('shareBtn');
+  if(!btn) return;
+  var labelEl = document.getElementById('shareBtnLabel');
+
+  // Textes traduits selon la langue
+  function getLang(){
+    var l = document.documentElement.lang || 'fr';
+    return ['fr','en','es'].indexOf(l) >= 0 ? l : 'fr';
+  }
+  var i18n = {
+    fr: {
+      default: 'Envoyer le lien à un ami',
+      copied: 'Lien copié !',
+      error: 'Impossible de partager'
+    },
+    en: {
+      default: 'Send the link to a friend',
+      copied: 'Link copied!',
+      error: 'Unable to share'
+    },
+    es: {
+      default: 'Enviar el enlace a un amigo',
+      copied: '¡Enlace copiado!',
+      error: 'No se puede compartir'
+    }
+  };
+
+  function showFeedback(messageKey){
+    var lang = getLang();
+    labelEl.textContent = i18n[lang][messageKey];
+    btn.classList.add('is-shared');
+    setTimeout(function(){
+      btn.classList.remove('is-shared');
+      // Restaurer le texte par défaut dans la langue actuelle
+      var currentLang = getLang();
+      labelEl.textContent = labelEl.getAttribute('data-' + currentLang) || i18n[currentLang].default;
+    }, 2200);
+  }
+
+  function fallbackCopy(text){
+    // Méthode legacy : textarea temporaire
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); } catch(e){}
+    document.body.removeChild(ta);
+  }
+
+  btn.addEventListener('click', function(){
+    var url = window.location.origin + window.location.pathname;
+    // Si Web Share API disponible (mobiles modernes, Safari, Chrome récent)
+    if(navigator.share){
+      navigator.share({ url: url }).then(function(){
+        // succès — pas besoin d'afficher quoi que ce soit, l'OS gère
+      }).catch(function(err){
+        // L'utilisateur a annulé OU erreur — silencieux si annulation
+        if(err && err.name !== 'AbortError'){
+          fallbackCopy(url);
+          showFeedback('copied');
+        }
+      });
+    } else {
+      // Fallback : copier dans le presse-papiers
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(url).then(function(){
+          showFeedback('copied');
+        }).catch(function(){
+          fallbackCopy(url);
+          showFeedback('copied');
+        });
+      } else {
+        fallbackCopy(url);
+        showFeedback('copied');
+      }
+    }
+  });
+})();
+</script>
+
+<!-- === Boutons copier Wi-Fi === -->
+<script>
+(function(){
+  var copyBtns = document.querySelectorAll('.wifi-cred-copy');
+  if(!copyBtns.length) return;
+
+  function fallbackCopy(text){
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); } catch(e){}
+    document.body.removeChild(ta);
+  }
+
+  // Icônes : copier (par défaut) et check (après copie)
+  var iconCopy = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+  var iconCheck = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
+
+  copyBtns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var targetId = btn.getAttribute('data-copy-target');
+      var target = document.getElementById(targetId);
+      if(!target) return;
+      var text = target.textContent.trim();
+
+      var done = function(){
+        btn.classList.add('is-copied');
+        btn.innerHTML = iconCheck;
+        setTimeout(function(){
+          btn.classList.remove('is-copied');
+          btn.innerHTML = iconCopy;
+        }, 1800);
+      };
+
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(done).catch(function(){
+          fallbackCopy(text); done();
+        });
+      } else {
+        fallbackCopy(text); done();
+      }
+    });
+  });
 })();
 </script>
 
