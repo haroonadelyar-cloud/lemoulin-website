@@ -306,22 +306,22 @@
     .specials-card[data-open="false"] .specials-toggle{padding-bottom:1.75rem;}
 
     /* === Coups de cœur — Cartes vedettes (en haut de chaque onglet) === */
-    .signature-section{margin-bottom:2.5rem;}
-    .signature-section-header{margin-bottom:1.1rem;display:flex;align-items:baseline;gap:0.85rem;flex-wrap:wrap;}
-    .signature-section-title{font-family:var(--font-display);font-size:clamp(17px,2vw,21px);font-weight:700;color:#fff;letter-spacing:0.02em;margin:0;}
-    .signature-section-sub{font-size:12px;color:var(--text-muted);line-height:1.4;}
-    .signature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem;}
-    .signature-card{background:linear-gradient(135deg,rgba(201,153,58,0.08) 0%,rgba(201,153,58,0.02) 100%);border:1px solid rgba(201,153,58,0.25);border-radius:var(--radius);padding:1.25rem 1.3rem 1.35rem;position:relative;overflow:hidden;transition:transform 0.25s ease,border-color 0.25s ease,box-shadow 0.25s ease;display:flex;flex-direction:column;gap:0.55rem;}
+    .signature-section{margin-bottom:2rem;}
+    .signature-section-header{margin-bottom:0.85rem;display:flex;align-items:baseline;gap:0.75rem;flex-wrap:wrap;}
+    .signature-section-title{font-family:var(--font-display);font-size:clamp(14px,1.6vw,17px);font-weight:700;color:#fff;letter-spacing:0.02em;margin:0;}
+    .signature-section-sub{font-size:11px;color:var(--text-muted);line-height:1.4;}
+    .signature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0.75rem;}
+    .signature-card{background:linear-gradient(135deg,rgba(201,153,58,0.08) 0%,rgba(201,153,58,0.02) 100%);border:1px solid rgba(201,153,58,0.25);border-radius:var(--radius);padding:0.85rem 0.95rem 0.95rem;position:relative;overflow:hidden;transition:transform 0.25s ease,border-color 0.25s ease,box-shadow 0.25s ease;display:flex;flex-direction:column;gap:0.4rem;}
     .signature-card:hover{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 12px 28px rgba(0,0,0,0.35);}
     .signature-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--gold),transparent);}
-    .signature-card.is-star::after{content:'★';position:absolute;top:12px;right:14px;font-size:14px;color:var(--gold);opacity:0.7;}
-    .signature-eyebrow{font-size:10px;letter-spacing:0.28em;color:var(--gold);text-transform:uppercase;font-weight:500;}
-    .signature-name{font-family:var(--font-display);font-size:17px;font-weight:700;color:#fff;line-height:1.25;letter-spacing:0.01em;}
-    .signature-desc{font-size:12px;color:var(--text-muted);line-height:1.55;}
+    .signature-card.is-star::after{content:'★';position:absolute;top:9px;right:11px;font-size:12px;color:var(--gold);opacity:0.7;}
+    .signature-eyebrow{font-size:9px;letter-spacing:0.26em;color:var(--gold);text-transform:uppercase;font-weight:500;}
+    .signature-name{font-family:var(--font-display);font-size:14px;font-weight:700;color:#fff;line-height:1.25;letter-spacing:0.01em;}
+    .signature-desc{font-size:11px;color:var(--text-muted);line-height:1.5;}
     @media(max-width:640px){
-      .signature-grid{grid-template-columns:1fr;gap:0.75rem;}
-      .signature-card{padding:1.1rem 1.15rem 1.2rem;}
-      .signature-name{font-size:16px;}
+      .signature-grid{grid-template-columns:1fr;gap:0.55rem;}
+      .signature-card{padding:0.8rem 0.9rem 0.85rem;}
+      .signature-name{font-size:13px;}
     }
 
     /* === Bon à savoir === */
@@ -1037,12 +1037,6 @@ if(document.readyState === 'loading'){
           <span class="signature-section-sub" data-fr="Les incontournables de notre brunch" data-en="The must-tries of our brunch" data-es="Los imprescindibles de nuestro brunch">Les incontournables de notre brunch</span>
         </div>
         <div class="signature-grid">
-          <div class="signature-card is-star">
-            <div class="signature-eyebrow" data-fr="Notre signature" data-en="Our signature" data-es="Nuestra firma">Notre signature</div>
-            <div class="signature-name" data-fr="Béné au fromage brie et champignons sautés" data-en="Benedict with brie cheese and sautéed mushrooms" data-es="Benedictinos con queso brie y champiñones salteados">Béné au fromage brie et champignons sautés</div>
-            <div class="signature-desc" data-fr="2 œufs pochés sur muffin anglais, fromage brie fondant et champignons sautés, nappés de sauce hollandaise" data-en="2 poached eggs on English muffin, melty brie cheese and sautéed mushrooms, topped with hollandaise sauce" data-es="2 huevos pochados sobre muffin inglés, queso brie fundido y champiñones salteados, cubiertos con salsa holandesa">2 œufs pochés sur muffin anglais, fromage brie fondant et champignons sautés, nappés de sauce hollandaise</div>
-          </div>
-
           <div class="signature-card">
             <div class="signature-eyebrow" data-fr="L'audacieuse" data-en="The bold one" data-es="La atrevida">L'audacieuse</div>
             <div class="signature-name" data-fr="Poutine déjeuner" data-en="Breakfast poutine" data-es="Poutine de desayuno">Poutine déjeuner</div>
@@ -1053,6 +1047,12 @@ if(document.readyState === 'loading'){
             <div class="signature-eyebrow" data-fr="La douceur" data-en="The sweet treat" data-es="La dulzura">La douceur</div>
             <div class="signature-name" data-fr="2 gaufres aux fruits du jour" data-en="2 waffles with fruit of the day" data-es="2 waffles con fruta del día">2 gaufres aux fruits du jour</div>
             <div class="signature-desc" data-fr="Servies avec fruits frais du jour et café" data-en="Served with fresh fruit of the day and coffee" data-es="Servidas con fruta fresca del día y café">Servies avec fruits frais du jour et café</div>
+          </div>
+
+          <div class="signature-card is-star">
+            <div class="signature-eyebrow" data-fr="Notre signature" data-en="Our signature" data-es="Nuestra firma">Notre signature</div>
+            <div class="signature-name" data-fr="Béné au fromage brie et champignons sautés" data-en="Benedict with brie cheese and sautéed mushrooms" data-es="Benedictinos con queso brie y champiñones salteados">Béné au fromage brie et champignons sautés</div>
+            <div class="signature-desc" data-fr="2 œufs pochés sur muffin anglais, fromage brie fondant et champignons sautés, nappés de sauce hollandaise" data-en="2 poached eggs on English muffin, melty brie cheese and sautéed mushrooms, topped with hollandaise sauce" data-es="2 huevos pochados sobre muffin inglés, queso brie fundido y champiñones salteados, cubiertos con salsa holandesa">2 œufs pochés sur muffin anglais, fromage brie fondant et champignons sautés, nappés de sauce hollandaise</div>
           </div>
         </div>
       </div>
@@ -2566,6 +2566,12 @@ function switchTab(panel,btn){
   target.classList.add('active');
   btn.classList.add('active');
   requestAnimationFrame(()=>{ target.style.opacity='1'; });
+  // Remonter aux onglets du menu pour voir le haut du nouveau contenu
+  var menuTabs = document.getElementById('menu-tabs');
+  if(menuTabs){
+    var top = menuTabs.getBoundingClientRect().top + window.pageYOffset - 80;
+    window.scrollTo({ top: top, behavior: 'smooth' });
+  }
 }
 function switchBoisTab(tab, btn){
   // Retirer 'active' de tous les sous-onglets et sous-panels
