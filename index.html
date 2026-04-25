@@ -108,6 +108,21 @@
     .nav-links a:hover{color:var(--gold);}
     .nav-reserve{background:var(--gold)!important;color:var(--dark)!important;padding:9px 20px!important;border-radius:var(--radius)!important;font-weight:600!important;}
     .nav-reserve:hover{background:var(--gold-light)!important;}
+    .nav-order{background:transparent!important;color:var(--gold)!important;padding:8px 18px!important;border:1px solid var(--gold)!important;border-radius:var(--radius)!important;font-weight:600!important;transition:background 0.2s,color 0.2s!important;}
+    .nav-order:hover{background:var(--gold)!important;color:var(--dark)!important;}
+
+    /* === Modale "Commander en ligne" === */
+    .order-modal{position:fixed;inset:0;background:rgba(0,0,0,0.78);z-index:1000;display:none;align-items:center;justify-content:center;padding:1.5rem;opacity:0;transition:opacity 0.25s ease;}
+    .order-modal.is-open{display:flex;opacity:1;}
+    .order-modal-inner{background:linear-gradient(135deg,var(--dark2) 0%,var(--dark3) 100%);border:1px solid rgba(201,153,58,0.35);border-radius:var(--radius);padding:2.25rem 2rem 1.75rem;max-width:420px;width:100%;text-align:center;position:relative;box-shadow:0 24px 60px rgba(0,0,0,0.6);}
+    .order-modal-inner::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,transparent,var(--gold),transparent);}
+    .order-modal-icon{width:56px;height:56px;border-radius:50%;background:rgba(201,153,58,0.15);border:1px solid rgba(201,153,58,0.4);color:var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;}
+    .order-modal-icon svg{width:28px;height:28px;}
+    .order-modal-title{font-family:var(--font-display);font-size:24px;font-weight:700;color:#fff;letter-spacing:0.02em;margin-bottom:0.6rem;}
+    .order-modal-text{font-size:14px;color:var(--text-muted);line-height:1.6;margin-bottom:1.5rem;}
+    .order-modal-btn{background:var(--gold);color:var(--dark);border:none;padding:11px 28px;font-family:var(--font-body);font-size:12px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;border-radius:var(--radius);transition:background 0.2s;}
+    .order-modal-btn:hover{background:var(--gold-light);}
+    .order-modal-btn:focus-visible{outline:2px solid #fff;outline-offset:2px;}
     .lang-switch{display:flex;align-items:center;gap:0;border:1px solid rgba(201,153,58,0.35);border-radius:var(--radius);overflow:hidden;margin-right:0.5rem;}
     .lang-switch button{background:transparent;border:none;color:var(--text-muted);padding:6px 10px;font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:0.08em;cursor:pointer;transition:background 0.2s,color 0.2s;text-transform:uppercase;}
     .lang-switch button.active{background:var(--gold);color:var(--dark);}
@@ -935,6 +950,7 @@ if(document.readyState === 'loading'){
       <button type="button" class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
       <button type="button" class="lang-btn" data-lang="es" onclick="setLang('es')">ES</button>
     </div>
+    <a href="#" class="nav-order" onclick="openOrderModal();return false;" data-fr="Commander" data-en="Order" data-es="Pedir">Commander</a>
     <a href="#reservation" class="nav-reserve" data-fr="Réserver" data-en="Book" data-es="Reservar">Réserver</a>
   </div>
   <button class="nav-hamburger" id="navHamburger" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu" onclick="toggleMobileMenu()">
@@ -952,6 +968,7 @@ if(document.readyState === 'loading'){
   <a href="#gallery" onclick="closeMobileMenu()" data-fr="Galerie" data-en="Gallery" data-es="Galería">Galerie</a>
   <a href="#avis" onclick="closeMobileMenu()" data-fr="Avis clients" data-en="Reviews" data-es="Reseñas de clientes">Avis clients</a>
   <a href="#carte" onclick="closeMobileMenu()" data-fr="Notre adresse" data-en="Our address" data-es="Nuestra dirección">Notre adresse</a>
+  <a href="#" onclick="closeMobileMenu();openOrderModal();return false;" style="margin-top:0.75rem;background:transparent;color:var(--gold)!important;border:1px solid var(--gold);text-align:center;padding:14px;border-radius:var(--radius);font-weight:600;" data-fr="Commander en ligne" data-en="Order online" data-es="Pedir en línea">Commander en ligne</a>
   <a href="#reservation" onclick="closeMobileMenu()" data-fr="Réserver une table" data-en="Book a table" data-es="Reservar una mesa">Réserver une table</a>
   <div class="lang-switch" style="margin-top:1rem;align-self:center;" role="group" aria-label="Langue">
     <button type="button" class="lang-btn active" data-lang="fr" onclick="setLang('fr');closeMobileMenu();">FR</button>
@@ -990,6 +1007,7 @@ if(document.readyState === 'loading'){
     <p class="hero-sub" data-fr="Depuis plus de 20 ans au cœur d'East Angus<br>Dîner · Souper tous les jours &nbsp;·&nbsp; Déjeuner les fins de semaine" data-en="For over 20 years in the heart of East Angus<br>Lunch · Dinner every day &nbsp;·&nbsp; Breakfast on weekends" data-es="Desde hace más de 20 años en el corazón de East Angus<br>Almuerzo · Cena todos los días &nbsp;·&nbsp; Desayuno los fines de semana">Depuis plus de 20 ans au cœur d'East Angus<br>Dîner · Souper tous les jours &nbsp;·&nbsp; Déjeuner les fins de semaine</p>
     <div class="hero-actions">
       <a href="#reservation" class="btn-gold" data-fr="Réserver une table" data-en="Book a table" data-es="Reservar una mesa">Réserver une table</a>
+      <a href="#" class="btn-ghost" onclick="openOrderModal();return false;" style="border-color:var(--gold);color:var(--gold);" data-fr="Commander en ligne" data-en="Order online" data-es="Pedir en línea">Commander en ligne</a>
       <a href="#menu" class="btn-ghost" data-fr="Voir le menu" data-en="View menu" data-es="Ver el menú">Voir le menu</a>
     </div>
   </div>
@@ -3119,6 +3137,49 @@ if (window.netlifyIdentity) {
   document.addEventListener('keydown', function(e){
     if(e.key === 'Escape' && lightbox.classList.contains('is-open')){
       closeLightbox();
+    }
+  });
+})();
+</script>
+
+<!-- === Modale "Commander en ligne — À venir bientôt" === -->
+<div class="order-modal" id="orderModal" role="dialog" aria-modal="true" aria-labelledby="orderModalTitle" aria-hidden="true">
+  <div class="order-modal-inner">
+    <div class="order-modal-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    </div>
+    <h2 class="order-modal-title" id="orderModalTitle" data-fr="À venir bientôt" data-en="Coming soon" data-es="Próximamente">À venir bientôt</h2>
+    <p class="order-modal-text" data-fr="La commande en ligne sera bientôt disponible. En attendant, appelez-nous au (819) 832-4242 pour commander pour emporter ou en livraison." data-en="Online ordering will be available soon. In the meantime, call us at (819) 832-4242 for takeout or delivery." data-es="El pedido en línea estará disponible pronto. Mientras tanto, llámenos al (819) 832-4242 para pedir para llevar o a domicilio.">La commande en ligne sera bientôt disponible. En attendant, appelez-nous au (819) 832-4242 pour commander pour emporter ou en livraison.</p>
+    <button type="button" class="order-modal-btn" onclick="closeOrderModal()" data-fr="OK" data-en="OK" data-es="OK">OK</button>
+  </div>
+</div>
+
+<script>
+function openOrderModal(){
+  var modal = document.getElementById('orderModal');
+  if(!modal) return;
+  modal.classList.add('is-open');
+  modal.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+}
+function closeOrderModal(){
+  var modal = document.getElementById('orderModal');
+  if(!modal) return;
+  modal.classList.remove('is-open');
+  modal.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+}
+(function(){
+  var modal = document.getElementById('orderModal');
+  if(!modal) return;
+  // Fermer en cliquant sur le fond
+  modal.addEventListener('click', function(e){
+    if(e.target === modal) closeOrderModal();
+  });
+  // Fermer avec Échap
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && modal.classList.contains('is-open')){
+      closeOrderModal();
     }
   });
 })();
