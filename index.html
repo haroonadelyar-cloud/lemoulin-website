@@ -152,57 +152,16 @@
     /* === Items cliquables pour ouvrir le modal photo === */
     .menu-item.is-clickable,
     .promo-ss-item.is-clickable,
-    .midi-item.is-clickable{cursor:pointer;position:relative;}
+    .midi-item.is-clickable,
+    .promo-combo-card.is-clickable{cursor:pointer;position:relative;}
     .menu-item.is-clickable:hover{background:var(--dark3);}
     .promo-ss-item.is-clickable:hover,
-    .midi-item.is-clickable:hover{background:rgba(201,153,58,0.06);}
-    .menu-item.is-clickable::after,
-    .promo-ss-item.is-clickable::after,
-    .midi-item.is-clickable::after{
-      content:'';
-      position:absolute;
-      top:50%;
-      right:0.75rem;
-      transform:translateY(-50%);
-      width:14px;
-      height:14px;
-      border:1.5px solid var(--gold);
-      border-radius:50%;
-      opacity:0;
-      transition:opacity 0.2s;
-      pointer-events:none;
-    }
-    .menu-item.is-clickable::before,
-    .promo-ss-item.is-clickable::before,
-    .midi-item.is-clickable::before{
-      content:'';
-      position:absolute;
-      top:calc(50% + 5px);
-      right:calc(0.75rem - 2px);
-      width:5px;
-      height:1.5px;
-      background:var(--gold);
-      transform:rotate(45deg);
-      transform-origin:left center;
-      opacity:0;
-      transition:opacity 0.2s;
-      pointer-events:none;
-    }
-    .menu-item.is-clickable:hover::after,
-    .menu-item.is-clickable:hover::before,
-    .menu-item.is-clickable:focus-visible::after,
-    .menu-item.is-clickable:focus-visible::before,
-    .promo-ss-item.is-clickable:hover::after,
-    .promo-ss-item.is-clickable:hover::before,
-    .promo-ss-item.is-clickable:focus-visible::after,
-    .promo-ss-item.is-clickable:focus-visible::before,
-    .midi-item.is-clickable:hover::after,
-    .midi-item.is-clickable:hover::before,
-    .midi-item.is-clickable:focus-visible::after,
-    .midi-item.is-clickable:focus-visible::before{opacity:0.6;}
+    .midi-item.is-clickable:hover,
+    .promo-combo-card.is-clickable:hover{background:rgba(201,153,58,0.06);}
     .menu-item.is-clickable:focus-visible,
     .promo-ss-item.is-clickable:focus-visible,
-    .midi-item.is-clickable:focus-visible{outline:2px solid var(--gold);outline-offset:-2px;}
+    .midi-item.is-clickable:focus-visible,
+    .promo-combo-card.is-clickable:focus-visible{outline:2px solid var(--gold);outline-offset:-2px;}
     /* === Modal photo === */
     .dish-modal{
       position:fixed;
@@ -347,8 +306,12 @@
     .specials-card[data-open="false"] .specials-toggle{padding-bottom:1.75rem;}
     .midi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1px;background:rgba(201,153,58,0.12);border:1px solid rgba(201,153,58,0.12);margin-top:0.5rem;}
     .midi-item{padding:0.9rem 1.1rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;background:var(--dark2);transition:background 0.2s;}
+    .midi-item.has-desc{align-items:flex-start;}
+    .midi-item.has-desc .midi-item-main{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1;}
+    .midi-item.has-desc .midi-item-price{align-self:flex-start;margin-top:1px;}
     .midi-item:hover{background:var(--dark3);}
     .midi-item-name{font-size:13px;color:#fff;font-weight:500;}
+    .midi-item-desc{font-size:11px;color:var(--text-muted);line-height:1.5;}
     .midi-item-price{color:var(--gold);font-size:13px;font-weight:600;white-space:nowrap;}
     .midi-notes{margin-top:1.25rem;display:flex;flex-direction:column;gap:8px;}
     .midi-note{display:flex;gap:10px;align-items:baseline;padding:10px 14px;background:rgba(201,153,58,0.04);border-left:2px solid rgba(201,153,58,0.4);border-radius:2px;font-size:12px;line-height:1.55;flex-wrap:wrap;}
@@ -1713,19 +1676,48 @@ if(document.readyState === 'loading'){
         <div class="midi-grid">
           <div class="midi-item"><span class="midi-item-name" data-fr="Burger au poulet &amp; frites" data-en="Chicken burger &amp; fries" data-es="Hamburguesa de pollo y papas fritas">Burger au poulet &amp; frites</span><span class="midi-item-price">16,95 $</span></div>
           <div class="midi-item"><span class="midi-item-name" data-fr="Pizza &amp; frites" data-en="Pizza &amp; fries" data-es="Pizza y papas fritas">Pizza &amp; frites</span><span class="midi-item-price">19,95 $</span></div>
-          <div class="midi-item"><span class="midi-item-name" data-fr="Crevettes à l'ail (10)" data-en="Garlic shrimp (10)" data-es="Camarones al ajo (10)">Crevettes à l'ail (10)</span><span class="midi-item-price">18,95 $</span></div>
+          <div class="midi-item has-desc">
+            <div class="midi-item-main">
+              <span class="midi-item-name" data-fr="Crevettes à l'ail (10)" data-en="Garlic shrimp (10)" data-es="Camarones al ajo (10)">Crevettes à l'ail (10)</span>
+              <span class="midi-item-desc" data-fr="Servies avec riz, patates grecques et choix de salade (César ou verte)" data-en="Served with rice, Greek potatoes and choice of salad (Caesar or garden)" data-es="Servidos con arroz, papas griegas y ensalada a elegir (César o verde)">Servies avec riz, patates grecques et choix de salade (César ou verte)</span>
+            </div>
+            <span class="midi-item-price">18,95 $</span>
+          </div>
           <div class="midi-item"><span class="midi-item-name" data-fr="Steak haché &amp; frites" data-en="Ground steak &amp; fries" data-es="Carne molida y papas fritas">Steak haché &amp; frites</span><span class="midi-item-price">19,95 $</span></div>
-          <div class="midi-item"><span class="midi-item-name" data-fr="Coquille de fruits de mer" data-en="Seafood shell" data-es="Concha de mariscos">Coquille de fruits de mer</span><span class="midi-item-price">19,95 $</span></div>
-          <div class="midi-item"><span class="midi-item-name" data-fr="Grillade de poulet mariné" data-en="Marinated grilled chicken" data-es="Pollo marinado a la parrilla">Grillade de poulet mariné</span><span class="midi-item-price">19,95 $</span></div>
+          <div class="midi-item has-desc">
+            <div class="midi-item-main">
+              <span class="midi-item-name" data-fr="Coquille de fruits de mer" data-en="Seafood shell" data-es="Concha de mariscos">Coquille de fruits de mer</span>
+              <span class="midi-item-desc" data-fr="Servie avec riz, patates grecques et choix de salade (César ou verte)" data-en="Served with rice, Greek potatoes and choice of salad (Caesar or garden)" data-es="Servida con arroz, papas griegas y ensalada a elegir (César o verde)">Servie avec riz, patates grecques et choix de salade (César ou verte)</span>
+            </div>
+            <span class="midi-item-price">19,95 $</span>
+          </div>
+          <div class="midi-item has-desc">
+            <div class="midi-item-main">
+              <span class="midi-item-name" data-fr="Grillade de poulet mariné" data-en="Marinated grilled chicken" data-es="Pollo marinado a la parrilla">Grillade de poulet mariné</span>
+              <span class="midi-item-desc" data-fr="Servie avec riz, patates grecques et choix de salade (César ou verte)" data-en="Served with rice, Greek potatoes and choice of salad (Caesar or garden)" data-es="Servida con arroz, papas griegas y ensalada a elegir (César o verde)">Servie avec riz, patates grecques et choix de salade (César ou verte)</span>
+            </div>
+            <span class="midi-item-price">19,95 $</span>
+          </div>
           <div class="midi-item"><span class="midi-item-name" data-fr="Demi-côte levée &amp; frites" data-en="Half rack of ribs &amp; fries" data-es="Media costilla y papas fritas">Demi-côte levée &amp; frites</span><span class="midi-item-price">19,95 $</span></div>
-          <div class="midi-item"><span class="midi-item-name" data-fr="Filet de sole" data-en="Sole fillet" data-es="Filete de lenguado">Filet de sole</span><span class="midi-item-price">19,95 $</span></div>
+          <div class="midi-item has-desc">
+            <div class="midi-item-main">
+              <span class="midi-item-name" data-fr="Filet de sole" data-en="Sole fillet" data-es="Filete de lenguado">Filet de sole</span>
+              <span class="midi-item-desc" data-fr="Servi avec riz, patates grecques et choix de salade (César ou verte)" data-en="Served with rice, Greek potatoes and choice of salad (Caesar or garden)" data-es="Servido con arroz, papas griegas y ensalada a elegir (César o verde)">Servi avec riz, patates grecques et choix de salade (César ou verte)</span>
+            </div>
+            <span class="midi-item-price">19,95 $</span>
+          </div>
           <div class="midi-item"><span class="midi-item-name" data-fr="Lasagne &amp; salade César" data-en="Lasagna &amp; Caesar salad" data-es="Lasaña y ensalada César">Lasagne &amp; salade César</span><span class="midi-item-price">19,95 $</span></div>
-          <div class="midi-item"><span class="midi-item-name" data-fr="Filet de saumon grillé" data-en="Grilled salmon fillet" data-es="Filete de salmón a la parrilla">Filet de saumon grillé</span><span class="midi-item-price">22,95 $</span></div>
+          <div class="midi-item has-desc">
+            <div class="midi-item-main">
+              <span class="midi-item-name" data-fr="Filet de saumon grillé" data-en="Grilled salmon fillet" data-es="Filete de salmón a la parrilla">Filet de saumon grillé</span>
+              <span class="midi-item-desc" data-fr="Servi avec riz, patates grecques et choix de salade (César ou verte)" data-en="Served with rice, Greek potatoes and choice of salad (Caesar or garden)" data-es="Servido con arroz, papas griegas y ensalada a elegir (César o verde)">Servi avec riz, patates grecques et choix de salade (César ou verte)</span>
+            </div>
+            <span class="midi-item-price">22,95 $</span>
+          </div>
         </div>
         <div class="midi-notes">
           <div class="midi-note midi-note-highlight"><span class="midi-note-label" data-fr="Inclus" data-en="Included" data-es="Incluye">Inclus</span><span class="midi-note-text" data-fr="soupe ou crème du jour OU dessert du jour · café inclus" data-en="soup or cream of the day OR dessert of the day · coffee included" data-es="sopa o crema del día O postre del día · café incluido">soupe ou crème du jour OU dessert du jour · café inclus</span></div>
           <div class="midi-note"><span class="midi-note-label" data-fr="Pizza" data-en="Pizza" data-es="Pizza">Pizza</span><span class="midi-note-text" data-fr="au choix : nature, végétarienne, toute garnie, pepperoni ou bacon · Spéciale du Moulin ou fruits de mer : + 3,95 $" data-en="your choice: plain, vegetarian, all-dressed, pepperoni or bacon · Le Moulin Special or seafood: + $3.95" data-es="a elegir: natural, vegetariana, toda guarnecida, pepperoni o tocineta · Especial del Moulin o mariscos: + 3,95 $">au choix : nature, végétarienne, toute garnie, pepperoni ou bacon · Spéciale du Moulin ou fruits de mer : + 3,95 $</span></div>
-          <div class="midi-note"><span class="midi-note-label" data-fr="Crevettes, coquille, grillade, filet de sole &amp; saumon" data-en="Shrimp, seafood shell, grilled chicken, sole fillet &amp; salmon" data-es="Camarones, concha, parrilla, filete de lenguado y salmón">Crevettes, coquille, grillade, filet de sole &amp; saumon</span><span class="midi-note-text" data-fr="servis avec riz, patates grecques et choix de salade (César ou verte)" data-en="served with rice, Greek potatoes and choice of salad (Caesar or garden)" data-es="servidos con arroz, papas griegas y ensalada a elegir (César o verde)">servis avec riz, patates grecques et choix de salade (César ou verte)</span></div>
         </div>
       </div>
     </div>
@@ -1747,18 +1739,48 @@ if(document.readyState === 'loading'){
       </button>
       <div class="specials-body">
         <div class="midi-grid">
-          <div class="midi-item"><span class="midi-item-name" data-fr="T-Bone (7 oz)" data-en="T-Bone (7 oz)" data-es="T-Bone (7 oz)">T-Bone (7 oz)</span><span class="midi-item-price">22,95 $</span></div>
-          <div class="midi-item"><span class="midi-item-name" data-fr="Rib Steak (7 oz)" data-en="Rib Steak (7 oz)" data-es="Rib Steak (7 oz)">Rib Steak (7 oz)</span><span class="midi-item-price">22,95 $</span></div>
-          <div class="midi-item"><span class="midi-item-name" data-fr="Filet de saumon &amp; 10 crevettes" data-en="Salmon fillet &amp; 10 shrimp" data-es="Filete de salmón y 10 camarones">Filet de saumon &amp; 10 crevettes</span><span class="midi-item-price">27,95 $</span></div>
-          <div class="midi-item"><span class="midi-item-name" data-fr="Nachos du Moulin" data-en="Nachos du Moulin" data-es="Nachos del Moulin">Nachos du Moulin</span><span class="midi-item-price">19,95 $</span></div>
-          <div class="midi-item"><span class="midi-item-name" data-fr="Pizza soufflée &amp; frites" data-en="Soufflé pizza &amp; fries" data-es="Pizza soufflé y papas fritas">Pizza soufflée &amp; frites</span><span class="midi-item-price">19,95 $</span></div>
-          <div class="midi-item"><span class="midi-item-name" data-fr="Choix du Chef (cuisse ou poitrine)" data-en="Chef's Choice (thigh or breast)" data-es="Elección del Chef (pernil o pechuga)">Choix du Chef (cuisse ou poitrine)</span><span class="midi-item-price">11,95 $</span></div>
-        </div>
-        <div class="midi-notes">
-          <div class="midi-note"><span class="midi-note-label" data-fr="T-Bone &amp; Rib Steak" data-en="T-Bone &amp; Rib Steak" data-es="T-Bone y Rib Steak">T-Bone &amp; Rib Steak</span><span class="midi-note-text" data-fr="accompagnés de champignons sautés, riz, patates grecques et salade César · ajouter 10 crevettes pour 7,95 $" data-en="served with sautéed mushrooms, rice, Greek potatoes and Caesar salad · add 10 shrimp for $7.95" data-es="acompañados de champiñones salteados, arroz, papas griegas y ensalada César · agregar 10 camarones por 7,95 $">accompagnés de champignons sautés, riz, patates grecques et salade César · ajouter 10 crevettes pour 7,95 $</span></div>
-          <div class="midi-note"><span class="midi-note-label" data-fr="Filet de saumon &amp; crevettes" data-en="Salmon fillet &amp; shrimp" data-es="Filete de salmón y camarones">Filet de saumon &amp; crevettes</span><span class="midi-note-text" data-fr="accompagné de riz, patates grecques et salade César" data-en="served with rice, Greek potatoes and Caesar salad" data-es="acompañado de arroz, papas griegas y ensalada César">accompagné de riz, patates grecques et salade César</span></div>
-          <div class="midi-note"><span class="midi-note-label" data-fr="Nachos du Moulin" data-en="Nachos du Moulin" data-es="Nachos del Moulin">Nachos du Moulin</span><span class="midi-note-text" data-fr="poivrons verts et rouges, oignons, champignons et pepperoni" data-en="green and red peppers, onions, mushrooms and pepperoni" data-es="pimientos verdes y rojos, cebolla, champiñones y pepperoni">poivrons verts et rouges, oignons, champignons et pepperoni</span></div>
-          <div class="midi-note"><span class="midi-note-label" data-fr="Choix du Chef" data-en="Chef's Choice" data-es="Elección del Chef">Choix du Chef</span><span class="midi-note-text" data-fr="inclut frites et salade de chou" data-en="includes fries and coleslaw" data-es="incluye papas fritas y ensalada de repollo">inclut frites et salade de chou</span></div>
+          <div class="midi-item has-desc">
+            <div class="midi-item-main">
+              <span class="midi-item-name" data-fr="T-Bone (7 oz)" data-en="T-Bone (7 oz)" data-es="T-Bone (7 oz)">T-Bone (7 oz)</span>
+              <span class="midi-item-desc" data-fr="Accompagné de champignons sautés, riz, patates grecques et salade César · ajouter 10 crevettes pour 7,95 $" data-en="Served with sautéed mushrooms, rice, Greek potatoes and Caesar salad · add 10 shrimp for $7.95" data-es="Acompañado de champiñones salteados, arroz, papas griegas y ensalada César · agregar 10 camarones por 7,95 $">Accompagné de champignons sautés, riz, patates grecques et salade César · ajouter 10 crevettes pour 7,95 $</span>
+            </div>
+            <span class="midi-item-price">22,95 $</span>
+          </div>
+          <div class="midi-item has-desc">
+            <div class="midi-item-main">
+              <span class="midi-item-name" data-fr="Rib Steak (7 oz)" data-en="Rib Steak (7 oz)" data-es="Rib Steak (7 oz)">Rib Steak (7 oz)</span>
+              <span class="midi-item-desc" data-fr="Accompagné de champignons sautés, riz, patates grecques et salade César · ajouter 10 crevettes pour 7,95 $" data-en="Served with sautéed mushrooms, rice, Greek potatoes and Caesar salad · add 10 shrimp for $7.95" data-es="Acompañado de champiñones salteados, arroz, papas griegas y ensalada César · agregar 10 camarones por 7,95 $">Accompagné de champignons sautés, riz, patates grecques et salade César · ajouter 10 crevettes pour 7,95 $</span>
+            </div>
+            <span class="midi-item-price">22,95 $</span>
+          </div>
+          <div class="midi-item has-desc">
+            <div class="midi-item-main">
+              <span class="midi-item-name" data-fr="Filet de saumon &amp; 10 crevettes" data-en="Salmon fillet &amp; 10 shrimp" data-es="Filete de salmón y 10 camarones">Filet de saumon &amp; 10 crevettes</span>
+              <span class="midi-item-desc" data-fr="Accompagné de riz, patates grecques et salade César" data-en="Served with rice, Greek potatoes and Caesar salad" data-es="Acompañado de arroz, papas griegas y ensalada César">Accompagné de riz, patates grecques et salade César</span>
+            </div>
+            <span class="midi-item-price">27,95 $</span>
+          </div>
+          <div class="midi-item has-desc">
+            <div class="midi-item-main">
+              <span class="midi-item-name" data-fr="Nachos du Moulin" data-en="Nachos du Moulin" data-es="Nachos del Moulin">Nachos du Moulin</span>
+              <span class="midi-item-desc" data-fr="Poivrons verts et rouges, oignons, champignons et pepperoni" data-en="Green and red peppers, onions, mushrooms and pepperoni" data-es="Pimientos verdes y rojos, cebolla, champiñones y pepperoni">Poivrons verts et rouges, oignons, champignons et pepperoni</span>
+            </div>
+            <span class="midi-item-price">19,95 $</span>
+          </div>
+          <div class="midi-item has-desc">
+            <div class="midi-item-main">
+              <span class="midi-item-name" data-fr="Pizza soufflée &amp; frites" data-en="Soufflé pizza &amp; fries" data-es="Pizza soufflé y papas fritas">Pizza soufflée &amp; frites</span>
+              <span class="midi-item-desc" data-fr="Pizza 10 po · au choix : toute garnie, pepperoni ou végétarienne" data-en="10&quot; pizza · choice of: all-dressed, pepperoni or vegetarian" data-es="Pizza de 10 pulg · a elegir: toda guarnecida, pepperoni o vegetariana">Pizza 10 po · au choix : toute garnie, pepperoni ou végétarienne</span>
+            </div>
+            <span class="midi-item-price">19,95 $</span>
+          </div>
+          <div class="midi-item has-desc">
+            <div class="midi-item-main">
+              <span class="midi-item-name" data-fr="Choix du Chef (cuisse ou poitrine)" data-en="Chef's Choice (thigh or breast)" data-es="Elección del Chef (pernil o pechuga)">Choix du Chef (cuisse ou poitrine)</span>
+              <span class="midi-item-desc" data-fr="Inclut frites et salade de chou" data-en="Includes fries and coleslaw" data-es="Incluye papas fritas y ensalada de repollo">Inclut frites et salade de chou</span>
+            </div>
+            <span class="midi-item-price">11,95 $</span>
+          </div>
         </div>
       </div>
     </div>
@@ -1840,7 +1862,10 @@ if(document.readyState === 'loading'){
     </iframe>
   </div>
   <div style="margin-top:1.5rem;display:flex;flex-direction:column;align-items:center;gap:0.9rem;">
-    <a href="https://www.google.com/maps/place/Restaurant+Le+Moulin/@45.4837921,-71.6599558,18z/data=!4m6!3m5!1s0x4cb7af5475900419:0x7a9e8107073441!8m2!3d45.4837921!4d-71.6599558!16s%2Fg%2F11c0qvk6vm" target="_blank" rel="noopener" class="btn-gold" style="font-size:11px;padding:11px 26px;" data-fr="Ouvrir dans Google Maps" data-en="Open in Google Maps" data-es="Abrir en Google Maps">Ouvrir dans Google Maps</a>
+    <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Restaurant+Le+Moulin%2C+59+Rue+Angus+N%2C+East+Angus%2C+QC&amp;destination_place_id=ChIJGQSQdVSvtEwReDQHB4HofqU" target="_blank" rel="noopener" id="directionsBtn" class="btn-gold" style="font-size:11px;padding:11px 26px;display:inline-flex;align-items:center;gap:8px;" data-fr="Itinéraire" data-en="Directions" data-es="Cómo llegar">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+      <span>Itinéraire</span>
+    </a>
     <span style="font-size:13px;color:var(--text-muted);letter-spacing:0.02em;" data-fr="59 rue Angus Nord, East Angus, Québec" data-en="59 Angus Street North, East Angus, Quebec" data-es="59 rue Angus Nord, East Angus, Quebec">59 rue Angus Nord, East Angus, Québec</span>
   </div>
 </div>
@@ -2476,9 +2501,10 @@ if (window.netlifyIdentity) {
   function openModal(item){
     lastFocusedEl = document.activeElement;
 
-    // Détecter le type d'item (menu-item, promo-ss-item, midi-item)
+    // Détecter le type d'item (menu-item, promo-ss-item, midi-item, promo-combo-card)
     var isPromoItem = item.classList.contains('promo-ss-item');
     var isMidiItem = item.classList.contains('midi-item');
+    var isComboCard = item.classList.contains('promo-combo-card');
 
     // Récupérer nom, description et prix selon le type
     var nameEl, descElement, priceElement;
@@ -2489,8 +2515,12 @@ if (window.netlifyIdentity) {
       priceElement = item.querySelector('.promo-ss-price');
     } else if(isMidiItem){
       nameEl = item.querySelector('.midi-item-name');
-      descElement = null;
+      descElement = item.querySelector('.midi-item-desc');
       priceElement = item.querySelector('.midi-item-price');
+    } else if(isComboCard){
+      nameEl = item.querySelector('.promo-card-name');
+      descElement = item.querySelector('.promo-card-desc');
+      priceElement = item.querySelector('.promo-combo-price');
     } else {
       // menu-item classique
       nameEl = item.querySelector('.menu-item-name');
@@ -2572,9 +2602,9 @@ if (window.netlifyIdentity) {
   // Exposer le HTML du placeholder globalement pour le fallback onerror
   window.__dishModalPlaceholder = getPlaceholderHTML();
 
-  // Rendre tous les items cliquables (.menu-item, .promo-ss-item, .midi-item)
+  // Rendre tous les items cliquables (.menu-item, .promo-ss-item, .midi-item, .promo-combo-card)
   function initMenuItems(){
-    var items = document.querySelectorAll('.menu-item, .promo-ss-item, .midi-item');
+    var items = document.querySelectorAll('.menu-item, .promo-ss-item, .midi-item, .promo-combo-card');
     items.forEach(function(item){
       // Éviter double-init
       if(item.dataset.modalInit === '1') return;
@@ -2585,7 +2615,7 @@ if (window.netlifyIdentity) {
       item.setAttribute('role','button');
 
       // Récupérer le nom selon le type d'item
-      var nameEl = item.querySelector('.menu-item-name, .promo-ss-name, .midi-item-name');
+      var nameEl = item.querySelector('.menu-item-name, .promo-ss-name, .midi-item-name, .promo-card-name');
       var name = nameEl ? (nameEl.textContent || '').split('\n')[0].trim() : '';
       item.setAttribute('aria-label', name + ' — ' + (placeholderTexts[document.documentElement.lang || 'fr'] || 'Voir la photo'));
 
@@ -2633,6 +2663,28 @@ if (window.netlifyIdentity) {
 
   // Exposer pour permettre de ré-initialiser si besoin (ajouts dynamiques)
   window.initDishModalItems = initMenuItems;
+})();
+</script>
+
+<!-- === Détection iOS pour bouton Itinéraire (Apple Plans sur iPhone/iPad) === -->
+<script>
+(function(){
+  var btn = document.getElementById('directionsBtn');
+  if(!btn) return;
+
+  // Détecte iOS (iPhone, iPad, iPod) — y compris iPad moderne qui se présente comme Mac avec touchscreen
+  var ua = navigator.userAgent || '';
+  var isIOS = /iPad|iPhone|iPod/.test(ua) ||
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+  if(isIOS){
+    // Apple Plans : itinéraire vers l'adresse, "daddr" = destination address
+    // saddr vide = position actuelle de l'utilisateur (Plans demandera la permission)
+    var appleUrl = 'https://maps.apple.com/?daddr=' +
+      encodeURIComponent('Restaurant Le Moulin, 59 Rue Angus Nord, East Angus, QC, Canada') +
+      '&dirflg=d'; // d = driving (par défaut auto)
+    btn.setAttribute('href', appleUrl);
+  }
 })();
 </script>
 
