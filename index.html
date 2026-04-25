@@ -730,11 +730,17 @@ function setLang(lang){
       val = el.getAttribute('data-fr');
     }
     if(val !== null){
-      // Si contient du HTML (ex: <br>), utiliser innerHTML
-      if(val.indexOf('<') !== -1){
-        el.innerHTML = val;
+      // Si la valeur est explicitement vide, cacher l'élément (utile pour retirer un titre dans une langue)
+      if(val === ''){
+        el.style.display = 'none';
       } else {
-        el.textContent = val;
+        el.style.display = '';
+        // Si contient du HTML (ex: <br>), utiliser innerHTML
+        if(val.indexOf('<') !== -1){
+          el.innerHTML = val;
+        } else {
+          el.textContent = val;
+        }
       }
     }
   });
@@ -1019,7 +1025,7 @@ if(document.readyState === 'loading'){
 <section class="about-section" id="about">
 <div class="section-inner">
   <div class="section-eyebrow" data-fr="Notre histoire" data-en="Our story" data-es="Nuestra historia">Notre histoire</div>
-  <h2 class="section-title" data-fr="À propos" data-en="About us" data-es="Nosotros">À propos</h2>
+  <h2 class="section-title" data-fr="À propos" data-en="About us" data-es="">À propos</h2>
   <div class="gold-rule"></div>
   <div class="about-layout">
     <div class="about-text">
@@ -1074,19 +1080,19 @@ if(document.readyState === 'loading'){
         </div>
         <div class="signature-grid">
           <div class="signature-card is-star" data-photo="" data-photo-caption="Poutine déjeuner">
-            <div class="signature-eyebrow" data-fr="Notre signature" data-en="Our signature" data-es="Nuestra firma">Notre signature</div>
+            <div class="signature-eyebrow" data-fr="Notre signature" data-en="Our signature" data-es="Nuestra especialidad">Notre signature</div>
             <div class="signature-name" data-fr="Poutine déjeuner" data-en="Breakfast poutine" data-es="Poutine de desayuno">Poutine déjeuner</div>
             <div class="signature-desc" data-fr="Bacon, saucisses, jambon, fromage en grains et 1 œuf — nappée de sauce hollandaise" data-en="Bacon, sausages, ham, cheese curds and 1 egg — topped with hollandaise sauce" data-es="Tocineta, salchichas, jamón, queso en granos y 1 huevo — cubierta con salsa holandesa">Bacon, saucisses, jambon, fromage en grains et 1 œuf — nappée de sauce hollandaise</div>
           </div>
 
           <div class="signature-card" data-photo="" data-photo-caption="2 gaufres aux fruits du jour">
-            <div class="signature-eyebrow" data-fr="La douceur" data-en="The sweet treat" data-es="La dulzura">La douceur</div>
+            <div class="signature-eyebrow" data-fr="La douceur" data-en="The sweet treat" data-es="Lo dulce">La douceur</div>
             <div class="signature-name" data-fr="2 gaufres aux fruits du jour" data-en="2 waffles with fruit of the day" data-es="2 waffles con fruta del día">2 gaufres aux fruits du jour</div>
             <div class="signature-desc" data-fr="Servies avec fruits frais du jour et café" data-en="Served with fresh fruit of the day and coffee" data-es="Servidas con fruta fresca del día y café">Servies avec fruits frais du jour et café</div>
           </div>
 
           <div class="signature-card" data-photo="" data-photo-caption="Béné au fromage brie et champignons sautés">
-            <div class="signature-eyebrow" data-fr="L'incontournable" data-en="The must-try" data-es="Imprescindible">L'incontournable</div>
+            <div class="signature-eyebrow" data-fr="L'incontournable" data-en="The must-try" data-es="Imperdible">L'incontournable</div>
             <div class="signature-name" data-fr="Béné au fromage brie et champignons sautés" data-en="Benedict with brie cheese and sautéed mushrooms" data-es="Benedictinos con queso brie y champiñones salteados">Béné au fromage brie et champignons sautés</div>
             <div class="signature-desc" data-fr="2 œufs pochés sur muffin anglais, fromage brie fondant et champignons sautés, nappés de sauce hollandaise" data-en="2 poached eggs on English muffin, melty brie cheese and sautéed mushrooms, topped with hollandaise sauce" data-es="2 huevos pochados sobre muffin inglés, queso brie fundido y champiñones salteados, cubiertos con salsa holandesa">2 œufs pochés sur muffin anglais, fromage brie fondant et champignons sautés, nappés de sauce hollandaise</div>
           </div>
@@ -1202,13 +1208,13 @@ if(document.readyState === 'loading'){
         </div>
         <div class="signature-grid">
           <div class="signature-card is-star" data-photo="" data-photo-caption="Pizza Spéciale du Moulin">
-            <div class="signature-eyebrow" data-fr="Notre signature" data-en="Our signature" data-es="Nuestra firma">Notre signature</div>
+            <div class="signature-eyebrow" data-fr="Notre signature" data-en="Our signature" data-es="Nuestra especialidad">Notre signature</div>
             <div class="signature-name" data-fr="Pizza Spéciale du Moulin" data-en="Le Moulin Special Pizza" data-es="Pizza Especial del Moulin">Pizza Spéciale du Moulin</div>
             <div class="signature-desc" data-fr="Champignons, poivrons verts, oignons, tomates, olives, pepperoni et bacon" data-en="Mushrooms, green peppers, onions, tomatoes, olives, pepperoni and bacon" data-es="Champiñones, pimiento verde, cebolla, tomate, aceitunas, pepperoni y tocineta">Champignons, poivrons verts, oignons, tomates, olives, pepperoni et bacon</div>
           </div>
 
           <div class="signature-card" data-photo="" data-photo-caption="Steak pétillant aux champignons sautés">
-            <div class="signature-eyebrow" data-fr="L'incontournable" data-en="The must-try" data-es="Imprescindible">L'incontournable</div>
+            <div class="signature-eyebrow" data-fr="L'incontournable" data-en="The must-try" data-es="Imperdible">L'incontournable</div>
             <div class="signature-name" data-fr="Steak pétillant aux champignons sautés" data-en="Sizzling steak with sautéed mushrooms" data-es="Steak con champiñones salteados">Steak pétillant aux champignons sautés</div>
             <div class="signature-desc" data-fr="Bavette 6 à 8 oz, champignons sautés, sauce aux poivres, patates grecques et salade du jour" data-en="6 to 8 oz flank steak, sautéed mushrooms, peppercorn sauce, Greek potatoes and salad of the day" data-es="Bavette de 6 a 8 oz, champiñones salteados, salsa de pimienta, papas griegas y ensalada del día">Bavette 6 à 8 oz, champignons sautés, sauce aux poivres, patates grecques et salade du jour</div>
           </div>
