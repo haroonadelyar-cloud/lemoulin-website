@@ -311,17 +311,14 @@
     .signature-section-title{font-family:var(--font-display);font-size:clamp(14px,1.6vw,17px);font-weight:700;color:#fff;letter-spacing:0.02em;margin:0;}
     .signature-section-sub{font-size:11px;color:var(--text-muted);line-height:1.4;}
     .signature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0.75rem;}
-    .signature-card{background:linear-gradient(135deg,rgba(201,153,58,0.08) 0%,rgba(201,153,58,0.02) 100%);border:1px solid rgba(201,153,58,0.25);border-radius:var(--radius);padding:0.85rem 0.95rem 0.95rem;position:relative;overflow:hidden;transition:transform 0.25s ease,border-color 0.25s ease,box-shadow 0.25s ease;display:flex;flex-direction:column;gap:0.4rem;}
+    .signature-card{background:linear-gradient(135deg,rgba(201,153,58,0.08) 0%,rgba(201,153,58,0.02) 100%);border:1px solid rgba(201,153,58,0.25);border-radius:var(--radius);padding:0.85rem 0.95rem 0.95rem;position:relative;overflow:hidden;transition:transform 0.25s ease,border-color 0.25s ease,box-shadow 0.25s ease;display:flex;flex-direction:column;gap:0.4rem;cursor:pointer;}
     .signature-card:hover{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 12px 28px rgba(0,0,0,0.35);}
+    .signature-card:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
     .signature-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--gold),transparent);}
     .signature-card.is-star::after{content:'★';position:absolute;top:9px;right:11px;font-size:12px;color:var(--gold);opacity:0.7;}
     .signature-eyebrow{font-size:9px;letter-spacing:0.26em;color:var(--gold);text-transform:uppercase;font-weight:500;}
     .signature-name{font-family:var(--font-display);font-size:14px;font-weight:700;color:#fff;line-height:1.25;letter-spacing:0.01em;}
     .signature-desc{font-size:11px;color:var(--text-muted);line-height:1.5;}
-    .signature-photo-btn{margin-top:0.35rem;align-self:flex-start;background:rgba(201,153,58,0.1);border:1px solid rgba(201,153,58,0.3);color:var(--gold);font-family:var(--font-body);font-size:10px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;padding:5px 10px;border-radius:var(--radius);cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:background 0.2s,border-color 0.2s;}
-    .signature-photo-btn:hover{background:rgba(201,153,58,0.2);border-color:var(--gold);}
-    .signature-photo-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
-    .signature-photo-btn svg{width:12px;height:12px;flex-shrink:0;}
     @media(max-width:640px){
       .signature-grid{grid-template-columns:1fr;gap:0.55rem;}
       .signature-card{padding:0.8rem 0.9rem 0.85rem;}
@@ -1058,25 +1055,22 @@ if(document.readyState === 'loading'){
           <span class="signature-section-sub" data-fr="Les incontournables de notre brunch" data-en="The must-tries of our brunch" data-es="Los imprescindibles de nuestro brunch">Les incontournables de notre brunch</span>
         </div>
         <div class="signature-grid">
-          <div class="signature-card is-star">
+          <div class="signature-card is-star" data-photo="" data-photo-caption="Poutine déjeuner">
             <div class="signature-eyebrow" data-fr="Notre signature" data-en="Our signature" data-es="Nuestra firma">Notre signature</div>
             <div class="signature-name" data-fr="Poutine déjeuner" data-en="Breakfast poutine" data-es="Poutine de desayuno">Poutine déjeuner</div>
             <div class="signature-desc" data-fr="Bacon, saucisses, jambon, fromage en grains et 1 œuf — nappée de sauce hollandaise" data-en="Bacon, sausages, ham, cheese curds and 1 egg — topped with hollandaise sauce" data-es="Tocineta, salchichas, jamón, queso en granos y 1 huevo — cubierta con salsa holandesa">Bacon, saucisses, jambon, fromage en grains et 1 œuf — nappée de sauce hollandaise</div>
-            <button type="button" class="signature-photo-btn" data-photo="" data-photo-caption="Poutine déjeuner" data-fr="Voir la photo" data-en="See photo" data-es="Ver la foto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><span>Voir la photo</span></button>
           </div>
 
-          <div class="signature-card">
+          <div class="signature-card" data-photo="" data-photo-caption="2 gaufres aux fruits du jour">
             <div class="signature-eyebrow" data-fr="La douceur" data-en="The sweet treat" data-es="La dulzura">La douceur</div>
             <div class="signature-name" data-fr="2 gaufres aux fruits du jour" data-en="2 waffles with fruit of the day" data-es="2 waffles con fruta del día">2 gaufres aux fruits du jour</div>
             <div class="signature-desc" data-fr="Servies avec fruits frais du jour et café" data-en="Served with fresh fruit of the day and coffee" data-es="Servidas con fruta fresca del día y café">Servies avec fruits frais du jour et café</div>
-            <button type="button" class="signature-photo-btn" data-photo="" data-photo-caption="2 gaufres aux fruits du jour" data-fr="Voir la photo" data-en="See photo" data-es="Ver la foto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><span>Voir la photo</span></button>
           </div>
 
-          <div class="signature-card">
+          <div class="signature-card" data-photo="" data-photo-caption="Béné au fromage brie et champignons sautés">
             <div class="signature-eyebrow" data-fr="L'incontournable" data-en="The must-try" data-es="Imprescindible">L'incontournable</div>
             <div class="signature-name" data-fr="Béné au fromage brie et champignons sautés" data-en="Benedict with brie cheese and sautéed mushrooms" data-es="Benedictinos con queso brie y champiñones salteados">Béné au fromage brie et champignons sautés</div>
             <div class="signature-desc" data-fr="2 œufs pochés sur muffin anglais, fromage brie fondant et champignons sautés, nappés de sauce hollandaise" data-en="2 poached eggs on English muffin, melty brie cheese and sautéed mushrooms, topped with hollandaise sauce" data-es="2 huevos pochados sobre muffin inglés, queso brie fundido y champiñones salteados, cubiertos con salsa holandesa">2 œufs pochés sur muffin anglais, fromage brie fondant et champignons sautés, nappés de sauce hollandaise</div>
-            <button type="button" class="signature-photo-btn" data-photo="" data-photo-caption="Béné au fromage brie et champignons sautés" data-fr="Voir la photo" data-en="See photo" data-es="Ver la foto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><span>Voir la photo</span></button>
           </div>
         </div>
       </div>
@@ -1189,25 +1183,22 @@ if(document.readyState === 'loading'){
           <span class="signature-section-sub" data-fr="Nos plats les plus aimés depuis plus de 20 ans" data-en="Our most beloved dishes for over 20 years" data-es="Nuestros platos más queridos desde hace más de 20 años">Nos plats les plus aimés depuis plus de 20 ans</span>
         </div>
         <div class="signature-grid">
-          <div class="signature-card is-star">
+          <div class="signature-card is-star" data-photo="" data-photo-caption="Pizza Spéciale du Moulin">
             <div class="signature-eyebrow" data-fr="Notre signature" data-en="Our signature" data-es="Nuestra firma">Notre signature</div>
             <div class="signature-name" data-fr="Pizza Spéciale du Moulin" data-en="Le Moulin Special Pizza" data-es="Pizza Especial del Moulin">Pizza Spéciale du Moulin</div>
             <div class="signature-desc" data-fr="Champignons, poivrons verts, oignons, tomates, olives, pepperoni et bacon" data-en="Mushrooms, green peppers, onions, tomatoes, olives, pepperoni and bacon" data-es="Champiñones, pimiento verde, cebolla, tomate, aceitunas, pepperoni y tocineta">Champignons, poivrons verts, oignons, tomates, olives, pepperoni et bacon</div>
-            <button type="button" class="signature-photo-btn" data-photo="" data-photo-caption="Pizza Spéciale du Moulin" data-fr="Voir la photo" data-en="See photo" data-es="Ver la foto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><span>Voir la photo</span></button>
           </div>
 
-          <div class="signature-card">
+          <div class="signature-card" data-photo="" data-photo-caption="Steak pétillant aux champignons sautés">
             <div class="signature-eyebrow" data-fr="L'incontournable" data-en="The must-try" data-es="Imprescindible">L'incontournable</div>
             <div class="signature-name" data-fr="Steak pétillant aux champignons sautés" data-en="Sizzling steak with sautéed mushrooms" data-es="Steak con champiñones salteados">Steak pétillant aux champignons sautés</div>
             <div class="signature-desc" data-fr="Bavette 6 à 8 oz, champignons sautés, sauce aux poivres, patates grecques et salade du jour" data-en="6 to 8 oz flank steak, sautéed mushrooms, peppercorn sauce, Greek potatoes and salad of the day" data-es="Bavette de 6 a 8 oz, champiñones salteados, salsa de pimienta, papas griegas y ensalada del día">Bavette 6 à 8 oz, champignons sautés, sauce aux poivres, patates grecques et salade du jour</div>
-            <button type="button" class="signature-photo-btn" data-photo="" data-photo-caption="Steak pétillant aux champignons sautés" data-fr="Voir la photo" data-en="See photo" data-es="Ver la foto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><span>Voir la photo</span></button>
           </div>
 
-          <div class="signature-card">
+          <div class="signature-card" data-photo="" data-photo-caption="Assiette pita au poulet">
             <div class="signature-eyebrow" data-fr="Le grand favori" data-en="The fan favourite" data-es="La favorita">Le grand favori</div>
             <div class="signature-name" data-fr="Assiette pita au poulet" data-en="Chicken pita plate" data-es="Plato de pita con pollo">Assiette pita au poulet</div>
             <div class="signature-desc" data-fr="Accompagnée de patates grecques et salade César ou jardinière" data-en="Served with Greek potatoes and Caesar or garden salad" data-es="Acompañado de papas griegas y ensalada César o de la casa">Accompagnée de patates grecques et salade César ou jardinière</div>
-            <button type="button" class="signature-photo-btn" data-photo="" data-photo-caption="Assiette pita au poulet" data-fr="Voir la photo" data-en="See photo" data-es="Ver la foto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><span>Voir la photo</span></button>
           </div>
         </div>
       </div>
@@ -2631,12 +2622,6 @@ function switchDinerTab(tab, btn){
   if(target) target.classList.add('active');
   btn.classList.add('active');
   btn.setAttribute('aria-selected','true');
-  // Remonter aux onglets du menu pour voir le haut du nouveau contenu
-  var menuTabs = document.getElementById('menu-tabs');
-  if(menuTabs){
-    var top = menuTabs.getBoundingClientRect().top + window.pageYOffset - 80;
-    window.scrollTo({ top: top, behavior: 'smooth' });
-  }
 }
 function switchDejeunerTab(tab, btn){
   // Retirer 'active' seulement des sous-onglets DU DÉJEUNER
@@ -2654,12 +2639,6 @@ function switchDejeunerTab(tab, btn){
   if(target) target.classList.add('active');
   btn.classList.add('active');
   btn.setAttribute('aria-selected','true');
-  // Remonter aux onglets du menu pour voir le haut du nouveau contenu
-  var menuTabs = document.getElementById('menu-tabs');
-  if(menuTabs){
-    var top = menuTabs.getBoundingClientRect().top + window.pageYOffset - 80;
-    window.scrollTo({ top: top, behavior: 'smooth' });
-  }
 }
 </script>
 <script>
@@ -3107,13 +3086,28 @@ if (window.netlifyIdentity) {
     }, 300);
   }
 
-  // Brancher tous les boutons « Voir la photo »
-  document.querySelectorAll('.signature-photo-btn').forEach(function(btn){
-    btn.addEventListener('click', function(e){
-      e.stopPropagation();
-      var src = btn.getAttribute('data-photo') || '';
-      var caption = btn.getAttribute('data-photo-caption') || '';
-      openLightbox(src, caption);
+  // Brancher toutes les cartes coups de cœur (la carte entière est cliquable)
+  document.querySelectorAll('.signature-card').forEach(function(card){
+    // Accessibilité : rendre la carte focusable et activable au clavier
+    card.setAttribute('role','button');
+    card.setAttribute('tabindex','0');
+    var caption = card.getAttribute('data-photo-caption') || '';
+    var lang = getLang();
+    var labels = { fr: 'Voir la photo', en: 'See photo', es: 'Ver la foto' };
+    card.setAttribute('aria-label', labels[lang] + (caption ? ' — ' + caption : ''));
+
+    card.addEventListener('click', function(){
+      var src = card.getAttribute('data-photo') || '';
+      var cap = card.getAttribute('data-photo-caption') || '';
+      openLightbox(src, cap);
+    });
+    card.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        var src = card.getAttribute('data-photo') || '';
+        var cap = card.getAttribute('data-photo-caption') || '';
+        openLightbox(src, cap);
+      }
     });
   });
 
