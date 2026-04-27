@@ -602,7 +602,7 @@
     @media(max-width:640px){.reviews-grid{grid-template-columns:1fr;}}
   .nav-logo-svg{ height:44px; width:40px; display:block; flex-shrink:0; }
     .footer-logo-svg{ height:54px; width:49px; display:block; margin-bottom:0.75rem; }
-    .gallery-item{background:linear-gradient(135deg,#2A2118 0%,#14110D 100%)!important;display:flex;align-items:center;justify-content:center;}
+    .gallery-item:has(.gallery-placeholder){background:linear-gradient(135deg,#2A2118 0%,#14110D 100%)!important;display:flex;align-items:center;justify-content:center;}
     .gallery-placeholder{width:64px;height:70px;opacity:0.35;transition:opacity 0.3s ease,transform 0.5s ease;}
     .gallery-item:hover .gallery-placeholder{opacity:0.6;transform:scale(1.08);}
     /* A propos : bouton Lire la suite */
@@ -1951,7 +1951,7 @@ if(document.readyState === 'loading'){
   <div class="gold-rule"></div>
   <p class="section-desc" data-fr="Un avant-goût de ce qui vous attend — nos plats et notre salle chaleureuse." data-en="A taste of what awaits — our dishes and our warm dining room." data-es="Un adelanto de lo que le espera — nuestros platos y nuestro cálido salón.">Un avant-goût de ce qui vous attend — nos plats et notre salle chaleureuse.</p>
   <div class="gallery-grid" data-collapsible="2" data-collapsible-type="gallery">
-    <div class="gallery-item"><svg class="mill-logo gallery-placeholder" viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g class="blades"><g stroke="#C9993A" stroke-width="2.2" stroke-linecap="round" fill="none"><line x1="50" y1="48" x2="18" y2="16"/><line x1="50" y1="48" x2="82" y2="16"/><line x1="50" y1="48" x2="18" y2="80"/><line x1="50" y1="48" x2="82" y2="80"/></g><g fill="#C9993A"><circle cx="18" cy="16" r="1.8"/><circle cx="82" cy="16" r="1.8"/><circle cx="18" cy="80" r="1.8"/><circle cx="82" cy="80" r="1.8"/></g></g><circle cx="50" cy="48" r="4.5" fill="#C9993A"/><circle cx="50" cy="48" r="7.5" fill="none" stroke="#C9993A" stroke-width="1"/><line x1="42" y1="60" x2="40" y2="100" stroke="#C9993A" stroke-width="1.6" stroke-linecap="round"/><line x1="58" y1="60" x2="60" y2="100" stroke="#C9993A" stroke-width="1.6" stroke-linecap="round"/><line x1="34" y1="100" x2="66" y2="100" stroke="#C9993A" stroke-width="1.6" stroke-linecap="round"/></svg><div class="gallery-cap"><span data-fr="Notre salle à manger" data-en="Our dining room" data-es="Nuestro salón">Notre salle à manger</span></div></div>
+    <div class="gallery-item"><picture><source srcset="images/salle-a-manger.webp" type="image/webp"><img src="images/salle-a-manger.jpg" alt="Notre salle à manger — Restaurant Le Moulin" loading="lazy" decoding="async"></picture><div class="gallery-cap"><span data-fr="Notre salle à manger" data-en="Our dining room" data-es="Nuestro salón">Notre salle à manger</span></div></div>
   </div>
 </div>
 </section>
