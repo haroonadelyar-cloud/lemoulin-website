@@ -242,6 +242,44 @@
     .dish-modal-img{width:100%;height:100%;object-fit:cover;display:block;object-position:center;}
     /* Repositionnement du recadrage pour photos portrait : montre davantage le bas */
     .dish-modal-img.is-bottom{object-position:center 80%;}
+    /* === Toggle variantes (Petite / Grande, etc.) === */
+    .dish-modal-variants{
+      position:absolute;
+      top:1rem;
+      left:50%;
+      transform:translateX(-50%);
+      z-index:2;
+      display:inline-flex;
+      background:rgba(10,8,6,0.75);
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+      border:1px solid rgba(201,153,58,0.4);
+      border-radius:999px;
+      padding:3px;
+      gap:2px;
+    }
+    .dish-modal-variant-btn{
+      appearance:none;
+      background:transparent;
+      border:none;
+      color:rgba(255,255,255,0.7);
+      font-family:inherit;
+      font-size:11px;
+      letter-spacing:0.1em;
+      text-transform:uppercase;
+      font-weight:500;
+      padding:6px 14px;
+      border-radius:999px;
+      cursor:pointer;
+      transition:background 0.2s, color 0.2s;
+      white-space:nowrap;
+    }
+    .dish-modal-variant-btn:hover{color:#fff;}
+    .dish-modal-variant-btn.is-active{
+      background:var(--gold);
+      color:var(--dark);
+    }
+    .dish-modal-variant-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
     .dish-modal-placeholder{
       width:100%;
       height:100%;
@@ -1279,8 +1317,7 @@ if(document.readyState === 'loading'){
         <div class="menu-item"><div><div class="menu-item-name" data-fr="Soupe du jour" data-en="Soup of the day" data-es="Sopa del día">Soupe du jour</div></div><div class="menu-item-price">4,50 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name" data-fr="Crème du jour" data-en="Cream soup of the day" data-es="Crema del día">Crème du jour</div></div><div class="menu-item-price">4,50 $</div></div>
         <div class="menu-item" data-image="images/entrees/pain-ail-gratine.webp" data-image-position="bottom"><div><div class="menu-item-name" data-fr="Pain à l'ail gratiné" data-en="Garlic bread au gratin" data-es="Pan al ajo gratinado">Pain à l'ail gratiné</div></div><div class="menu-item-price">6,95 $</div></div>
-        <div class="menu-item" data-image="images/entrees/petite-frite.webp"><div><div class="menu-item-name" data-fr="Petite frite" data-en="Small fries" data-es="Papas fritas pequeñas">Petite frite</div></div><div class="menu-item-price">6,95 $</div></div>
-        <div class="menu-item" data-image="images/entrees/grande-frite.webp"><div><div class="menu-item-name" data-fr="Grande frite" data-en="Large fries" data-es="Papas fritas grandes">Grande frite</div></div><div class="menu-item-price">9,95 $</div></div>
+        <div class="menu-item" data-image-variants='[{"label_fr":"Petite","label_en":"Small","label_es":"Pequeña","image":"images/entrees/petite-frite.webp"},{"label_fr":"Grande","label_en":"Large","label_es":"Grande","image":"images/entrees/grande-frite.webp"}]'><div><div class="menu-item-name" data-fr="Frites" data-en="Fries" data-es="Papas fritas">Frites</div></div><div class="menu-item-price" data-fr="P: 6,95 $ / G: 9,95 $" data-en="S: $6.95 / L: $9.95" data-es="P: 6,95 $ / G: 9,95 $">P: 6,95 $ / G: 9,95 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name" data-fr="Champignons à l'ail gratinés" data-en="Garlic mushrooms au gratin" data-es="Champiñones al ajo gratinados">Champignons à l'ail gratinés</div></div><div class="menu-item-price">6,95 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name" data-fr="Fondues parmesan" data-en="Parmesan fondues" data-es="Fondues parmesano">Fondues parmesan</div></div><div class="menu-item-price">7,25 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name" data-fr="Bâtonnets de fromage" data-en="Cheese sticks" data-es="Palitos de queso">Bâtonnets de fromage</div></div><div class="menu-item-price">7,95 $</div></div>
@@ -2796,13 +2833,61 @@ if (window.netlifyIdentity) {
 
     priceEl.textContent = priceElement ? (priceElement.getAttribute('data-' + (document.documentElement.lang || 'fr')) || priceElement.textContent) : '';
 
-    // Gérer l'image : data-image sur l'item
+    // Gérer l'image : data-image (simple) ou data-image-variants (avec toggle)
     var imageSrc = item.getAttribute('data-image');
     var imagePosition = item.getAttribute('data-image-position') || '';
-    var positionClass = (imagePosition === 'bottom') ? ' is-bottom' : '';
-    if(imageSrc){
+    var variantsAttr = item.getAttribute('data-image-variants');
+    var variants = null;
+    if(variantsAttr){
+      try { variants = JSON.parse(variantsAttr); }
+      catch(err){ variants = null; }
+    }
+
+    function buildImgHTML(src, position){
+      var positionClass = (position === 'bottom') ? ' is-bottom' : '';
       var altText = titleEl.textContent;
-      imgWrap.innerHTML = '<img class="dish-modal-img' + positionClass + '" src="' + imageSrc + '" alt="' + altText.replace(/"/g,'&quot;') + '" onerror="this.parentNode.innerHTML=window.__dishModalPlaceholder;">';
+      return '<img class="dish-modal-img' + positionClass + '" src="' + src + '" alt="' + altText.replace(/"/g,'&quot;') + '" onerror="this.parentNode.innerHTML=window.__dishModalPlaceholder;">';
+    }
+
+    if(variants && variants.length > 0){
+      // Mode variantes : afficher la 1ère variante + toggle
+      var lang = document.documentElement.lang || 'fr';
+      if(!['fr','en','es'].includes(lang)) lang = 'fr';
+      var first = variants[0];
+      var firstSrc = first.image || '';
+      var firstPos = first.position || '';
+      var imgHTML = buildImgHTML(firstSrc, firstPos);
+      // Construire les boutons du toggle
+      var btnsHTML = '<div class="dish-modal-variants" role="tablist">';
+      variants.forEach(function(v, idx){
+        var label = v['label_' + lang] || v.label_fr || v.label || '';
+        btnsHTML += '<button type="button" class="dish-modal-variant-btn' + (idx === 0 ? ' is-active' : '') + '" role="tab" aria-selected="' + (idx === 0 ? 'true' : 'false') + '" data-variant-idx="' + idx + '">' + label + '</button>';
+      });
+      btnsHTML += '</div>';
+      imgWrap.innerHTML = btnsHTML + imgHTML;
+
+      // Brancher les clics sur les boutons
+      var btns = imgWrap.querySelectorAll('.dish-modal-variant-btn');
+      btns.forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var idx = parseInt(btn.getAttribute('data-variant-idx'), 10);
+          var v = variants[idx];
+          if(!v) return;
+          // Mettre à jour les états
+          btns.forEach(function(b){
+            b.classList.remove('is-active');
+            b.setAttribute('aria-selected','false');
+          });
+          btn.classList.add('is-active');
+          btn.setAttribute('aria-selected','true');
+          // Remplacer l'image (en gardant le toggle)
+          var oldImg = imgWrap.querySelector('.dish-modal-img');
+          if(oldImg){ oldImg.remove(); }
+          imgWrap.insertAdjacentHTML('beforeend', buildImgHTML(v.image || '', v.position || ''));
+        });
+      });
+    } else if(imageSrc){
+      imgWrap.innerHTML = buildImgHTML(imageSrc, imagePosition);
     } else {
       imgWrap.innerHTML = getPlaceholderHTML();
     }
