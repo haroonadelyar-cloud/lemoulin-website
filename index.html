@@ -239,7 +239,9 @@
       overflow:hidden;
       flex-shrink:0;
     }
-    .dish-modal-img{width:100%;height:100%;object-fit:cover;display:block;}
+    .dish-modal-img{width:100%;height:100%;object-fit:cover;display:block;object-position:center;}
+    /* Repositionnement du recadrage pour photos portrait : montre davantage le bas */
+    .dish-modal-img.is-bottom{object-position:center 80%;}
     .dish-modal-placeholder{
       width:100%;
       height:100%;
@@ -1276,7 +1278,7 @@ if(document.readyState === 'loading'){
           <div class="menu-cat" data-fr="Nos Délicieuses Entrées" data-en="Our Delicious Starters" data-es="Nuestras Deliciosas Entradas">Nos Délicieuses Entrées</div>
         <div class="menu-item"><div><div class="menu-item-name" data-fr="Soupe du jour" data-en="Soup of the day" data-es="Sopa del día">Soupe du jour</div></div><div class="menu-item-price">4,50 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name" data-fr="Crème du jour" data-en="Cream soup of the day" data-es="Crema del día">Crème du jour</div></div><div class="menu-item-price">4,50 $</div></div>
-        <div class="menu-item" data-image="images/entrees/pain-ail-gratine.webp"><div><div class="menu-item-name" data-fr="Pain à l'ail gratiné" data-en="Garlic bread au gratin" data-es="Pan al ajo gratinado">Pain à l'ail gratiné</div></div><div class="menu-item-price">6,95 $</div></div>
+        <div class="menu-item" data-image="images/entrees/pain-ail-gratine.webp" data-image-position="bottom"><div><div class="menu-item-name" data-fr="Pain à l'ail gratiné" data-en="Garlic bread au gratin" data-es="Pan al ajo gratinado">Pain à l'ail gratiné</div></div><div class="menu-item-price">6,95 $</div></div>
         <div class="menu-item" data-image="images/entrees/petite-frite.webp"><div><div class="menu-item-name" data-fr="Petite frite" data-en="Small fries" data-es="Papas fritas pequeñas">Petite frite</div></div><div class="menu-item-price">6,95 $</div></div>
         <div class="menu-item" data-image="images/entrees/grande-frite.webp"><div><div class="menu-item-name" data-fr="Grande frite" data-en="Large fries" data-es="Papas fritas grandes">Grande frite</div></div><div class="menu-item-price">9,95 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name" data-fr="Champignons à l'ail gratinés" data-en="Garlic mushrooms au gratin" data-es="Champiñones al ajo gratinados">Champignons à l'ail gratinés</div></div><div class="menu-item-price">6,95 $</div></div>
@@ -2796,9 +2798,11 @@ if (window.netlifyIdentity) {
 
     // Gérer l'image : data-image sur l'item
     var imageSrc = item.getAttribute('data-image');
+    var imagePosition = item.getAttribute('data-image-position') || '';
+    var positionClass = (imagePosition === 'bottom') ? ' is-bottom' : '';
     if(imageSrc){
       var altText = titleEl.textContent;
-      imgWrap.innerHTML = '<img class="dish-modal-img" src="' + imageSrc + '" alt="' + altText.replace(/"/g,'&quot;') + '" onerror="this.parentNode.innerHTML=window.__dishModalPlaceholder;">';
+      imgWrap.innerHTML = '<img class="dish-modal-img' + positionClass + '" src="' + imageSrc + '" alt="' + altText.replace(/"/g,'&quot;') + '" onerror="this.parentNode.innerHTML=window.__dishModalPlaceholder;">';
     } else {
       imgWrap.innerHTML = getPlaceholderHTML();
     }
