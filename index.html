@@ -1296,6 +1296,10 @@ if(document.readyState === 'loading'){
           <svg class="bois-subtab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 21h10"/><path d="M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9Z"/><path d="M11.38 12a2.4 2.4 0 0 1-.4-4.77 2.4 2.4 0 0 1 3.2-2.77 2.4 2.4 0 0 1 3.47-.63 2.4 2.4 0 0 1 3.37 3.37 2.4 2.4 0 0 1-1.1 3.7 2.5 2.5 0 0 1 .03 1.1"/><path d="m13 12 4-4"/><path d="M10.9 7.25A3.99 3.99 0 0 0 4 10c0 .73.2 1.41.54 2"/></svg>
           <span data-fr="Salades" data-en="Salads" data-es="Ensaladas">Salades</span>
         </button>
+        <button class="bois-subtab" role="tab" aria-selected="false" onclick="switchDinerTab('pizzas',this)">
+          <svg class="bois-subtab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 14-1 1"/><path d="m13.75 18.25-1.25 1.42"/><path d="M17.775 5.654a15.68 15.68 0 0 0-12.121 12.12"/><path d="M18.8 9.3a1 1 0 0 0 2.1 7.7"/><path d="M21.964 20.732a1 1 0 0 1-1.232 1.232l-18-5a1 1 0 0 1-.695-1.232A19.68 19.68 0 0 1 15.732 2.037a1 1 0 0 1 1.232.695z"/></svg>
+          <span data-fr="Pizzas" data-en="Pizzas" data-es="Pizzas">Pizzas</span>
+        </button>
         <button class="bois-subtab" role="tab" aria-selected="false" onclick="switchDinerTab('principaux',this)">
           <svg class="bois-subtab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.5 3.5a3.5 3.5 0 0 1 3 5.5"/><path d="M15 12a6 6 0 0 1-6 0"/><path d="M3 11a9 9 0 0 0 18 0H3Z"/><path d="M12 20v2"/><path d="M5 22h14"/></svg>
           <span data-fr="Plats principaux" data-en="Mains" data-es="Platos principales">Plats principaux</span>
@@ -1307,10 +1311,6 @@ if(document.readyState === 'loading'){
         <button class="bois-subtab" role="tab" aria-selected="false" onclick="switchDinerTab('sandwichs',this)">
           <svg class="bois-subtab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11c0-1.5 1-3 3-3h10c2 0 3 1.5 3 3v1H4v-1Z"/><path d="M4 14h16"/><path d="M4 17c0 1.5 1 3 3 3h10c2 0 3-1.5 3-3H4Z"/></svg>
           <span data-fr="Sandwichs &amp; Burgers" data-en="Subs &amp; Burgers" data-es="Sándwiches y Hamburguesas">Sandwichs &amp; Burgers</span>
-        </button>
-        <button class="bois-subtab" role="tab" aria-selected="false" onclick="switchDinerTab('pizzas',this)">
-          <svg class="bois-subtab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 14-1 1"/><path d="m13.75 18.25-1.25 1.42"/><path d="M17.775 5.654a15.68 15.68 0 0 0-12.121 12.12"/><path d="M18.8 9.3a1 1 0 0 0 2.1 7.7"/><path d="M21.964 20.732a1 1 0 0 1-1.232 1.232l-18-5a1 1 0 0 1-.695-1.232A19.68 19.68 0 0 1 15.732 2.037a1 1 0 0 1 1.232.695z"/></svg>
-          <span data-fr="Pizzas" data-en="Pizzas" data-es="Pizzas">Pizzas</span>
         </button>
         <button class="bois-subtab" role="tab" aria-selected="false" onclick="switchDinerTab('poutines',this)">
           <svg class="bois-subtab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v6"/><path d="M9 5h6"/><path d="M6 10h12l-1.5 9h-9L6 10Z"/><path d="M8 10V8a4 4 0 0 1 8 0v2"/></svg>
@@ -1908,7 +1908,7 @@ if(document.readyState === 'loading'){
             <span class="midi-item-price">19,95 $</span>
           </div>
           <div class="midi-item"><span class="midi-item-name" data-fr="Demi-côte levée &amp; frites" data-en="Half rack of ribs &amp; fries" data-es="Media costilla y papas fritas">Demi-côte levée &amp; frites</span><span class="midi-item-price">19,95 $</span></div>
-          <div class="midi-item has-desc">
+          <div class="midi-item has-desc" data-image="images/plats/filet-de-sole-amandine.webp">
             <div class="midi-item-main">
               <span class="midi-item-name" data-fr="Filet de sole" data-en="Sole fillet" data-es="Filete de lenguado">Filet de sole</span>
               <span class="midi-item-desc" data-fr="Servi avec riz, patates grecques et choix de salade (César ou verte)" data-en="Served with rice, Greek potatoes and choice of salad (Caesar or garden)" data-es="Servido con arroz, papas griegas y ensalada a elegir (César o verde)">Servi avec riz, patates grecques et choix de salade (César ou verte)</span>
@@ -1916,7 +1916,7 @@ if(document.readyState === 'loading'){
             <span class="midi-item-price">19,95 $</span>
           </div>
           <div class="midi-item"><span class="midi-item-name" data-fr="Lasagne &amp; salade César" data-en="Lasagna &amp; Caesar salad" data-es="Lasaña y ensalada César">Lasagne &amp; salade César</span><span class="midi-item-price">19,95 $</span></div>
-          <div class="midi-item has-desc">
+          <div class="midi-item has-desc" data-image="images/plats/filet-de-saumon-grille-atlantique.webp">
             <div class="midi-item-main">
               <span class="midi-item-name" data-fr="Filet de saumon grillé" data-en="Grilled salmon fillet" data-es="Filete de salmón a la parrilla">Filet de saumon grillé</span>
               <span class="midi-item-desc" data-fr="Servi avec riz, patates grecques et choix de salade (César ou verte)" data-en="Served with rice, Greek potatoes and choice of salad (Caesar or garden)" data-es="Servido con arroz, papas griegas y ensalada a elegir (César o verde)">Servi avec riz, patates grecques et choix de salade (César ou verte)</span>
