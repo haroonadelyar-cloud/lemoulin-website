@@ -239,9 +239,10 @@
       overflow:hidden;
       flex-shrink:0;
     }
-    .dish-modal-img{width:100%;height:100%;object-fit:cover;display:block;object-position:center 65%;}
+    .dish-modal-img{width:100%;height:100%;object-fit:cover;display:block;object-position:center;}
     /* Repositionnement du recadrage pour photos portrait : montre davantage le bas */
     .dish-modal-img.is-bottom{object-position:center 80%;}
+    .dish-modal-img.is-bottom-soft{object-position:center 65%;}
     /* === Toggle variantes (Petite / Grande, etc.) === */
     .dish-modal-variants{
       position:absolute;
@@ -1728,7 +1729,7 @@ if(document.readyState === 'loading'){
 
         <div class="dessert-card">
           <div class="dessert-card-title" data-fr="Gâteaux" data-en="Cakes" data-es="Pasteles">Gâteaux</div>
-          <div class="dessert-item is-clickable" data-image="images/desserts/fondant-chocolat.jpg"><span data-fr="Fondant au Chocolat" data-en="Chocolate Fondant" data-es="Fondant de Chocolate">Fondant au Chocolat</span><svg class="dessert-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+          <div class="dessert-item is-clickable" data-image="images/desserts/fondant-chocolat.jpg" data-image-position="bottom-soft"><span data-fr="Fondant au Chocolat" data-en="Chocolate Fondant" data-es="Fondant de Chocolate">Fondant au Chocolat</span><svg class="dessert-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
           <div class="dessert-item is-clickable" data-image="images/desserts/cheesecake.jpg"><span data-fr="Cheesecake New-Yorkais" data-en="New York Cheesecake" data-es="Cheesecake de Nueva York">Cheesecake New-Yorkais</span><svg class="dessert-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
           <div class="dessert-item is-clickable" data-image="images/desserts/sucre-creme.jpg"><span data-fr="Délice au Sucre à la Crème" data-en="Maple-Style Brown Sugar Fudge Delight" data-es="Delicia de Dulce de Azúcar y Crema">Délice au Sucre à la Crème</span><svg class="dessert-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
           <div class="dessert-item is-clickable" data-image="images/desserts/framboises.jpg"><span data-fr="Fraîcheur aux Framboises" data-en="Raspberry Freshness" data-es="Frescura de Frambuesa">Fraîcheur aux Framboises</span><svg class="dessert-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
@@ -2860,7 +2861,9 @@ if (window.netlifyIdentity) {
     }
 
     function buildImgHTML(src, position){
-      var positionClass = (position === 'bottom') ? ' is-bottom' : '';
+      var positionClass = '';
+      if(position === 'bottom') positionClass = ' is-bottom';
+      else if(position === 'bottom-soft') positionClass = ' is-bottom-soft';
       var altText = titleEl.textContent;
       return '<img class="dish-modal-img' + positionClass + '" src="' + src + '" alt="' + altText.replace(/"/g,'&quot;') + '" onerror="this.parentNode.innerHTML=window.__dishModalPlaceholder;">';
     }
