@@ -477,6 +477,18 @@
     .form-top-title{font-size:13px;font-weight:700;color:var(--dark);letter-spacing:0.06em;text-transform:uppercase;}
     .form-top-sub{font-size:11px;color:rgba(22,19,15,0.65);margin-top:1px;}
     .form-iframe{width:100%;height:560px;border:none;display:block;background:white;}
+    /* Carte de réservation par téléphone */
+    .reserve-call-card{background:var(--dark2);border:1px solid rgba(201,153,58,0.18);border-radius:var(--radius);padding:2.5rem 2rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.25rem;}
+    .reserve-call-eyebrow{font-size:10px;letter-spacing:0.28em;color:var(--gold);text-transform:uppercase;font-weight:500;}
+    .reserve-call-intro{font-size:15px;color:rgba(255,255,255,0.85);line-height:1.5;margin:0;max-width:340px;}
+    .reserve-call-btn{display:inline-flex;align-items:center;gap:12px;background:var(--gold);color:var(--dark);padding:18px 36px;border-radius:var(--radius);font-family:var(--font-body);font-size:20px;font-weight:700;letter-spacing:0.04em;text-decoration:none;transition:background 0.2s,transform 0.2s,box-shadow 0.2s;box-shadow:0 4px 16px rgba(201,153,58,0.18);}
+    .reserve-call-btn:hover,.reserve-call-btn:focus-visible{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 6px 22px rgba(201,153,58,0.28);outline:none;}
+    .reserve-call-btn svg{width:22px;height:22px;flex-shrink:0;}
+    .reserve-call-note{font-size:12px;color:var(--text-muted);margin:0;letter-spacing:0.03em;}
+    @media(max-width:600px){
+      .reserve-call-card{padding:2rem 1.25rem;}
+      .reserve-call-btn{font-size:18px;padding:16px 28px;}
+    }
     .hours-card{background:var(--dark2);border:1px solid rgba(255,255,255,0.07);padding:1.5rem;border-radius:var(--radius);margin-bottom:1rem;}
     .info-label{font-size:10px;letter-spacing:0.28em;color:var(--gold);text-transform:uppercase;font-weight:500;margin-bottom:1rem;}
     .hours-row{display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px;gap:1rem;}
@@ -1410,12 +1422,13 @@ if(document.readyState === 'loading'){
       <div class="diner-subpanel" id="diner-panel-sandwichs" role="tabpanel">
         
         <div class="menu-grid">
-          <div class="menu-cat" data-fr="Nos Sandwichs &amp; Sous-Marins — tous nos sous-marins sont gratinés, servis avec salade de chou crémeuse et frites" data-en="Our Sandwiches &amp; Subs — all our subs are au gratin, served with creamy coleslaw and fries" data-es="Nuestros Sándwiches y Submarinos — todos nuestros submarinos van gratinados, servidos con ensalada de repollo cremosa y papas fritas">Nos Sandwichs &amp; Sous-Marins — tous nos sous-marins sont gratinés, servis avec salade de chou crémeuse et frites</div>
+          <div class="menu-cat" data-fr="Nos Sandwichs — servis avec frites et salade de chou crémeuse" data-en="Our Sandwiches — served with fries and creamy coleslaw" data-es="Nuestros Sándwiches — servidos con papas fritas y ensalada de repollo cremosa">Nos Sandwichs — servis avec frites et salade de chou crémeuse</div>
         <div class="menu-item"><div><div class="menu-item-name" data-fr="Club sandwich" data-en="Club sandwich" data-es="Club sándwich">Club sandwich</div><div class="menu-item-desc" data-fr="Viande blanche" data-en="White meat" data-es="Carne blanca">Viande blanche</div></div><div class="menu-item-price">17,95 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name" data-fr="Club sandwich pour deux" data-en="Club sandwich for two" data-es="Club sándwich para dos">Club sandwich pour deux</div><div class="menu-item-desc" data-fr="Viande blanche" data-en="White meat" data-es="Carne blanca">Viande blanche</div></div><div class="menu-item-price">21,95 $</div></div>
+          <div class="menu-cat" data-fr="Nos Sous-Marins — gratinés, servis avec frites" data-en="Our Subs — au gratin, served with fries" data-es="Nuestros Submarinos — gratinados, servidos con papas fritas">Nos Sous-Marins — gratinés, servis avec frites</div>
         <div class="menu-item"><div><div class="menu-item-name" data-fr="Sous-marin végétarien" data-en="Vegetarian sub" data-es="Submarino vegetariano">Sous-marin végétarien</div><div class="menu-item-desc" data-fr="Champignons, oignons, piments, tomates, salade et fromage" data-en="Mushrooms, onions, peppers, tomatoes, lettuce and cheese" data-es="Champiñones, cebolla, pimientos, tomate, lechuga y queso">Champignons, oignons, piments, tomates, salade et fromage</div></div><div class="menu-item-price" data-fr="Demi: 14,95 $ / Complet: 21,95 $" data-en="Half: $14.95 / Full: $21.95" data-es="Medio: 14,95 $ / Completo: 21,95 $">Demi: 14,95 $ / Complet: 21,95 $</div></div>
-        <div class="menu-item"><div><div class="menu-item-name" data-fr="Sous-marin au poulet" data-en="Chicken sub" data-es="Submarino de pollo">Sous-marin au poulet</div><div class="menu-item-desc" data-fr="Champignons, piments verts, oignons, tomates, salade et fromage" data-en="Mushrooms, green peppers, onions, tomatoes, lettuce and cheese" data-es="Champiñones, pimiento verde, cebolla, tomate, lechuga y queso">Champignons, piments verts, oignons, tomates, salade et fromage</div></div><div class="menu-item-price" data-fr="Demi: 15,75 $ / Complet: 21,95 $" data-en="Half: $15.75 / Full: $21.95" data-es="Medio: 15,75 $ / Completo: 21,95 $">Demi: 15,75 $ / Complet: 21,95 $</div></div>
-        <div class="menu-item"><div><div class="menu-item-name" data-fr="Sous-marin au steak" data-en="Steak sub" data-es="Submarino de steak">Sous-marin au steak</div><div class="menu-item-desc" data-fr="Champignons, piments verts, oignons, tomates, salade et fromage" data-en="Mushrooms, green peppers, onions, tomatoes, lettuce and cheese" data-es="Champiñones, pimiento verde, cebolla, tomate, lechuga y queso">Champignons, piments verts, oignons, tomates, salade et fromage</div></div><div class="menu-item-price" data-fr="Demi: 17,45 $ / Complet: 22,75 $" data-en="Half: $17.45 / Full: $22.75" data-es="Medio: 17,45 $ / Completo: 22,75 $">Demi: 17,45 $ / Complet: 22,75 $</div></div>
+        <div class="menu-item"><div><div class="menu-item-name" data-fr="Sous-marin au poulet" data-en="Chicken sub" data-es="Submarino de pollo">Sous-marin au poulet</div><div class="menu-item-desc" data-fr="Champignons, piments, oignons, tomates, salade et fromage" data-en="Mushrooms, peppers, onions, tomatoes, lettuce and cheese" data-es="Champiñones, pimientos, cebolla, tomate, lechuga y queso">Champignons, piments, oignons, tomates, salade et fromage</div></div><div class="menu-item-price" data-fr="Demi: 15,75 $ / Complet: 21,95 $" data-en="Half: $15.75 / Full: $21.95" data-es="Medio: 15,75 $ / Completo: 21,95 $">Demi: 15,75 $ / Complet: 21,95 $</div></div>
+        <div class="menu-item"><div><div class="menu-item-name" data-fr="Sous-marin au steak" data-en="Steak sub" data-es="Submarino de steak">Sous-marin au steak</div><div class="menu-item-desc" data-fr="Champignons, piments, oignons, tomates, salade et fromage" data-en="Mushrooms, peppers, onions, tomatoes, lettuce and cheese" data-es="Champiñones, pimientos, cebolla, tomate, lechuga y queso">Champignons, piments, oignons, tomates, salade et fromage</div></div><div class="menu-item-price" data-fr="Demi: 17,45 $ / Complet: 22,75 $" data-en="Half: $17.45 / Full: $22.75" data-es="Medio: 17,45 $ / Completo: 22,75 $">Demi: 17,45 $ / Complet: 22,75 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name" data-fr="Sous-marin italien" data-en="Italian sub" data-es="Submarino italiano">Sous-marin italien</div><div class="menu-item-desc" data-fr="Pepperoni, oignons, piments, champignons et fromage" data-en="Pepperoni, onions, peppers, mushrooms and cheese" data-es="Pepperoni, cebolla, pimientos, champiñones y queso">Pepperoni, oignons, piments, champignons et fromage</div></div><div class="menu-item-price" data-fr="Demi: 17,45 $ / Complet: 22,75 $" data-en="Half: $17.45 / Full: $22.75" data-es="Medio: 17,45 $ / Completo: 22,75 $">Demi: 17,45 $ / Complet: 22,75 $</div></div>
         <div class="menu-cat" data-fr="Nos Hamburgers — seules les assiettes sont servies avec frites et salade de chou crémeuse" data-en="Our Hamburgers — only plates are served with fries and creamy coleslaw" data-es="Nuestras Hamburguesas — solo los platos vienen con papas fritas y ensalada de repollo cremosa">Nos Hamburgers — seules les assiettes sont servies avec frites et salade de chou crémeuse</div>
         <div class="menu-item"><div><div class="menu-item-name" data-fr="Hamburger régulier" data-en="Regular hamburger" data-es="Hamburguesa regular">Hamburger régulier</div></div><div class="menu-item-price">6,50 $</div></div>
@@ -1952,7 +1965,7 @@ if(document.readyState === 'loading'){
           <div class="midi-item has-desc" data-image="images/speciaux_mois/nachos-du-moulin.webp">
             <div class="midi-item-main">
               <span class="midi-item-name" data-fr="Nachos du Moulin" data-en="Nachos du Moulin" data-es="Nachos del Moulin">Nachos du Moulin</span>
-              <span class="midi-item-desc" data-fr="Poivrons verts et rouges, oignons, champignons et pepperoni" data-en="Green and red peppers, onions, mushrooms and pepperoni" data-es="Pimientos verdes y rojos, cebolla, champiñones y pepperoni">Poivrons verts et rouges, oignons, champignons et pepperoni</span>
+              <span class="midi-item-desc" data-fr="Poivrons, oignons, champignons et pepperoni" data-en="Peppers, onions, mushrooms and pepperoni" data-es="Pimientos, cebolla, champiñones y pepperoni">Poivrons, oignons, champignons et pepperoni</span>
             </div>
             <span class="midi-item-price">19,95 $</span>
           </div>
@@ -2148,16 +2161,14 @@ if(document.readyState === 'loading'){
   <div class="gold-rule"></div>
   <div class="reservation-layout">
     <div>
-      <div class="form-wrap">
-        <div class="form-top">
-          <div class="form-top-title" data-fr="Formulaire de réservation" data-en="Reservation form" data-es="Formulario de reserva">Formulaire de réservation</div>
-          <div class="form-top-sub" data-fr="Nous vous répondrons dans les plus brefs délais" data-en="We will get back to you as soon as possible" data-es="Le responderemos lo antes posible">Nous vous répondrons dans les plus brefs délais</div>
-        </div>
-        <iframe class="form-iframe" loading="lazy" src="https://docs.google.com/forms/d/e/1FAIpQLSeUlMp87CEnT9q2W_nAdR3Qb82x8o1tUC7CdoKtoDbQbs1lNw/viewform?embedded=true" title="Réservation Le Moulin">Chargement…</iframe>
-      </div>
-      <div class="groups-card" style="margin-top:1rem;">
-        <div class="info-label" style="font-size:10px;letter-spacing:0.28em;color:var(--gold);text-transform:uppercase;font-weight:500;margin-bottom:0.75rem;" data-fr="Groupes &amp; Événements" data-en="Groups &amp; Events" data-es="Grupos y Eventos">Groupes &amp; Événements</div>
-        <p data-fr="Pour les groupes de 8 personnes et plus ou événements privés, contactez-nous directement par téléphone." data-en="For groups of 8 or more people or private events, please contact us directly by phone." data-es="Para grupos de 8 personas o más o eventos privados, contáctenos directamente por teléfono.">Pour les groupes de 8 personnes et plus ou événements privés, contactez-nous directement par téléphone.</p>
+      <div class="reserve-call-card">
+        <div class="reserve-call-eyebrow" data-fr="Réservations" data-en="Reservations" data-es="Reservas">Réservations</div>
+        <p class="reserve-call-intro" data-fr="Pour réserver votre table, appelez-nous directement" data-en="To book your table, call us directly" data-es="Para reservar su mesa, llámenos directamente">Pour réserver votre table, appelez-nous directement</p>
+        <a href="tel:+18198324242" class="reserve-call-btn" aria-label="Appeler le restaurant au (819) 832-4242">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span>(819) 832-4242</span>
+        </a>
+        <p class="reserve-call-note" data-fr="Du lundi au dimanche pendant les heures d'ouverture" data-en="Monday to Sunday during opening hours" data-es="De lunes a domingo durante las horas de apertura">Du lundi au dimanche pendant les heures d'ouverture</p>
       </div>
     </div>
     <div>
@@ -2193,7 +2204,7 @@ if(document.readyState === 'loading'){
     <div class="ueat-badge" data-fr="Bientôt disponible" data-en="Coming soon" data-es="Próximamente">Bientôt disponible</div>
     <div class="ueat-title" data-fr="Commande en ligne via iShopFood" data-en="Online ordering via iShopFood" data-es="Pedido en línea por iShopFood">Commande en ligne via iShopFood</div>
     <p class="ueat-desc" data-fr="Nous travaillons à intégrer iShopFood pour vous permettre de commander vos plats préférés en ligne — pour emporter ou en livraison. Restez à l'affût !" data-en="We're working on integrating iShopFood so you can order your favorite dishes online — for takeout or delivery. Stay tuned!" data-es="Estamos trabajando en integrar iShopFood para que pueda pedir sus platos favoritos en línea — para llevar o entrega a domicilio. ¡Esté pendiente!">Nous travaillons à intégrer iShopFood pour vous permettre de commander vos plats préférés en ligne — pour emporter ou en livraison. Restez à l'affût !</p>
-    <p style="font-size:12px;color:var(--text-muted);margin-top:1.25rem;letter-spacing:0.05em;" data-fr="En attendant, réservez directement depuis notre formulaire plus haut." data-en="In the meantime, book directly from our form above." data-es="Mientras tanto, reserve directamente desde nuestro formulario arriba.">En attendant, réservez directement depuis notre formulaire plus haut.</p>
+    <p style="font-size:12px;color:var(--text-muted);margin-top:1.25rem;letter-spacing:0.05em;" data-fr="En attendant, appelez-nous au (819) 832-4242 pour commander pour emporter ou en livraison." data-en="In the meantime, call us at (819) 832-4242 to order for takeout or delivery." data-es="Mientras tanto, llámenos al (819) 832-4242 para pedir para llevar o a domicilio.">En attendant, appelez-nous au (819) 832-4242 pour commander pour emporter ou en livraison.</p>
   </div>
 </div>
 </section>
