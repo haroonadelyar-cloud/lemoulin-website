@@ -489,6 +489,12 @@
       .reserve-call-card{padding:2rem 1.25rem;}
       .reserve-call-btn{font-size:18px;padding:16px 28px;}
     }
+    /* Layout vertical de la section réservation */
+    .reservation-stack{margin-top:3rem;display:flex;flex-direction:column;gap:2rem;max-width:880px;margin-left:auto;margin-right:auto;}
+    .hours-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+    @media(max-width:760px){
+      .hours-grid{grid-template-columns:1fr;gap:1rem;}
+    }
     .hours-card{background:var(--dark2);border:1px solid rgba(255,255,255,0.07);padding:1.5rem;border-radius:var(--radius);margin-bottom:1rem;}
     .info-label{font-size:10px;letter-spacing:0.28em;color:var(--gold);text-transform:uppercase;font-weight:500;margin-bottom:1rem;}
     .hours-row{display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px;gap:1rem;}
@@ -2159,19 +2165,17 @@ if(document.readyState === 'loading'){
   <div class="section-eyebrow" data-fr="Venez nous voir" data-en="Come see us" data-es="Venga a visitarnos">Venez nous voir</div>
   <h2 class="section-title" data-fr="Réservation" data-en="Reservation" data-es="Reserva">Réservation</h2>
   <div class="gold-rule"></div>
-  <div class="reservation-layout">
-    <div>
-      <div class="reserve-call-card">
-        <div class="reserve-call-eyebrow" data-fr="Réservations" data-en="Reservations" data-es="Reservas">Réservations</div>
-        <p class="reserve-call-intro" data-fr="Pour réserver votre table, appelez-nous directement" data-en="To book your table, call us directly" data-es="Para reservar su mesa, llámenos directamente">Pour réserver votre table, appelez-nous directement</p>
-        <a href="tel:+18198324242" class="reserve-call-btn" aria-label="Appeler le restaurant au (819) 832-4242">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          <span>(819) 832-4242</span>
-        </a>
-        <p class="reserve-call-note" data-fr="Du lundi au dimanche pendant les heures d'ouverture" data-en="Monday to Sunday during opening hours" data-es="De lunes a domingo durante las horas de apertura">Du lundi au dimanche pendant les heures d'ouverture</p>
-      </div>
+  <div class="reservation-stack">
+    <div class="reserve-call-card">
+      <div class="reserve-call-eyebrow" data-fr="Réservations" data-en="Reservations" data-es="Reservas">Réservations</div>
+      <p class="reserve-call-intro" data-fr="Pour réserver votre table, appelez-nous directement" data-en="To book your table, call us directly" data-es="Para reservar su mesa, llámenos directamente">Pour réserver votre table, appelez-nous directement</p>
+      <a href="tel:+18198324242" class="reserve-call-btn" aria-label="Appeler le restaurant au (819) 832-4242">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>(819) 832-4242</span>
+      </a>
+      <p class="reserve-call-note" data-fr="Du lundi au dimanche pendant les heures d'ouverture" data-en="Monday to Sunday during opening hours" data-es="De lunes a domingo durante las horas de apertura">Du lundi au dimanche pendant les heures d'ouverture</p>
     </div>
-    <div>
+    <div class="hours-grid">
       <div class="hours-card">
         <div class="info-label" data-fr="Heures d'ouverture" data-en="Opening hours" data-es="Horario de atención">Heures d'ouverture</div>
         <div class="hours-row"><span class="hours-day" data-fr="Lundi – Jeudi" data-en="Monday – Thursday" data-es="Lunes – Jueves">Lundi – Jeudi</span><div class="hours-time">11h – 20h</div></div>
@@ -2186,7 +2190,6 @@ if(document.readyState === 'loading'){
         <div class="hours-row"><span class="hours-day" data-fr="Samedi" data-en="Saturday" data-es="Sábado">Samedi</span><div class="hours-time">11h – 14h · 16h – 20h30</div></div>
         <div class="hours-row"><span class="hours-day" data-fr="Dimanche" data-en="Sunday" data-es="Domingo">Dimanche</span><div class="hours-time">11h – 14h · 16h – 19h30</div></div>
       </div>
- 
     </div>
   </div>
 </div>
