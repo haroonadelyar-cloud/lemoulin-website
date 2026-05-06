@@ -281,6 +281,12 @@
       color:var(--dark);
     }
     .dish-modal-variant-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+    .dish-modal-variant-btn.is-disabled{
+      color:rgba(255,255,255,0.3);
+      cursor:not-allowed;
+      position:relative;
+    }
+    .dish-modal-variant-btn.is-disabled:hover{color:rgba(255,255,255,0.3);}
     .dish-modal-placeholder{
       width:100%;
       height:100%;
@@ -1278,7 +1284,7 @@ if(document.readyState === 'loading'){
             <div class="signature-desc" data-fr="Bavette 6 à 8 oz, champignons sautés, sauce aux poivres, patates grecques et salade du jour" data-en="6 to 8 oz flank steak, sautéed mushrooms, peppercorn sauce, Greek potatoes and salad of the day" data-es="Bavette de 6 a 8 oz, champiñones salteados, salsa de pimienta, papas griegas y ensalada del día">Bavette 6 à 8 oz, champignons sautés, sauce aux poivres, patates grecques et salade du jour</div>
           </div>
 
-          <div class="signature-card" data-photo="" data-photo-caption="Assiette pita au poulet">
+          <div class="signature-card" data-photo="images/plats/assiette-pita-poulet.webp" data-photo-caption="Assiette pita au poulet">
             <div class="signature-eyebrow" data-fr="Le grand favori" data-en="The fan favourite" data-es="La favorita">Le grand favori</div>
             <div class="signature-name" data-fr="Assiette pita au poulet" data-en="Chicken pita plate" data-es="Plato de pita con pollo">Assiette pita au poulet</div>
             <div class="signature-desc" data-fr="Accompagnée de patates grecques et salade César ou jardinière" data-en="Served with Greek potatoes and Caesar or garden salad" data-es="Acompañado de papas griegas y ensalada César o de la casa">Accompagnée de patates grecques et salade César ou jardinière</div>
@@ -1337,7 +1343,7 @@ if(document.readyState === 'loading'){
         <div class="menu-item"><div><div class="menu-item-name" data-fr="Rondelles d'oignons" data-en="Onion rings" data-es="Aros de cebolla">Rondelles d'oignons</div></div><div class="menu-item-price" data-fr="P: 7,95 $ / G: 10,95 $" data-en="S: $7.95 / L: $10.95" data-es="P: 7,95 $ / G: 10,95 $">P: 7,95 $ / G: 10,95 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name" data-fr="Escargots à l'ail gratinés" data-en="Garlic escargots au gratin" data-es="Caracoles al ajo gratinados">Escargots à l'ail gratinés</div></div><div class="menu-item-price">7,95 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name" data-fr="Chips grecques" data-en="Greek chips" data-es="Chips griegas">Chips grecques</div><div class="menu-item-desc" data-fr="Accompagnées de sauce tzatziki" data-en="Served with tzatziki sauce" data-es="Acompañadas de salsa tzatziki">Accompagnées de sauce tzatziki</div></div><div class="menu-item-price">8,95 $</div></div>
-        <div class="menu-item"><div><div class="menu-item-name" data-fr="Coquille de fruits de mer" data-en="Seafood shell" data-es="Concha de mariscos">Coquille de fruits de mer</div><div class="menu-item-desc" data-fr="Sauce crémeuse maison avec pétoncles, crabe, crevettes et mozzarella" data-en="House-made cream sauce with scallops, crab, shrimp and mozzarella" data-es="Salsa cremosa casera con vieiras, cangrejo, camarones y mozzarella">Sauce crémeuse maison avec pétoncles, crabe, crevettes et mozzarella</div></div><div class="menu-item-price">10,25 $</div></div>
+        <div class="menu-item" data-image="images/entrees/coquille-fruits-de-mer.webp"><div><div class="menu-item-name" data-fr="Coquille de fruits de mer" data-en="Seafood shell" data-es="Concha de mariscos">Coquille de fruits de mer</div><div class="menu-item-desc" data-fr="Sauce crémeuse maison avec pétoncles, crabe, crevettes et mozzarella" data-en="House-made cream sauce with scallops, crab, shrimp and mozzarella" data-es="Salsa cremosa casera con vieiras, cangrejo, camarones y mozzarella">Sauce crémeuse maison avec pétoncles, crabe, crevettes et mozzarella</div></div><div class="menu-item-price">10,25 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name" data-fr="Crevettes du Moulin (8)" data-en="Le Moulin shrimp (8)" data-es="Camarones del Moulin (8)">Crevettes du Moulin (8)</div><div class="menu-item-desc" data-fr="Crevettes enrobées de sauce piquante et sucrée maison sur feuille de salade" data-en="Shrimp coated in house-made spicy-sweet sauce on a bed of lettuce" data-es="Camarones cubiertos de salsa picante y dulce casera sobre hoja de lechuga">Crevettes enrobées de sauce piquante et sucrée maison sur feuille de salade</div></div><div class="menu-item-price">10,95 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name" data-fr="Entrée pour deux" data-en="Starter for two" data-es="Entrada para dos">Entrée pour deux</div><div class="menu-item-desc" data-fr="6 ailes de poulet, rondelles d'oignons, 2 fondues parmesan, 2 bâtonnets de fromage et sauce BBQ" data-en="6 chicken wings, onion rings, 2 parmesan fondues, 2 cheese sticks and BBQ sauce" data-es="6 alas de pollo, aros de cebolla, 2 fondues parmesano, 2 palitos de queso y salsa BBQ">6 ailes de poulet, rondelles d'oignons, 2 fondues parmesan, 2 bâtonnets de fromage et sauce BBQ</div></div><div class="menu-item-price">19,95 $</div></div>
         <div class="menu-cat" data-fr="Nos Paniers d'Ailes de Poulet — légèrement épicées et croustillantes" data-en="Chicken Wing Baskets — lightly spicy and crispy" data-es="Canastas de Alas de Pollo — ligeramente picantes y crujientes">Nos Paniers d'Ailes de Poulet — légèrement épicées et croustillantes</div>
@@ -1367,15 +1373,15 @@ if(document.readyState === 'loading'){
           <div class="menu-cat" data-fr="Nos Spécialités Grecques — patates grecques et salade César ou jardinière" data-en="Our Greek Specialties — Greek potatoes and Caesar or garden salad" data-es="Nuestras Especialidades Griegas — papas griegas y ensalada César o de la casa">Nos Spécialités Grecques — patates grecques et salade César ou jardinière</div>
         <div class="menu-item"><div><div class="menu-item-name" data-fr="Pita (seul)" data-en="Pita (alone)" data-es="Pita (solo)">Pita (seul)</div><div class="menu-item-desc" data-fr="Poulet, gyros ou végétarien" data-en="Chicken, gyro or vegetarian" data-es="Pollo, gyros o vegetariano">Poulet, gyros ou végétarien</div></div><div class="menu-item-price">12,95 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name" data-fr="Pita au filet mignon (seul)" data-en="Filet mignon pita (alone)" data-es="Pita con filete mignon (solo)">Pita au filet mignon (seul)</div><div class="menu-item-desc" data-fr="<strong style=&quot;color:var(--gold);&quot;>Cuisson au choix :</strong> bleu, saignant, médium-saignant, médium, bien cuit" data-en="<strong style=&quot;color:var(--gold);&quot;>Choice of cooking:</strong> blue, rare, medium-rare, medium, well done" data-es="<strong style=&quot;color:var(--gold);&quot;>Término a elegir:</strong> azul, rojo, medio rojo, medio, bien cocido"><strong style="color:var(--gold);">Cuisson au choix :</strong> bleu, saignant, médium-saignant, médium, bien cuit</div></div><div class="menu-item-price">14,25 $</div></div>
-        <div class="menu-item"><div><div class="menu-item-name" data-fr="Assiette pita" data-en="Pita plate" data-es="Plato de pita">Assiette pita</div><div class="menu-item-desc" data-fr="Poulet, gyros ou végétarien" data-en="Chicken, gyro or vegetarian" data-es="Pollo, gyros o vegetariano">Poulet, gyros ou végétarien</div></div><div class="menu-item-price">19,95 $</div></div>
+        <div class="menu-item" data-image-variants='[{"label_fr":"Poulet","label_en":"Chicken","label_es":"Pollo","image":"images/plats/assiette-pita-poulet.webp"},{"label_fr":"Gyros","label_en":"Gyro","label_es":"Gyros","image":"images/plats/assiette-pita-gyros.webp"},{"label_fr":"Végé","label_en":"Veggie","label_es":"Vegetariana","disabled":true}]'><div><div class="menu-item-name" data-fr="Assiette pita" data-en="Pita plate" data-es="Plato de pita">Assiette pita</div><div class="menu-item-desc" data-fr="Poulet, gyros ou végétarien" data-en="Chicken, gyro or vegetarian" data-es="Pollo, gyros o vegetariano">Poulet, gyros ou végétarien</div></div><div class="menu-item-price">19,95 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name" data-fr="Assiette pita au filet mignon" data-en="Filet mignon pita plate" data-es="Plato de pita con filete mignon">Assiette pita au filet mignon</div><div class="menu-item-desc" data-fr="<strong style=&quot;color:var(--gold);&quot;>Cuisson au choix :</strong> bleu, saignant, médium-saignant, médium, bien cuit" data-en="<strong style=&quot;color:var(--gold);&quot;>Choice of cooking:</strong> blue, rare, medium-rare, medium, well done" data-es="<strong style=&quot;color:var(--gold);&quot;>Término a elegir:</strong> azul, rojo, medio rojo, medio, bien cocido"><strong style="color:var(--gold);">Cuisson au choix :</strong> bleu, saignant, médium-saignant, médium, bien cuit</div></div><div class="menu-item-price">21,25 $</div></div>
         <div class="menu-cat" data-fr="Nos Poulets — avec salade de chou crémeuse et frites" data-en="Our Chicken — with creamy coleslaw and fries" data-es="Nuestros Pollos — con ensalada de repollo cremosa y papas fritas">Nos Poulets — avec salade de chou crémeuse et frites</div>
         <div class="menu-item"><div><div class="menu-item-name" data-fr="Pépites de poulet" data-en="Chicken nuggets" data-es="Nuggets de pollo">Pépites de poulet</div></div><div class="menu-item-price">13,95 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name" data-fr="Hot chicken" data-en="Hot chicken" data-es="Hot chicken">Hot chicken</div></div><div class="menu-item-price">14,95 $</div></div>
-        <div class="menu-item"><div><div class="menu-item-name" data-fr="1/4 poulet-cuisse" data-en="1/4 chicken — leg" data-es="1/4 de pollo — pernil">1/4 poulet-cuisse</div></div><div class="menu-item-price">15,25 $</div></div>
+        <div class="menu-item" data-image="images/plats/quart-poulet-cuisse.webp"><div><div class="menu-item-name" data-fr="1/4 poulet-cuisse" data-en="1/4 chicken — leg" data-es="1/4 de pollo — pernil">1/4 poulet-cuisse</div></div><div class="menu-item-price">15,25 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name" data-fr="Assiette ailes de poulet (8)" data-en="Chicken wing plate (8)" data-es="Plato de alas de pollo (8)">Assiette ailes de poulet (8)</div></div><div class="menu-item-price">15,95 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name" data-fr="Doigts de poulet" data-en="Chicken fingers" data-es="Dedos de pollo">Doigts de poulet</div></div><div class="menu-item-price">16,95 $</div></div>
-        <div class="menu-item"><div><div class="menu-item-name" data-fr="1/4 poulet-poitrine" data-en="1/4 chicken — breast" data-es="1/4 de pollo — pechuga">1/4 poulet-poitrine</div></div><div class="menu-item-price">17,95 $</div></div>
+        <div class="menu-item" data-image="images/plats/quart-poulet-poitrine.webp"><div><div class="menu-item-name" data-fr="1/4 poulet-poitrine" data-en="1/4 chicken — breast" data-es="1/4 de pollo — pechuga">1/4 poulet-poitrine</div></div><div class="menu-item-price">17,95 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name" data-fr="Deux cuisses" data-en="Two legs" data-es="Dos perniles">Deux cuisses</div></div><div class="menu-item-price">19,75 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name" data-fr="Demi-poulet" data-en="Half chicken" data-es="Medio pollo">Demi-poulet</div></div><div class="menu-item-price">23,45 $</div></div>
         <div class="menu-cat" data-fr="Nos Poissons — cuits au four, servis sur riz, patates grecques et salade" data-en="Our Fish — baked, served on rice, Greek potatoes and salad" data-es="Nuestros Pescados — al horno, servidos con arroz, papas griegas y ensalada">Nos Poissons — cuits au four, servis sur riz, patates grecques et salade</div>
@@ -1390,7 +1396,7 @@ if(document.readyState === 'loading'){
         <div class="menu-item"><div><div class="menu-item-name" data-fr="Coquille de fruits de mer et crevettes (10)" data-en="Seafood shell and shrimp (10)" data-es="Concha de mariscos y camarones (10)">Coquille de fruits de mer et crevettes (10)</div></div><div class="menu-item-price">33,25 $</div></div>
         <div class="menu-cat" data-fr="Nos Grillades — riz, patates grecques et salade" data-en="Our Grills — rice, Greek potatoes and salad" data-es="Nuestras Parrilladas — arroz, papas griegas y ensalada">Nos Grillades — riz, patates grecques et salade</div>
         <div class="menu-item" data-image="images/plats/grillade-de-poulet-marine.webp"><div><div class="menu-item-name" data-fr="Grillade de poulet mariné" data-en="Marinated grilled chicken" data-es="Pollo marinado a la parrilla">Grillade de poulet mariné</div><div class="menu-item-desc" data-fr="Poitrine en papillon, marinée style maison, riz, patates grecques et salade" data-en="Butterflied breast, house-style marinade, rice, Greek potatoes and salad" data-es="Pechuga abierta en mariposa, marinada estilo casero, arroz, papas griegas y ensalada">Poitrine en papillon, marinée style maison, riz, patates grecques et salade</div></div><div class="menu-item-price">21,95 $</div></div>
-        <div class="menu-item"><div><div class="menu-item-name" data-fr="Brochette de poulet mariné" data-en="Marinated chicken skewer" data-es="Brocheta de pollo marinado">Brochette de poulet mariné</div><div class="menu-item-desc" data-fr="Poulet mariné maison, riz, patates grecques et salade" data-en="House-marinated chicken, rice, Greek potatoes and salad" data-es="Pollo marinado casero, arroz, papas griegas y ensalada">Poulet mariné maison, riz, patates grecques et salade</div></div><div class="menu-item-price">21,95 $</div></div>
+        <div class="menu-item" data-image="images/plats/brochette-poulet.webp"><div><div class="menu-item-name" data-fr="Brochette de poulet mariné" data-en="Marinated chicken skewer" data-es="Brocheta de pollo marinado">Brochette de poulet mariné</div><div class="menu-item-desc" data-fr="Poulet mariné maison, riz, patates grecques et salade" data-en="House-marinated chicken, rice, Greek potatoes and salad" data-es="Pollo marinado casero, arroz, papas griegas y ensalada">Poulet mariné maison, riz, patates grecques et salade</div></div><div class="menu-item-price">21,95 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name" data-fr="Brochette de poulet et 10 crevettes" data-en="Chicken skewer and 10 shrimp" data-es="Brocheta de pollo y 10 camarones">Brochette de poulet et 10 crevettes</div><div class="menu-item-desc" data-fr="Riz, patates grecques et salade" data-en="Rice, Greek potatoes and salad" data-es="Arroz, papas griegas y ensalada">Riz, patates grecques et salade</div></div><div class="menu-item-price">33,25 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name" data-fr="Hamburger steak aux oignons frits" data-en="Hamburger steak with fried onions" data-es="Hamburguesa con cebolla frita">Hamburger steak aux oignons frits</div><div class="menu-item-desc" data-fr="Salade de chou crémeuse et frites" data-en="Creamy coleslaw and fries" data-es="Ensalada de repollo cremosa y papas fritas">Salade de chou crémeuse et frites</div></div><div class="menu-item-price">19,95 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name" data-fr="Steak pétillant aux champignons sautés" data-en="Sizzling steak with sautéed mushrooms" data-es="Steak con champiñones salteados">Steak pétillant aux champignons sautés</div><div class="menu-item-desc" data-fr="Bavette 6 à 8 oz, champignons sautés, patates grecques et salade du jour, sauce aux poivres<br><strong style=&quot;color:var(--gold);&quot;>Cuisson au choix :</strong> bleu, saignant, médium-saignant, médium, bien cuit" data-en="6 to 8 oz flank steak, sautéed mushrooms, Greek potatoes and salad of the day, peppercorn sauce<br><strong style=&quot;color:var(--gold);&quot;>Choice of cooking:</strong> blue, rare, medium-rare, medium, well done" data-es="Bavette de 6 a 8 oz, champiñones salteados, papas griegas y ensalada del día, salsa de pimienta<br><strong style=&quot;color:var(--gold);&quot;>Término a elegir:</strong> azul, rojo, medio rojo, medio, bien cocido">Bavette 6 à 8 oz, champignons sautés, patates grecques et salade du jour, sauce aux poivres<br><strong style="color:var(--gold);">Cuisson au choix :</strong> bleu, saignant, médium-saignant, médium, bien cuit</div></div><div class="menu-item-price">33,95 $</div></div>
@@ -1542,7 +1548,7 @@ if(document.readyState === 'loading'){
         <div class="menu-note"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="#C9993A" stroke-width="1.5"/><line x1="8" y1="7" x2="8" y2="11" stroke="#C9993A" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="5" r="0.8" fill="#C9993A"/></svg><span data-fr="Choix de sauce : l'authentique sauce BBQ maison (épicée et semi sucrée) OU sauce brune" data-en="Choice of sauce: authentic house-made BBQ sauce (spicy and semi-sweet) OR brown gravy" data-es="Salsa a elegir: auténtica salsa BBQ casera (picante y semidulce) O salsa marrón">Choix de sauce : l'authentique sauce BBQ maison (épicée et semi sucrée) OU sauce brune</span></div>
       <div class="menu-grid">
         <div class="menu-cat" data-fr="Nos Poutines" data-en="Our Poutines" data-es="Nuestras Poutines">Nos Poutines</div>
-        <div class="menu-item"><div><div class="menu-item-name" data-fr="Régulière" data-en="Regular" data-es="Regular">Régulière</div></div><div class="menu-item-price" data-fr="Petite: 13,75 $ / Grande: 17,25 $" data-en="Small: $13.75 / Large: $17.25" data-es="Pequeña: 13,75 $ / Grande: 17,25 $">Petite: 13,75 $ / Grande: 17,25 $</div></div>
+        <div class="menu-item" data-image="images/poutines/petite-poutine.webp"><div><div class="menu-item-name" data-fr="Régulière" data-en="Regular" data-es="Regular">Régulière</div></div><div class="menu-item-price" data-fr="Petite: 13,75 $ / Grande: 17,25 $" data-en="Small: $13.75 / Large: $17.25" data-es="Pequeña: 13,75 $ / Grande: 17,25 $">Petite: 13,75 $ / Grande: 17,25 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name" data-fr="Bacon" data-en="Bacon" data-es="Tocineta">Bacon</div></div><div class="menu-item-price" data-fr="Petite: 13,95 $ / Grande: 18,95 $" data-en="Small: $13.95 / Large: $18.95" data-es="Pequeña: 13,95 $ / Grande: 18,95 $">Petite: 13,95 $ / Grande: 18,95 $</div></div>
         <div class="menu-item" data-image="images/poutines/poutine-boeuf-hache.webp"><div><div class="menu-item-name" data-fr="Bœuf haché" data-en="Ground beef" data-es="Carne molida de res">Bœuf haché</div></div><div class="menu-item-price" data-fr="Petite: 15,25 $ / Grande: 18,45 $" data-en="Small: $15.25 / Large: $18.45" data-es="Pequeña: 15,25 $ / Grande: 18,45 $">Petite: 15,25 $ / Grande: 18,45 $</div></div>
         <div class="menu-item"><div><div class="menu-item-name" data-fr="Galvaude" data-en="Galvaude" data-es="Galvaude">Galvaude</div><div class="menu-item-desc" data-fr="Poulet, pois et fromage" data-en="Chicken, peas and cheese" data-es="Pollo, arvejas y queso">Poulet, pois et fromage</div></div><div class="menu-item-price" data-fr="Petite: 15,25 $ / Grande: 18,45 $" data-en="Small: $15.25 / Large: $18.45" data-es="Pequeña: 15,25 $ / Grande: 18,45 $">Petite: 15,25 $ / Grande: 18,45 $</div></div>
@@ -1948,21 +1954,21 @@ if(document.readyState === 'loading'){
       </button>
       <div class="specials-body">
         <div class="midi-grid">
-          <div class="midi-item has-desc">
+          <div class="midi-item has-desc" data-image="images/speciaux_mois/t-bone.webp">
             <div class="midi-item-main">
               <span class="midi-item-name" data-fr="T-Bone (7 oz)" data-en="T-Bone (7 oz)" data-es="T-Bone (7 oz)">T-Bone (7 oz)</span>
               <span class="midi-item-desc" data-fr="Accompagné de champignons sautés, riz, patates grecques et salade César · ajouter 10 crevettes pour 7,95 $" data-en="Served with sautéed mushrooms, rice, Greek potatoes and Caesar salad · add 10 shrimp for $7.95" data-es="Acompañado de champiñones salteados, arroz, papas griegas y ensalada César · agregar 10 camarones por 7,95 $">Accompagné de champignons sautés, riz, patates grecques et salade César · ajouter 10 crevettes pour 7,95 $</span>
             </div>
             <span class="midi-item-price">22,95 $</span>
           </div>
-          <div class="midi-item has-desc">
+          <div class="midi-item has-desc" data-image="images/speciaux_mois/rib-steak.webp">
             <div class="midi-item-main">
               <span class="midi-item-name" data-fr="Rib Steak (7 oz)" data-en="Rib Steak (7 oz)" data-es="Rib Steak (7 oz)">Rib Steak (7 oz)</span>
               <span class="midi-item-desc" data-fr="Accompagné de champignons sautés, riz, patates grecques et salade César · ajouter 10 crevettes pour 7,95 $" data-en="Served with sautéed mushrooms, rice, Greek potatoes and Caesar salad · add 10 shrimp for $7.95" data-es="Acompañado de champiñones salteados, arroz, papas griegas y ensalada César · agregar 10 camarones por 7,95 $">Accompagné de champignons sautés, riz, patates grecques et salade César · ajouter 10 crevettes pour 7,95 $</span>
             </div>
             <span class="midi-item-price">22,95 $</span>
           </div>
-          <div class="midi-item has-desc">
+          <div class="midi-item has-desc" data-image="images/speciaux_mois/saumon-crevettes.webp">
             <div class="midi-item-main">
               <span class="midi-item-name" data-fr="Filet de saumon &amp; 10 crevettes" data-en="Salmon fillet &amp; 10 shrimp" data-es="Filete de salmón y 10 camarones">Filet de saumon &amp; 10 crevettes</span>
               <span class="midi-item-desc" data-fr="Accompagné de riz, patates grecques et salade César" data-en="Served with rice, Greek potatoes and Caesar salad" data-es="Acompañado de arroz, papas griegas y ensalada César">Accompagné de riz, patates grecques et salade César</span>
@@ -1976,7 +1982,7 @@ if(document.readyState === 'loading'){
             </div>
             <span class="midi-item-price">19,95 $</span>
           </div>
-          <div class="midi-item has-desc">
+          <div class="midi-item has-desc" data-image="images/speciaux_mois/pizza-soufflee.webp">
             <div class="midi-item-main">
               <span class="midi-item-name" data-fr="Pizza soufflée &amp; frites" data-en="Soufflé pizza &amp; fries" data-es="Pizza soufflé y papas fritas">Pizza soufflée &amp; frites</span>
               <span class="midi-item-desc" data-fr="Pizza 10 po · au choix : toute garnie, pepperoni ou végétarienne" data-en="10&quot; pizza · choice of: all-dressed, pepperoni or vegetarian" data-es="Pizza de 10 pulg · a elegir: toda guarnecida, pepperoni o vegetariana">Pizza 10 po · au choix : toute garnie, pepperoni ou végétarienne</span>
@@ -2869,21 +2875,29 @@ if (window.netlifyIdentity) {
     }
 
     if(variants && variants.length > 0){
-      // Mode variantes : afficher la 1ère variante + toggle
+      // Mode variantes : afficher la 1ère variante (non-disabled) + toggle
       var lang = document.documentElement.lang || 'fr';
       if(!['fr','en','es'].includes(lang)) lang = 'fr';
-      var first = variants[0];
+      // Trouver la première variante avec une image (non-disabled)
+      var firstIdx = 0;
+      for(var i = 0; i < variants.length; i++){
+        if(!variants[i].disabled && variants[i].image){ firstIdx = i; break; }
+      }
+      var first = variants[firstIdx];
       var firstSrc = first.image || '';
       var firstPos = first.position || '';
-      var imgHTML = buildImgHTML(firstSrc, firstPos);
+      var firstHTML = first.disabled ? getPlaceholderHTML() : buildImgHTML(firstSrc, firstPos);
       // Construire les boutons du toggle
       var btnsHTML = '<div class="dish-modal-variants" role="tablist">';
       variants.forEach(function(v, idx){
         var label = v['label_' + lang] || v.label_fr || v.label || '';
-        btnsHTML += '<button type="button" class="dish-modal-variant-btn' + (idx === 0 ? ' is-active' : '') + '" role="tab" aria-selected="' + (idx === 0 ? 'true' : 'false') + '" data-variant-idx="' + idx + '">' + label + '</button>';
+        var classes = 'dish-modal-variant-btn';
+        if(idx === firstIdx) classes += ' is-active';
+        if(v.disabled) classes += ' is-disabled';
+        btnsHTML += '<button type="button" class="' + classes + '" role="tab" aria-selected="' + (idx === firstIdx ? 'true' : 'false') + '" data-variant-idx="' + idx + '">' + label + '</button>';
       });
       btnsHTML += '</div>';
-      imgWrap.innerHTML = btnsHTML + imgHTML;
+      imgWrap.innerHTML = btnsHTML + firstHTML;
 
       // Brancher les clics sur les boutons
       var btns = imgWrap.querySelectorAll('.dish-modal-variant-btn');
@@ -2901,8 +2915,14 @@ if (window.netlifyIdentity) {
           btn.setAttribute('aria-selected','true');
           // Remplacer l'image (en gardant le toggle)
           var oldImg = imgWrap.querySelector('.dish-modal-img');
+          var oldPlaceholder = imgWrap.querySelector('.dish-modal-placeholder');
           if(oldImg){ oldImg.remove(); }
-          imgWrap.insertAdjacentHTML('beforeend', buildImgHTML(v.image || '', v.position || ''));
+          if(oldPlaceholder){ oldPlaceholder.remove(); }
+          if(v.disabled){
+            imgWrap.insertAdjacentHTML('beforeend', getPlaceholderHTML());
+          } else {
+            imgWrap.insertAdjacentHTML('beforeend', buildImgHTML(v.image || '', v.position || ''));
+          }
         });
       });
     } else if(imageSrc){
