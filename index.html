@@ -389,6 +389,21 @@
       .signature-card{padding:0.8rem 0.9rem 0.85rem;}
       .signature-name{font-size:13px;}
     }
+    /* === Accordéon « Nos coups de cœur » === */
+    .signature-section.is-collapsible{margin-bottom:1.5rem;}
+    .signature-section.is-collapsible .signature-section-header{cursor:pointer;background:linear-gradient(135deg,rgba(201,153,58,0.08) 0%,rgba(201,153,58,0.02) 100%);border:1px solid rgba(201,153,58,0.25);border-radius:var(--radius);padding:0.85rem 1rem;margin-bottom:0;display:flex;align-items:center;gap:0.75rem;flex-wrap:nowrap;transition:border-color 0.2s ease,background 0.2s ease;user-select:none;}
+    .signature-section.is-collapsible .signature-section-header:hover{border-color:var(--gold);}
+    .signature-section.is-collapsible .signature-section-header:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+    .signature-section.is-collapsible .signature-section-title::before{content:'★';color:var(--gold);margin-right:0.5rem;font-size:0.9em;opacity:0.8;}
+    .signature-section.is-collapsible .signature-section-sub{flex:1;}
+    .signature-toggle-icon{margin-left:auto;color:var(--gold);font-size:14px;transition:transform 0.3s ease;flex-shrink:0;}
+    .signature-section.is-open .signature-toggle-icon{transform:rotate(180deg);}
+    .signature-section.is-collapsible .signature-grid{max-height:0;overflow:hidden;opacity:0;transition:max-height 0.4s ease,opacity 0.3s ease,margin-top 0.3s ease;margin-top:0;}
+    .signature-section.is-open .signature-grid{max-height:1200px;opacity:1;margin-top:0.85rem;}
+    @media(max-width:640px){
+      .signature-section.is-collapsible .signature-section-header{padding:0.75rem 0.85rem;}
+      .signature-section.is-collapsible .signature-section-sub{display:none;}
+    }
 
     /* === Lightbox photo coups de cœur === */
     .photo-lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:1000;display:none;align-items:center;justify-content:center;padding:2rem;opacity:0;transition:opacity 0.25s ease;}
@@ -1152,12 +1167,13 @@ if(document.readyState === 'loading'){
       <div class="menu-note"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="#C9993A" stroke-width="1.5"/><line x1="8" y1="7" x2="8" y2="11" stroke="#C9993A" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="5" r="0.8" fill="#C9993A"/></svg><span data-fr="Servi le samedi et dimanche seulement, de 7h à 13h" data-en="Served Saturday and Sunday only, from 7am to 1pm" data-es="Servido sábados y domingos únicamente, de 7 h a 13 h">Servi le samedi et dimanche seulement, de 7h à 13h</span></div>
 
       <!-- Coups de cœur — Déjeuner -->
-      <div class="signature-section">
-        <div class="signature-section-header">
+      <div class="signature-section is-collapsible">
+        <div class="signature-section-header" role="button" tabindex="0" aria-expanded="false" aria-controls="signature-grid-dejeuner" onclick="toggleSignatureSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSignatureSection(this);}">
           <h3 class="signature-section-title" data-fr="Nos coups de cœur" data-en="Our favourites" data-es="Nuestros favoritos">Nos coups de cœur</h3>
           <span class="signature-section-sub" data-fr="Les incontournables de notre brunch" data-en="The must-tries of our brunch" data-es="Los imprescindibles de nuestro brunch">Les incontournables de notre brunch</span>
+          <span class="signature-toggle-icon" aria-hidden="true">▼</span>
         </div>
-        <div class="signature-grid">
+        <div class="signature-grid" id="signature-grid-dejeuner">
           <div class="signature-card is-star" data-photo="" data-photo-caption="Poutine déjeuner">
             <div class="signature-eyebrow" data-fr="Notre signature" data-en="Our signature" data-es="Nuestra especialidad">Notre signature</div>
             <div class="signature-name" data-fr="Poutine déjeuner" data-en="Breakfast poutine" data-es="Poutine de desayuno">Poutine déjeuner</div>
@@ -1280,12 +1296,13 @@ if(document.readyState === 'loading'){
       </div>
       
       <!-- Coups de cœur — Dîner & Souper -->
-      <div class="signature-section">
-        <div class="signature-section-header">
+      <div class="signature-section is-collapsible">
+        <div class="signature-section-header" role="button" tabindex="0" aria-expanded="false" aria-controls="signature-grid-diner" onclick="toggleSignatureSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSignatureSection(this);}">
           <h3 class="signature-section-title" data-fr="Nos coups de cœur" data-en="Our favourites" data-es="Nuestros favoritos">Nos coups de cœur</h3>
           <span class="signature-section-sub" data-fr="Nos plats les plus aimés depuis plus de 20 ans" data-en="Our most beloved dishes for over 20 years" data-es="Nuestros platos más queridos desde hace más de 20 años">Nos plats les plus aimés depuis plus de 20 ans</span>
+          <span class="signature-toggle-icon" aria-hidden="true">▼</span>
         </div>
-        <div class="signature-grid">
+        <div class="signature-grid" id="signature-grid-diner">
           <div class="signature-card is-star" data-photo="images/plats/pizza-speciale-du-moulin.webp" data-photo-caption="Pizza Spéciale du Moulin">
             <div class="signature-eyebrow" data-fr="Notre signature" data-en="Our signature" data-es="Nuestra especialidad">Notre signature</div>
             <div class="signature-name" data-fr="Pizza Spéciale du Moulin" data-en="Le Moulin Special Pizza" data-es="Pizza Especial del Moulin">Pizza Spéciale du Moulin</div>
@@ -3357,6 +3374,12 @@ if (window.netlifyIdentity) {
 </div>
 
 <script>
+function toggleSignatureSection(headerEl){
+  var section = headerEl.closest('.signature-section');
+  if(!section) return;
+  var isOpen = section.classList.toggle('is-open');
+  headerEl.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+}
 function openOrderModal(){
   var modal = document.getElementById('orderModal');
   if(!modal) return;
