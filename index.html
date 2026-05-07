@@ -125,6 +125,9 @@
     .order-modal-text{font-size:14px;color:var(--text-muted);line-height:1.6;margin-bottom:1.5rem;}
     .order-modal-btn{background:var(--gold);color:var(--dark);border:none;padding:11px 28px;font-family:var(--font-body);font-size:12px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;border-radius:var(--radius);transition:background 0.2s;}
     .order-modal-btn:hover{background:var(--gold-light);}
+    .order-modal-btn-call{display:inline-flex;align-items:center;justify-content:center;gap:0;text-decoration:none;padding:13px 26px;font-size:13px;}
+    .order-modal-close-link{display:block;background:none;border:none;color:var(--text-dim);font-family:var(--font-body);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;margin:1rem auto 0;padding:6px 12px;transition:color 0.2s;}
+    .order-modal-close-link:hover{color:var(--text-muted);}
     .order-modal-btn:focus-visible{outline:2px solid #fff;outline-offset:2px;}
     .lang-switch{display:flex;align-items:center;gap:0;border:1px solid rgba(201,153,58,0.35);border-radius:var(--radius);overflow:hidden;margin-right:0.5rem;}
     .lang-switch button{background:transparent;border:none;color:var(--text-muted);padding:6px 10px;font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:0.08em;cursor:pointer;transition:background 0.2s,color 0.2s;text-transform:uppercase;}
@@ -144,6 +147,13 @@
     .hero-divider{width:60px;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);margin:0 auto 1.5rem;}
     .hero-sub{font-size:15px;color:var(--text-muted);letter-spacing:0.04em;line-height:1.8;margin-bottom:2.5rem;}
     .hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+    .hero-actions-secondary{margin-top:0.85rem;gap:0.65rem;}
+    .btn-hero-primary{padding:16px 56px;font-size:13px;letter-spacing:0.18em;}
+    @media(max-width:640px){
+      .btn-hero-primary{padding:15px 40px;}
+      .hero-actions-secondary{gap:0.5rem;}
+      .hero-actions-secondary .btn-ghost{padding:11px 18px;font-size:11px;letter-spacing:0.1em;}
+    }
     .btn-gold{background:var(--gold);color:var(--dark);padding:14px 32px;border:none;font-family:var(--font-body);font-size:12px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;border-radius:var(--radius);text-decoration:none;display:inline-block;transition:background 0.2s;}
     .btn-gold:hover{background:var(--gold-light);}
     .btn-ghost{background:transparent;color:#fff;padding:14px 32px;border:1px solid rgba(255,255,255,0.25);font-family:var(--font-body);font-size:12px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;border-radius:var(--radius);text-decoration:none;display:inline-block;transition:border-color 0.2s,color 0.2s;}
@@ -1106,9 +1116,12 @@ if(document.readyState === 'loading'){
     </div>
     <p class="hero-sub" data-fr="Depuis plus de 20 ans au cœur d'East Angus<br>Dîner · Souper tous les jours &nbsp;·&nbsp; Déjeuner les fins de semaine" data-en="For over 20 years in the heart of East Angus<br>Lunch · Dinner every day &nbsp;·&nbsp; Breakfast on weekends" data-es="Desde hace más de 20 años en el corazón de East Angus<br>Almuerzo · Cena todos los días &nbsp;·&nbsp; Desayuno los fines de semana">Depuis plus de 20 ans au cœur d'East Angus<br>Dîner · Souper tous les jours &nbsp;·&nbsp; Déjeuner les fins de semaine</p>
     <div class="hero-actions">
-      <a href="https://www.google.com/maps/dir/?api=1&destination=Restaurant+Le+Moulin+59+rue+Angus+Nord+East+Angus+QC" target="_blank" rel="noopener" class="btn-ghost" style="border-color:var(--gold);color:var(--gold);" data-fr="Itinéraire" data-en="Directions" data-es="Cómo llegar">Itinéraire</a>
-      <a href="#menu" class="btn-gold" data-fr="Voir le menu" data-en="View menu" data-es="Ver el menú">Voir le menu</a>
+      <a href="#menu" class="btn-gold btn-hero-primary" data-fr="Voir le menu" data-en="View menu" data-es="Ver el menú">Voir le menu</a>
+    </div>
+    <div class="hero-actions hero-actions-secondary">
       <a href="#reservation" class="btn-ghost" data-fr="Réserver une table" data-en="Book a table" data-es="Reservar una mesa">Réserver une table</a>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=Restaurant+Le+Moulin+59+rue+Angus+Nord+East+Angus+QC" target="_blank" rel="noopener" class="btn-ghost" style="border-color:var(--gold);color:var(--gold);" data-fr="Itinéraire" data-en="Directions" data-es="Cómo llegar">Itinéraire</a>
+      <a href="#" class="btn-ghost" onclick="openOrderModal();return false;" style="border-color:var(--gold);color:var(--gold);" data-fr="Commander en ligne" data-en="Order online" data-es="Pedir en línea">Commander en ligne</a>
     </div>
   </div>
 </section>
@@ -3367,9 +3380,12 @@ if (window.netlifyIdentity) {
     <div class="order-modal-icon">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
     </div>
-    <h2 class="order-modal-title" id="orderModalTitle" data-fr="À venir bientôt" data-en="Coming soon" data-es="Próximamente">À venir bientôt</h2>
-    <p class="order-modal-text" data-fr="La commande en ligne sera bientôt disponible. En attendant, appelez-nous au (819) 832-4242 pour commander pour emporter ou en livraison." data-en="Online ordering will be available soon. In the meantime, call us at (819) 832-4242 for takeout or delivery." data-es="El pedido en línea estará disponible pronto. Mientras tanto, llámenos al (819) 832-4242 para pedir para llevar o a domicilio.">La commande en ligne sera bientôt disponible. En attendant, appelez-nous au (819) 832-4242 pour commander pour emporter ou en livraison.</p>
-    <button type="button" class="order-modal-btn" onclick="closeOrderModal()" data-fr="OK" data-en="OK" data-es="OK">OK</button>
+    <h2 class="order-modal-title" id="orderModalTitle" data-fr="Bientôt en ligne" data-en="Coming soon online" data-es="Próximamente en línea">Bientôt en ligne</h2>
+    <p class="order-modal-text" data-fr="La commande en ligne sera bientôt disponible. En attendant, appelez-nous pour commander pour emporter ou en livraison — c'est rapide et facile !" data-en="Online ordering will be available soon. In the meantime, give us a call for takeout or delivery — quick and easy!" data-es="El pedido en línea estará disponible pronto. Mientras tanto, llámenos para pedir para llevar o a domicilio — ¡rápido y fácil!">La commande en ligne sera bientôt disponible. En attendant, appelez-nous pour commander pour emporter ou en livraison — c'est rapide et facile !</p>
+    <a href="tel:+18198324242" class="order-modal-btn order-modal-btn-call" onclick="closeOrderModal()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:middle;margin-right:6px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span data-fr="Appeler (819) 832-4242" data-en="Call (819) 832-4242" data-es="Llamar (819) 832-4242">Appeler (819) 832-4242</span>
+    </a>
+    <button type="button" class="order-modal-close-link" onclick="closeOrderModal()" data-fr="Fermer" data-en="Close" data-es="Cerrar">Fermer</button>
   </div>
 </div>
 
