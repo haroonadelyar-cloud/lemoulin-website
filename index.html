@@ -200,6 +200,12 @@
     .menu-panel.active{display:block;opacity:1;}
     .menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));border:1px solid rgba(255,255,255,0.06);}
     .menu-cat{grid-column:1/-1;padding:9px 1.5rem;background:rgba(201,153,58,0.07);border-top:1px solid rgba(201,153,58,0.15);font-size:10px;letter-spacing:0.28em;color:var(--gold);text-transform:uppercase;font-weight:500;}
+    /* === Accordéon sur les sous-catégories du menu === */
+    .menu-cat.is-accordion{cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:1rem;user-select:none;transition:background 0.2s;}
+    .menu-cat.is-accordion:hover{background:rgba(201,153,58,0.13);}
+    .menu-cat.is-accordion::after{content:'';flex-shrink:0;width:10px;height:10px;border-right:1.5px solid var(--gold);border-bottom:1.5px solid var(--gold);transform:rotate(45deg);transition:transform 0.25s ease;margin-bottom:3px;}
+    .menu-cat.is-accordion.is-closed::after{transform:rotate(-45deg);margin-bottom:0;margin-top:3px;}
+    .menu-item.acc-hidden{display:none!important;}
     .menu-item{padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;border-right:1px solid rgba(255,255,255,0.05);border-bottom:1px solid rgba(255,255,255,0.05);background:var(--dark2);transition:background 0.2s;}
     .menu-item:hover{background:var(--dark3);}
     .menu-item-name{font-size:13px;color:#fff;font-weight:500;margin-bottom:2px;}
@@ -478,7 +484,7 @@
     .wifi-creds{display:flex;align-items:center;gap:0.85rem;flex:1;min-width:0;}
     .wifi-cred-main{display:flex;flex-direction:column;gap:1px;min-width:0;}
     .wifi-cred-label{color:var(--text-dim);font-size:9px;text-transform:uppercase;letter-spacing:0.12em;font-weight:500;}
-    .wifi-cred-value{font-family:'SF Mono','Monaco','Consolas','Courier New',monospace;color:var(--text);font-size:12px;letter-spacing:0.02em;font-weight:500;word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .wifi-cred-value{font-family:'SF Mono','Monaco','Consolas','Courier New',monospace;color:#ffffff;font-size:12px;letter-spacing:0.02em;font-weight:500;word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
     .wifi-cred-pass{display:flex;align-items:center;gap:6px;min-width:0;}
     .wifi-cred-copy{flex-shrink:0;background:rgba(201,153,58,0.08);border:1px solid rgba(201,153,58,0.2);color:var(--gold);width:24px;height:24px;border-radius:2px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.2s,border-color 0.2s;padding:0;}
     .wifi-cred-copy:hover,.wifi-cred-copy:focus-visible{background:rgba(201,153,58,0.18);border-color:var(--gold);outline:none;}
@@ -511,7 +517,43 @@
     .midi-note-text{color:var(--text-muted);}
     @media(max-width:640px){.specials-toggle{padding:1.05rem 0.9rem 0.7rem;}.specials-body{padding:0 0.9rem 1.05rem;}.midi-header-right{align-self:flex-start;}}
     .gallery-section{background:var(--dark2);}
-    .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:260px;gap:6px;margin-top:3rem;}
+    /* Photo hero de la galerie (salle à manger) — alignée avec la largeur des cartes en dessous */
+    .gallery-hero{margin:2.5rem auto 0;max-width:760px;border-radius:var(--radius);overflow:hidden;}
+    .gallery-hero .gallery-item{cursor:pointer;position:relative;display:block;height:clamp(260px,38vw,420px);border-radius:var(--radius);overflow:hidden;}
+    .gallery-hero .gallery-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease;}
+    .gallery-hero .gallery-item:hover img{transform:scale(1.04);}
+    .gallery-hero .gallery-cap{position:absolute;inset:0;background:linear-gradient(to top,rgba(22,19,15,0.75) 0%,transparent 55%);opacity:0;transition:opacity 0.3s;display:flex;align-items:flex-end;padding:1.25rem 1.5rem;}
+    .gallery-hero .gallery-item:hover .gallery-cap{opacity:1;}
+    .gallery-hero .gallery-cap span{color:white;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;font-weight:500;}
+
+    /* 2 cartes "Voir toute la galerie" sous la photo hero */
+    .gallery-cards{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:2rem;}
+    .gallery-card{background:transparent;border:none;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:0.85rem;width:100%;max-width:320px;font-family:var(--font-body);color:inherit;transition:transform 0.25s ease;}
+    .gallery-card:hover{transform:translateY(-3px);}
+    .gallery-card-img{width:100%;aspect-ratio:4/3;border-radius:var(--radius);overflow:hidden;border:1px solid rgba(201,153,58,0.18);position:relative;}
+    .gallery-card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease;}
+    .gallery-card:hover .gallery-card-img img{transform:scale(1.06);}
+    .gallery-card:hover .gallery-card-img{border-color:var(--gold);}
+    .gallery-card-label{font-size:11px;letter-spacing:0.22em;color:var(--gold);text-transform:uppercase;font-weight:500;transition:color 0.2s;}
+    .gallery-card:hover .gallery-card-label{color:var(--gold-light);}
+    @media(max-width:560px){
+      .gallery-cards{gap:1rem;}
+      .gallery-card{max-width:none;flex:1 1 calc(50% - 0.5rem);min-width:0;}
+      .gallery-card-label{font-size:9px;letter-spacing:0.15em;}
+    }
+
+    /* Galerie complète (affichée après clic sur une carte) */
+    .gallery-expanded{margin-top:2.5rem;}
+    .gallery-expanded[hidden]{display:none;}
+    .gallery-expanded-header{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:1.25rem;flex-wrap:wrap;}
+    .gallery-expanded-header .gallery-subtitle{margin:0;}
+    .gallery-back-btn{background:transparent;color:var(--gold);border:1px solid rgba(201,153,58,0.3);border-radius:var(--radius);padding:8px 18px;font-family:var(--font-body);font-size:11px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;}
+    .gallery-back-btn:hover{background:rgba(201,153,58,0.1);border-color:var(--gold);}
+
+    /* Sous-titres conservés pour cohérence */
+    .gallery-subtitle{font-family:var(--font-display);font-size:clamp(20px,2.4vw,26px);font-weight:700;color:#fff;letter-spacing:0.02em;margin:0;}
+
+    .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:260px;gap:6px;margin-top:0;}
     .gallery-item{overflow:hidden;border-radius:var(--radius);position:relative;cursor:pointer;}
     .gallery-item:nth-child(1){grid-column:1/3;grid-row:1;}
     .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease;display:block;}
@@ -2080,29 +2122,67 @@ if(document.readyState === 'loading'){
   <h2 class="section-title" data-fr="Galerie" data-en="Gallery" data-es="Galería">Galerie</h2>
   <div class="gold-rule"></div>
   <p class="section-desc" data-fr="Un avant-goût de ce qui vous attend — nos plats et notre salle chaleureuse." data-en="A taste of what awaits — our dishes and our warm dining room." data-es="Un adelanto de lo que le espera — nuestros platos y nuestro cálido salón.">Un avant-goût de ce qui vous attend — nos plats et notre salle chaleureuse.</p>
-  <div class="gallery-grid" data-collapsible="5" data-collapsible-type="gallery">
+
+  <!-- Photo hero : la salle à manger -->
+  <div class="gallery-hero">
     <div class="gallery-item" data-photo="images/salle-a-manger.webp" data-photo-caption-fr="Notre salle à manger" data-photo-caption-en="Our dining room" data-photo-caption-es="Nuestro salón"><picture><source srcset="images/salle-a-manger.webp" type="image/webp"><img src="images/salle-a-manger.jpg" alt="Notre salle à manger — Restaurant Le Moulin" loading="lazy" decoding="async"></picture><div class="gallery-cap"><span data-fr="Notre salle à manger" data-en="Our dining room" data-es="Nuestro salón">Notre salle à manger</span></div></div>
-    <div class="gallery-item" data-photo="images/plats/pizza-speciale-du-moulin.webp" data-photo-caption-fr="Pizza Spéciale du Moulin" data-photo-caption-en="Le Moulin Special Pizza" data-photo-caption-es="Pizza Especial del Moulin"><img src="images/plats/pizza-speciale-du-moulin.webp" alt="Pizza Spéciale du Moulin — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Pizza Spéciale du Moulin" data-en="Le Moulin Special Pizza" data-es="Pizza Especial del Moulin">Pizza Spéciale du Moulin</span></div></div>
-    <div class="gallery-item" data-photo="images/plats/brochette-poulet.webp" data-photo-caption-fr="Brochette de poulet mariné" data-photo-caption-en="Marinated chicken skewer" data-photo-caption-es="Brocheta de pollo marinado"><img src="images/plats/brochette-poulet.webp" alt="Brochette de poulet mariné — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Brochette de poulet mariné" data-en="Marinated chicken skewer" data-es="Brocheta de pollo marinado">Brochette de poulet mariné</span></div></div>
-    <div class="gallery-item" data-photo="images/poutines/poutine-du-moulin.webp" data-photo-caption-fr="Poutine du Moulin" data-photo-caption-en="Moulin poutine" data-photo-caption-es="Poutine del Moulin"><img src="images/poutines/poutine-du-moulin.webp" alt="Poutine du Moulin — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Poutine du Moulin" data-en="Moulin poutine" data-es="Poutine del Moulin">Poutine du Moulin</span></div></div>
-    <div class="gallery-item" data-photo="images/plats/crevettes-thai.webp" data-photo-caption-fr="Crevettes panées à la thaï" data-photo-caption-en="Thai-breaded shrimp" data-photo-caption-es="Camarones empanizados estilo thai"><img src="images/plats/crevettes-thai.webp" alt="Crevettes panées à la thaï — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Crevettes panées à la thaï" data-en="Thai-breaded shrimp" data-es="Camarones empanizados estilo thai">Crevettes panées à la thaï</span></div></div>
-    <div class="gallery-item" data-photo="images/speciaux_mois/saumon-crevettes.webp" data-photo-caption-fr="Filet de saumon &amp; 10 crevettes" data-photo-caption-en="Salmon fillet &amp; 10 shrimp" data-photo-caption-es="Filete de salmón y 10 camarones"><img src="images/speciaux_mois/saumon-crevettes.webp" alt="Filet de saumon &amp; 10 crevettes — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Filet de saumon &amp; 10 crevettes" data-en="Salmon fillet &amp; 10 shrimp" data-es="Filete de salmón y 10 camarones">Filet de saumon &amp; 10 crevettes</span></div></div>
-    <div class="gallery-item" data-photo="images/speciaux_mois/t-bone.webp" data-photo-caption-fr="T-Bone aux champignons" data-photo-caption-en="T-Bone with mushrooms" data-photo-caption-es="T-Bone con champiñones"><img src="images/speciaux_mois/t-bone.webp" alt="T-Bone aux champignons — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="T-Bone aux champignons" data-en="T-Bone with mushrooms" data-es="T-Bone con champiñones">T-Bone aux champignons</span></div></div>
-    <div class="gallery-item" data-photo="images/entrees/fondues-parmesan.webp" data-photo-caption-fr="Fondues parmesan" data-photo-caption-en="Parmesan fondues" data-photo-caption-es="Fondues de parmesano"><img src="images/entrees/fondues-parmesan.webp" alt="Fondues parmesan — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Fondues parmesan" data-en="Parmesan fondues" data-es="Fondues de parmesano">Fondues parmesan</span></div></div>
-    <div class="gallery-item" data-photo="images/entrees/batonnets-de-fromage.webp" data-photo-caption-fr="Bâtonnets de fromage" data-photo-caption-en="Cheese sticks" data-photo-caption-es="Palitos de queso"><img src="images/entrees/batonnets-de-fromage.webp" alt="Bâtonnets de fromage — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Bâtonnets de fromage" data-en="Cheese sticks" data-es="Palitos de queso">Bâtonnets de fromage</span></div></div>
-    <div class="gallery-item" data-photo="images/plats/assiette-pita-filet-mignon.webp" data-photo-caption-fr="Assiette pita au filet mignon" data-photo-caption-en="Filet mignon pita plate" data-photo-caption-es="Plato de pita con filete mignon"><img src="images/plats/assiette-pita-filet-mignon.webp" alt="Assiette pita au filet mignon — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Assiette pita au filet mignon" data-en="Filet mignon pita plate" data-es="Plato de pita con filete mignon">Assiette pita au filet mignon</span></div></div>
-    <div class="gallery-item" data-photo="images/sandwichs/demi-sous-marin-italien.webp" data-photo-caption-fr="Sous-marin italien" data-photo-caption-en="Italian sub" data-photo-caption-es="Submarino italiano"><img src="images/sandwichs/demi-sous-marin-italien.webp" alt="Sous-marin italien — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Sous-marin italien" data-en="Italian sub" data-es="Submarino italiano">Sous-marin italien</span></div></div>
-    <div class="gallery-item" data-photo="images/plats/grillade-de-poulet-marine.webp" data-photo-caption-fr="Grillade de poulet mariné" data-photo-caption-en="Grilled marinated chicken" data-photo-caption-es="Pollo marinado a la parrilla"><img src="images/plats/grillade-de-poulet-marine.webp" alt="Grillade de poulet mariné — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Grillade de poulet mariné" data-en="Grilled marinated chicken" data-es="Pollo marinado a la parrilla">Grillade de poulet mariné</span></div></div>
-    <div class="gallery-item" data-photo="images/speciaux_midi/mini-pizza-frite-midi.webp" data-photo-caption-fr="Pizza et frites" data-photo-caption-en="Pizza and fries" data-photo-caption-es="Pizza y papas fritas"><img src="images/speciaux_midi/mini-pizza-frite-midi.webp" alt="Pizza et frites — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Pizza et frites" data-en="Pizza and fries" data-es="Pizza y papas fritas">Pizza et frites</span></div></div>
-    <div class="gallery-item" data-photo="images/plats/filet-de-sole-amandine.webp" data-photo-caption-fr="Filet de sole amandine" data-photo-caption-en="Sole fillet amandine" data-photo-caption-es="Filete de lenguado amandine"><img src="images/plats/filet-de-sole-amandine.webp" alt="Filet de sole amandine — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Filet de sole amandine" data-en="Sole fillet amandine" data-es="Filete de lenguado amandine">Filet de sole amandine</span></div></div>
-    <div class="gallery-item" data-photo="images/dejeuners/2-oeufs-3-viandes.webp" data-photo-caption-fr="2 œufs, 3 viandes" data-photo-caption-en="2 eggs, 3 meats" data-photo-caption-es="2 huevos, 3 carnes"><img src="images/dejeuners/2-oeufs-3-viandes.webp" alt="2 œufs, 3 viandes — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="2 œufs, 3 viandes" data-en="2 eggs, 3 meats" data-es="2 huevos, 3 carnes">2 œufs, 3 viandes</span></div></div>
-    <div class="gallery-item" data-photo="images/dejeuners/bene-jambon-fromage-suisse.webp" data-photo-caption-fr="Béné au jambon et fromage suisse" data-photo-caption-en="Benedict with ham and Swiss cheese" data-photo-caption-es="Benedictinos con jamón y queso suizo"><img src="images/dejeuners/bene-jambon-fromage-suisse.webp" alt="Béné au jambon et fromage suisse — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Béné au jambon et fromage suisse" data-en="Benedict with ham and Swiss cheese" data-es="Benedictinos con jamón y queso suizo">Béné au jambon et fromage suisse</span></div></div>
-    <div class="gallery-item" data-photo="images/plats/assiette-crevettes-ail.webp" data-photo-caption-fr="Crevettes à l'ail" data-photo-caption-en="Garlic shrimp" data-photo-caption-es="Camarones al ajo"><img src="images/plats/assiette-crevettes-ail.webp" alt="Crevettes à l'ail — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Crevettes à l'ail" data-en="Garlic shrimp" data-es="Camarones al ajo">Crevettes à l'ail</span></div></div>
-    <div class="gallery-item" data-photo="images/plats/spaghetti-special-moulin.webp" data-photo-caption-fr="Spaghetti spécial du Moulin" data-photo-caption-en="Le Moulin special spaghetti" data-photo-caption-es="Espagueti Especial del Moulin"><img src="images/plats/spaghetti-special-moulin.webp" alt="Spaghetti spécial du Moulin — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Spaghetti spécial du Moulin" data-en="Le Moulin special spaghetti" data-es="Espagueti Especial del Moulin">Spaghetti spécial du Moulin</span></div></div>
-    <div class="gallery-item" data-photo="images/entrees/chips-grecques.webp" data-photo-caption-fr="Chips grecques" data-photo-caption-en="Greek chips" data-photo-caption-es="Chips griegas"><img src="images/entrees/chips-grecques.webp" alt="Chips grecques — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Chips grecques" data-en="Greek chips" data-es="Chips griegas">Chips grecques</span></div></div>
-    <div class="gallery-item" data-photo="images/entrees/ailes-de-poulet.webp" data-photo-caption-fr="Ailes de poulet" data-photo-caption-en="Chicken wings" data-photo-caption-es="Alas de pollo"><img src="images/entrees/ailes-de-poulet.webp" alt="Ailes de poulet — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Ailes de poulet" data-en="Chicken wings" data-es="Alas de pollo">Ailes de poulet</span></div></div>
-    <div class="gallery-item" data-photo="images/salades/salade-cesar-poulet-grille.webp" data-photo-caption-fr="Salade César au poulet grillé" data-photo-caption-en="Caesar salad with grilled chicken" data-photo-caption-es="Ensalada César con pollo a la parrilla"><img src="images/salades/salade-cesar-poulet-grille.webp" alt="Salade César au poulet grillé — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Salade César au poulet grillé" data-en="Caesar salad with grilled chicken" data-es="Ensalada César con pollo a la parrilla">Salade César au poulet grillé</span></div></div>
-    <div class="gallery-item" data-photo="images/plats/steak-filet-mignon.webp" data-photo-caption-fr="Steak de filet mignon (8 oz AA+)" data-photo-caption-en="Filet mignon steak (8 oz AA+)" data-photo-caption-es="Filete mignon (8 oz AA+)"><img src="images/plats/steak-filet-mignon.webp" alt="Steak de filet mignon — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Steak de filet mignon (8 oz AA+)" data-en="Filet mignon steak (8 oz AA+)" data-es="Filete mignon (8 oz AA+)">Steak de filet mignon (8 oz AA+)</span></div></div>
+  </div>
+
+  <!-- 2 cartes pour ouvrir les galeries -->
+  <div class="gallery-cards" id="gallery-cards">
+    <button type="button" class="gallery-card" data-gallery-target="dejeuners" aria-label="Voir la galerie des déjeuners">
+      <div class="gallery-card-img">
+        <img src="images/dejeuners/2-oeufs-3-viandes.webp" alt="Déjeuners — Restaurant Le Moulin" loading="lazy" decoding="async">
+      </div>
+      <div class="gallery-card-label" data-fr="Voir toute la galerie" data-en="View full gallery" data-es="Ver toda la galería">Voir toute la galerie</div>
+    </button>
+    <button type="button" class="gallery-card" data-gallery-target="diners" aria-label="Voir la galerie des dîners et soupers">
+      <div class="gallery-card-img">
+        <img src="images/plats/pizza-speciale-du-moulin.webp" alt="Dîners et soupers — Restaurant Le Moulin" loading="lazy" decoding="async">
+      </div>
+      <div class="gallery-card-label" data-fr="Voir toute la galerie" data-en="View full gallery" data-es="Ver toda la galería">Voir toute la galerie</div>
+    </button>
+  </div>
+
+  <!-- Galerie déjeuners (cachée par défaut, affichée au clic sur la carte) -->
+  <div class="gallery-expanded" id="gallery-expanded-dejeuners" hidden>
+    <div class="gallery-expanded-header">
+      <h3 class="gallery-subtitle" data-fr="Déjeuners" data-en="Breakfast" data-es="Desayunos">Déjeuners</h3>
+      <button type="button" class="gallery-back-btn" data-gallery-back data-fr="← Retour" data-en="← Back" data-es="← Volver">← Retour</button>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item" data-photo="images/dejeuners/2-oeufs-3-viandes.webp" data-photo-caption-fr="2 œufs, 3 viandes" data-photo-caption-en="2 eggs, 3 meats" data-photo-caption-es="2 huevos, 3 carnes"><img src="images/dejeuners/2-oeufs-3-viandes.webp" alt="2 œufs, 3 viandes — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="2 œufs, 3 viandes" data-en="2 eggs, 3 meats" data-es="2 huevos, 3 carnes">2 œufs, 3 viandes</span></div></div>
+      <div class="gallery-item" data-photo="images/dejeuners/bene-jambon-fromage-suisse.webp" data-photo-caption-fr="Béné au jambon et fromage suisse" data-photo-caption-en="Benedict with ham and Swiss cheese" data-photo-caption-es="Benedictinos con jamón y queso suizo"><img src="images/dejeuners/bene-jambon-fromage-suisse.webp" alt="Béné au jambon et fromage suisse — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Béné au jambon et fromage suisse" data-en="Benedict with ham and Swiss cheese" data-es="Benedictinos con jamón y queso suizo">Béné au jambon et fromage suisse</span></div></div>
+    </div>
+  </div>
+
+  <!-- Galerie dîners et soupers (cachée par défaut, affichée au clic sur la carte) -->
+  <div class="gallery-expanded" id="gallery-expanded-diners" hidden>
+    <div class="gallery-expanded-header">
+      <h3 class="gallery-subtitle" data-fr="Dîners et soupers" data-en="Lunch &amp; Dinner" data-es="Almuerzos y cenas">Dîners et soupers</h3>
+      <button type="button" class="gallery-back-btn" data-gallery-back data-fr="← Retour" data-en="← Back" data-es="← Volver">← Retour</button>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item" data-photo="images/plats/pizza-speciale-du-moulin.webp" data-photo-caption-fr="Pizza Spéciale du Moulin" data-photo-caption-en="Le Moulin Special Pizza" data-photo-caption-es="Pizza Especial del Moulin"><img src="images/plats/pizza-speciale-du-moulin.webp" alt="Pizza Spéciale du Moulin — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Pizza Spéciale du Moulin" data-en="Le Moulin Special Pizza" data-es="Pizza Especial del Moulin">Pizza Spéciale du Moulin</span></div></div>
+      <div class="gallery-item" data-photo="images/plats/brochette-poulet.webp" data-photo-caption-fr="Brochette de poulet mariné" data-photo-caption-en="Marinated chicken skewer" data-photo-caption-es="Brocheta de pollo marinado"><img src="images/plats/brochette-poulet.webp" alt="Brochette de poulet mariné — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Brochette de poulet mariné" data-en="Marinated chicken skewer" data-es="Brocheta de pollo marinado">Brochette de poulet mariné</span></div></div>
+      <div class="gallery-item" data-photo="images/poutines/poutine-du-moulin.webp" data-photo-caption-fr="Poutine du Moulin" data-photo-caption-en="Moulin poutine" data-photo-caption-es="Poutine del Moulin"><img src="images/poutines/poutine-du-moulin.webp" alt="Poutine du Moulin — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Poutine du Moulin" data-en="Moulin poutine" data-es="Poutine del Moulin">Poutine du Moulin</span></div></div>
+      <div class="gallery-item" data-photo="images/plats/crevettes-thai.webp" data-photo-caption-fr="Crevettes panées à la thaï" data-photo-caption-en="Thai-breaded shrimp" data-photo-caption-es="Camarones empanizados estilo thai"><img src="images/plats/crevettes-thai.webp" alt="Crevettes panées à la thaï — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Crevettes panées à la thaï" data-en="Thai-breaded shrimp" data-es="Camarones empanizados estilo thai">Crevettes panées à la thaï</span></div></div>
+      <div class="gallery-item" data-photo="images/speciaux_mois/saumon-crevettes.webp" data-photo-caption-fr="Filet de saumon &amp; 10 crevettes" data-photo-caption-en="Salmon fillet &amp; 10 shrimp" data-photo-caption-es="Filete de salmón y 10 camarones"><img src="images/speciaux_mois/saumon-crevettes.webp" alt="Filet de saumon &amp; 10 crevettes — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Filet de saumon &amp; 10 crevettes" data-en="Salmon fillet &amp; 10 shrimp" data-es="Filete de salmón y 10 camarones">Filet de saumon &amp; 10 crevettes</span></div></div>
+      <div class="gallery-item" data-photo="images/speciaux_mois/t-bone.webp" data-photo-caption-fr="T-Bone aux champignons" data-photo-caption-en="T-Bone with mushrooms" data-photo-caption-es="T-Bone con champiñones"><img src="images/speciaux_mois/t-bone.webp" alt="T-Bone aux champignons — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="T-Bone aux champignons" data-en="T-Bone with mushrooms" data-es="T-Bone con champiñones">T-Bone aux champignons</span></div></div>
+      <div class="gallery-item" data-photo="images/entrees/fondues-parmesan.webp" data-photo-caption-fr="Fondues parmesan" data-photo-caption-en="Parmesan fondues" data-photo-caption-es="Fondues de parmesano"><img src="images/entrees/fondues-parmesan.webp" alt="Fondues parmesan — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Fondues parmesan" data-en="Parmesan fondues" data-es="Fondues de parmesano">Fondues parmesan</span></div></div>
+      <div class="gallery-item" data-photo="images/entrees/batonnets-de-fromage.webp" data-photo-caption-fr="Bâtonnets de fromage" data-photo-caption-en="Cheese sticks" data-photo-caption-es="Palitos de queso"><img src="images/entrees/batonnets-de-fromage.webp" alt="Bâtonnets de fromage — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Bâtonnets de fromage" data-en="Cheese sticks" data-es="Palitos de queso">Bâtonnets de fromage</span></div></div>
+      <div class="gallery-item" data-photo="images/plats/assiette-pita-filet-mignon.webp" data-photo-caption-fr="Assiette pita au filet mignon" data-photo-caption-en="Filet mignon pita plate" data-photo-caption-es="Plato de pita con filete mignon"><img src="images/plats/assiette-pita-filet-mignon.webp" alt="Assiette pita au filet mignon — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Assiette pita au filet mignon" data-en="Filet mignon pita plate" data-es="Plato de pita con filete mignon">Assiette pita au filet mignon</span></div></div>
+      <div class="gallery-item" data-photo="images/sandwichs/demi-sous-marin-italien.webp" data-photo-caption-fr="Sous-marin italien" data-photo-caption-en="Italian sub" data-photo-caption-es="Submarino italiano"><img src="images/sandwichs/demi-sous-marin-italien.webp" alt="Sous-marin italien — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Sous-marin italien" data-en="Italian sub" data-es="Submarino italiano">Sous-marin italien</span></div></div>
+      <div class="gallery-item" data-photo="images/plats/grillade-de-poulet-marine.webp" data-photo-caption-fr="Grillade de poulet mariné" data-photo-caption-en="Grilled marinated chicken" data-photo-caption-es="Pollo marinado a la parrilla"><img src="images/plats/grillade-de-poulet-marine.webp" alt="Grillade de poulet mariné — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Grillade de poulet mariné" data-en="Grilled marinated chicken" data-es="Pollo marinado a la parrilla">Grillade de poulet mariné</span></div></div>
+      <div class="gallery-item" data-photo="images/speciaux_midi/mini-pizza-frite-midi.webp" data-photo-caption-fr="Pizza et frites" data-photo-caption-en="Pizza and fries" data-photo-caption-es="Pizza y papas fritas"><img src="images/speciaux_midi/mini-pizza-frite-midi.webp" alt="Pizza et frites — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Pizza et frites" data-en="Pizza and fries" data-es="Pizza y papas fritas">Pizza et frites</span></div></div>
+      <div class="gallery-item" data-photo="images/plats/filet-de-sole-amandine.webp" data-photo-caption-fr="Filet de sole amandine" data-photo-caption-en="Sole fillet amandine" data-photo-caption-es="Filete de lenguado amandine"><img src="images/plats/filet-de-sole-amandine.webp" alt="Filet de sole amandine — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Filet de sole amandine" data-en="Sole fillet amandine" data-es="Filete de lenguado amandine">Filet de sole amandine</span></div></div>
+      <div class="gallery-item" data-photo="images/plats/assiette-crevettes-ail.webp" data-photo-caption-fr="Crevettes à l'ail" data-photo-caption-en="Garlic shrimp" data-photo-caption-es="Camarones al ajo"><img src="images/plats/assiette-crevettes-ail.webp" alt="Crevettes à l'ail — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Crevettes à l'ail" data-en="Garlic shrimp" data-es="Camarones al ajo">Crevettes à l'ail</span></div></div>
+      <div class="gallery-item" data-photo="images/plats/spaghetti-special-moulin.webp" data-photo-caption-fr="Spaghetti spécial du Moulin" data-photo-caption-en="Le Moulin special spaghetti" data-photo-caption-es="Espagueti Especial del Moulin"><img src="images/plats/spaghetti-special-moulin.webp" alt="Spaghetti spécial du Moulin — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Spaghetti spécial du Moulin" data-en="Le Moulin special spaghetti" data-es="Espagueti Especial del Moulin">Spaghetti spécial du Moulin</span></div></div>
+      <div class="gallery-item" data-photo="images/entrees/chips-grecques.webp" data-photo-caption-fr="Chips grecques" data-photo-caption-en="Greek chips" data-photo-caption-es="Chips griegas"><img src="images/entrees/chips-grecques.webp" alt="Chips grecques — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Chips grecques" data-en="Greek chips" data-es="Chips griegas">Chips grecques</span></div></div>
+      <div class="gallery-item" data-photo="images/entrees/ailes-de-poulet.webp" data-photo-caption-fr="Ailes de poulet" data-photo-caption-en="Chicken wings" data-photo-caption-es="Alas de pollo"><img src="images/entrees/ailes-de-poulet.webp" alt="Ailes de poulet — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Ailes de poulet" data-en="Chicken wings" data-es="Alas de pollo">Ailes de poulet</span></div></div>
+      <div class="gallery-item" data-photo="images/salades/salade-cesar-poulet-grille.webp" data-photo-caption-fr="Salade César au poulet grillé" data-photo-caption-en="Caesar salad with grilled chicken" data-photo-caption-es="Ensalada César con pollo a la parrilla"><img src="images/salades/salade-cesar-poulet-grille.webp" alt="Salade César au poulet grillé — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Salade César au poulet grillé" data-en="Caesar salad with grilled chicken" data-es="Ensalada César con pollo a la parrilla">Salade César au poulet grillé</span></div></div>
+      <div class="gallery-item" data-photo="images/plats/steak-filet-mignon.webp" data-photo-caption-fr="Steak de filet mignon (8 oz AA+)" data-photo-caption-en="Filet mignon steak (8 oz AA+)" data-photo-caption-es="Filete mignon (8 oz AA+)"><img src="images/plats/steak-filet-mignon.webp" alt="Steak de filet mignon — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Steak de filet mignon (8 oz AA+)" data-en="Filet mignon steak (8 oz AA+)" data-es="Filete mignon (8 oz AA+)">Steak de filet mignon (8 oz AA+)</span></div></div>
+    </div>
   </div>
 </div>
 </section>
@@ -2143,7 +2223,7 @@ if(document.readyState === 'loading'){
 <div class="section-divider"></div>
 
 <!-- CARTE -->
-<section id="carte" style="background:var(--dark2);padding:0;">
+<section id="carte" style="background:var(--dark2);padding:0 2rem;">
 <div class="section-inner" style="padding-bottom:4rem;">
   <div class="section-eyebrow" style="padding-top:3rem;" data-fr="Comment nous trouver" data-en="How to find us" data-es="Cómo encontrarnos">Comment nous trouver</div>
   <h2 class="section-title" data-fr="Notre emplacement" data-en="Our location" data-es="Nuestra ubicación">Notre emplacement</h2>
@@ -2584,12 +2664,136 @@ function toggleCollapsible(btn, hiddenEls, labelMore, labelLess, scrollTargetId,
   }
 }
 
-// Initialiser au chargement
-if(document.readyState === 'loading'){
-  document.addEventListener('DOMContentLoaded', initCollapsibleMenus);
-} else {
-  initCollapsibleMenus();
+// === Accordéon sur les sous-catégories du menu ===
+// Transforme chaque .menu-cat en bouton cliquable qui ouvre/ferme
+// les .menu-item suivants (jusqu'au prochain .menu-cat).
+// Comportement : 1 seule section ouverte à la fois par grille,
+// première section ouverte par défaut.
+function initMenuAccordions(){
+  var grids = document.querySelectorAll('.menu-grid');
+  grids.forEach(function(grid){
+    // Grouper les enfants par catégorie
+    var children = Array.prototype.slice.call(grid.children);
+    var groups = [];
+    var current = null;
+    children.forEach(function(el){
+      if(el.classList.contains('menu-cat')){
+        current = { cat: el, items: [] };
+        groups.push(current);
+      } else if(current && el.classList.contains('menu-item')){
+        current.items.push(el);
+      }
+    });
+
+    // Pas d'accordéon si 0 ou 1 catégorie (rien à plier utilement)
+    if(groups.length < 2) return;
+
+    // Activer l'accordéon sur chaque catégorie
+    groups.forEach(function(group, idx){
+      group.cat.classList.add('is-accordion');
+      group.cat.setAttribute('role','button');
+      group.cat.setAttribute('tabindex','0');
+      group.cat.setAttribute('aria-expanded', idx === 0 ? 'true' : 'false');
+
+      // Fermer toutes les sections sauf la première
+      if(idx !== 0){
+        group.cat.classList.add('is-closed');
+        group.items.forEach(function(it){ it.classList.add('acc-hidden'); });
+      }
+
+      var handler = function(){
+        var isClosed = group.cat.classList.contains('is-closed');
+        // Fermer tous les groupes de cette grille
+        groups.forEach(function(g){
+          g.cat.classList.add('is-closed');
+          g.cat.setAttribute('aria-expanded','false');
+          g.items.forEach(function(it){ it.classList.add('acc-hidden'); });
+        });
+        // Ouvrir celui-ci s'il était fermé (sinon le laisser fermé = toggle)
+        if(isClosed){
+          group.cat.classList.remove('is-closed');
+          group.cat.setAttribute('aria-expanded','true');
+          group.items.forEach(function(it){ it.classList.remove('acc-hidden'); });
+        }
+      };
+
+      group.cat.addEventListener('click', handler);
+      group.cat.addEventListener('keydown', function(e){
+        if(e.key === 'Enter' || e.key === ' '){
+          e.preventDefault();
+          handler();
+        }
+      });
+    });
+  });
 }
+
+// === Galerie : cartes "Voir toute la galerie" ===
+// Au clic sur une carte, on cache les cartes et la photo hero,
+// et on affiche la galerie complète correspondante.
+// Le bouton "← Retour" remet l'état initial.
+function initGalleryCards(){
+  var cards = document.querySelectorAll('.gallery-card[data-gallery-target]');
+  if(!cards.length) return;
+
+  var cardsWrap = document.getElementById('gallery-cards');
+  var hero = document.querySelector('.gallery-hero');
+  var expandedPanels = document.querySelectorAll('.gallery-expanded');
+
+  function showCards(){
+    expandedPanels.forEach(function(p){ p.hidden = true; });
+    if(cardsWrap) cardsWrap.style.display = '';
+    if(hero) hero.style.display = '';
+    // Remonter vers le haut de la galerie
+    var galSection = document.getElementById('gallery');
+    if(galSection){
+      var top = galSection.getBoundingClientRect().top + window.pageYOffset - 80;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    }
+  }
+
+  function showGallery(target){
+    if(cardsWrap) cardsWrap.style.display = 'none';
+    if(hero) hero.style.display = 'none';
+    expandedPanels.forEach(function(p){ p.hidden = true; });
+    var panel = document.getElementById('gallery-expanded-' + target);
+    if(panel){
+      panel.hidden = false;
+      // Remonter vers le haut de la galerie
+      var galSection = document.getElementById('gallery');
+      if(galSection){
+        var top = galSection.getBoundingClientRect().top + window.pageYOffset - 80;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      }
+    }
+  }
+
+  cards.forEach(function(card){
+    card.addEventListener('click', function(){
+      var target = card.getAttribute('data-gallery-target');
+      showGallery(target);
+    });
+  });
+
+  var backBtns = document.querySelectorAll('[data-gallery-back]');
+  backBtns.forEach(function(btn){
+    btn.addEventListener('click', showCards);
+  });
+}
+
+// Initialiser au chargement
+function initAllMenus(){
+  initCollapsibleMenus();
+  initMenuAccordions();
+  initGalleryCards();
+}
+if(document.readyState === 'loading'){
+  document.addEventListener('DOMContentLoaded', initAllMenus);
+} else {
+  initAllMenus();
+}
+
+
 
 function toggleMobileMenu(){
   const menu = document.getElementById('mobileMenu');
