@@ -530,6 +530,8 @@
     .gallery-cards{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:2rem;}
     .gallery-card{background:transparent;border:none;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:0.85rem;width:100%;max-width:320px;font-family:var(--font-body);color:inherit;transition:transform 0.25s ease;}
     .gallery-card:hover{transform:translateY(-3px);}
+    .gallery-card-title{font-family:var(--font-display);font-size:clamp(18px,2vw,22px);font-weight:700;color:#fff;letter-spacing:0.02em;text-align:center;margin-bottom:0;line-height:1.2;}
+    .gallery-card:hover .gallery-card-title{color:var(--gold);}
     .gallery-card-img{width:100%;aspect-ratio:4/3;border-radius:var(--radius);overflow:hidden;border:1px solid rgba(201,153,58,0.18);position:relative;}
     .gallery-card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease;}
     .gallery-card:hover .gallery-card-img img{transform:scale(1.06);}
@@ -539,6 +541,7 @@
     @media(max-width:560px){
       .gallery-cards{gap:1rem;}
       .gallery-card{max-width:none;flex:1 1 calc(50% - 0.5rem);min-width:0;}
+      .gallery-card-title{font-size:15px;}
       .gallery-card-label{font-size:9px;letter-spacing:0.15em;}
     }
 
@@ -2131,12 +2134,14 @@ if(document.readyState === 'loading'){
   <!-- 2 cartes pour ouvrir les galeries -->
   <div class="gallery-cards" id="gallery-cards">
     <button type="button" class="gallery-card" data-gallery-target="dejeuners" aria-label="Voir la galerie des déjeuners">
+      <div class="gallery-card-title" data-fr="Nos déjeunés" data-en="Our breakfasts" data-es="Nuestros desayunos">Nos déjeunés</div>
       <div class="gallery-card-img">
         <img src="images/dejeuners/2-oeufs-3-viandes.webp" alt="Déjeuners — Restaurant Le Moulin" loading="lazy" decoding="async">
       </div>
       <div class="gallery-card-label" data-fr="Voir toute la galerie" data-en="View full gallery" data-es="Ver toda la galería">Voir toute la galerie</div>
     </button>
     <button type="button" class="gallery-card" data-gallery-target="diners" aria-label="Voir la galerie des dîners et soupers">
+      <div class="gallery-card-title" data-fr="Nos dîners et soupers" data-en="Our lunches &amp; dinners" data-es="Nuestros almuerzos y cenas">Nos dîners et soupers</div>
       <div class="gallery-card-img">
         <img src="images/plats/pizza-speciale-du-moulin.webp" alt="Dîners et soupers — Restaurant Le Moulin" loading="lazy" decoding="async">
       </div>
