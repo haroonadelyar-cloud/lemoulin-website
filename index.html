@@ -2773,17 +2773,36 @@ function initGalleryCards(){
   var hero = document.querySelector('.gallery-hero');
   var expandedPanels = document.querySelectorAll('.gallery-expanded');
   var floatingBtn = document.getElementById('galleryBackFloating');
-  var floatingObserver = null;
+  var headerVisible = true;   // L'en-tête original est-il dans la vue?
+  var panelInView = false;    // Le panneau de galerie est-il dans la vue?
+  var headerObserver = null;
+  var panelObserver = null;
   var currentHeader = null;
+  var currentPanel = null;
 
-  function hideFloating(){
-    if(floatingBtn){
+  function updateFloatingBtn(){
+    if(!floatingBtn) return;
+    // Affiche le bouton seulement si l'en-tête est sorti ET qu'on est encore dans la galerie
+    if(!headerVisible && panelInView){
+      floatingBtn.classList.add('is-visible');
+      floatingBtn.setAttribute('aria-hidden', 'false');
+    } else {
       floatingBtn.classList.remove('is-visible');
       floatingBtn.setAttribute('aria-hidden', 'true');
     }
-    if(floatingObserver && currentHeader){
-      floatingObserver.unobserve(currentHeader);
+  }
+
+  function hideFloating(){
+    headerVisible = true;
+    panelInView = false;
+    updateFloatingBtn();
+    if(headerObserver && currentHeader){
+      headerObserver.unobserve(currentHeader);
       currentHeader = null;
+    }
+    if(panelObserver && currentPanel){
+      panelObserver.unobserve(currentPanel);
+      currentPanel = null;
     }
   }
 
@@ -2791,22 +2810,30 @@ function initGalleryCards(){
     if(!floatingBtn || !('IntersectionObserver' in window)) return;
     var header = panel.querySelector('.gallery-expanded-header');
     if(!header) return;
-    if(!floatingObserver){
-      floatingObserver = new IntersectionObserver(function(entries){
+
+    // Observer 1 : l'en-tête original (avec son bouton retour)
+    if(!headerObserver){
+      headerObserver = new IntersectionObserver(function(entries){
         entries.forEach(function(entry){
-          // Quand l'en-tête (avec son bouton retour original) sort de la vue → afficher le flottant
-          if(entry.isIntersecting){
-            floatingBtn.classList.remove('is-visible');
-            floatingBtn.setAttribute('aria-hidden', 'true');
-          } else {
-            floatingBtn.classList.add('is-visible');
-            floatingBtn.setAttribute('aria-hidden', 'false');
-          }
+          headerVisible = entry.isIntersecting;
+          updateFloatingBtn();
         });
       }, { threshold: 0, rootMargin: '-10px 0px 0px 0px' });
     }
     currentHeader = header;
-    floatingObserver.observe(header);
+    headerObserver.observe(header);
+
+    // Observer 2 : le panneau de galerie au complet (pour cacher le bouton si on sort)
+    if(!panelObserver){
+      panelObserver = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          panelInView = entry.isIntersecting;
+          updateFloatingBtn();
+        });
+      }, { threshold: 0 });
+    }
+    currentPanel = panel;
+    panelObserver.observe(panel);
   }
 
   function showCards(){
