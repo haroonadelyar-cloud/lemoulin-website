@@ -570,8 +570,14 @@
     .gallery-expanded[hidden]{display:none;}
     .gallery-expanded-header{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:1.25rem;flex-wrap:wrap;}
     .gallery-expanded-header .gallery-subtitle{margin:0;}
-    .gallery-back-btn{background:transparent;color:var(--gold);border:1px solid rgba(201,153,58,0.3);border-radius:var(--radius);padding:8px 18px;font-family:var(--font-body);font-size:11px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;}
+    .gallery-back-btn{background:transparent;color:var(--gold);border:1px solid rgba(201,153,58,0.3);border-radius:var(--radius);padding:8px 18px;font-family:var(--font-body);font-size:11px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:background 0.2s,border-color 0.2s,color 0.2s;}
     .gallery-back-btn:hover{background:rgba(201,153,58,0.1);border-color:var(--gold);}
+    /* Bouton retour flottant — apparaît quand on scrolle dans la galerie */
+    .gallery-back-floating{position:fixed;top:84px;right:24px;z-index:90;background:rgba(22,19,15,0.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-color:var(--gold);box-shadow:0 6px 24px rgba(0,0,0,0.45);opacity:0;transform:translateY(-12px);pointer-events:none;transition:opacity 0.28s ease,transform 0.28s ease;}
+    .gallery-back-floating.is-visible{opacity:1;transform:translateY(0);pointer-events:auto;}
+    @media (max-width:768px){
+      .gallery-back-floating{top:72px;right:14px;padding:7px 14px;font-size:10px;}
+    }
 
     /* Sous-titres conservés pour cohérence */
     .gallery-subtitle{font-family:var(--font-display);font-size:clamp(20px,2.4vw,26px);font-weight:700;color:#fff;letter-spacing:0.02em;margin:0;}
@@ -2168,6 +2174,9 @@ if(document.readyState === 'loading'){
     </button>
   </div>
 
+  <!-- Bouton "Retour" flottant — partagé par toutes les galeries, visible quand on scrolle -->
+  <button type="button" class="gallery-back-btn gallery-back-floating" id="galleryBackFloating" data-gallery-back data-fr="← Retour" data-en="← Back" data-es="← Volver" aria-hidden="true">← Retour</button>
+
   <!-- Galerie déjeuners (cachée par défaut, affichée au clic sur la carte) -->
   <div class="gallery-expanded" id="gallery-expanded-dejeuners" hidden>
     <div class="gallery-expanded-header">
@@ -2763,11 +2772,48 @@ function initGalleryCards(){
   var cardsWrap = document.getElementById('gallery-cards');
   var hero = document.querySelector('.gallery-hero');
   var expandedPanels = document.querySelectorAll('.gallery-expanded');
+  var floatingBtn = document.getElementById('galleryBackFloating');
+  var floatingObserver = null;
+  var currentHeader = null;
+
+  function hideFloating(){
+    if(floatingBtn){
+      floatingBtn.classList.remove('is-visible');
+      floatingBtn.setAttribute('aria-hidden', 'true');
+    }
+    if(floatingObserver && currentHeader){
+      floatingObserver.unobserve(currentHeader);
+      currentHeader = null;
+    }
+  }
+
+  function watchHeader(panel){
+    if(!floatingBtn || !('IntersectionObserver' in window)) return;
+    var header = panel.querySelector('.gallery-expanded-header');
+    if(!header) return;
+    if(!floatingObserver){
+      floatingObserver = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          // Quand l'en-tête (avec son bouton retour original) sort de la vue → afficher le flottant
+          if(entry.isIntersecting){
+            floatingBtn.classList.remove('is-visible');
+            floatingBtn.setAttribute('aria-hidden', 'true');
+          } else {
+            floatingBtn.classList.add('is-visible');
+            floatingBtn.setAttribute('aria-hidden', 'false');
+          }
+        });
+      }, { threshold: 0, rootMargin: '-10px 0px 0px 0px' });
+    }
+    currentHeader = header;
+    floatingObserver.observe(header);
+  }
 
   function showCards(){
     expandedPanels.forEach(function(p){ p.hidden = true; });
     if(cardsWrap) cardsWrap.style.display = '';
     if(hero) hero.style.display = '';
+    hideFloating();
     // Remonter vers le haut de la galerie
     var galSection = document.getElementById('gallery');
     if(galSection){
@@ -2780,6 +2826,7 @@ function initGalleryCards(){
     if(cardsWrap) cardsWrap.style.display = 'none';
     if(hero) hero.style.display = 'none';
     expandedPanels.forEach(function(p){ p.hidden = true; });
+    hideFloating();
     var panel = document.getElementById('gallery-expanded-' + target);
     if(panel){
       panel.hidden = false;
@@ -2789,6 +2836,8 @@ function initGalleryCards(){
         var top = galSection.getBoundingClientRect().top + window.pageYOffset - 80;
         window.scrollTo({ top: top, behavior: 'smooth' });
       }
+      // Activer la surveillance du scroll pour afficher le bouton flottant
+      watchHeader(panel);
     }
   }
 
