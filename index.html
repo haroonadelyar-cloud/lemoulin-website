@@ -544,8 +544,8 @@
     .gallery-card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease;}
     .gallery-card:hover .gallery-card-img img{transform:scale(1.06);}
     .gallery-card:hover .gallery-card-img{border-color:var(--gold);}
-    .gallery-card-label{font-size:11px;letter-spacing:0.22em;color:var(--gold);text-transform:uppercase;font-weight:500;transition:color 0.2s;}
-    .gallery-card:hover .gallery-card-label{color:var(--gold-light);}
+    .gallery-card-label{display:inline-block;font-size:11px;letter-spacing:0.22em;color:var(--gold);text-transform:uppercase;font-weight:600;transition:background 0.2s,border-color 0.2s,color 0.2s,transform 0.2s;padding:9px 22px;border:1.5px solid var(--gold);border-radius:var(--radius);background:rgba(201,153,58,0.05);}
+    .gallery-card:hover .gallery-card-label{background:rgba(201,153,58,0.18);border-color:var(--gold-light);color:var(--gold-light);transform:translateY(-2px);}
     @media(max-width:560px){
       .gallery-cards{gap:1rem;}
       .gallery-card{max-width:none;flex:1 1 calc(50% - 0.5rem);min-width:0;}
@@ -1255,18 +1255,18 @@ if(document.readyState === 'loading'){
   <!-- 2 cartes pour ouvrir les galeries -->
   <div class="gallery-cards" id="gallery-cards">
     <button type="button" class="gallery-card" data-gallery-target="dejeuners" aria-label="Voir la galerie des déjeuners">
-      <div class="gallery-card-title" data-fr="Nos déjeunés" data-en="Our breakfasts" data-es="Nuestros desayunos">Nos déjeunés</div>
+      <div class="gallery-card-title" data-fr="Photos déjeuners" data-en="Breakfast photos" data-es="Fotos de desayunos">Photos déjeuners</div>
       <div class="gallery-card-img">
         <img src="images/dejeuners/2-oeufs-3-viandes.webp" alt="Déjeuners — Restaurant Le Moulin" loading="lazy" decoding="async">
       </div>
-      <div class="gallery-card-label" data-fr="Voir toute la galerie" data-en="View full gallery" data-es="Ver toda la galería">Voir toute la galerie</div>
+      <div class="gallery-card-label" data-fr="Voir les photos →" data-en="View photos →" data-es="Ver fotos →">Voir les photos →</div>
     </button>
     <button type="button" class="gallery-card" data-gallery-target="diners" aria-label="Voir la galerie des dîners et soupers">
-      <div class="gallery-card-title" data-fr="Nos dîners et soupers" data-en="Our lunches &amp; dinners" data-es="Nuestros almuerzos y cenas">Nos dîners et soupers</div>
+      <div class="gallery-card-title" data-fr="Photos dîners et soupers" data-en="Lunch &amp; dinner photos" data-es="Fotos de almuerzos y cenas">Photos dîners et soupers</div>
       <div class="gallery-card-img">
         <img src="images/plats/pizza-speciale-du-moulin.webp" alt="Dîners et soupers — Restaurant Le Moulin" loading="lazy" decoding="async">
       </div>
-      <div class="gallery-card-label" data-fr="Voir toute la galerie" data-en="View full gallery" data-es="Ver toda la galería">Voir toute la galerie</div>
+      <div class="gallery-card-label" data-fr="Voir les photos →" data-en="View photos →" data-es="Ver fotos →">Voir les photos →</div>
     </button>
   </div>
 
