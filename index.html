@@ -2856,10 +2856,9 @@ function initGalleryCards(){
     if(cardsWrap) cardsWrap.style.display = '';
     if(hero) hero.style.display = '';
     hideFloating();
-    // Remonter vers le haut de la galerie
-    var galSection = document.getElementById('gallery');
-    if(galSection){
-      var top = galSection.getBoundingClientRect().top + window.pageYOffset - 80;
+    // Scroller vers les cartes de sélection (pour que les 2 choix soient visibles immédiatement)
+    if(cardsWrap){
+      var top = cardsWrap.getBoundingClientRect().top + window.pageYOffset - 100;
       window.scrollTo({ top: top, behavior: 'smooth' });
     }
   }
