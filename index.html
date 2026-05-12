@@ -218,14 +218,32 @@
     .promo-ss-item.is-clickable,
     .midi-item.is-clickable,
     .promo-combo-card.is-clickable{cursor:pointer;position:relative;}
+    .pizza-row.is-clickable{cursor:pointer;}
+    .pizza-row.is-clickable td:first-child{position:relative;}
+    .pizza-row.is-clickable td:first-child::after{
+      content:'';
+      display:inline-block;
+      width:12px;
+      height:12px;
+      margin-left:8px;
+      vertical-align:middle;
+      background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'><circle cx='8' cy='8' r='6.5' stroke='%23C9993A' stroke-width='1.3'/><circle cx='8' cy='8' r='1.8' fill='%23C9993A'/></svg>");
+      background-size:contain;
+      background-repeat:no-repeat;
+      opacity:0.7;
+      transition:opacity 0.2s;
+    }
+    .pizza-row.is-clickable:hover td:first-child::after{opacity:1;}
     .menu-item.is-clickable:hover{background:var(--dark3);}
     .promo-ss-item.is-clickable:hover,
     .midi-item.is-clickable:hover,
-    .promo-combo-card.is-clickable:hover{background:rgba(201,153,58,0.06);}
+    .promo-combo-card.is-clickable:hover,
+    .pizza-row.is-clickable:hover{background:rgba(201,153,58,0.06);}
     .menu-item.is-clickable:focus-visible,
     .promo-ss-item.is-clickable:focus-visible,
     .midi-item.is-clickable:focus-visible,
-    .promo-combo-card.is-clickable:focus-visible{outline:2px solid var(--gold);outline-offset:-2px;}
+    .promo-combo-card.is-clickable:focus-visible,
+    .pizza-row.is-clickable:focus-visible{outline:2px solid var(--gold);outline-offset:-2px;}
     /* === Modal photo === */
     .dish-modal{
       position:fixed;
@@ -1618,7 +1636,7 @@ if(document.readyState === 'loading'){
                 <td style="text-align:center;padding:10px 12px;color:var(--gold);">30,25 $</td>
                 <td style="text-align:center;padding:10px 12px;color:var(--gold);">36,45 $</td>
               </tr>
-              <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+              <tr class="pizza-row" data-image="images/plats/pizza-toute-garnie.webp" style="border-bottom:1px solid rgba(255,255,255,0.05);">
                 <td style="padding:10px 16px;"><span style="color:#fff;font-weight:500;" data-fr="Toute garnie" data-en="All-dressed" data-es="Toda guarnecida">Toute garnie</span><br><span style="font-size:11px;color:var(--text-muted);" data-fr="Pepperoni, champignons, poivrons verts et fromage" data-en="Pepperoni, mushrooms, green peppers and cheese" data-es="Pepperoni, champiñones, pimiento verde y queso">Pepperoni, champignons, poivrons verts et fromage</span></td>
                 <td style="text-align:center;padding:10px 12px;color:var(--gold);">12,50 $</td>
                 <td style="text-align:center;padding:10px 12px;color:var(--gold);">17,20 $</td>
@@ -1626,7 +1644,7 @@ if(document.readyState === 'loading'){
                 <td style="text-align:center;padding:10px 12px;color:var(--gold);">30,25 $</td>
                 <td style="text-align:center;padding:10px 12px;color:var(--gold);">36,45 $</td>
               </tr>
-              <tr style="border-bottom:1px solid rgba(255,255,255,0.05);background:rgba(255,255,255,0.02);">
+              <tr class="pizza-row" data-image="images/plats/pizza-speciale-du-moulin.webp" style="border-bottom:1px solid rgba(255,255,255,0.05);background:rgba(255,255,255,0.02);">
                 <td style="padding:10px 16px;"><span style="color:#fff;font-weight:500;" data-fr="Spéciale du Moulin" data-en="Le Moulin Special" data-es="Especial del Moulin">Spéciale du Moulin</span><br><span style="font-size:11px;color:var(--text-muted);" data-fr="Champignons, poivrons verts, oignons, tomates, olives, pepperoni et bacon" data-en="Mushrooms, green peppers, onions, tomatoes, olives, pepperoni and bacon" data-es="Champiñones, pimiento verde, cebolla, tomate, aceitunas, pepperoni y tocineta">Champignons, poivrons verts, oignons, tomates, olives, pepperoni et bacon</span></td>
                 <td style="text-align:center;padding:10px 12px;color:var(--gold);">14,75 $</td>
                 <td style="text-align:center;padding:10px 12px;color:var(--gold);">19,50 $</td>
@@ -3071,11 +3089,12 @@ function switchDejeunerTab(tab, btn){
   function openModal(item){
     lastFocusedEl = document.activeElement;
 
-    // Détecter le type d'item (menu-item, promo-ss-item, midi-item, promo-combo-card, dessert-item)
+    // Détecter le type d'item (menu-item, promo-ss-item, midi-item, promo-combo-card, dessert-item, pizza-row)
     var isPromoItem = item.classList.contains('promo-ss-item');
     var isMidiItem = item.classList.contains('midi-item');
     var isComboCard = item.classList.contains('promo-combo-card');
     var isDessertItem = item.classList.contains('dessert-item');
+    var isPizzaRow = item.classList.contains('pizza-row');
 
     // Récupérer nom, description et prix selon le type
     var nameEl, descElement, priceElement;
@@ -3099,6 +3118,14 @@ function switchDejeunerTab(tab, btn){
       descElement = null;
       var parentCard = item.closest('.dessert-card');
       priceElement = parentCard ? parentCard.querySelector('.dessert-price') : null;
+    } else if(isPizzaRow){
+      // Pizza dans la table : nom dans le 1er <span data-fr> de la 1ère <td>,
+      // description dans le 2e <span> (s'il existe). Pas de prix unique (table à colonnes).
+      var firstTd = item.querySelector('td:first-child');
+      var spans = firstTd ? firstTd.querySelectorAll('span[data-fr]') : [];
+      nameEl = spans[0] || null;
+      descElement = spans[1] || null;
+      priceElement = null;
     } else {
       // menu-item classique
       nameEl = item.querySelector('.menu-item-name');
@@ -3142,7 +3169,13 @@ function switchDejeunerTab(tab, btn){
       }
     }
 
-    priceEl.textContent = priceElement ? (priceElement.getAttribute('data-' + (document.documentElement.lang || 'fr')) || priceElement.textContent) : '';
+    if(priceElement){
+      priceEl.textContent = priceElement.getAttribute('data-' + (document.documentElement.lang || 'fr')) || priceElement.textContent;
+      priceEl.style.display = '';
+    } else {
+      priceEl.textContent = '';
+      priceEl.style.display = 'none';
+    }
 
     // Gérer l'image : data-image (simple) ou data-image-variants (avec toggle)
     var imageSrc = item.getAttribute('data-image');
@@ -3248,7 +3281,7 @@ function switchDejeunerTab(tab, btn){
 
   // Rendre tous les items cliquables (.menu-item, .promo-ss-item, .midi-item, .promo-combo-card, .dessert-item)
   function initMenuItems(){
-    var items = document.querySelectorAll('.menu-item, .promo-ss-item, .midi-item, .promo-combo-card, .dessert-item');
+    var items = document.querySelectorAll('.menu-item, .promo-ss-item, .midi-item, .promo-combo-card, .dessert-item, .pizza-row');
     items.forEach(function(item){
       // Éviter double-init
       if(item.dataset.modalInit === '1') return;
@@ -3260,6 +3293,10 @@ function switchDejeunerTab(tab, btn){
 
       // Récupérer le nom selon le type d'item
       var nameEl = item.querySelector('.menu-item-name, .promo-ss-name, .midi-item-name, .promo-card-name');
+      // Pour les pizza-row, le nom est dans la 1ère <td> > <span> avec data-fr
+      if(!nameEl && item.classList.contains('pizza-row')){
+        nameEl = item.querySelector('td:first-child span[data-fr]');
+      }
       // Pour les desserts, le nom est dans un <span> direct
       if(!nameEl && item.classList.contains('dessert-item')){
         nameEl = item.querySelector(':scope > span[data-fr], :scope > span');
