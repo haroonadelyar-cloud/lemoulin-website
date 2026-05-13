@@ -164,6 +164,10 @@
     .lang-switch button.active{background:var(--gold);color:var(--dark);}
     .lang-switch button:not(.active):hover{color:var(--gold);}
     .hero{min-height:92vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:var(--dark2);}
+    @media(max-width:640px){
+      .hero{min-height:auto;}
+      .hero-content{padding:2rem 2rem 2.5rem;}
+    }
     .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 110%,rgba(201,153,58,0.12) 0%,transparent 70%),repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(201,153,58,0.015) 40px,rgba(201,153,58,0.015) 41px);}
     .hero-content{position:relative;text-align:center;padding:3rem 2rem;max-width:780px;animation:fadeUp 1s ease both;}
     @keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
