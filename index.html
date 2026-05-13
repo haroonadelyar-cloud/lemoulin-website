@@ -2895,6 +2895,13 @@ function initMenuAccordions(){
           group.cat.classList.remove('is-closed');
           group.cat.setAttribute('aria-expanded','true');
           group.items.forEach(function(it){ it.classList.remove('acc-hidden'); });
+          // Après ouverture, replacer le titre juste sous la barre sticky (nav 66px + sous-tabs ~70px)
+          // pour éviter que le scroll reste figé là où l'ancien contenu était.
+          requestAnimationFrame(function(){
+            var offset = 140;
+            var top = group.cat.getBoundingClientRect().top + window.pageYOffset - offset;
+            window.scrollTo({ top: Math.max(top, 0), behavior: 'smooth' });
+          });
         }
       };
 
