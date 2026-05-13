@@ -941,13 +941,12 @@
        - safe-area iOS : ne pas être caché par la barre Safari (iPhone X+)
        - caché par défaut, devient visible après le hero (via JS .is-visible)
        - se cache quand une modale est ouverte (via body.modal-open) */
-    .fab-phone{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom, 0px));right:20px;width:56px;height:56px;border-radius:50%;background:var(--gold);color:var(--dark);display:none;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.4),0 0 0 0 rgba(201,153,58,0.5);z-index:150;text-decoration:none;opacity:0;pointer-events:none;transform:translateY(8px);transition:opacity 0.28s ease,transform 0.28s ease,background 0.2s;animation:fabPulse 2.5s ease-in-out infinite;}
+    .fab-phone{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom, 0px));right:20px;width:56px;height:56px;border-radius:50%;background:var(--gold);color:var(--dark);display:inline-flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.4),0 0 0 0 rgba(201,153,58,0.5);z-index:150;text-decoration:none;opacity:0;pointer-events:none;transform:translateY(8px);transition:opacity 0.28s ease,transform 0.28s ease,background 0.2s;animation:fabPulse 2.5s ease-in-out infinite;}
     .fab-phone.is-visible{opacity:1;pointer-events:auto;transform:translateY(0);}
     .fab-phone:active{transform:scale(0.94);background:var(--gold-light);}
     .fab-phone:hover{transform:scale(1.08);background:var(--gold-light);}
     .fab-phone svg{width:24px;height:24px;}
     @keyframes fabPulse{0%,100%{box-shadow:0 4px 16px rgba(0,0,0,0.4),0 0 0 0 rgba(201,153,58,0.5);}50%{box-shadow:0 4px 16px rgba(0,0,0,0.4),0 0 0 12px rgba(201,153,58,0);}}
-    @media(max-width:1024px){.fab-phone{display:inline-flex;}}
     @media (prefers-reduced-motion: reduce){.fab-phone{animation:none;transition:opacity 0.2s ease;}}
     /* Caché quand une modale est ouverte */
     body.modal-open .fab-phone{opacity:0;pointer-events:none;}
