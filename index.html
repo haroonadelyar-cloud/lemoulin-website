@@ -2895,10 +2895,21 @@ function initMenuAccordions(){
           group.cat.classList.remove('is-closed');
           group.cat.setAttribute('aria-expanded','true');
           group.items.forEach(function(it){ it.classList.remove('acc-hidden'); });
-          // Après ouverture, replacer le titre juste sous la barre sticky (nav 66px + sous-tabs ~70px)
-          // pour éviter que le scroll reste figé là où l'ancien contenu était.
+          // Après ouverture, replacer le titre juste sous les barres sticky (nav + sous-tabs)
+          // en calculant la hauteur réelle pour éviter que le titre soit caché.
           requestAnimationFrame(function(){
-            var offset = 140;
+            var navEl = document.querySelector('nav');
+            var subtabsEl = group.cat.closest('.dejeuner-subpanel, .diner-subpanel');
+            // On cherche la barre sticky correspondant au panel
+            var stickyBar = null;
+            if(subtabsEl){
+              var panel = subtabsEl.parentNode;
+              if(panel) stickyBar = panel.querySelector('.diner-subtabs');
+            }
+            var navH = navEl ? navEl.getBoundingClientRect().height : 66;
+            var barH = stickyBar ? stickyBar.getBoundingClientRect().height : 0;
+            // Marge de respiration : 16px pour que le titre ne soit pas collé à la barre
+            var offset = navH + barH + 16;
             var top = group.cat.getBoundingClientRect().top + window.pageYOffset - offset;
             window.scrollTo({ top: Math.max(top, 0), behavior: 'smooth' });
           });
