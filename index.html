@@ -183,6 +183,23 @@
       .btn-hero-primary{padding:15px 40px;}
       .hero-actions-secondary{gap:0.5rem;}
       .hero-actions-secondary .btn-ghost{padding:11px 18px;font-size:11px;letter-spacing:0.1em;}
+      /* Disposition en triangle sur mobile : Menu en haut centré, les 2 autres en bas (gauche/droite) */
+      .hero-actions-secondary{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:0.6rem;
+        max-width:360px;
+        margin-left:auto;
+        margin-right:auto;
+        flex-wrap:nowrap;
+      }
+      .hero-actions-secondary .btn-ghost{
+        width:100%;
+        text-align:center;
+        padding:12px 10px;
+        font-size:10.5px;
+        letter-spacing:0.08em;
+      }
     }
     .btn-gold{background:var(--gold);color:var(--dark);padding:14px 32px;border:none;font-family:var(--font-body);font-size:12px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;border-radius:var(--radius);text-decoration:none;display:inline-block;transition:background 0.2s;}
     .btn-gold:hover{background:var(--gold-light);}
@@ -2349,7 +2366,7 @@ if(document.readyState === 'loading'){
 <section class="about-section" id="about">
 <div class="section-inner">
   <div class="section-eyebrow" data-fr="Notre histoire" data-en="Our story" data-es="Nuestra historia">Notre histoire</div>
-  <h2 class="section-title" data-fr="À propos" data-en="About us" data-es="">À propos</h2>
+  <h2 class="section-title" data-fr="À propos" data-en="About us" data-es="Nosotros">À propos</h2>
   <div class="gold-rule"></div>
   <div class="about-layout">
     <div class="about-text">
@@ -2662,7 +2679,11 @@ function toggleAbout(){
     }, 360);
     btn.classList.remove('is-open');
     btn.setAttribute('aria-expanded','false');
-    if(label) label.textContent = (window.currentLang === 'en') ? 'Read more' : 'Lire la suite';
+    if(label){
+      if(window.currentLang === 'en') label.textContent = 'Read more';
+      else if(window.currentLang === 'es') label.textContent = 'Leer más';
+      else label.textContent = 'Lire la suite';
+    }
   } else {
     // Ouvrir : animation 0 vers height auto
     more.removeAttribute('hidden');
@@ -2682,7 +2703,11 @@ function toggleAbout(){
     }, 400);
     btn.classList.add('is-open');
     btn.setAttribute('aria-expanded','true');
-    if(label) label.textContent = (window.currentLang === 'en') ? 'Show less' : 'Voir moins';
+    if(label){
+      if(window.currentLang === 'en') label.textContent = 'Show less';
+      else if(window.currentLang === 'es') label.textContent = 'Ver menos';
+      else label.textContent = 'Voir moins';
+    }
   }
 }
 
