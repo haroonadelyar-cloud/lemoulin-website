@@ -163,13 +163,19 @@
     .lang-switch button{background:transparent;border:none;color:var(--text-muted);padding:6px 10px;font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:0.08em;cursor:pointer;transition:background 0.2s,color 0.2s;text-transform:uppercase;}
     .lang-switch button.active{background:var(--gold);color:var(--dark);}
     .lang-switch button:not(.active):hover{color:var(--gold);}
-    .hero{min-height:92vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:var(--dark2);}
+    .hero{min-height:80vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:var(--dark2);}
     @media(max-width:640px){
-      .hero{min-height:auto;}
-      .hero-content{padding:2rem 2rem 2.5rem;}
+      .hero{min-height:100vh;}
+      .hero-content{padding:1rem 1.5rem;}
+      .hero-title{font-size:44px !important;margin-bottom:0.6rem !important;}
+      .hero-eyebrow{margin-bottom:0.6rem !important;}
+      .hero-divider{margin-bottom:0.85rem !important;}
+      .hero-sub{font-size:13px !important;line-height:1.55 !important;margin-bottom:1.25rem !important;}
+      .hero-open-status{margin-bottom:1rem !important;}
+      .moulin-logo{width:78px !important;height:auto !important;margin-bottom:0.6rem !important;}
     }
     .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 110%,rgba(201,153,58,0.12) 0%,transparent 70%),repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(201,153,58,0.015) 40px,rgba(201,153,58,0.015) 41px);}
-    .hero-content{position:relative;text-align:center;padding:3rem 2rem;max-width:780px;animation:fadeUp 1s ease both;}
+    .hero-content{position:relative;text-align:center;padding:2rem 2rem;max-width:780px;animation:fadeUp 1s ease both;}
     @keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
     @keyframes moulinSpin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
     @keyframes logoFadeIn{from{opacity:0;transform:translateY(12px) scale(0.95);}to{opacity:1;transform:translateY(0) scale(1);}}
@@ -177,9 +183,9 @@
     .moulin-pales{transform-origin:50px 42px;animation:moulinSpin 14s linear infinite;}
     @media (prefers-reduced-motion: reduce){.moulin-pales,.moulin-logo{animation:none;}}
     .hero-eyebrow{font-size:11px;letter-spacing:0.35em;color:var(--gold);text-transform:uppercase;font-weight:500;margin-bottom:1.25rem;}
-    .hero-title{font-family:var(--font-display);font-size:clamp(56px,9vw,96px);font-weight:700;color:#fff;letter-spacing:0.08em;line-height:0.95;text-transform:uppercase;margin-bottom:1.5rem;}
-    .hero-divider{width:60px;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);margin:0 auto 1.5rem;}
-    .hero-sub{font-size:15px;color:var(--text-muted);letter-spacing:0.04em;line-height:1.8;margin-bottom:2.5rem;}
+    .hero-title{font-family:var(--font-display);font-size:clamp(56px,9vw,96px);font-weight:700;color:#fff;letter-spacing:0.08em;line-height:0.95;text-transform:uppercase;margin-bottom:1rem;}
+    .hero-divider{width:60px;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);margin:0 auto 1rem;}
+    .hero-sub{font-size:15px;color:var(--text-muted);letter-spacing:0.04em;line-height:1.7;margin-bottom:1.75rem;}
     .hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
     .hero-actions-secondary{margin-top:0.85rem;gap:0.65rem;}
     .btn-hero-primary{padding:16px 56px;font-size:13px;letter-spacing:0.18em;}
