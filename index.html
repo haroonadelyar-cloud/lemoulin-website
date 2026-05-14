@@ -431,13 +431,15 @@
     .menu-table-note{background:rgba(201,153,58,0.05);border:1px solid rgba(201,153,58,0.15);border-radius:var(--radius);padding:12px 16px;font-size:12px;color:var(--text-muted);margin-bottom:1.5rem;line-height:1.6;}
     /* Spéciaux du midi — section vedette */
     .specials-stack{display:flex;flex-direction:column;gap:0.85rem;}
-    .specials-group-header{margin-bottom:0.85rem;padding-bottom:0.7rem;border-bottom:1px solid rgba(201,153,58,0.15);}
-    .specials-group-title{font-family:var(--font-display);font-size:clamp(16px,1.8vw,19px);font-weight:700;color:#fff;line-height:1.2;margin-bottom:0.3rem;letter-spacing:0.02em;}
+    .specials-group-header{margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid rgba(201,153,58,0.15);}
+    .specials-group-title{font-family:var(--font-display);font-size:clamp(28px,3.5vw,42px);font-weight:700;color:#fff;line-height:1.1;margin-bottom:0.75rem;letter-spacing:0.01em;}
     .specials-group-sub{font-size:12px;color:var(--text-muted);line-height:1.5;}
     .specials-group-sub a:hover{text-decoration:underline;}
+    .specials-group-sub.with-phone-pill{text-align:center;}
+    .specials-group-sub.with-phone-pill .phone-pill{display:inline-flex;margin:0.7rem auto 0;}
     /* Bouton téléphone inline — élégant et cliquable */
-    .phone-pill{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;margin-left:2px;background:rgba(201,153,58,0.08);border:1px solid rgba(201,153,58,0.45);border-radius:999px;color:var(--gold)!important;text-decoration:none!important;font-weight:600;font-size:13px;letter-spacing:0.02em;transition:background 0.2s ease,border-color 0.2s ease,transform 0.15s ease;white-space:nowrap;vertical-align:middle;}
-    .phone-pill:hover{background:rgba(201,153,58,0.18);border-color:var(--gold);transform:translateY(-1px);text-decoration:none!important;}
+    .phone-pill{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;margin-left:2px;background:var(--gold);border:1px solid var(--gold);border-radius:999px;color:var(--dark)!important;text-decoration:none!important;font-weight:600;font-size:13px;letter-spacing:0.02em;transition:background 0.2s ease,border-color 0.2s ease,transform 0.15s ease,box-shadow 0.2s ease;white-space:nowrap;vertical-align:middle;}
+    .phone-pill:hover{background:#D4B05E;border-color:#D4B05E;transform:translateY(-1px);text-decoration:none!important;box-shadow:0 4px 12px rgba(201,153,58,0.35);}
     .phone-pill svg{width:12px;height:12px;flex-shrink:0;}
     .midi-featured{background:linear-gradient(135deg,rgba(201,153,58,0.08) 0%,rgba(201,153,58,0.03) 100%);border:1px solid rgba(201,153,58,0.3);border-radius:var(--radius);position:relative;overflow:hidden;}
     .midi-featured::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,transparent,var(--gold),transparent);z-index:1;}
@@ -2148,9 +2150,11 @@ if(document.readyState === 'loading'){
 
   <!-- PROMOTIONS LIVRAISON & EMPORTER -->
   <div id="promotions" class="specials-group" style="margin-top:2.5rem;">
+    <span id="order" style="position:absolute;margin-top:-90px;"></span>
     <div class="specials-group-header">
       <h3 class="specials-group-title" data-fr="Promotions livraison &amp; emporter" data-en="Delivery &amp; Takeout Specials" data-es="Promociones de entrega y para llevar">Promotions livraison &amp; emporter</h3>
-      <p class="specials-group-sub" data-fr='Des combos savoureux avec boisson incluse — commandez par téléphone au <a href="tel:+18198324242" class="phone-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(819) 832-4242</a>' data-en='Tasty combos with drink included — call to order at <a href="tel:+18198324242" class="phone-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(819) 832-4242</a>' data-es='Combos deliciosos con bebida incluida — pida por teléfono al <a href="tel:+18198324242" class="phone-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(819) 832-4242</a>'>Des combos savoureux avec boisson incluse — commandez par téléphone au <a href="tel:+18198324242" class="phone-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(819) 832-4242</a></p>
+      <div class="gold-rule" style="margin:0 0 1rem;"></div>
+      <p class="specials-group-sub with-phone-pill" data-fr='Des combos savoureux à découvrir — commandez par téléphone au<br><a href="tel:+18198324242" class="phone-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(819) 832-4242</a>' data-en='Tasty combos to discover — call to order at<br><a href="tel:+18198324242" class="phone-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(819) 832-4242</a>' data-es='Combos deliciosos por descubrir — pida por teléfono al<br><a href="tel:+18198324242" class="phone-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(819) 832-4242</a>'>Des combos savoureux à découvrir — commandez par téléphone au<br><a href="tel:+18198324242" class="phone-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(819) 832-4242</a></p>
     </div>
     <div class="specials-stack">
 
@@ -2244,6 +2248,7 @@ if(document.readyState === 'loading'){
   <div class="specials-group" style="margin-top:3.5rem;">
     <div class="specials-group-header">
       <h3 class="specials-group-title" data-fr="Spéciaux en salle à manger" data-en="Dine-in Specials" data-es="Especiales en el restaurante">Spéciaux en salle à manger</h3>
+      <div class="gold-rule" style="margin:0 0 1rem;"></div>
       <p class="specials-group-sub" data-fr="Nos offres à déguster sur place — du midi jusqu'en soirée" data-en="Our offers to enjoy on site — from noon through the evening" data-es="Nuestras ofertas para disfrutar en el lugar — desde el mediodía hasta la noche">Nos offres à déguster sur place — du midi jusqu'en soirée</p>
     </div>
     <div class="specials-stack">
@@ -2577,28 +2582,6 @@ if(document.readyState === 'loading'){
 
 
 
-<!-- iShopFood -->
-<section class="ueat-section" id="order">
-<div class="section-inner">
-  <div class="section-eyebrow" data-fr="Commandez où vous êtes" data-en="Order from anywhere" data-es="Pida donde esté">Commandez où vous êtes</div>
-  <h2 class="section-title" data-fr="Livraison &amp; Emporter" data-en="Delivery &amp; Takeout" data-es="Entrega y para llevar">Livraison &amp; Emporter</h2>
-  <div class="gold-rule"></div>
-  <div class="ueat-banner">
-    <div style="display:flex;align-items:center;gap:0.7rem;">
-      <span class="ueat-badge" data-fr="Bientôt disponible" data-en="Coming soon" data-es="Próximamente">Bientôt disponible</span>
-      <span class="ueat-text" data-fr='Commande en ligne via <strong>iShopFood</strong>' data-en='Online ordering via <strong>iShopFood</strong>' data-es='Pedido en línea por <strong>iShopFood</strong>'>Commande en ligne via <strong>iShopFood</strong></span>
-    </div>
-    <div class="ueat-divider"></div>
-    <div class="ueat-fallback">
-      <span class="ueat-fallback-label" data-fr="En attendant :" data-en="In the meantime:" data-es="Mientras tanto:">En attendant :</span>
-      <a href="tel:+18198324242" class="ueat-phone">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        (819) 832-4242
-      </a>
-    </div>
-  </div>
-</div>
-</section>
 </main>
 
 <!-- === MODAL PHOTO DES PLATS === -->
