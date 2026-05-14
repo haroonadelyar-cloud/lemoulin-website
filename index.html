@@ -248,11 +248,11 @@
     .menu-item-name{font-size:13px;color:#fff;font-weight:500;margin-bottom:2px;}
     .menu-item-desc{font-size:11px;color:var(--text-muted);line-height:1.5;}
     .menu-item-price{color:var(--gold);font-size:13px;font-weight:600;white-space:nowrap;flex-shrink:0;}
-    /* Prix multi-variantes en grille (ex: 4 quantités d'ailes) */
-    .menu-item-price-grid{color:var(--gold);font-size:12px;font-weight:600;display:grid;grid-template-columns:repeat(2,auto);gap:2px 12px;justify-content:end;text-align:right;line-height:1.4;flex-shrink:0;}
+    /* Prix multi-variantes en grille 2 colonnes (ex: 4 quantités d'ailes) */
+    .menu-item-price-grid{color:var(--gold);font-size:12px;font-weight:600;display:grid;grid-template-columns:repeat(2,auto);gap:3px 14px;justify-content:end;text-align:right;line-height:1.4;flex-shrink:0;}
     .menu-item-price-grid > span{white-space:nowrap;}
     @media (min-width: 768px){
-      .menu-item-price-grid{grid-template-columns:repeat(4,auto);font-size:13px;}
+      .menu-item-price-grid{font-size:13px;gap:4px 18px;}
     }
     /* === Items cliquables pour ouvrir le modal photo === */
     .menu-item.is-clickable,
