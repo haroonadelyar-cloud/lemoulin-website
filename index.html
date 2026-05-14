@@ -429,6 +429,19 @@
     }
     .menu-note{display:flex;align-items:center;gap:10px;background:rgba(201,153,58,0.07);border:1px solid rgba(201,153,58,0.18);border-radius:var(--radius);padding:10px 16px;font-size:12px;color:var(--text-muted);margin-bottom:1.5rem;line-height:1.5;}
     .menu-table-note{background:rgba(201,153,58,0.05);border:1px solid rgba(201,153,58,0.15);border-radius:var(--radius);padding:12px 16px;font-size:12px;color:var(--text-muted);margin-bottom:1.5rem;line-height:1.6;}
+    /* Version pliable — bouton en-tête + contenu cachable */
+    .menu-table-note-toggle{background:rgba(201,153,58,0.05);border:1px solid rgba(201,153,58,0.15);border-radius:var(--radius);margin-bottom:1.5rem;overflow:hidden;transition:background 0.2s,border-color 0.2s;}
+    .menu-table-note-toggle:hover{background:rgba(201,153,58,0.08);border-color:rgba(201,153,58,0.25);}
+    .menu-table-note-header{width:100%;background:transparent;border:none;padding:11px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;font-family:inherit;color:inherit;text-align:left;}
+    .menu-table-note-header-left{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+    .menu-table-note-icon{width:14px;height:14px;color:var(--gold);flex-shrink:0;}
+    .menu-table-note-label{color:var(--gold);font-size:13px;font-weight:600;letter-spacing:0.01em;}
+    .menu-table-note-price{color:var(--text-muted);font-size:12px;}
+    .menu-table-note-chevron{color:var(--gold);font-size:11px;transition:transform 0.25s ease;flex-shrink:0;}
+    .menu-table-note-toggle.is-open .menu-table-note-chevron{transform:rotate(180deg);}
+    .menu-table-note-content{max-height:0;overflow:hidden;transition:max-height 0.3s ease;}
+    .menu-table-note-toggle.is-open .menu-table-note-content{max-height:300px;}
+    .menu-table-note-inner{padding:0 16px 12px;font-size:12px;color:var(--text-muted);line-height:1.6;border-top:1px solid rgba(201,153,58,0.1);padding-top:10px;margin-top:0;}
     /* Spéciaux du midi — section vedette */
     .specials-stack{display:flex;flex-direction:column;gap:0.85rem;}
     .specials-group-header{margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid rgba(201,153,58,0.15);}
@@ -1565,9 +1578,21 @@ if(document.readyState === 'loading'){
 
     <!-- DÎNER & SOUPER -->
     <div class="menu-panel" id="panel-diner">
-      <div class="menu-table-note">
-        <strong style="color:var(--gold);" data-fr="Table d'hôte disponible :" data-en="Table d'hôte available:" data-es="Menú del día disponible:">Table d'hôte disponible :</strong> <span data-fr="Pour 13,95 $ de plus, transformez votre plat principal en table d'hôte incluant soupe, entrée, thé ou café et dessert." data-en="For $13.95 more, turn your main course into a table d'hôte including soup, starter, tea or coffee and dessert." data-es="Por 13,95 $ adicionales, transforme su plato principal en menú del día incluyendo sopa, entrada, té o café y postre.">Pour 13,95 $ de plus, transformez votre plat principal en table d'hôte incluant soupe, entrée, thé ou café et dessert.</span><br>
-        <span style="font-size:11px;" data-fr="Choix d'entrées : champignons à l'ail gratinés · escargots à l'ail gratinés · fondues parmesan · 6 ailes de poulet · bâtonnets de fromage" data-en="Choice of starters: garlic mushrooms au gratin · garlic escargots au gratin · parmesan fondues · 6 chicken wings · cheese sticks" data-es="Entradas a elegir: champiñones al ajo gratinados · caracoles al ajo gratinados · fondues parmesano · 6 alas de pollo · palitos de queso">Choix d'entrées : champignons à l'ail gratinés · escargots à l'ail gratinés · fondues parmesan · 6 ailes de poulet · bâtonnets de fromage</span>
+      <div class="menu-table-note-toggle" id="tableHoteNote">
+        <button type="button" class="menu-table-note-header" aria-expanded="false" aria-controls="tableHoteContent" onclick="toggleTableHote(this)">
+          <span class="menu-table-note-header-left">
+            <svg class="menu-table-note-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+            <span class="menu-table-note-label" data-fr="Table d'hôte disponible" data-en="Table d'hôte available" data-es="Menú del día disponible">Table d'hôte disponible</span>
+            <span class="menu-table-note-price" data-fr="— +13,95 $" data-en="— +$13.95" data-es="— +13,95 $">— +13,95 $</span>
+          </span>
+          <span class="menu-table-note-chevron" aria-hidden="true">▼</span>
+        </button>
+        <div class="menu-table-note-content" id="tableHoteContent" role="region">
+          <div class="menu-table-note-inner">
+            <span data-fr="Pour 13,95 $ de plus, transformez votre plat principal en table d'hôte incluant soupe, entrée, thé ou café et dessert." data-en="For $13.95 more, turn your main course into a table d'hôte including soup, starter, tea or coffee and dessert." data-es="Por 13,95 $ adicionales, transforme su plato principal en menú del día incluyendo sopa, entrada, té o café y postre.">Pour 13,95 $ de plus, transformez votre plat principal en table d'hôte incluant soupe, entrée, thé ou café et dessert.</span><br>
+            <span style="font-size:11px;" data-fr="Choix d'entrées : champignons à l'ail gratinés · escargots à l'ail gratinés · fondues parmesan · 6 ailes de poulet · bâtonnets de fromage" data-en="Choice of starters: garlic mushrooms au gratin · garlic escargots au gratin · parmesan fondues · 6 chicken wings · cheese sticks" data-es="Entradas a elegir: champiñones al ajo gratinados · caracoles al ajo gratinados · fondues parmesano · 6 alas de pollo · palitos de queso">Choix d'entrées : champignons à l'ail gratinés · escargots à l'ail gratinés · fondues parmesan · 6 ailes de poulet · bâtonnets de fromage</span>
+          </div>
+        </div>
       </div>
       
       <!-- Coups de cœur — Dîner & Souper -->
@@ -3305,6 +3330,13 @@ function toggleSpecial(btn){
   if(!card) return;
   var isOpen = card.getAttribute('data-open') === 'true';
   card.setAttribute('data-open', isOpen ? 'false' : 'true');
+  btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+}
+function toggleTableHote(btn){
+  var wrap = btn.closest('.menu-table-note-toggle');
+  if(!wrap) return;
+  var isOpen = wrap.classList.contains('is-open');
+  wrap.classList.toggle('is-open');
   btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
 }
 function switchTab(panel,btn){
