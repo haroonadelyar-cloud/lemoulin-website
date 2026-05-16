@@ -235,6 +235,41 @@
     .menu-tab.active{color:var(--gold);border-bottom-color:var(--gold);}
     .menu-panel{display:none;opacity:0;transition:opacity 0.25s ease;}
     .menu-panel.active{display:block;opacity:1;}
+
+    /* === Système 4 cartes du menu (style galerie) === */
+    .menu-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin:2rem 0 0 0;}
+    .menu-card{background:transparent;border:none;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:0.75rem;width:100%;font-family:var(--font-body);color:inherit;transition:transform 0.25s ease;}
+    .menu-card:hover{transform:translateY(-3px);}
+    .menu-card-title{font-family:var(--font-display);font-size:clamp(15px,1.4vw,19px);font-weight:700;color:#fff;letter-spacing:0.02em;text-align:center;margin-bottom:0;line-height:1.2;}
+    .menu-card:hover .menu-card-title{color:var(--gold);}
+    .menu-card-img{width:100%;aspect-ratio:4/3;border-radius:var(--radius);overflow:hidden;border:1px solid rgba(201,153,58,0.18);position:relative;background:rgba(201,153,58,0.04);}
+    .menu-card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease;}
+    .menu-card:hover .menu-card-img img{transform:scale(1.06);}
+    .menu-card:hover .menu-card-img{border-color:var(--gold);}
+    .menu-card-img-placeholder{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:500;background:repeating-linear-gradient(45deg,rgba(201,153,58,0.04) 0 12px,rgba(201,153,58,0.08) 12px 24px);text-align:center;padding:0 8px;}
+    .menu-card-label{display:inline-block;font-size:10px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;font-weight:600;transition:background 0.2s,border-color 0.2s,color 0.2s,transform 0.2s;padding:8px 16px;border:1.5px solid var(--gold);border-radius:var(--radius);background:rgba(201,153,58,0.05);}
+    .menu-card:hover .menu-card-label{background:rgba(201,153,58,0.18);border-color:var(--gold-light);color:var(--gold-light);transform:translateY(-2px);}
+    @media(max-width:768px){
+      .menu-cards{grid-template-columns:repeat(2,1fr);gap:1rem;}
+      .menu-card-title{font-size:14px;}
+      .menu-card-label{font-size:9px;letter-spacing:0.15em;padding:7px 14px;}
+    }
+    @media(max-width:420px){
+      .menu-cards{grid-template-columns:1fr;}
+    }
+
+    /* === Panneau de menu déplié (style galerie) === */
+    .menu-expanded{margin-top:2.5rem;}
+    .menu-expanded[hidden]{display:none;}
+    .menu-expanded-header{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap;}
+    .menu-expanded-title{font-family:var(--font-display);font-size:clamp(22px,3vw,32px);font-weight:700;color:var(--gold);margin:0;letter-spacing:0.01em;}
+    .menu-back-btn{background:transparent;color:var(--gold);border:1px solid rgba(201,153,58,0.3);border-radius:var(--radius);padding:8px 18px;font-family:var(--font-body);font-size:11px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:background 0.2s,border-color 0.2s,color 0.2s;}
+    .menu-back-btn:hover{background:rgba(201,153,58,0.1);border-color:var(--gold);}
+    .menu-back-floating{position:fixed;top:84px;right:24px;z-index:90;background:rgba(22,19,15,0.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-color:var(--gold);box-shadow:0 6px 24px rgba(0,0,0,0.45);opacity:0;transform:translateY(-12px);pointer-events:none;transition:opacity 0.28s ease,transform 0.28s ease;}
+    .menu-back-floating.is-visible{opacity:1;transform:translateY(0);pointer-events:auto;}
+    @media(max-width:640px){
+      .menu-back-floating{top:72px;right:14px;padding:7px 14px;font-size:10px;}
+    }
     .menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));border:1px solid rgba(255,255,255,0.06);}
     .menu-cat{grid-column:1/-1;padding:0.72rem 1.5rem;background:rgba(201,153,58,0.06);border-top:1px solid rgba(201,153,58,0.22);border-bottom:1px solid rgba(201,153,58,0.22);color:var(--gold);}
     .menu-cat-title{font-family:var(--font-display);font-size:clamp(14px,1.5vw,17px);font-weight:700;line-height:1.15;margin:0;color:var(--gold);}
@@ -1368,6 +1403,8 @@ if(document.readyState === 'loading'){
     <div class="gallery-grid">
       <div class="gallery-item" data-photo="images/dejeuners/2-oeufs-3-viandes.webp" data-photo-caption-fr="2 œufs, 3 viandes" data-photo-caption-en="2 eggs, 3 meats" data-photo-caption-es="2 huevos, 3 carnes"><img src="images/dejeuners/2-oeufs-3-viandes.webp" alt="2 œufs, 3 viandes — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="2 œufs, 3 viandes" data-en="2 eggs, 3 meats" data-es="2 huevos, 3 carnes">2 œufs, 3 viandes</span></div></div>
       <div class="gallery-item" data-photo="images/dejeuners/bene-jambon-fromage-suisse.webp" data-photo-caption-fr="Béné au jambon et fromage suisse" data-photo-caption-en="Benedict with ham and Swiss cheese" data-photo-caption-es="Benedictinos con jamón y queso suizo"><img src="images/dejeuners/bene-jambon-fromage-suisse.webp" alt="Béné au jambon et fromage suisse — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Béné au jambon et fromage suisse" data-en="Benedict with ham and Swiss cheese" data-es="Benedictinos con jamón y queso suizo">Béné au jambon et fromage suisse</span></div></div>
+      <div class="gallery-item" data-photo="images/dejeuners/2-oeufs-viande-gaufre-aux-fruits.webp" data-photo-caption-fr="2 œufs, viande au choix, gaufre aux fruits frais" data-photo-caption-en="2 eggs, choice of meat, fresh fruit waffle" data-photo-caption-es="2 huevos, carne a elegir, waffle con fruta fresca"><img src="images/dejeuners/2-oeufs-viande-gaufre-aux-fruits.webp" alt="2 œufs, viande au choix, gaufre aux fruits frais — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="2 œufs, viande au choix, gaufre aux fruits frais" data-en="2 eggs, choice of meat, fresh fruit waffle" data-es="2 huevos, carne a elegir, waffle con fruta fresca">2 œufs, viande au choix, gaufre aux fruits frais</span></div></div>
+      <div class="gallery-item" data-photo="images/dejeuners/assiette-de-fruits.webp" data-photo-caption-fr="Assiette de fruits" data-photo-caption-en="Fruit plate" data-photo-caption-es="Plato de frutas"><img src="images/dejeuners/assiette-de-fruits.webp" alt="Assiette de fruits — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Assiette de fruits" data-en="Fruit plate" data-es="Plato de frutas">Assiette de fruits</span></div></div>
     </div>
   </div>
 
@@ -1423,15 +1460,48 @@ if(document.readyState === 'loading'){
   <p class="section-desc" data-fr="Des plats préparés avec passion — du midi au soir, et le matin les fins de semaine." data-en="Dishes prepared with passion — from noon to evening, and in the morning on weekends." data-es="Platos preparados con pasión — de mediodía a la noche, y por la mañana los fines de semana.">Des plats préparés avec passion — du midi au soir, et le matin les fins de semaine.</p>
 
   <div style="margin-top:2.5rem;">
-    <div class="menu-tabs" id="menu-tabs">
-      <button class="menu-tab active" onclick="switchTab('dejeuner',this)" data-fr="Déjeuner" data-en="Breakfast" data-es="Desayuno">Déjeuner</button>
-      <button class="menu-tab" onclick="switchTab('diner',this)" data-fr="Dîner &amp; Souper" data-en="Lunch &amp; Dinner" data-es="Almuerzo y Cena">Dîner &amp; Souper</button>
-      <button class="menu-tab" onclick="switchTab('boissons',this)" data-fr="Boissons" data-en="Drinks" data-es="Bebidas">Boissons</button>
-      <button class="menu-tab" onclick="switchTab('desserts',this)" data-fr="Desserts" data-en="Desserts" data-es="Postres">Desserts</button>
+    <!-- 4 cartes de sélection : style galerie -->
+    <div class="menu-cards" id="menu-cards">
+      <button type="button" class="menu-card" data-menu-target="dejeuner" aria-label="Voir le menu déjeuner">
+        <div class="menu-card-title" data-fr="Déjeuner" data-en="Breakfast" data-es="Desayuno">Déjeuner</div>
+        <div class="menu-card-img">
+          <img src="images/dejeuners/2-oeufs-viande-gaufre-aux-fruits.webp" alt="Déjeuner — Restaurant Le Moulin" loading="lazy" decoding="async">
+        </div>
+        <div class="menu-card-label" data-fr="Voir le menu →" data-en="View menu →" data-es="Ver el menú →">Voir le menu →</div>
+      </button>
+      <button type="button" class="menu-card" data-menu-target="diner" aria-label="Voir le menu dîner et souper">
+        <div class="menu-card-title" data-fr="Dîner &amp; Souper" data-en="Lunch &amp; Dinner" data-es="Almuerzo y Cena">Dîner &amp; Souper</div>
+        <div class="menu-card-img">
+          <div class="menu-card-img-placeholder" data-fr="Photo à venir" data-en="Photo coming soon" data-es="Foto próximamente">Photo à venir</div>
+        </div>
+        <div class="menu-card-label" data-fr="Voir le menu →" data-en="View menu →" data-es="Ver el menú →">Voir le menu →</div>
+      </button>
+      <button type="button" class="menu-card" data-menu-target="boissons" aria-label="Voir le menu boissons">
+        <div class="menu-card-title" data-fr="Boissons" data-en="Drinks" data-es="Bebidas">Boissons</div>
+        <div class="menu-card-img">
+          <div class="menu-card-img-placeholder" data-fr="Photo à venir" data-en="Photo coming soon" data-es="Foto próximamente">Photo à venir</div>
+        </div>
+        <div class="menu-card-label" data-fr="Voir le menu →" data-en="View menu →" data-es="Ver el menú →">Voir le menu →</div>
+      </button>
+      <button type="button" class="menu-card" data-menu-target="desserts" aria-label="Voir le menu desserts">
+        <div class="menu-card-title" data-fr="Desserts" data-en="Desserts" data-es="Postres">Desserts</div>
+        <div class="menu-card-img">
+          <div class="menu-card-img-placeholder" data-fr="Photo à venir" data-en="Photo coming soon" data-es="Foto próximamente">Photo à venir</div>
+        </div>
+        <div class="menu-card-label" data-fr="Voir le menu →" data-en="View menu →" data-es="Ver el menú →">Voir le menu →</div>
+      </button>
     </div>
 
+    <!-- Bouton "Retour" flottant — partagé par tous les menus, visible quand on scrolle -->
+    <button type="button" class="menu-back-btn menu-back-floating" id="menuBackFloating" data-menu-back data-fr="← Retour" data-en="← Back" data-es="← Volver" aria-hidden="true">← Retour</button>
+
     <!-- DÉJEUNER -->
-    <div class="menu-panel active" id="panel-dejeuner">
+    <div class="menu-expanded" id="menu-expanded-dejeuner" hidden>
+      <div class="menu-expanded-header">
+        <h3 class="menu-expanded-title" data-fr="Déjeuner" data-en="Breakfast" data-es="Desayuno">Déjeuner</h3>
+        <button type="button" class="menu-back-btn" data-menu-back data-fr="← Retour" data-en="← Back" data-es="← Volver">← Retour</button>
+      </div>
+      <div class="menu-panel active" id="panel-dejeuner">
 
       <!-- Coups de cœur — Déjeuner -->
       <div class="signature-section is-collapsible">
@@ -1496,7 +1566,7 @@ if(document.readyState === 'loading'){
           <div class="menu-item"><div><div class="menu-item-name" data-fr="2 œufs, viande au choix" data-en="2 eggs, choice of meat" data-es="2 huevos, carne a elegir">2 œufs, viande au choix</div><div class="menu-item-desc" data-fr="Bacon, saucisses (porc et bœuf) ou jambon" data-en="Bacon, sausages (pork and beef) or ham" data-es="Tocineta, salchichas (cerdo y res) o jamón">Bacon, saucisses (porc et bœuf) ou jambon</div></div><div class="menu-item-price">13,95 $</div></div>
           <div class="menu-item" data-image="images/dejeuners/1-oeuf-3-viandes.webp"><div><div class="menu-item-name" data-fr="1 œuf, 3 viandes" data-en="1 egg, 3 meats" data-es="1 huevo, 3 carnes">1 œuf, 3 viandes</div><div class="menu-item-desc" data-fr="Bacon, saucisses (porc et bœuf) et jambon" data-en="Bacon, sausages (pork and beef) and ham" data-es="Tocineta, salchichas (cerdo y res) y jamón">Bacon, saucisses (porc et bœuf) et jambon</div></div><span class="menu-item-end"><svg class="item-photo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><div class="menu-item-price">15,95 $</div></span></div>
           <div class="menu-item" data-image="images/dejeuners/2-oeufs-3-viandes.webp"><div><div class="menu-item-name" data-fr="2 œufs, 3 viandes" data-en="2 eggs, 3 meats" data-es="2 huevos, 3 carnes">2 œufs, 3 viandes</div><div class="menu-item-desc" data-fr="Bacon, saucisses (porc et bœuf) et jambon" data-en="Bacon, sausages (pork and beef) and ham" data-es="Tocineta, salchichas (cerdo y res) y jamón">Bacon, saucisses (porc et bœuf) et jambon</div></div><span class="menu-item-end"><svg class="item-photo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><div class="menu-item-price">17,50 $</div></span></div>
-          <div class="menu-item"><div><div class="menu-item-name" data-fr="2 œufs, viande au choix, gaufre aux fruits frais" data-en="2 eggs, choice of meat, fresh fruit waffle" data-es="2 huevos, carne a elegir, waffle con fruta fresca">2 œufs, viande au choix, gaufre aux fruits frais</div><div class="menu-item-desc" data-fr="Bacon, saucisses (porc et bœuf) ou jambon · avec sirop — la gaufre remplace les rôties (patates, fruits frais et café inclus)" data-en="Bacon, sausages (pork and beef) or ham · with syrup — waffle replaces toast (potatoes, fresh fruit and coffee included)" data-es="Tocineta, salchichas (cerdo y res) o jamón · con jarabe — el waffle reemplaza las tostadas (papas, fruta fresca y café incluidos)">Bacon, saucisses (porc et bœuf) ou jambon · avec sirop — la gaufre remplace les rôties (patates, fruits frais et café inclus)</div></div><div class="menu-item-price">20,50 $</div></div>
+          <div class="menu-item" data-image="images/dejeuners/2-oeufs-viande-gaufre-aux-fruits.webp"><div><div class="menu-item-name" data-fr="2 œufs, viande au choix, gaufre aux fruits frais" data-en="2 eggs, choice of meat, fresh fruit waffle" data-es="2 huevos, carne a elegir, waffle con fruta fresca">2 œufs, viande au choix, gaufre aux fruits frais</div><div class="menu-item-desc" data-fr="Bacon, saucisses (porc et bœuf) ou jambon · avec sirop — la gaufre remplace les rôties (patates, fruits frais et café inclus)" data-en="Bacon, sausages (pork and beef) or ham · with syrup — waffle replaces toast (potatoes, fresh fruit and coffee included)" data-es="Tocineta, salchichas (cerdo y res) o jamón · con jarabe — el waffle reemplaza las tostadas (papas, fruta fresca y café incluidos)">Bacon, saucisses (porc et bœuf) ou jambon · avec sirop — la gaufre remplace les rôties (patates, fruits frais et café inclus)</div></div><span class="menu-item-end"><svg class="item-photo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><div class="menu-item-price">20,50 $</div></span></div>
           <div class="menu-cat">
             <div>
               <h3 class="menu-cat-title" data-fr="Les Omelettes" data-en="Omelettes" data-es="Las Tortillas">Les Omelettes</h3>
@@ -1554,7 +1624,7 @@ if(document.readyState === 'loading'){
               <h3 class="menu-cat-title" data-fr="L'Assiette Santé" data-en="The Healthy Plate" data-es="El Plato Saludable">L'Assiette Santé</h3>
             </div>
           </div>
-          <div class="menu-item"><div><div class="menu-item-name" data-fr="Assiette de fruits" data-en="Fruit plate" data-es="Plato de frutas">Assiette de fruits</div><div class="menu-item-desc" data-fr="Fruits frais, tranches de fromage, muffin et yogourt du jour" data-en="Fresh fruit, cheese slices, muffin and yogurt of the day" data-es="Fruta fresca, rebanadas de queso, muffin y yogur del día">Fruits frais, tranches de fromage, muffin et yogourt du jour</div></div><div class="menu-item-price">16,50 $</div></div>
+          <div class="menu-item" data-image="images/dejeuners/assiette-de-fruits.webp"><div><div class="menu-item-name" data-fr="Assiette de fruits" data-en="Fruit plate" data-es="Plato de frutas">Assiette de fruits</div><div class="menu-item-desc" data-fr="Fruits frais, tranches de fromage, muffin et yogourt du jour" data-en="Fresh fruit, cheese slices, muffin and yogurt of the day" data-es="Fruta fresca, rebanadas de queso, muffin y yogur del día">Fruits frais, tranches de fromage, muffin et yogourt du jour</div></div><span class="menu-item-end"><svg class="item-photo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><div class="menu-item-price">16,50 $</div></span></div>
         </div>
       </div>
       <!-- Sous-panel : Gourmand & Salé (Gros Appétits + Bagels) -->
@@ -1596,9 +1666,15 @@ if(document.readyState === 'loading'){
         </div>
       </div>
     </div>
+    </div>
 
     <!-- DÎNER & SOUPER -->
-    <div class="menu-panel" id="panel-diner">
+    <div class="menu-expanded" id="menu-expanded-diner" hidden>
+      <div class="menu-expanded-header">
+        <h3 class="menu-expanded-title" data-fr="Dîner &amp; Souper" data-en="Lunch &amp; Dinner" data-es="Almuerzo y Cena">Dîner &amp; Souper</h3>
+        <button type="button" class="menu-back-btn" data-menu-back data-fr="← Retour" data-en="← Back" data-es="← Volver">← Retour</button>
+      </div>
+      <div class="menu-panel active" id="panel-diner">
       
       <!-- Coups de cœur — Dîner & Souper -->
       <div class="signature-section is-collapsible">
@@ -1979,9 +2055,15 @@ if(document.readyState === 'loading'){
       </div>
 
     </div>
+    </div>
 
     <!-- BOISSONS (onglet menu) -->
-    <div class="menu-panel" id="panel-boissons">
+    <div class="menu-expanded" id="menu-expanded-boissons" hidden>
+      <div class="menu-expanded-header">
+        <h3 class="menu-expanded-title" data-fr="Boissons" data-en="Drinks" data-es="Bebidas">Boissons</h3>
+        <button type="button" class="menu-back-btn" data-menu-back data-fr="← Retour" data-en="← Back" data-es="← Volver">← Retour</button>
+      </div>
+      <div class="menu-panel active" id="panel-boissons">
 
       <!-- Sous-onglets Boissons -->
       <div class="bois-subtabs" role="tablist">
@@ -2137,8 +2219,14 @@ if(document.readyState === 'loading'){
       </div>
 
     </div>
+    </div>
 
-    <div class="menu-panel" id="panel-desserts">
+    <div class="menu-expanded" id="menu-expanded-desserts" hidden>
+      <div class="menu-expanded-header">
+        <h3 class="menu-expanded-title" data-fr="Desserts" data-en="Desserts" data-es="Postres">Desserts</h3>
+        <button type="button" class="menu-back-btn" data-menu-back data-fr="← Retour" data-en="← Back" data-es="← Volver">← Retour</button>
+      </div>
+      <div class="menu-panel active" id="panel-desserts">
       <div class="dessert-grid" style="margin-top:0;">
 
         <div class="dessert-card">
@@ -2411,6 +2499,7 @@ if(document.readyState === 'loading'){
       </div>
     </div>
 
+    </div>
     </div>
   </div>
 </section>
@@ -2890,8 +2979,8 @@ function toggleCollapsible(btn, hiddenEls, labelMore, labelLess, scrollTargetId,
     if(label) label.textContent = labelMore;
     if(countSpan) countSpan.style.display = '';
     if(gridEl) gridEl.classList.add('gallery-collapsed');
-    // Remonter doucement vers les onglets du menu (pour rester dans la même section)
-    var targetId = scrollTargetId || 'menu-tabs';
+    // Remonter doucement vers le haut de la section menu (pour rester dans la même section)
+    var targetId = scrollTargetId || 'menu';
     var target = document.getElementById(targetId);
     if(target){
       var top = target.getBoundingClientRect().top + window.pageYOffset - 80;
@@ -3108,11 +3197,123 @@ function initGalleryCards(){
   });
 }
 
+// === Système 4 cartes du menu (Déjeuner, Dîner & Souper, Boissons, Desserts) ===
+// Même pattern que la galerie : on clique sur une carte → panneau plein de menu
+// avec bouton "Retour" fixe + bouton flottant qui apparaît au scroll.
+function initMenuCards(){
+  var cards = document.querySelectorAll('.menu-card[data-menu-target]');
+  if(!cards.length) return;
+
+  var cardsWrap = document.getElementById('menu-cards');
+  var expandedPanels = document.querySelectorAll('.menu-expanded');
+  var floatingBtn = document.getElementById('menuBackFloating');
+  var headerVisible = true;
+  var panelInView = false;
+  var headerObserver = null;
+  var panelObserver = null;
+  var currentHeader = null;
+  var currentPanel = null;
+
+  function updateFloatingBtn(){
+    if(!floatingBtn) return;
+    if(!headerVisible && panelInView){
+      floatingBtn.classList.add('is-visible');
+      floatingBtn.setAttribute('aria-hidden', 'false');
+    } else {
+      floatingBtn.classList.remove('is-visible');
+      floatingBtn.setAttribute('aria-hidden', 'true');
+    }
+  }
+
+  function hideFloating(){
+    headerVisible = true;
+    panelInView = false;
+    updateFloatingBtn();
+    if(headerObserver && currentHeader){
+      headerObserver.unobserve(currentHeader);
+      currentHeader = null;
+    }
+    if(panelObserver && currentPanel){
+      panelObserver.unobserve(currentPanel);
+      currentPanel = null;
+    }
+  }
+
+  function watchHeader(panel){
+    if(!floatingBtn || !('IntersectionObserver' in window)) return;
+    var header = panel.querySelector('.menu-expanded-header');
+    if(!header) return;
+
+    if(!headerObserver){
+      headerObserver = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          headerVisible = entry.isIntersecting;
+          updateFloatingBtn();
+        });
+      }, { threshold: 0, rootMargin: '-10px 0px 0px 0px' });
+    }
+    currentHeader = header;
+    headerObserver.observe(header);
+
+    if(!panelObserver){
+      panelObserver = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          panelInView = entry.isIntersecting;
+          updateFloatingBtn();
+        });
+      }, { threshold: 0 });
+    }
+    currentPanel = panel;
+    panelObserver.observe(panel);
+  }
+
+  function showCards(){
+    expandedPanels.forEach(function(p){ p.hidden = true; });
+    if(cardsWrap) cardsWrap.style.display = '';
+    hideFloating();
+    // Scroller vers les 4 cartes pour qu'on les revoie tout de suite
+    if(cardsWrap){
+      var top = cardsWrap.getBoundingClientRect().top + window.pageYOffset - 100;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    }
+  }
+
+  function showPanel(target){
+    if(cardsWrap) cardsWrap.style.display = 'none';
+    expandedPanels.forEach(function(p){ p.hidden = true; });
+    hideFloating();
+    var panel = document.getElementById('menu-expanded-' + target);
+    if(panel){
+      panel.hidden = false;
+      // Remonter vers le haut de la section menu
+      var menuSection = document.getElementById('menu');
+      if(menuSection){
+        var top = menuSection.getBoundingClientRect().top + window.pageYOffset - 80;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      }
+      watchHeader(panel);
+    }
+  }
+
+  cards.forEach(function(card){
+    card.addEventListener('click', function(){
+      var target = card.getAttribute('data-menu-target');
+      showPanel(target);
+    });
+  });
+
+  var backBtns = document.querySelectorAll('[data-menu-back]');
+  backBtns.forEach(function(btn){
+    btn.addEventListener('click', showCards);
+  });
+}
+
 // Initialiser au chargement
 function initAllMenus(){
   initCollapsibleMenus();
   initMenuAccordions();
   initGalleryCards();
+  initMenuCards();
 }
 if(document.readyState === 'loading'){
   document.addEventListener('DOMContentLoaded', initAllMenus);
