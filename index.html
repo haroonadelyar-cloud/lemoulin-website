@@ -185,6 +185,9 @@
     .hero-eyebrow{font-size:11px;letter-spacing:0.35em;color:var(--gold);text-transform:uppercase;font-weight:500;margin-bottom:1.25rem;}
     .hero-title{font-family:var(--font-display);font-size:clamp(56px,9vw,96px);font-weight:700;color:#fff;letter-spacing:0.08em;line-height:0.95;text-transform:uppercase;margin-bottom:1rem;}
     .hero-divider{width:60px;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);margin:0 auto 1rem;}
+    .hero-directions-btn{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;font-size:10.5px;letter-spacing:0.15em;text-transform:uppercase;font-weight:500;color:var(--gold);background:rgba(201,153,58,0.06);border:1px solid rgba(201,153,58,0.35);border-radius:999px;text-decoration:none;transition:all 0.2s ease;}
+    .hero-directions-btn:hover{background:rgba(201,153,58,0.14);border-color:var(--gold);transform:translateY(-1px);}
+    .hero-directions-btn svg{flex-shrink:0;}
     .hero-sub{font-size:15px;color:var(--text-muted);letter-spacing:0.04em;line-height:1.7;margin-bottom:1.75rem;}
     .hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
     .hero-actions-secondary{margin-top:0.85rem;gap:0.65rem;}
@@ -1233,7 +1236,7 @@ if(document.readyState === 'loading'){
   <div class="nav-links">
     <a href="#menu" data-fr="Menu" data-en="Menu" data-es="Menú">Menu</a>
     <a href="#promotions" data-fr="Promotions" data-en="Specials" data-es="Promociones">Promotions</a>
-    <a href="#carte" data-fr="Adresse" data-en="Address" data-es="Dirección">Adresse</a>
+    <a href="#contact" data-fr="Contact" data-en="Contact" data-es="Contacto">Contact</a>
     <div id="navOpenStatus" class="open-status" role="status" aria-live="polite" style="display:none;">
       <span class="open-status-dot" aria-hidden="true"></span>
       <span id="navOpenStatusText"></span>
@@ -1247,7 +1250,7 @@ if(document.readyState === 'loading'){
       <button type="button" class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
       <button type="button" class="lang-btn" data-lang="es" onclick="setLang('es')">ES</button>
     </div>
-    <a href="#order" class="nav-order" data-fr="Livraison" data-en="Delivery" data-es="Entrega">Livraison</a>
+    <a href="#order" class="nav-order" data-fr="Livraison &amp; Emporter" data-en="Delivery &amp; Takeout" data-es="Entrega y para llevar">Livraison &amp; Emporter</a>
     <a href="#reservation" class="nav-reserve" data-fr="Réserver" data-en="Book" data-es="Reservar">Réserver</a>
   </div>
   <button class="nav-hamburger" id="navHamburger" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu" onclick="toggleMobileMenu()">
@@ -1261,9 +1264,10 @@ if(document.readyState === 'loading'){
   </a>
   <a href="#menu" onclick="closeMobileMenu()" data-fr="Menu" data-en="Menu" data-es="Menú">Menu</a>
   <a href="#promotions" onclick="closeMobileMenu()" data-fr="Promotions" data-en="Specials" data-es="Promociones">Promotions</a>
-  <a href="#carte" onclick="closeMobileMenu()" data-fr="Notre adresse" data-en="Our address" data-es="Nuestra dirección">Notre adresse</a>
-  <a href="#order" onclick="closeMobileMenu()" data-fr="Livraison &amp; Emporter" data-en="Delivery &amp; Takeout" data-es="Entrega y para llevar">Livraison &amp; Emporter</a>
   <a href="#reservation" onclick="closeMobileMenu()" data-fr="Réserver une table" data-en="Book a table" data-es="Reservar una mesa">Réserver une table</a>
+  <a href="#order" onclick="closeMobileMenu()" data-fr="Livraison &amp; Emporter" data-en="Delivery &amp; Takeout" data-es="Entrega y para llevar">Livraison &amp; Emporter</a>
+  <a href="#about" onclick="closeMobileMenu()" data-fr="À propos" data-en="About" data-es="Nosotros">À propos</a>
+  <a href="#contact" onclick="closeMobileMenu()" data-fr="Contact" data-en="Contact" data-es="Contacto">Contact</a>
   <div class="lang-switch" style="margin-top:1rem;align-self:center;" role="group" aria-label="Langue">
     <button type="button" class="lang-btn active" data-lang="fr" onclick="setLang('fr');closeMobileMenu();">FR</button>
     <button type="button" class="lang-btn" data-lang="en" onclick="setLang('en');closeMobileMenu();">EN</button>
@@ -1297,12 +1301,18 @@ if(document.readyState === 'loading'){
       <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
       59 rue Angus Nord
     </div>
+    <div style="margin-top:0.7rem;">
+      <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Restaurant+Le+Moulin%2C+59+Rue+Angus+N%2C+East+Angus%2C+QC&amp;destination_place_id=ChIJGQSQdVSvt0wRbkE0BweBnno" target="_blank" rel="noopener" class="hero-directions-btn" data-fr="Itinéraire" data-en="Directions" data-es="Cómo llegar">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+        <span>Itinéraire</span>
+      </a>
+    </div>
     <div class="hero-divider" style="margin-top:1.25rem;"></div>
     <div id="heroOpenStatus" class="hero-open-status" aria-live="polite" style="display:none;">
       <span class="open-status-dot" aria-hidden="true"></span>
       <span id="heroOpenStatusText"></span>
     </div>
-    <p class="hero-sub" data-fr="Depuis plus de 20 ans au cœur d'East Angus<br>Dîner · Souper tous les jours &nbsp;·&nbsp; Déjeuner les fins de semaine" data-en="For over 20 years in the heart of East Angus<br>Lunch · Dinner every day &nbsp;·&nbsp; Breakfast on weekends" data-es="Desde hace más de 20 años en el corazón de East Angus<br>Almuerzo · Cena todos los días &nbsp;·&nbsp; Desayuno los fines de semana">Depuis plus de 20 ans au cœur d'East Angus<br>Dîner · Souper tous les jours &nbsp;·&nbsp; Déjeuner les fins de semaine</p>
+    <p class="hero-sub" data-fr="Depuis plus de 20 ans au cœur d'East Angus" data-en="For over 20 years in the heart of East Angus" data-es="Desde hace más de 20 años en el corazón de East Angus">Depuis plus de 20 ans au cœur d'East Angus</p>
     <div class="hero-actions">
       <a href="#menu" class="btn-gold btn-hero-primary" data-fr="Voir le menu" data-en="View menu" data-es="Ver el menú">Voir le menu</a>
     </div>
@@ -1422,7 +1432,6 @@ if(document.readyState === 'loading'){
 
     <!-- DÉJEUNER -->
     <div class="menu-panel active" id="panel-dejeuner">
-      <div class="menu-note"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="#C9993A" stroke-width="1.5"/><line x1="8" y1="7" x2="8" y2="11" stroke="#C9993A" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="5" r="0.8" fill="#C9993A"/></svg><span data-fr="Servi le samedi et dimanche seulement, de 7h à 13h" data-en="Served Saturday and Sunday only, from 7am to 1pm" data-es="Servido sábados y domingos únicamente, de 7 h a 13 h">Servi le samedi et dimanche seulement, de 7h à 13h</span></div>
 
       <!-- Coups de cœur — Déjeuner -->
       <div class="signature-section is-collapsible">
@@ -1590,22 +1599,6 @@ if(document.readyState === 'loading'){
 
     <!-- DÎNER & SOUPER -->
     <div class="menu-panel" id="panel-diner">
-      <div class="menu-table-note-toggle" id="tableHoteNote">
-        <button type="button" class="menu-table-note-header" aria-expanded="false" aria-controls="tableHoteContent" onclick="toggleTableHote(this)">
-          <span class="menu-table-note-header-left">
-            <svg class="menu-table-note-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
-            <span class="menu-table-note-label" data-fr="Table d'hôte disponible" data-en="Table d'hôte available" data-es="Menú del día disponible">Table d'hôte disponible</span>
-            <span class="menu-table-note-price" data-fr="— +13,95 $" data-en="— +$13.95" data-es="— +13,95 $">— +13,95 $</span>
-          </span>
-          <span class="menu-table-note-chevron" aria-hidden="true">▼</span>
-        </button>
-        <div class="menu-table-note-content" id="tableHoteContent" role="region">
-          <div class="menu-table-note-inner">
-            <span data-fr="Pour 13,95 $ de plus, transformez votre plat principal en table d'hôte incluant soupe, entrée, thé ou café et dessert." data-en="For $13.95 more, turn your main course into a table d'hôte including soup, starter, tea or coffee and dessert." data-es="Por 13,95 $ adicionales, transforme su plato principal en menú del día incluyendo sopa, entrada, té o café y postre.">Pour 13,95 $ de plus, transformez votre plat principal en table d'hôte incluant soupe, entrée, thé ou café et dessert.</span><br>
-            <span style="font-size:11px;" data-fr="Choix d'entrées : champignons à l'ail gratinés · escargots à l'ail gratinés · fondues parmesan · 6 ailes de poulet · bâtonnets de fromage" data-en="Choice of starters: garlic mushrooms au gratin · garlic escargots au gratin · parmesan fondues · 6 chicken wings · cheese sticks" data-es="Entradas a elegir: champiñones al ajo gratinados · caracoles al ajo gratinados · fondues parmesano · 6 alas de pollo · palitos de queso">Choix d'entrées : champignons à l'ail gratinés · escargots à l'ail gratinés · fondues parmesan · 6 ailes de poulet · bâtonnets de fromage</span>
-          </div>
-        </div>
-      </div>
       
       <!-- Coups de cœur — Dîner & Souper -->
       <div class="signature-section is-collapsible">
@@ -2676,7 +2669,7 @@ if(document.readyState === 'loading'){
       <li><a href="#reservation" data-fr="Réservation" data-en="Reservation" data-es="Reserva">Réservation</a></li>
     </ul>
   </div>
-  <div>
+  <div id="contact">
     <div class="footer-col-title" data-fr="Contact" data-en="Contact" data-es="Contacto">Contact</div>
     <div style="font-size:13px;color:var(--text-muted);line-height:2.2;">
       <div data-fr="59 rue Angus Nord" data-en="59 Angus Street North" data-es="59 rue Angus Nord">59 rue Angus Nord</div>
@@ -3724,28 +3717,6 @@ function switchDejeunerTab(tab, btn){
 
   // Exposer pour permettre de ré-initialiser si besoin (ajouts dynamiques)
   window.initDishModalItems = initMenuItems;
-})();
-</script>
-
-<!-- === Détection iOS pour bouton Itinéraire (Apple Plans sur iPhone/iPad) === -->
-<script>
-(function(){
-  var btn = document.getElementById('directionsBtn');
-  if(!btn) return;
-
-  // Détecte iOS (iPhone, iPad, iPod) — y compris iPad moderne qui se présente comme Mac avec touchscreen
-  var ua = navigator.userAgent || '';
-  var isIOS = /iPad|iPhone|iPod/.test(ua) ||
-    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-
-  if(isIOS){
-    // Apple Plans : itinéraire vers l'adresse, "daddr" = destination address
-    // saddr vide = position actuelle de l'utilisateur (Plans demandera la permission)
-    var appleUrl = 'https://maps.apple.com/?daddr=' +
-      encodeURIComponent('Restaurant Le Moulin, 59 Rue Angus Nord, East Angus, QC, Canada') +
-      '&dirflg=d'; // d = driving (par défaut auto)
-    btn.setAttribute('href', appleUrl);
-  }
 })();
 </script>
 
