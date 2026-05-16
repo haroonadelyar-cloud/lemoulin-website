@@ -265,10 +265,10 @@
     .menu-expanded-title{font-family:var(--font-display);font-size:clamp(22px,3vw,32px);font-weight:700;color:var(--gold);margin:0;letter-spacing:0.01em;}
     .menu-back-btn{background:transparent;color:var(--gold);border:1px solid rgba(201,153,58,0.3);border-radius:var(--radius);padding:8px 18px;font-family:var(--font-body);font-size:11px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:background 0.2s,border-color 0.2s,color 0.2s;}
     .menu-back-btn:hover{background:rgba(201,153,58,0.1);border-color:var(--gold);}
-    .menu-back-floating{position:fixed;top:84px;right:24px;z-index:90;background:rgba(22,19,15,0.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-color:var(--gold);box-shadow:0 6px 24px rgba(0,0,0,0.45);opacity:0;transform:translateY(-12px);pointer-events:none;transition:opacity 0.28s ease,transform 0.28s ease;}
+    .menu-back-floating{position:fixed;bottom:calc(90px + env(safe-area-inset-bottom, 0px));right:20px;top:auto;z-index:90;background:rgba(22,19,15,0.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-color:var(--gold);box-shadow:0 6px 24px rgba(0,0,0,0.45);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity 0.28s ease,transform 0.28s ease;}
     .menu-back-floating.is-visible{opacity:1;transform:translateY(0);pointer-events:auto;}
     @media(max-width:640px){
-      .menu-back-floating{top:72px;right:14px;padding:7px 14px;font-size:10px;}
+      .menu-back-floating{bottom:calc(88px + env(safe-area-inset-bottom, 0px));right:14px;padding:7px 14px;font-size:10px;}
     }
     .menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));border:1px solid rgba(255,255,255,0.06);}
     .menu-cat{grid-column:1/-1;padding:0.72rem 1.5rem;background:rgba(201,153,58,0.06);border-top:1px solid rgba(201,153,58,0.22);border-bottom:1px solid rgba(201,153,58,0.22);color:var(--gold);}
@@ -865,6 +865,9 @@
     .bois-name{color:#fff;font-weight:400;flex:1;}
     .bois-sub{font-size:11px;color:var(--text-muted);margin-top:1px;}
     .bois-price{color:var(--gold);font-weight:600;white-space:nowrap;font-size:12px;text-align:right;}
+    .bois-price-wrap{display:inline-flex;align-items:center;gap:6px;}
+    .bois-row.is-clickable{cursor:pointer;transition:background 0.15s;}
+    .bois-row.is-clickable:hover{background:rgba(201,153,58,0.04);}
     .bois-price-cols{display:flex;gap:1.5rem;}
     .bois-price-col{text-align:right;}
     .bois-price-col-label{font-size:11px;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:2px;font-weight:500;}
@@ -1015,6 +1018,7 @@
     .back-to-top.visible{opacity:1;pointer-events:auto;}
     .back-to-top:hover{background:var(--gold);color:var(--dark);transform:translateY(-3px);}
     @media(max-width:1024px){.back-to-top{bottom:calc(90px + env(safe-area-inset-bottom, 0px));left:auto;right:20px;}}
+    body.menu-panel-open .back-to-top{opacity:0;pointer-events:none;}
     body.modal-open .back-to-top{opacity:0;pointer-events:none;}
 
     /* CTA téléphone dans la nav desktop */
@@ -1457,7 +1461,6 @@ if(document.readyState === 'loading'){
   <div class="section-eyebrow" data-fr="Notre cuisine" data-en="Our cuisine" data-es="Nuestra cocina">Notre cuisine</div>
   <h2 class="section-title" data-fr="Le Menu" data-en="The Menu" data-es="El Menú">Le Menu</h2>
   <div class="gold-rule"></div>
-  <p class="section-desc" data-fr="Des plats préparés avec passion — du midi au soir, et le matin les fins de semaine." data-en="Dishes prepared with passion — from noon to evening, and in the morning on weekends." data-es="Platos preparados con pasión — de mediodía a la noche, y por la mañana los fines de semana.">Des plats préparés avec passion — du midi au soir, et le matin les fins de semaine.</p>
 
   <div style="margin-top:2.5rem;">
     <!-- 4 cartes de sélection : style galerie -->
@@ -1472,21 +1475,21 @@ if(document.readyState === 'loading'){
       <button type="button" class="menu-card" data-menu-target="diner" aria-label="Voir le menu dîner et souper">
         <div class="menu-card-title" data-fr="Dîner &amp; Souper" data-en="Lunch &amp; Dinner" data-es="Almuerzo y Cena">Dîner &amp; Souper</div>
         <div class="menu-card-img">
-          <div class="menu-card-img-placeholder" data-fr="Photo à venir" data-en="Photo coming soon" data-es="Foto próximamente">Photo à venir</div>
+          <img src="images/plats/crevettes-panees.webp" alt="Dîner et souper — Restaurant Le Moulin" loading="lazy" decoding="async">
         </div>
         <div class="menu-card-label" data-fr="Voir le menu →" data-en="View menu →" data-es="Ver el menú →">Voir le menu →</div>
       </button>
       <button type="button" class="menu-card" data-menu-target="boissons" aria-label="Voir le menu boissons">
         <div class="menu-card-title" data-fr="Boissons" data-en="Drinks" data-es="Bebidas">Boissons</div>
         <div class="menu-card-img">
-          <div class="menu-card-img-placeholder" data-fr="Photo à venir" data-en="Photo coming soon" data-es="Foto próximamente">Photo à venir</div>
+          <img src="images/boissons/cafe-du-moulin.webp" alt="Boissons — Restaurant Le Moulin" loading="lazy" decoding="async">
         </div>
         <div class="menu-card-label" data-fr="Voir le menu →" data-en="View menu →" data-es="Ver el menú →">Voir le menu →</div>
       </button>
       <button type="button" class="menu-card" data-menu-target="desserts" aria-label="Voir le menu desserts">
         <div class="menu-card-title" data-fr="Desserts" data-en="Desserts" data-es="Postres">Desserts</div>
         <div class="menu-card-img">
-          <div class="menu-card-img-placeholder" data-fr="Photo à venir" data-en="Photo coming soon" data-es="Foto próximamente">Photo à venir</div>
+          <img src="images/desserts/fondant-chocolat.jpg" alt="Desserts — Restaurant Le Moulin" loading="lazy" decoding="async">
         </div>
         <div class="menu-card-label" data-fr="Voir le menu →" data-en="View menu →" data-es="Ver el menú →">Voir le menu →</div>
       </button>
@@ -2122,7 +2125,7 @@ if(document.readyState === 'loading'){
             <div class="bois-row"><div><div class="bois-name" data-fr="Lait" data-en="Milk" data-es="Leche">Lait</div></div><div class="bois-price">3,25 $</div></div>
             <div class="bois-row"><div><div class="bois-name" data-fr="Lait au chocolat" data-en="Chocolate milk" data-es="Leche con chocolate">Lait au chocolat</div></div><div class="bois-price">3,25 $</div></div>
             <div class="bois-row"><div><div class="bois-name" data-fr="Chocolat chaud" data-en="Hot chocolate" data-es="Chocolate caliente">Chocolat chaud</div></div><div class="bois-price">4,50 $</div></div>
-            <div class="bois-row"><div><div class="bois-name" data-fr="Café du Moulin" data-en="Le Moulin Coffee" data-es="Café del Moulin">Café du Moulin</div><div class="bois-sub" data-fr="Vanille-cannelle ou caramel salé" data-en="Vanilla-cinnamon or salted caramel" data-es="Vainilla-canela o caramelo salado">Vanille-cannelle ou caramel salé</div></div><div class="bois-price">5,95 $</div></div>
+            <div class="bois-row" data-image="images/boissons/cafe-du-moulin.webp"><div><div class="bois-name" data-fr="Café du Moulin" data-en="Le Moulin Coffee" data-es="Café del Moulin">Café du Moulin</div><div class="bois-sub" data-fr="Vanille-cannelle ou caramel salé" data-en="Vanilla-cinnamon or salted caramel" data-es="Vainilla-canela o caramelo salado">Vanille-cannelle ou caramel salé</div></div><div class="bois-price-wrap"><svg class="item-photo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><div class="bois-price">5,95 $</div></div></div>
           </div>
         </div>
       </div>
@@ -3271,6 +3274,7 @@ function initMenuCards(){
     expandedPanels.forEach(function(p){ p.hidden = true; });
     if(cardsWrap) cardsWrap.style.display = '';
     hideFloating();
+    document.body.classList.remove('menu-panel-open');
     // Scroller vers les 4 cartes pour qu'on les revoie tout de suite
     if(cardsWrap){
       var top = cardsWrap.getBoundingClientRect().top + window.pageYOffset - 100;
@@ -3285,12 +3289,13 @@ function initMenuCards(){
     var panel = document.getElementById('menu-expanded-' + target);
     if(panel){
       panel.hidden = false;
-      // Remonter vers le haut de la section menu
-      var menuSection = document.getElementById('menu');
-      if(menuSection){
-        var top = menuSection.getBoundingClientRect().top + window.pageYOffset - 80;
-        window.scrollTo({ top: top, behavior: 'smooth' });
-      }
+      document.body.classList.add('menu-panel-open');
+      // Scroller pile sur le header du panneau (titre + bouton Retour)
+      // Avec un petit offset pour ne pas coller à la barre de nav
+      var header = panel.querySelector('.menu-expanded-header');
+      var scrollTarget = header || panel;
+      var top = scrollTarget.getBoundingClientRect().top + window.pageYOffset - 80;
+      window.scrollTo({ top: top, behavior: 'smooth' });
       watchHeader(panel);
     }
   }
@@ -3849,12 +3854,14 @@ function switchDejeunerTab(tab, btn){
   // Exposer le HTML du placeholder globalement pour le fallback onerror
   window.__dishModalPlaceholder = getPlaceholderHTML();
 
-  // Rendre tous les items cliquables (.menu-item, .promo-ss-item, .midi-item, .promo-combo-card, .dessert-item)
+  // Rendre tous les items cliquables (.menu-item, .promo-ss-item, .midi-item, .promo-combo-card, .dessert-item, .pizza-row, .bois-row)
   function initMenuItems(){
-    var items = document.querySelectorAll('.menu-item, .promo-ss-item, .midi-item, .promo-combo-card, .dessert-item, .pizza-row');
+    var items = document.querySelectorAll('.menu-item, .promo-ss-item, .midi-item, .promo-combo-card, .dessert-item, .pizza-row, .bois-row');
     items.forEach(function(item){
       // Éviter double-init
       if(item.dataset.modalInit === '1') return;
+      // Pour les bois-row, ne les rendre cliquables que s'il y a une photo
+      if(item.classList.contains('bois-row') && !item.hasAttribute('data-image') && !item.hasAttribute('data-image-variants')) return;
       item.dataset.modalInit = '1';
 
       item.classList.add('is-clickable');
@@ -3862,7 +3869,7 @@ function switchDejeunerTab(tab, btn){
       item.setAttribute('role','button');
 
       // Récupérer le nom selon le type d'item
-      var nameEl = item.querySelector('.menu-item-name, .promo-ss-name, .midi-item-name, .promo-card-name');
+      var nameEl = item.querySelector('.menu-item-name, .promo-ss-name, .midi-item-name, .promo-card-name, .bois-name');
       // Pour les pizza-row, le nom est dans la 1ère <td> > <span> avec data-fr
       if(!nameEl && item.classList.contains('pizza-row')){
         nameEl = item.querySelector('td:first-child span[data-fr]');
