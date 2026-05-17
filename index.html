@@ -274,6 +274,32 @@
     @media(max-width:640px){
       .menu-back-floating{bottom:calc(88px + env(safe-area-inset-bottom, 0px));right:14px;padding:7px 14px;font-size:10px;}
     }
+    /* === Mini-nav avec photos entre catégories (en haut des panneaux ouverts) === */
+    /* Quand un panneau de menu est ouvert, on cache les grosses cartes pour
+       éviter qu'elles apparaissent en arrière-plan (au cas où le JS aurait
+       loupé son coup) */
+    body.menu-panel-open .menu-cards{display:none!important;}
+    .menu-mini-nav{display:grid;grid-template-columns:repeat(4,1fr);gap:0.8rem;max-width:680px;margin:0 0 2rem 0;}
+    .menu-mini-card{background:transparent;border:none;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:0.4rem;width:100%;font-family:var(--font-body);color:inherit;transition:transform 0.25s ease;}
+    .menu-mini-card:hover{transform:translateY(-2px);}
+    .menu-mini-card-img{width:100%;aspect-ratio:16/9;border-radius:var(--radius);overflow:hidden;border:1px solid rgba(201,153,58,0.18);position:relative;background:rgba(201,153,58,0.04);transition:border-color 0.25s ease;}
+    .menu-mini-card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease;}
+    .menu-mini-card:hover .menu-mini-card-img{border-color:var(--gold);}
+    .menu-mini-card:hover .menu-mini-card-img img{transform:scale(1.05);}
+    .menu-mini-card-title{font-family:var(--font-display);font-size:clamp(11px,1.05vw,14px);font-weight:700;color:#fff;letter-spacing:0.02em;text-align:center;line-height:1.2;}
+    .menu-mini-card:hover .menu-mini-card-title{color:var(--gold);}
+    .menu-mini-card.is-active{cursor:default;pointer-events:none;}
+    .menu-mini-card.is-active .menu-mini-card-img{border-color:rgba(201,153,58,0.4);}
+    .menu-mini-card.is-active .menu-mini-card-img::after{content:'';position:absolute;inset:0;background:rgba(22,19,15,0.55);}
+    .menu-mini-card.is-active .menu-mini-card-img img{filter:grayscale(0.4);}
+    .menu-mini-card.is-active .menu-mini-card-title{color:var(--gold);opacity:0.85;}
+    .menu-mini-card.is-active:hover{transform:none;}
+    @media(max-width:640px){
+      .menu-mini-nav{gap:0.5rem;margin-bottom:1.5rem;max-width:none;}
+      .menu-mini-card{gap:0.3rem;}
+      .menu-mini-card-img{aspect-ratio:4/3;}
+      .menu-mini-card-title{font-size:10.5px;letter-spacing:0.01em;}
+    }
     .menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));border:1px solid rgba(255,255,255,0.06);}
     .menu-cat{grid-column:1/-1;padding:0.72rem 1.5rem;background:rgba(201,153,58,0.06);border-top:1px solid rgba(201,153,58,0.22);border-bottom:1px solid rgba(201,153,58,0.22);color:var(--gold);}
     .menu-cat-title{font-family:var(--font-display);font-size:clamp(14px,1.5vw,17px);font-weight:700;line-height:1.15;margin:0;color:var(--gold);}
@@ -1515,6 +1541,24 @@ if(document.readyState === 'loading'){
 
     <!-- DÉJEUNER -->
     <div class="menu-expanded" id="menu-expanded-dejeuner" hidden>
+      <nav class="menu-mini-nav" aria-label="Navigation entre catégories du menu">
+        <button type="button" class="menu-mini-card is-active" aria-current="page" aria-label="Déjeuner (catégorie actuelle)">
+          <div class="menu-mini-card-img"><img src="images/dejeuners/2-oeufs-viande-gaufre-aux-fruits.webp" alt="" loading="lazy" decoding="async"></div>
+          <div class="menu-mini-card-title" data-fr="Déjeuner" data-en="Breakfast" data-es="Desayuno">Déjeuner</div>
+        </button>
+        <button type="button" class="menu-mini-card" data-menu-target="diner" aria-label="Voir le menu dîner et souper">
+          <div class="menu-mini-card-img"><img src="images/plats/crevettes-panees.webp" alt="" loading="lazy" decoding="async"></div>
+          <div class="menu-mini-card-title" data-fr="Dîner &amp; Souper" data-en="Lunch &amp; Dinner" data-es="Almuerzo y Cena">Dîner &amp; Souper</div>
+        </button>
+        <button type="button" class="menu-mini-card" data-menu-target="boissons" aria-label="Voir le menu boissons">
+          <div class="menu-mini-card-img"><img src="images/boissons/boissons-trio.webp" alt="" loading="lazy" decoding="async"></div>
+          <div class="menu-mini-card-title" data-fr="Boissons" data-en="Drinks" data-es="Bebidas">Boissons</div>
+        </button>
+        <button type="button" class="menu-mini-card" data-menu-target="desserts" aria-label="Voir le menu desserts">
+          <div class="menu-mini-card-img"><img src="images/desserts/fondant-chocolat.jpg" alt="" loading="lazy" decoding="async" style="object-position:center 70%;"></div>
+          <div class="menu-mini-card-title" data-fr="Desserts" data-en="Desserts" data-es="Postres">Desserts</div>
+        </button>
+      </nav>
       <div class="menu-expanded-header">
         <h3 class="menu-expanded-title" data-fr="Déjeuner" data-en="Breakfast" data-es="Desayuno">Déjeuner</h3>
         <button type="button" class="menu-back-btn" data-menu-back data-fr="← Retour" data-en="← Back" data-es="← Volver">← Retour</button>
@@ -1688,6 +1732,24 @@ if(document.readyState === 'loading'){
 
     <!-- DÎNER & SOUPER -->
     <div class="menu-expanded" id="menu-expanded-diner" hidden>
+      <nav class="menu-mini-nav" aria-label="Navigation entre catégories du menu">
+        <button type="button" class="menu-mini-card" data-menu-target="dejeuner" aria-label="Voir le menu déjeuner">
+          <div class="menu-mini-card-img"><img src="images/dejeuners/2-oeufs-viande-gaufre-aux-fruits.webp" alt="" loading="lazy" decoding="async"></div>
+          <div class="menu-mini-card-title" data-fr="Déjeuner" data-en="Breakfast" data-es="Desayuno">Déjeuner</div>
+        </button>
+        <button type="button" class="menu-mini-card is-active" aria-current="page" aria-label="Dîner et souper (catégorie actuelle)">
+          <div class="menu-mini-card-img"><img src="images/plats/crevettes-panees.webp" alt="" loading="lazy" decoding="async"></div>
+          <div class="menu-mini-card-title" data-fr="Dîner &amp; Souper" data-en="Lunch &amp; Dinner" data-es="Almuerzo y Cena">Dîner &amp; Souper</div>
+        </button>
+        <button type="button" class="menu-mini-card" data-menu-target="boissons" aria-label="Voir le menu boissons">
+          <div class="menu-mini-card-img"><img src="images/boissons/boissons-trio.webp" alt="" loading="lazy" decoding="async"></div>
+          <div class="menu-mini-card-title" data-fr="Boissons" data-en="Drinks" data-es="Bebidas">Boissons</div>
+        </button>
+        <button type="button" class="menu-mini-card" data-menu-target="desserts" aria-label="Voir le menu desserts">
+          <div class="menu-mini-card-img"><img src="images/desserts/fondant-chocolat.jpg" alt="" loading="lazy" decoding="async" style="object-position:center 70%;"></div>
+          <div class="menu-mini-card-title" data-fr="Desserts" data-en="Desserts" data-es="Postres">Desserts</div>
+        </button>
+      </nav>
       <div class="menu-expanded-header">
         <h3 class="menu-expanded-title" data-fr="Dîner &amp; Souper" data-en="Lunch &amp; Dinner" data-es="Almuerzo y Cena">Dîner &amp; Souper</h3>
         <button type="button" class="menu-back-btn" data-menu-back data-fr="← Retour" data-en="← Back" data-es="← Volver">← Retour</button>
@@ -2045,6 +2107,24 @@ if(document.readyState === 'loading'){
 
     <!-- BOISSONS (onglet menu) -->
     <div class="menu-expanded" id="menu-expanded-boissons" hidden>
+      <nav class="menu-mini-nav" aria-label="Navigation entre catégories du menu">
+        <button type="button" class="menu-mini-card" data-menu-target="dejeuner" aria-label="Voir le menu déjeuner">
+          <div class="menu-mini-card-img"><img src="images/dejeuners/2-oeufs-viande-gaufre-aux-fruits.webp" alt="" loading="lazy" decoding="async"></div>
+          <div class="menu-mini-card-title" data-fr="Déjeuner" data-en="Breakfast" data-es="Desayuno">Déjeuner</div>
+        </button>
+        <button type="button" class="menu-mini-card" data-menu-target="diner" aria-label="Voir le menu dîner et souper">
+          <div class="menu-mini-card-img"><img src="images/plats/crevettes-panees.webp" alt="" loading="lazy" decoding="async"></div>
+          <div class="menu-mini-card-title" data-fr="Dîner &amp; Souper" data-en="Lunch &amp; Dinner" data-es="Almuerzo y Cena">Dîner &amp; Souper</div>
+        </button>
+        <button type="button" class="menu-mini-card is-active" aria-current="page" aria-label="Boissons (catégorie actuelle)">
+          <div class="menu-mini-card-img"><img src="images/boissons/boissons-trio.webp" alt="" loading="lazy" decoding="async"></div>
+          <div class="menu-mini-card-title" data-fr="Boissons" data-en="Drinks" data-es="Bebidas">Boissons</div>
+        </button>
+        <button type="button" class="menu-mini-card" data-menu-target="desserts" aria-label="Voir le menu desserts">
+          <div class="menu-mini-card-img"><img src="images/desserts/fondant-chocolat.jpg" alt="" loading="lazy" decoding="async" style="object-position:center 70%;"></div>
+          <div class="menu-mini-card-title" data-fr="Desserts" data-en="Desserts" data-es="Postres">Desserts</div>
+        </button>
+      </nav>
       <div class="menu-expanded-header">
         <h3 class="menu-expanded-title" data-fr="Boissons" data-en="Drinks" data-es="Bebidas">Boissons</h3>
         <button type="button" class="menu-back-btn" data-menu-back data-fr="← Retour" data-en="← Back" data-es="← Volver">← Retour</button>
@@ -2208,6 +2288,24 @@ if(document.readyState === 'loading'){
     </div>
 
     <div class="menu-expanded" id="menu-expanded-desserts" hidden>
+      <nav class="menu-mini-nav" aria-label="Navigation entre catégories du menu">
+        <button type="button" class="menu-mini-card" data-menu-target="dejeuner" aria-label="Voir le menu déjeuner">
+          <div class="menu-mini-card-img"><img src="images/dejeuners/2-oeufs-viande-gaufre-aux-fruits.webp" alt="" loading="lazy" decoding="async"></div>
+          <div class="menu-mini-card-title" data-fr="Déjeuner" data-en="Breakfast" data-es="Desayuno">Déjeuner</div>
+        </button>
+        <button type="button" class="menu-mini-card" data-menu-target="diner" aria-label="Voir le menu dîner et souper">
+          <div class="menu-mini-card-img"><img src="images/plats/crevettes-panees.webp" alt="" loading="lazy" decoding="async"></div>
+          <div class="menu-mini-card-title" data-fr="Dîner &amp; Souper" data-en="Lunch &amp; Dinner" data-es="Almuerzo y Cena">Dîner &amp; Souper</div>
+        </button>
+        <button type="button" class="menu-mini-card" data-menu-target="boissons" aria-label="Voir le menu boissons">
+          <div class="menu-mini-card-img"><img src="images/boissons/boissons-trio.webp" alt="" loading="lazy" decoding="async"></div>
+          <div class="menu-mini-card-title" data-fr="Boissons" data-en="Drinks" data-es="Bebidas">Boissons</div>
+        </button>
+        <button type="button" class="menu-mini-card is-active" aria-current="page" aria-label="Desserts (catégorie actuelle)">
+          <div class="menu-mini-card-img"><img src="images/desserts/fondant-chocolat.jpg" alt="" loading="lazy" decoding="async" style="object-position:center 70%;"></div>
+          <div class="menu-mini-card-title" data-fr="Desserts" data-en="Desserts" data-es="Postres">Desserts</div>
+        </button>
+      </nav>
       <div class="menu-expanded-header">
         <h3 class="menu-expanded-title" data-fr="Desserts" data-en="Desserts" data-es="Postres">Desserts</h3>
         <button type="button" class="menu-back-btn" data-menu-back data-fr="← Retour" data-en="← Back" data-es="← Volver">← Retour</button>
@@ -3186,6 +3284,7 @@ function initMenuCards(){
   if(!cards.length) return;
 
   var cardsWrap = document.getElementById('menu-cards');
+  var miniCards = document.querySelectorAll('.menu-mini-card[data-menu-target]');
   var expandedPanels = document.querySelectorAll('.menu-expanded');
   var floatingBtn = document.getElementById('menuBackFloating');
   var headerVisible = true;
@@ -3268,10 +3367,11 @@ function initMenuCards(){
     if(panel){
       panel.hidden = false;
       document.body.classList.add('menu-panel-open');
-      // Scroller pile sur le header du panneau (titre + bouton Retour)
-      // Avec un petit offset pour ne pas coller à la barre de nav
+      // Scroller pile sur la mini-nav (si elle existe) ou sinon le header
+      // — comme ça l'utilisateur voit tout de suite les autres catégories
+      var miniNav = panel.querySelector('.menu-mini-nav');
       var header = panel.querySelector('.menu-expanded-header');
-      var scrollTarget = header || panel;
+      var scrollTarget = miniNav || header || panel;
       var top = scrollTarget.getBoundingClientRect().top + window.pageYOffset - 80;
       window.scrollTo({ top: top, behavior: 'smooth' });
       watchHeader(panel);
@@ -3282,6 +3382,15 @@ function initMenuCards(){
     card.addEventListener('click', function(){
       var target = card.getAttribute('data-menu-target');
       showPanel(target);
+    });
+  });
+
+  // Mini-nav en haut des panneaux : permet de passer directement d'une
+  // catégorie à l'autre sans repasser par les grosses cartes
+  miniCards.forEach(function(card){
+    card.addEventListener('click', function(){
+      var target = card.getAttribute('data-menu-target');
+      if(target) showPanel(target);
     });
   });
 
