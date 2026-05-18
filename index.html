@@ -282,9 +282,6 @@
     body.menu-panel-open #menu-cards{display:none!important;}
     .menu-cards-mini{margin:0 0 2.5rem 0;}
     .menu-cards-mini .menu-card.is-active{cursor:default;pointer-events:none;}
-    .menu-cards-mini .menu-card.is-active .menu-card-img::after{content:'';position:absolute;inset:0;background:rgba(22,19,15,0.55);z-index:1;}
-    .menu-cards-mini .menu-card.is-active .menu-card-img img{filter:grayscale(0.4);}
-    .menu-cards-mini .menu-card.is-active .menu-card-title{color:var(--gold);opacity:0.85;}
     .menu-cards-mini .menu-card.is-active .menu-card-label{opacity:0.5;border-color:rgba(201,153,58,0.3);background:rgba(201,153,58,0.04);color:var(--text-dim);}
     .menu-cards-mini .menu-card.is-active:hover{transform:none;}
     .menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));border:1px solid rgba(255,255,255,0.06);}
@@ -3411,12 +3408,11 @@ function initMenuCards(){
     if(panel){
       panel.hidden = false;
       document.body.classList.add('menu-panel-open');
-      // Scroller pile sur les cartes-nav en haut du panneau (si elles existent)
-      // ou sinon le header — comme ça l'utilisateur voit tout de suite les
-      // autres catégories
-      var miniNav = panel.querySelector('.menu-cards-mini');
+      // Scroller pile sur le header du panneau (titre + bouton Retour).
+      // La nav entre catégories reste juste au-dessus, accessible en
+      // scrollant un peu vers le haut si on veut changer de catégorie.
       var header = panel.querySelector('.menu-expanded-header');
-      var scrollTarget = miniNav || header || panel;
+      var scrollTarget = header || panel;
       var top = scrollTarget.getBoundingClientRect().top + window.pageYOffset - 80;
       window.scrollTo({ top: top, behavior: 'smooth' });
       watchHeader(panel);
