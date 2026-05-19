@@ -531,11 +531,12 @@
     .specials-card[data-open="false"] .specials-body{max-height:0;opacity:0;padding-top:0;padding-bottom:0;pointer-events:none;}
     .specials-card[data-open="false"] .specials-toggle{padding-bottom:1.2rem;}
     /* Bouton pour replier la section depuis le bas */
-    .specials-collapse-btn{display:flex;align-items:center;justify-content:center;width:100%;background:transparent;border:none;border-top:1px solid rgba(201,153,58,0.12);margin-top:1rem;padding:0.6rem 1rem;cursor:pointer;color:var(--gold);opacity:0.5;transition:opacity 0.2s ease,background 0.2s ease;font-family:inherit;}
+    .specials-collapse-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;width:100%;background:transparent;border:none;border-top:1px solid rgba(201,153,58,0.12);margin-top:1rem;padding:0.75rem 1rem 0.65rem;cursor:pointer;color:var(--gold);opacity:0.6;transition:opacity 0.2s ease,background 0.2s ease;font-family:inherit;}
     .specials-collapse-btn:hover{opacity:1;background:rgba(201,153,58,0.05);}
     .specials-collapse-btn:focus-visible{outline:2px solid var(--gold);outline-offset:-4px;opacity:1;}
     .specials-collapse-btn svg{width:18px;height:18px;display:block;transition:transform 0.2s ease;}
     .specials-collapse-btn:hover svg{transform:translateY(-2px);}
+    .specials-collapse-btn-label{font-size:10px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);line-height:1;}
 
     /* === Coups de cœur — Cartes vedettes (en haut de chaque onglet) === */
     .signature-section{margin-bottom:2rem;}
@@ -2617,7 +2618,7 @@ if(document.readyState === 'loading'){
           <div class="midi-note midi-note-highlight"><span class="midi-note-label" data-fr="Inclus" data-en="Included" data-es="Incluye">Inclus</span><span class="midi-note-text" data-fr="soupe ou crème du jour OU dessert du jour · café inclus" data-en="soup or cream of the day OR dessert of the day · coffee included" data-es="sopa o crema del día O postre del día · café incluido">soupe ou crème du jour OU dessert du jour · café inclus</span></div>
           <div class="midi-note"><span class="midi-note-label" data-fr="Pizza" data-en="Pizza" data-es="Pizza">Pizza</span><span class="midi-note-text" data-fr="au choix : plain, végétarienne, toute garnie, pepperoni ou bacon · Spéciale du Moulin ou fruits de mer : + 3,95 $" data-en="your choice: plain, vegetarian, all-dressed, pepperoni or bacon · Le Moulin Special or seafood: + $3.95" data-es="a elegir: natural, vegetariana, toda guarnecida, pepperoni o tocineta · Especial del Moulin o mariscos: + 3,95 $">au choix : plain, végétarienne, toute garnie, pepperoni ou bacon · Spéciale du Moulin ou fruits de mer : + 3,95 $</span></div>
         </div>
-        <button type="button" class="specials-collapse-btn" aria-label="Replier la section" onclick="collapseSpecial(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6,15 12,9 18,15"/></svg></button>
+        <button type="button" class="specials-collapse-btn" aria-label="Replier la section" onclick="collapseSpecial(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6,15 12,9 18,15"/></svg><span class="specials-collapse-btn-label" data-fr="Fermer" data-en="Close" data-es="Cerrar">Fermer</span></button>
       </div>
     </div>
 
@@ -2687,7 +2688,7 @@ if(document.readyState === 'loading'){
             <span class="midi-item-end"><span class="midi-item-price">11,95 $</span></span>
           </div>
         </div>
-        <button type="button" class="specials-collapse-btn" aria-label="Replier la section" onclick="collapseSpecial(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6,15 12,9 18,15"/></svg></button>
+        <button type="button" class="specials-collapse-btn" aria-label="Replier la section" onclick="collapseSpecial(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6,15 12,9 18,15"/></svg><span class="specials-collapse-btn-label" data-fr="Fermer" data-en="Close" data-es="Cerrar">Fermer</span></button>
       </div>
     </div>
 
@@ -2730,7 +2731,7 @@ if(document.readyState === 'loading'){
             <div class="promo-ss-item" data-image="images/speciaux_midi/mini-pizza-frite-midi.webp"><img class="promo-thumb" src="images/speciaux_midi/mini-pizza-frite-midi.webp" alt="" loading="lazy" decoding="async"><div class="promo-ss-num">11</div><div class="promo-ss-name" data-fr="Mini-pizza (avec frites)" data-en="Mini pizza (with fries)" data-es="Mini pizza (con papas fritas)">Mini-pizza (avec frites)</div><span class="promo-ss-end"><div class="promo-ss-price">16,95 $</div></span></div>
             <div class="promo-ss-item"><div class="promo-thumb-placeholder" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div><div class="promo-ss-num">12</div><div class="promo-ss-name" data-fr="Pita gyros ou poulet (avec frites)" data-en="Gyro or chicken pita (with fries)" data-es="Pita de gyros o pollo (con papas fritas)">Pita gyros ou poulet (avec frites)</div><div class="promo-ss-price">16,95 $</div></div>
           </div>
-          <button type="button" class="specials-collapse-btn" aria-label="Replier la section" onclick="collapseSpecial(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6,15 12,9 18,15"/></svg></button>
+          <button type="button" class="specials-collapse-btn" aria-label="Replier la section" onclick="collapseSpecial(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6,15 12,9 18,15"/></svg><span class="specials-collapse-btn-label" data-fr="Fermer" data-en="Close" data-es="Cerrar">Fermer</span></button>
         </div>
       </div>
 
@@ -2791,7 +2792,7 @@ if(document.readyState === 'loading'){
             <span class="promo-combo-end"><div class="promo-combo-price">34,45 $</div></span>
           </div>
           </div>
-          <button type="button" class="specials-collapse-btn" aria-label="Replier la section" onclick="collapseSpecial(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6,15 12,9 18,15"/></svg></button>
+          <button type="button" class="specials-collapse-btn" aria-label="Replier la section" onclick="collapseSpecial(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6,15 12,9 18,15"/></svg><span class="specials-collapse-btn-label" data-fr="Fermer" data-en="Close" data-es="Cerrar">Fermer</span></button>
         </div>
       </div>
 
