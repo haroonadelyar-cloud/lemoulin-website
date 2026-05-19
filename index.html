@@ -1055,21 +1055,22 @@
     /* Badge "Ouvert maintenant" dans la nav */
     .open-status{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:6px 12px;border-radius:var(--radius);margin-right:0.75rem;transition:opacity 0.2s;}
     .open-status.is-open{background:rgba(76,175,80,0.12);border:1px solid rgba(76,175,80,0.4);color:#7DD87F;}
-    .open-status.is-closed{background:rgba(201,153,58,0.08);border:1px solid rgba(201,153,58,0.3);color:var(--gold);}
+    .open-status.is-closed{background:rgba(229,84,74,0.1);border:1px solid rgba(229,84,74,0.4);color:#F08075;}
     .open-status-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
     .open-status.is-open .open-status-dot{background:#7DD87F;box-shadow:0 0 8px rgba(125,216,127,0.6);animation:pulseDot 2s ease-in-out infinite;}
-    .open-status.is-closed .open-status-dot{background:var(--gold);}
+    .open-status.is-closed .open-status-dot{background:#E5544A;box-shadow:0 0 8px rgba(229,84,74,0.5);}
     @keyframes pulseDot{0%,100%{opacity:1;}50%{opacity:0.5;}}
     @media(max-width:1200px){.open-status{display:none;}}
 
     /* Version hero du badge Ouvert */
     .hero-open-status{display:inline-flex;align-items:center;gap:10px;background:rgba(22,19,15,0.5);backdrop-filter:blur(10px);border:1px solid rgba(201,153,58,0.25);padding:8px 16px;border-radius:var(--radius);font-size:12px;color:var(--text);margin-bottom:1.5rem;}
     .hero-open-status.is-open{border-color:rgba(76,175,80,0.4);}
+    .hero-open-status.is-closed{border-color:rgba(229,84,74,0.4);}
     .hero-open-status strong{color:#7DD87F;font-weight:600;letter-spacing:0.06em;}
-    .hero-open-status.is-closed strong{color:var(--gold);}
+    .hero-open-status.is-closed strong{color:#F08075;}
     .hero-open-status .open-status-dot{width:7px;height:7px;}
     .hero-open-status.is-open .open-status-dot{background:#7DD87F;box-shadow:0 0 6px rgba(125,216,127,0.6);animation:pulseDot 2s ease-in-out infinite;}
-    .hero-open-status.is-closed .open-status-dot{background:var(--gold);}
+    .hero-open-status.is-closed .open-status-dot{background:#E5544A;box-shadow:0 0 6px rgba(229,84,74,0.5);}
 
     /* Bouton téléphone flottant (mobile)
        - safe-area iOS : ne pas être caché par la barre Safari (iPhone X+)
