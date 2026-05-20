@@ -72,7 +72,8 @@
       "worstRating": "1"
     },
     "sameAs": [
-      "https://www.facebook.com/restaurantlemoulineastangus"
+      "https://www.facebook.com/restaurantlemoulineastangus",
+      "https://www.instagram.com/lemoulineastangus"
     ],
     "hasMenu": "https://lemoulineastangus.com/#menu",
     "potentialAction": {
@@ -729,6 +730,11 @@
     .fb-sub{font-size:12px;color:var(--text-muted);margin-top:1px;}
     .fb-btn{border:1px solid rgba(88,155,235,0.4);color:#7EAEE0;padding:9px 22px;border-radius:var(--radius);font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;font-family:var(--font-body);}
     .fb-btn:hover{background:rgba(24,119,242,0.12);}
+    .fb-actions{display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;}
+    .ig-icon{width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%);}
+    .ig-btn{border:1px solid rgba(214,36,159,0.4);color:#E481B8;padding:9px 22px;border-radius:var(--radius);font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;font-family:var(--font-body);}
+    .ig-btn:hover{background:rgba(214,36,159,0.12);}
+    .footer-ig{display:inline-flex;align-items:center;gap:8px;margin-top:0.6rem;color:#E481B8;font-size:12px;text-decoration:none;}
     .about-section{background:var(--dark2);}
     .about-layout{display:block;margin-top:3rem;}
     .about-img{border-radius:var(--radius);overflow:hidden;height:420px;}
@@ -3064,14 +3070,17 @@ if(document.readyState === 'loading'){
 </div>
 </section>
 
-<!-- FACEBOOK -->
+<!-- RÉSEAUX SOCIAUX -->
 <div class="fb-band">
 <div class="fb-inner">
   <div class="fb-left">
-    <div class="fb-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div>
-    <div><div class="fb-title" data-fr="Suivez-nous sur Facebook" data-en="Follow us on Facebook" data-es="Síganos en Facebook">Suivez-nous sur Facebook</div><div class="fb-sub" data-fr="Promotions, nouveautés et événements spéciaux" data-en="Specials, news and special events" data-es="Promociones, novedades y eventos especiales">Promotions, nouveautés et événements spéciaux</div></div>
+    <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;"><div class="fb-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div><div class="ig-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div></div>
+    <div><div class="fb-title" data-fr="Suivez-nous sur les réseaux" data-en="Follow us on social media" data-es="Síganos en las redes">Suivez-nous sur les réseaux</div><div class="fb-sub" data-fr="Promotions, nouveautés et événements spéciaux" data-en="Specials, news and special events" data-es="Promociones, novedades y eventos especiales">Promotions, nouveautés et événements spéciaux</div></div>
   </div>
-  <a href="https://www.facebook.com/RestaurantleMoulinEastAngus/" target="_blank" rel="noopener" class="fb-btn" data-fr="Visiter notre page Facebook" data-en="Visit our Facebook page" data-es="Visitar nuestra página de Facebook">Visiter notre page Facebook</a>
+  <div class="fb-actions">
+    <a href="https://www.facebook.com/RestaurantleMoulinEastAngus/" target="_blank" rel="noopener" class="fb-btn" data-fr="Facebook" data-en="Facebook" data-es="Facebook">Facebook</a>
+    <a href="https://www.instagram.com/lemoulineastangus" target="_blank" rel="noopener" class="ig-btn" data-fr="Instagram" data-en="Instagram" data-es="Instagram">Instagram</a>
+  </div>
 </div>
 </div>
 
@@ -3087,6 +3096,11 @@ if(document.readyState === 'loading'){
     <a href="https://www.facebook.com/RestaurantleMoulinEastAngus/" target="_blank" rel="noopener" class="footer-fb">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="#1877F2" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
       RestaurantleMoulinEastAngus
+    </a>
+    <br>
+    <a href="https://www.instagram.com/lemoulineastangus" target="_blank" rel="noopener" class="footer-ig">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E481B8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      lemoulineastangus
     </a>
   </div>
   <div>
