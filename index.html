@@ -59,8 +59,9 @@
       "longitude": -71.6599558
     },
     "openingHoursSpecification": [
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday"], "opens": "11:00", "closes": "20:00" },
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "11:00", "closes": "21:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday"], "opens": "11:00", "closes": "20:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Wednesday","Thursday"], "opens": "07:00", "closes": "20:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "07:00", "closes": "21:00" },
       { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "07:00", "closes": "21:00" },
       { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "07:00", "closes": "20:00" }
     ],
@@ -4380,8 +4381,9 @@ if(document.readyState === 'loading'){
     <div class="hours-grid">
       <div class="hours-card">
         <div class="info-label" data-fr="Heures d'ouverture" data-en="Opening hours" data-es="Horario de atención">Heures d'ouverture</div>
-        <div class="hours-row"><span class="hours-day" data-fr="Lundi – Jeudi" data-en="Monday – Thursday" data-es="Lunes – Jueves">Lundi – Jeudi</span><div class="hours-time">11h – 20h</div></div>
-        <div class="hours-row"><span class="hours-day" data-fr="Vendredi" data-en="Friday" data-es="Viernes">Vendredi</span><div class="hours-time">11h – 21h</div></div>
+        <div class="hours-row"><span class="hours-day" data-fr="Lundi – Mardi" data-en="Monday – Tuesday" data-es="Lunes – Martes">Lundi – Mardi</span><div class="hours-time">11h – 20h</div></div>
+        <div class="hours-row"><span class="hours-day" data-fr="Mercredi – Jeudi" data-en="Wednesday – Thursday" data-es="Miércoles – Jueves">Mercredi – Jeudi</span><div class="hours-time">7h – 20h<span class="hours-note" data-fr="Déjeuner 7h – 13h" data-en="Breakfast 7am – 1pm" data-es="Desayuno 7h – 13h">Déjeuner 7h – 13h</span></div></div>
+        <div class="hours-row"><span class="hours-day" data-fr="Vendredi" data-en="Friday" data-es="Viernes">Vendredi</span><div class="hours-time">7h – 21h<span class="hours-note" data-fr="Déjeuner 7h – 13h" data-en="Breakfast 7am – 1pm" data-es="Desayuno 7h – 13h">Déjeuner 7h – 13h</span></div></div>
         <div class="hours-row"><span class="hours-day" data-fr="Samedi" data-en="Saturday" data-es="Sábado">Samedi</span><div class="hours-time">7h – 21h<span class="hours-note" data-fr="Déjeuner 7h – 13h" data-en="Breakfast 7am – 1pm" data-es="Desayuno 7h – 13h">Déjeuner 7h – 13h</span></div></div>
         <div class="hours-row"><span class="hours-day" data-fr="Dimanche" data-en="Sunday" data-es="Domingo">Dimanche</span><div class="hours-time">7h – 20h<span class="hours-note" data-fr="Déjeuner 7h – 13h" data-en="Breakfast 7am – 1pm" data-es="Desayuno 7h – 13h">Déjeuner 7h – 13h</span></div></div>
       </div>
