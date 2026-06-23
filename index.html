@@ -1659,7 +1659,7 @@
       .moulin-logo{width:78px !important;height:auto !important;margin-bottom:0.6rem !important;}
     }
     .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 110%,rgba(201,153,58,0.12) 0%,transparent 70%),repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(201,153,58,0.015) 40px,rgba(201,153,58,0.015) 41px);}
-    .hero-content{position:relative;text-align:center;padding:2rem 2rem;max-width:780px;animation:fadeUp 1s ease both;}
+    .hero-content{position:relative;z-index:2;text-align:center;padding:2rem 2rem;max-width:780px;animation:fadeUp 1s ease both;}
     @keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
     @keyframes moulinSpin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
     @keyframes logoFadeIn{from{opacity:0;transform:translateY(12px) scale(0.95);}to{opacity:1;transform:translateY(0) scale(1);}}
@@ -2372,7 +2372,24 @@
     }
 
     .hero{background:var(--dark2);}
-    .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom, rgba(16,13,10,0.55) 0%, rgba(16,13,10,0.75) 60%, rgba(16,13,10,0.92) 100%);}
+
+    /* === DIAPORAMA DE FOND (photos de plats) === */
+    .hero-slideshow{position:absolute;inset:0;z-index:0;overflow:hidden;background:var(--dark2);}
+    .hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.6s ease-in-out;will-change:opacity;}
+    .hero-slide.is-active{opacity:1;}
+    .hero-slide img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
+    /* Léger zoom lent sur la photo affichée */
+    .hero-slide.is-active img{animation:heroKenBurns 7s ease-out forwards;}
+    @keyframes heroKenBurns{from{transform:scale(1.0);}to{transform:scale(1.08);}}
+    /* Voile sombre : assombrit le centre pour la lisibilité + chaleur dorée en bas */
+    .hero-overlay{position:absolute;inset:0;z-index:1;background:
+      radial-gradient(ellipse 110% 80% at 50% 40%, rgba(16,13,10,0.55) 0%, rgba(16,13,10,0.82) 100%),
+      linear-gradient(to bottom, rgba(16,13,10,0.60) 0%, rgba(16,13,10,0.50) 42%, rgba(16,13,10,0.90) 100%),
+      radial-gradient(ellipse 80% 55% at 50% 116%, rgba(201,153,58,0.16) 0%, transparent 70%);}
+    @media (prefers-reduced-motion: reduce){
+      .hero-slide{transition:none;}
+      .hero-slide.is-active img{animation:none;transform:none;}
+    }
 
     .about-feature-list{list-style:none;margin-top:1.5rem;}
     .about-feature-list li{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:14px;color:var(--text-muted);line-height:1.5;}
@@ -2964,7 +2981,27 @@ if(document.readyState === 'loading'){
 
 <main id="main-content">
 <section class="hero" id="hero">
-  <div class="hero-bg"></div>
+  <!-- Diaporama de fond : photos de plats (déjeuners + dîners en alternance) -->
+  <div class="hero-slideshow" aria-hidden="true">
+    <div class="hero-slide is-active"><img src="images/plats/pizza-toute-garnie.webp" alt="" decoding="async"></div>
+    <div class="hero-slide"><img data-src="images/dejeuners/bene-saumon-fume.webp" alt="" decoding="async"></div>
+    <div class="hero-slide"><img data-src="images/plats/steak-filet-mignon.webp" alt="" decoding="async"></div>
+    <div class="hero-slide"><img data-src="images/dejeuners/2-oeufs-3-viandes.webp" alt="" decoding="async"></div>
+    <div class="hero-slide"><img data-src="images/poutines/poutine-italienne.webp" alt="" decoding="async"></div>
+    <div class="hero-slide"><img data-src="images/dejeuners/bene-3-viandes.webp" alt="" decoding="async"></div>
+    <div class="hero-slide"><img data-src="images/plats/spaghetti-special-moulin.webp" alt="" decoding="async"></div>
+    <div class="hero-slide"><img data-src="images/dejeuners/2-gaufres-bananes-chocolat-noisettes.webp" alt="" decoding="async"></div>
+    <div class="hero-slide"><img data-src="images/plats/crevettes-panees.webp" alt="" decoding="async"></div>
+    <div class="hero-slide"><img data-src="images/dejeuners/bene-brie-champignons-sautes.webp" alt="" decoding="async"></div>
+    <div class="hero-slide"><img data-src="images/plats/pizza-speciale-du-moulin.webp" alt="" decoding="async"></div>
+    <div class="hero-slide"><img data-src="images/dejeuners/2-oeufs-viande-gaufre-aux-fruits.webp" alt="" decoding="async"></div>
+    <div class="hero-slide"><img data-src="images/salades/salade-cesar-poulet-grille.webp" alt="" decoding="async"></div>
+    <div class="hero-slide"><img data-src="images/dejeuners/bene-jambon-fromage-suisse.webp" alt="" decoding="async"></div>
+    <div class="hero-slide"><img data-src="images/plats/assiette-pita-poulet.webp" alt="" decoding="async"></div>
+    <div class="hero-slide"><img data-src="images/entrees/escargots-ail-gratines.webp" alt="" decoding="async"></div>
+    <div class="hero-slide"><img data-src="images/speciaux_midi/mini-pizza-frite-midi.webp" alt="" decoding="async"></div>
+  </div>
+  <div class="hero-overlay" aria-hidden="true"></div>
   <div class="hero-content">
     <svg class="moulin-logo" width="104" height="116" viewBox="0 0 100 110" fill="none" style="margin-bottom:1.25rem;overflow:visible;" aria-hidden="true">
       <!-- Pales triangulaires (rotation autour du moyeu en 50,42) -->
@@ -6010,6 +6047,51 @@ function closeOrderModal(){
     if(e.key === 'Escape' && modal.classList.contains('is-open')){
       closeOrderModal();
     }
+  });
+})();
+</script>
+
+<script>
+// === DIAPORAMA HERO (photos de plats en fond) ===
+(function(){
+  var show = document.querySelector('.hero-slideshow');
+  if(!show) return;
+  var slides = Array.prototype.slice.call(show.querySelectorAll('.hero-slide'));
+  if(slides.length < 2) return; // rien à faire défiler
+
+  // Charge la photo d'une slide (depuis data-src) si pas déjà chargée
+  function loadSlide(i){
+    if(i < 0 || i >= slides.length) return;
+    var img = slides[i].querySelector('img');
+    if(img && !img.getAttribute('src') && img.getAttribute('data-src')){
+      img.setAttribute('src', img.getAttribute('data-src'));
+    }
+  }
+
+  // Respect du réglage « réduire les animations » : on garde la 1re photo, pas de rotation
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduceMotion) return;
+
+  var current = 0;
+  var DISPLAY = 5000; // durée d'affichage de chaque photo (ms)
+
+  // Précharge la photo suivante tout de suite (transition fluide)
+  loadSlide(1);
+
+  function next(){
+    var upcoming = (current + 1) % slides.length;
+    slides[current].classList.remove('is-active');
+    slides[upcoming].classList.add('is-active');
+    current = upcoming;
+    loadSlide((current + 1) % slides.length); // précharge la prochaine
+  }
+
+  var timer = setInterval(next, DISPLAY);
+
+  // Met en pause quand l'onglet est caché, reprend au retour
+  document.addEventListener('visibilitychange', function(){
+    clearInterval(timer);
+    if(!document.hidden){ timer = setInterval(next, DISPLAY); }
   });
 })();
 </script>
