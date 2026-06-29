@@ -2179,6 +2179,28 @@
       .gallery-card-label{font-size:9px;letter-spacing:0.15em;}
     }
 
+    /* Bande unique -> révèle 2 cartes photos (déjeuners / dîners) */
+    .gallery-cards{display:block;}
+    .gallery-band{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;max-width:480px;margin:0 auto;padding:16px 26px;background:rgba(201,153,58,0.06);border:1.5px solid var(--gold);border-radius:var(--radius);color:var(--gold);font-family:var(--font-body);font-weight:600;font-size:14px;letter-spacing:0.16em;text-transform:uppercase;cursor:pointer;transition:background 0.22s,border-color 0.22s,color 0.22s,transform 0.22s;}
+    .gallery-band:hover{background:rgba(201,153,58,0.16);border-color:var(--gold-light);color:var(--gold-light);transform:translateY(-2px);}
+    .gallery-cat-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem;width:100%;max-width:600px;margin:0 auto;}
+    .gallery-cat-cards[hidden]{display:none;}
+    .gallery-cat-card{position:relative;aspect-ratio:4/3;border:1px solid rgba(201,153,58,0.18);border-radius:var(--radius);overflow:hidden;padding:0;background:var(--dark2);cursor:pointer;font-family:var(--font-body);color:inherit;transition:transform 0.25s ease,border-color 0.25s ease;}
+    .gallery-cat-card:hover{transform:translateY(-3px);border-color:var(--gold);}
+    .gallery-cat-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease;}
+    .gallery-cat-card:hover img{transform:scale(1.06);}
+    .gallery-cat-scrim{position:absolute;inset:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:6px;padding:1rem 1.1rem;background:linear-gradient(to top,rgba(22,19,15,0.86) 0%,rgba(22,19,15,0.35) 42%,transparent 72%);}
+    .gallery-cat-name{font-family:var(--font-display);font-size:clamp(20px,2.6vw,26px);font-weight:700;color:#fff;line-height:1.1;letter-spacing:0.01em;}
+    .gallery-cat-cta{display:inline-flex;align-items:center;gap:6px;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;color:var(--gold);}
+    .gallery-cat-card:hover .gallery-cat-name{color:var(--gold-light);}
+    .gallery-cat-card:hover .gallery-cat-cta{color:var(--gold-light);}
+    @media(max-width:560px){
+      .gallery-band{font-size:11px;letter-spacing:0.12em;padding:14px 16px;gap:8px;}
+      .gallery-cat-cards{gap:0.85rem;}
+      .gallery-cat-scrim{padding:0.7rem 0.8rem;}
+      .gallery-cat-cta{font-size:9px;letter-spacing:0.12em;}
+    }
+
     /* Galerie complète (affichée après clic sur une carte) */
     .gallery-expanded{margin-top:2.5rem;}
     .gallery-expanded[hidden]{display:none;}
@@ -3088,14 +3110,25 @@ if(document.readyState === 'loading'){
     <div class="gallery-item" data-photo="images/salle-a-manger.webp" data-photo-caption-fr="Notre salle à manger" data-photo-caption-en="Our dining room" data-photo-caption-es="Nuestro salón"><picture><source srcset="images/salle-a-manger.webp" type="image/webp"><img src="images/salle-a-manger.jpg" alt="Notre salle à manger — Restaurant Le Moulin" loading="lazy" decoding="async"></picture><div class="gallery-cap"><span data-fr="Notre salle à manger" data-en="Our dining room" data-es="Nuestro salón">Notre salle à manger</span></div></div>
   </div>
 
-  <!-- 2 cartes pour ouvrir les galeries -->
+  <!-- Galerie : 1 bande dorée -> révèle 2 cartes photos (déjeuners / dîners) -->
   <div class="gallery-cards" id="gallery-cards">
-    <button type="button" class="gallery-card" data-gallery-target="dejeuners" aria-label="Voir la galerie des déjeuners">
-      <div class="gallery-card-label" data-fr="Voir les photos déjeuners →" data-en="View breakfast photos →" data-es="Ver fotos de desayunos →">Voir les photos déjeuners →</div>
-    </button>
-    <button type="button" class="gallery-card" data-gallery-target="diners" aria-label="Voir la galerie des dîners et soupers">
-      <div class="gallery-card-label" data-fr="Voir les photos dîners et soupers →" data-en="View lunch &amp; dinner photos →" data-es="Ver fotos de almuerzos y cenas →">Voir les photos dîners et soupers →</div>
-    </button>
+    <button type="button" class="gallery-band" id="galleryBand" aria-expanded="false" aria-controls="galleryCatCards" data-fr="Découvrir nos plats en photos →" data-en="Discover our dishes in photos →" data-es="Descubrir nuestros platos en fotos →">Découvrir nos plats en photos →</button>
+    <div class="gallery-cat-cards" id="galleryCatCards" hidden>
+      <button type="button" class="gallery-cat-card" data-gallery-target="dejeuners" aria-label="Voir les photos des déjeuners">
+        <img src="images/dejeuners/bene-jambon-fromage-suisse.webp" alt="Photos des déjeuners — Restaurant Le Moulin" loading="lazy" decoding="async">
+        <span class="gallery-cat-scrim">
+          <span class="gallery-cat-name" data-fr="Déjeuners" data-en="Breakfast" data-es="Desayunos">Déjeuners</span>
+          <span class="gallery-cat-cta" data-fr="Voir les photos →" data-en="View photos →" data-es="Ver fotos →">Voir les photos →</span>
+        </span>
+      </button>
+      <button type="button" class="gallery-cat-card" data-gallery-target="diners" aria-label="Voir les photos des dîners et soupers">
+        <img src="images/plats/pizza-speciale-du-moulin.webp" alt="Photos des dîners et soupers — Restaurant Le Moulin" loading="lazy" decoding="async">
+        <span class="gallery-cat-scrim">
+          <span class="gallery-cat-name" data-fr="Dîners &amp; Soupers" data-en="Lunch &amp; Dinner" data-es="Almuerzos y cenas">Dîners &amp; Soupers</span>
+          <span class="gallery-cat-cta" data-fr="Voir les photos →" data-en="View photos →" data-es="Ver fotos →">Voir les photos →</span>
+        </span>
+      </button>
+    </div>
   </div>
 
   <!-- Bouton "Retour" flottant — partagé par toutes les galeries, visible quand on scrolle -->
@@ -4699,10 +4732,21 @@ function initMenuAccordions(){
 // et on affiche la galerie complète correspondante.
 // Le bouton "← Retour" remet l'état initial.
 function initGalleryCards(){
-  var cards = document.querySelectorAll('.gallery-card[data-gallery-target]');
+  var cards = document.querySelectorAll('.gallery-cat-card[data-gallery-target]');
   if(!cards.length) return;
 
   var cardsWrap = document.getElementById('gallery-cards');
+  var galleryBand = document.getElementById('galleryBand');
+  var galleryCatCards = document.getElementById('galleryCatCards');
+  if(galleryBand && galleryCatCards){
+    galleryBand.addEventListener('click', function(){
+      galleryCatCards.hidden = false;
+      galleryBand.setAttribute('aria-expanded', 'true');
+      galleryBand.style.display = 'none';
+      var revealTop = galleryCatCards.getBoundingClientRect().top + window.pageYOffset - 110;
+      window.scrollTo({ top: revealTop, behavior: 'smooth' });
+    });
+  }
   var hero = document.querySelector('.gallery-hero');
   var expandedPanels = document.querySelectorAll('.gallery-expanded');
   var floatingBtn = document.getElementById('galleryBackFloating');
