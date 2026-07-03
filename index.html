@@ -1674,7 +1674,11 @@
     .hero-directions-btn svg{flex-shrink:0;}
     .hero-sub{font-size:15px;color:var(--text-muted);letter-spacing:0.04em;line-height:1.7;margin-bottom:1.75rem;}
     .hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
-    .hero-actions-secondary{margin-top:0.85rem;gap:0.65rem;}
+    .hero-actions-secondary{margin-top:0.85rem;gap:0.65rem;flex-wrap:nowrap;}
+    .hero-actions-secondary .btn-ghost{flex:0 1 280px;text-align:center;white-space:nowrap;}
+    @media(max-width:1024px) and (min-width:641px){
+      .hero-actions-secondary .btn-ghost{padding:12px 14px;font-size:11px;letter-spacing:0.09em;}
+    }
     .btn-hero-primary{padding:16px 56px;font-size:13px;letter-spacing:0.18em;}
     @media(max-width:640px){
       .btn-hero-primary{padding:15px 40px;}
@@ -2010,6 +2014,10 @@
     /* Spéciaux du midi — section vedette */
     .specials-stack{display:flex;flex-direction:column;gap:0.85rem;}
     .specials-group-header{margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid rgba(201,153,58,0.15);}
+    .menu-specials-divider{display:flex;align-items:center;gap:16px;margin:3.5rem auto 0.5rem;max-width:920px;}
+    .menu-specials-divider .msd-line{flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(201,153,58,0.6));}
+    .menu-specials-divider .msd-line.r{background:linear-gradient(to left,transparent,rgba(201,153,58,0.6));}
+    .menu-specials-divider .msd-diamond{width:8px;height:8px;background:var(--gold);transform:rotate(45deg);flex:none;}
     .specials-group-title{font-family:var(--font-display);font-size:clamp(28px,3.5vw,42px);font-weight:700;color:#fff;line-height:1.1;margin-bottom:0.75rem;letter-spacing:0.01em;}
     .specials-group-sub{font-size:12px;color:var(--text-muted);line-height:1.5;}
     .specials-group-sub a:hover{text-decoration:underline;}
@@ -2753,6 +2761,15 @@
     .lang-switch{min-width:0;}
     .lang-switch button{padding:6px 8px;font-size:10px;}
   </style>
+<style>
+    /* Grille promo à carte unique (ex. Promo Déménagement) : carte agrandie et centrée */
+    .promo-combo-grid.promo-combo-grid-single{grid-template-columns:1fr;max-width:640px;margin:0 auto;}
+    .promo-combo-grid-single .promo-combo-card .promo-thumb{height:280px;min-height:280px;max-height:280px;}
+    .promo-combo-grid-single .promo-combo-card .promo-card-name{font-size:16px;}
+    .promo-combo-grid-single .promo-combo-card .promo-card-desc{font-size:12.5px;}
+    .promo-combo-grid-single .promo-combo-card .promo-combo-price{font-size:16px;}
+    @media(max-width:640px){.promo-combo-grid-single .promo-combo-card .promo-thumb{height:200px;min-height:200px;max-height:200px;}}
+  </style>
 </head>
 <body>
 
@@ -2984,11 +3001,11 @@ if(document.readyState === 'loading'){
 
 
 
-<!-- Bande d'annonce : déjeuners en semaine dès le 3 juin -->
+<!-- Bande d'annonce : déjeuners mer-dim de 7 h à 13 h -->
 <div class="notice-band" role="status" aria-live="polite">
   <span class="notice-band-badge" data-fr="Nouveau" data-en="New" data-es="Nuevo">Nouveau</span>
   <span>
-    <svg class="notice-band-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg><span data-fr="Déjeuners du mercredi au dimanche dès le " data-en="Breakfast served Wednesday to Sunday starting " data-es="Desayunos de miércoles a domingo desde el ">Déjeuners du mercredi au dimanche dès le </span><span class="notice-band-highlight" data-fr="3 juin 2026" data-en="June 3, 2026" data-es="3 de junio de 2026">3 juin 2026</span>
+    <svg class="notice-band-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg><span data-fr="Déjeuners maintenant servis du mercredi au dimanche, de " data-en="Breakfast now served Wednesday to Sunday, " data-es="Desayunos ahora servidos de miércoles a domingo, de ">Déjeuners maintenant servis du mercredi au dimanche, de </span><span class="notice-band-highlight" data-fr="7 h à 13 h" data-en="7 a.m. to 1 p.m." data-es="7 h a 13 h">7 h à 13 h</span>
   </span>
 </div>
 
@@ -3090,7 +3107,7 @@ if(document.readyState === 'loading'){
     </div>
     <div class="hero-actions hero-actions-secondary">
       <a href="#reservation" class="btn-ghost" style="border-color:var(--gold);color:var(--gold);" data-fr="Réserver une table" data-en="Book a table" data-es="Reservar una mesa">Réserver une table</a>
-      <a href="#order" class="btn-ghost" style="border-color:var(--gold);color:var(--gold);" data-fr="Livraison &amp; Emporter" data-en="Delivery &amp; Takeout" data-es="Entrega y para llevar">Livraison &amp; Emporter</a>
+      <a href="#promos-livraison" class="btn-ghost" style="border-color:var(--gold);color:var(--gold);" data-fr="Promotions" data-en="Specials" data-es="Promociones">Promotions</a>
     </div>
   </div>
 </section>
@@ -3908,6 +3925,8 @@ if(document.readyState === 'loading'){
   <p style="font-size:12px;color:var(--text-muted);margin-top:1.5rem;text-align:center;" data-fr="* Les photos peuvent différer des plats. Informez votre serveur de toute allergie." data-en="* Photos may differ from actual dishes. Please inform your server of any allergies." data-es="* Las fotos pueden diferir de los platos reales. Informe a su mesero de cualquier alergia.">* Les photos peuvent différer des plats. Informez votre serveur de toute allergie.</p>
 </div>
 
+  <div class="menu-specials-divider" aria-hidden="true"><div class="msd-line"></div><div class="msd-diamond"></div><div class="msd-line r"></div></div>
+
   <!-- SPÉCIAUX — SECTIONS VEDETTES REPLIABLES -->
   <div id="promotions" class="specials-group" style="margin-top:2.5rem;">
     <div class="specials-group-header">
@@ -3990,7 +4009,7 @@ if(document.readyState === 'loading'){
     </div>
     </div>
   <!-- PROMOTIONS LIVRAISON & EMPORTER -->
-  <div class="specials-group" style="margin-top:3.5rem;">
+  <div id="promos-livraison" class="specials-group" style="margin-top:3.5rem;">
     <span id="order" style="position:absolute;margin-top:-90px;"></span>
     <div class="specials-group-header">
       <h3 class="specials-group-title" data-fr="Promotions livraison &amp; emporter" data-en="Delivery &amp; Takeout Specials" data-es="Promociones de entrega y para llevar">Promotions livraison &amp; emporter</h3>
@@ -3998,6 +4017,36 @@ if(document.readyState === 'loading'){
       <p class="specials-group-sub with-phone-pill" data-fr='Des combos savoureux à découvrir — commandez par téléphone au<br><a href="tel:+18198324242" class="phone-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(819) 832-4242</a>' data-en='Tasty combos to discover — call to order at<br><a href="tel:+18198324242" class="phone-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(819) 832-4242</a>' data-es='Combos deliciosos por descubrir — pida por teléfono al<br><a href="tel:+18198324242" class="phone-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(819) 832-4242</a>'>Des combos savoureux à découvrir — commandez par téléphone au<br><a href="tel:+18198324242" class="phone-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(819) 832-4242</a></p>
     </div>
     <div class="specials-stack">
+
+      <!-- PROMO DÉMÉNAGEMENT (juillet 2026) -->
+      <div class="midi-featured specials-card" data-open="false">
+        <button type="button" class="midi-header specials-toggle" aria-expanded="false" onclick="toggleSpecial(this)">
+          <div class="midi-header-left">
+            <h3 class="midi-title" data-fr="Promo Déménagement" data-en="Moving Special" data-es="Promo de Mudanza">Promo Déménagement</h3>
+            <p class="midi-subtitle" data-fr="Du 1er au 31 juillet 2026 — livraison et pour emporter seulement" data-en="July 1 to 31, 2026 — delivery and takeout only" data-es="Del 1 al 31 de julio de 2026 — solo entrega y para llevar">Du 1er au 31 juillet 2026 — livraison et pour emporter seulement</p>
+          </div>
+          <div class="midi-header-right">
+            <div class="midi-badge midi-badge-alt">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 12L8 3L13 12H3Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+              <span data-fr="Juillet seulement !" data-en="July only!" data-es="¡Solo en julio!">Juillet seulement !</span>
+            </div>
+            <svg class="specials-chevron" width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true"><polyline points="4,6 8,10 12,6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </button>
+        <div class="specials-body">
+          <div class="promo-combo-grid promo-combo-grid-single">
+          <div class="promo-combo-card" data-image="images/plats/combo-2-pizzas.webp">
+            <img class="promo-thumb" src="images/plats/combo-2-pizzas.webp" alt="" loading="lazy" decoding="async">
+            <div>
+              <div class="promo-card-name" data-fr="2 grandes pizzas (14&quot;) + 1 grande frite" data-en="2 large pizzas (14&quot;) + 1 large fries" data-es="2 pizzas grandes (14&quot;) + 1 papas fritas grandes">2 grandes pizzas (14") + 1 grande frite</div>
+              <div class="promo-card-desc" data-fr="Pepperoni-bacon, toute garnie ou végétarienne — mélangez les choix à votre goût" data-en="Pepperoni-bacon, all-dressed or vegetarian — mix the choices as you like" data-es="Pepperoni-tocino, toda guarnecida o vegetariana — combine las opciones a su gusto">Pepperoni-bacon, toute garnie ou végétarienne — mélangez les choix à votre goût</div>
+            </div>
+            <span class="promo-combo-end"><div class="promo-combo-price">39,95 $</div></span>
+          </div>
+          </div>
+          <button type="button" class="specials-collapse-btn" aria-label="Replier la section" onclick="collapseSpecial(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6,15 12,9 18,15"/></svg><span class="specials-collapse-btn-label" data-fr="Fermer" data-en="Close" data-es="Cerrar">Fermer</span></button>
+        </div>
+      </div>
 
       <!-- SUPER SPÉCIAL -->
       <div class="midi-featured specials-card" data-open="false">
