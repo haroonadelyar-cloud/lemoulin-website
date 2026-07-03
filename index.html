@@ -5038,6 +5038,8 @@ if(document.readyState === 'loading'){
 function toggleMobileMenu(){
   const menu = document.getElementById('mobileMenu');
   const btn = document.getElementById('navHamburger');
+  // Positionner le menu sous le bas réel de la nav (la bande d'annonce peut la pousser plus bas)
+  menu.style.top = Math.round(document.querySelector('nav').getBoundingClientRect().bottom) + 'px';
   const isOpen = menu.classList.toggle('open');
   btn.classList.toggle('open');
   btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
