@@ -1604,7 +1604,7 @@
       --font-display:'Cormorant Garamond',serif;
       --font-body:'Outfit',sans-serif;
     }
-    html{scroll-behavior:smooth;}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%;}
     /* Décalage pour les ancres intra-section (évite que le titre se cache sous la nav fixe de 66px) */
     #promotions{scroll-margin-top:90px;}
     body{background:var(--dark);color:var(--text);font-family:var(--font-body);font-weight:300;line-height:1.6;overflow-x:clip;}
@@ -1696,6 +1696,8 @@
       }
       .hero-actions-secondary .btn-ghost{
         width:100%;
+        min-width:0;
+        white-space:normal;
         text-align:center;
         padding:12px 8px;
         font-size:10.5px;
@@ -2301,17 +2303,18 @@
     }
     /* Layout vertical de la section réservation */
     .reservation-stack{margin-top:3rem;display:flex;flex-direction:column;gap:2rem;max-width:880px;margin-left:auto;margin-right:auto;}
-    .hours-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+    .hours-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1.5rem;}
     @media(max-width:760px){
-      .hours-grid{grid-template-columns:1fr;gap:1rem;}
+      .hours-grid{grid-template-columns:minmax(0,1fr);gap:1rem;}
     }
     .hours-card{background:var(--dark2);border:1px solid rgba(255,255,255,0.07);padding:1.5rem;border-radius:var(--radius);margin-bottom:1rem;}
     .info-label{font-size:10px;letter-spacing:0.28em;color:var(--gold);text-transform:uppercase;font-weight:500;margin-bottom:1rem;}
-    .hours-row{display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px;gap:1rem;}
+    .hours-row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px;gap:0.35rem 1rem;}
+    .hours-time{margin-left:auto;}
     .hours-row:last-child{border-bottom:none;}
     .hours-day{color:var(--text-muted);flex-shrink:0;}
-    .hours-time{color:#fff;font-size:13px;text-align:right;white-space:nowrap;}
-    .hours-note{font-size:10px;color:var(--gold);display:block;margin-top:1px;white-space:nowrap;}
+    .hours-time{color:#fff;font-size:13px;text-align:right;}
+    .hours-note{font-size:10px;color:var(--gold);display:block;margin-top:1px;}
     .groups-card{background:rgba(201,153,58,0.05);border:1px solid rgba(201,153,58,0.2);padding:1.5rem;border-radius:var(--radius);}
     .groups-card p{font-size:13px;color:var(--text-muted);line-height:1.7;}
     .groups-card a{color:var(--gold);text-decoration:none;}
@@ -2332,7 +2335,7 @@
     }
     .ueat-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
     footer{background:#0D0B08;border-top:1px solid rgba(255,255,255,0.05);padding:2.5rem 2rem 1.5rem;}
-    .footer-grid{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;}
+    .footer-grid{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);gap:3rem;overflow-wrap:break-word;}
     .footer-brand-name{font-family:var(--font-display);font-size:22px;font-weight:700;color:#fff;letter-spacing:0.05em;}
     .footer-brand-sub{font-size:9px;letter-spacing:0.22em;color:var(--gold);text-transform:uppercase;font-weight:500;margin-top:2px;margin-bottom:1rem;}
     .footer-desc{font-size:13px;color:var(--text-muted);line-height:1.8;}
@@ -2352,7 +2355,7 @@
       .gallery-item{aspect-ratio:4/3;}
       /* Sur mobile quand la galerie est repliee, ne montrer que le grand item #1 */
       .gallery-grid.gallery-collapsed .gallery-item:not(:nth-child(1)){display:none;}
-      .about-layout,.reservation-layout,.footer-grid{grid-template-columns:1fr;gap:2rem;}
+      .about-layout,.reservation-layout,.footer-grid{grid-template-columns:minmax(0,1fr);gap:2rem;}
       .about-img{height:280px;}
       .footer-links{display:flex;flex-wrap:wrap;gap:0.25rem 1.5rem;}
       .footer-links li{margin-bottom:0;}
@@ -2458,13 +2461,13 @@
     .about-check{width:18px;height:18px;background:rgba(201,153,58,0.12);border:1px solid rgba(201,153,58,0.35);border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
 
     /* SUPER SPÉCIAL COMPACT GRID */
-    .promo-ss-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.3rem;}
+    .promo-ss-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0.3rem;}
     .promo-ss-item{background:var(--dark3);border:1px solid rgba(255,255,255,0.06);border-radius:var(--radius);padding:0.55rem 0.75rem;display:flex;align-items:center;gap:0.55rem;transition:background 0.2s;}
     .promo-ss-item:hover{background:var(--dark4);border-color:rgba(201,153,58,0.2);}
     .promo-ss-num{width:17px;height:17px;background:rgba(201,153,58,0.12);border:1px solid rgba(201,153,58,0.3);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:var(--gold);flex-shrink:0;}
-    .promo-ss-name{font-size:12px;color:#fff;font-weight:400;flex:1;line-height:1.3;}
+    .promo-ss-name{font-size:12px;color:#fff;font-weight:400;flex:1;line-height:1.3;min-width:0;overflow-wrap:break-word;}
     .promo-ss-price{color:var(--gold);font-size:12px;font-weight:700;white-space:nowrap;flex-shrink:0;}
-    @media(max-width:480px){.promo-ss-grid{grid-template-columns:1fr;}}
+    @media(max-width:480px){.promo-ss-grid{grid-template-columns:minmax(0,1fr);}}
 
     /* VIGNETTE PHOTO sur midi-item (Spéciaux du midi + Spéciaux du mois) */
     .midi-thumb{width:64px;height:64px;min-width:64px;max-width:64px;min-height:64px;max-height:64px;border-radius:6px;object-fit:cover;flex:0 0 auto;border:1px solid rgba(201,153,58,0.2);background:var(--dark2);transition:border-color 0.2s ease,transform 0.2s ease;display:block;align-self:center;}
