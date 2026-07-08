@@ -1840,6 +1840,8 @@
     .midi-item.is-clickable:hover,
     .promo-combo-card.is-clickable:hover{background:rgba(201,153,58,0.06);}
     .pizza-row.is-clickable:hover{background:rgba(201,153,58,0.06) !important;}
+    .pizza-name-cell{display:flex;align-items:center;gap:12px;}
+    .pizza-row:hover .menu-thumb{border-color:rgba(201,153,58,0.5);transform:scale(1.03);}
     .menu-item.is-clickable:focus-visible,
     .promo-ss-item.is-clickable:focus-visible,
     .midi-item.is-clickable:focus-visible,
@@ -2648,8 +2650,7 @@
     .midi-item:hover .item-photo-icon,
     .promo-ss-item:hover .item-photo-icon,
     .promo-combo-card:hover .item-photo-icon,
-    .pizza-row:hover .item-photo-icon{opacity:1;transform:scale(1.12);}
-    /* Variante inline pour les pizzas dans le tableau (à côté du nom, pas de flex parent) */
+        /* Variante inline pour les pizzas dans le tableau (à côté du nom, pas de flex parent) */
     .item-photo-icon-inline{display:inline-block;margin-left:4px;opacity:0.45;vertical-align:middle;align-self:auto;margin-top:0;}
     .dessert-price-row{display:flex;align-items:center;justify-content:space-between;margin-top:1rem;padding-top:0.75rem;border-top:1px solid rgba(201,153,58,0.15);}
     .dessert-price{color:var(--gold);font-size:18px;font-weight:700;font-family:var(--font-display);}
@@ -3550,7 +3551,7 @@ if(document.readyState === 'loading'){
 </thead>
 <tbody>
 <tr class="pizza-row" data-image="images/plats/pizza-sauce-fromage.webp" style="border-bottom:1px solid rgba(255,255,255,0.05);">
-<td style="padding:10px 16px;"><span data-en="Sauce and cheese" data-es="Salsa y queso" data-fr="Sauce et fromage" style="color:#fff;font-weight:500;">Sauce et fromage</span> <span data-en="(plain)" data-es="(sencilla)" data-fr="(plain)" style="color:var(--text-muted);font-size:11px;">(plain)</span> <svg aria-hidden="true" class="item-photo-icon item-photo-icon-inline" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg></td>
+<td style="padding:10px 16px;"><div class="pizza-name-cell"><img alt="" class="menu-thumb" decoding="async" loading="lazy" src="images/plats/pizza-sauce-fromage.webp"/><div><span data-en="Sauce and cheese" data-es="Salsa y queso" data-fr="Sauce et fromage" style="color:#fff;font-weight:500;">Sauce et fromage</span> <span data-en="(plain)" data-es="(sencilla)" data-fr="(plain)" style="color:var(--text-muted);font-size:11px;">(plain)</span></div></div></td>
 <td style="text-align:center;padding:10px 12px;color:var(--gold);">10,50 $</td>
 <td style="text-align:center;padding:10px 12px;color:var(--gold);">15,50 $</td>
 <td style="text-align:center;padding:10px 12px;color:var(--gold);">19,75 $</td>
@@ -3558,7 +3559,7 @@ if(document.readyState === 'loading'){
 <td style="text-align:center;padding:10px 12px;color:var(--gold);">32,50 $</td>
 </tr>
 <tr class="pizza-row" data-image="images/plats/pizza-pepperoni.webp" style="border-bottom:1px solid rgba(255,255,255,0.05);background:rgba(255,255,255,0.02);">
-<td style="padding:10px 16px;"><span data-en="Pepperoni" data-es="Pepperoni" data-fr="Pepperoni" style="color:#fff;font-weight:500;">Pepperoni</span> <svg aria-hidden="true" class="item-photo-icon item-photo-icon-inline" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg></td>
+<td style="padding:10px 16px;"><div class="pizza-name-cell"><img alt="" class="menu-thumb" decoding="async" loading="lazy" src="images/plats/pizza-pepperoni.webp"/><div><span data-en="Pepperoni" data-es="Pepperoni" data-fr="Pepperoni" style="color:#fff;font-weight:500;">Pepperoni</span></div></div></td>
 <td style="text-align:center;padding:10px 12px;color:var(--gold);">12,25 $</td>
 <td style="text-align:center;padding:10px 12px;color:var(--gold);">17,20 $</td>
 <td style="text-align:center;padding:10px 12px;color:var(--gold);">22,95 $</td>
@@ -3566,7 +3567,7 @@ if(document.readyState === 'loading'){
 <td style="text-align:center;padding:10px 12px;color:var(--gold);">35,45 $</td>
 </tr>
 <tr class="pizza-row" data-image="images/plats/pizza-bacon.webp" style="border-bottom:1px solid rgba(255,255,255,0.05);">
-<td style="padding:10px 16px;"><span data-en="Bacon" data-es="Tocineta" data-fr="Bacon" style="color:#fff;font-weight:500;">Bacon</span> <svg aria-hidden="true" class="item-photo-icon item-photo-icon-inline" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg></td>
+<td style="padding:10px 16px;"><div class="pizza-name-cell"><img alt="" class="menu-thumb" decoding="async" loading="lazy" src="images/plats/pizza-bacon.webp"/><div><span data-en="Bacon" data-es="Tocineta" data-fr="Bacon" style="color:#fff;font-weight:500;">Bacon</span></div></div></td>
 <td style="text-align:center;padding:10px 12px;color:var(--gold);">12,25 $</td>
 <td style="text-align:center;padding:10px 12px;color:var(--gold);">17,20 $</td>
 <td style="text-align:center;padding:10px 12px;color:var(--gold);">22,95 $</td>
@@ -3574,7 +3575,7 @@ if(document.readyState === 'loading'){
 <td style="text-align:center;padding:10px 12px;color:var(--gold);">35,45 $</td>
 </tr>
 <tr class="pizza-row" data-image="images/plats/pizza-vegetarienne.webp" style="border-bottom:1px solid rgba(255,255,255,0.05);background:rgba(255,255,255,0.02);">
-<td style="padding:10px 16px;"><span data-en="Vegetarian" data-es="Vegetariana" data-fr="Végétarienne" style="color:#fff;font-weight:500;">Végétarienne</span> <svg aria-hidden="true" class="item-photo-icon item-photo-icon-inline" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg><br/><span data-en="Mushrooms, green peppers, onions, tomatoes, olives and cheese" data-es="Champiñones, pimiento verde, cebolla, tomate, aceitunas y queso" data-fr="Champignons, poivrons verts, oignons, tomates, olives et fromage" style="font-size:11px;color:var(--text-muted);">Champignons, poivrons verts, oignons, tomates, olives et fromage</span></td>
+<td style="padding:10px 16px;"><div class="pizza-name-cell"><img alt="" class="menu-thumb" decoding="async" loading="lazy" src="images/plats/pizza-vegetarienne.webp"/><div><span data-en="Vegetarian" data-es="Vegetariana" data-fr="Végétarienne" style="color:#fff;font-weight:500;">Végétarienne</span><br/><span data-en="Mushrooms, green peppers, onions, tomatoes and olives" data-es="Champiñones, pimiento verde, cebolla, tomate y aceitunas" data-fr="Champignons, poivrons verts, oignons, tomates et olives" style="font-size:11px;color:var(--text-muted);">Champignons, poivrons verts, oignons, tomates et olives</span></div></div></td>
 <td style="text-align:center;padding:10px 12px;color:var(--gold);">12,50 $</td>
 <td style="text-align:center;padding:10px 12px;color:var(--gold);">17,20 $</td>
 <td style="text-align:center;padding:10px 12px;color:var(--gold);">23,25 $</td>
@@ -3582,7 +3583,7 @@ if(document.readyState === 'loading'){
 <td style="text-align:center;padding:10px 12px;color:var(--gold);">36,45 $</td>
 </tr>
 <tr class="pizza-row" data-image="images/plats/pizza-toute-garnie.webp" style="border-bottom:1px solid rgba(255,255,255,0.05);">
-<td style="padding:10px 16px;"><span data-en="All-dressed" data-es="Toda guarnecida" data-fr="Toute garnie" style="color:#fff;font-weight:500;">Toute garnie</span> <svg aria-hidden="true" class="item-photo-icon item-photo-icon-inline" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg><br/><span data-en="Pepperoni, mushrooms, green peppers and cheese" data-es="Pepperoni, champiñones, pimiento verde y queso" data-fr="Pepperoni, champignons, poivrons verts et fromage" style="font-size:11px;color:var(--text-muted);">Pepperoni, champignons, poivrons verts et fromage</span></td>
+<td style="padding:10px 16px;"><div class="pizza-name-cell"><img alt="" class="menu-thumb" decoding="async" loading="lazy" src="images/plats/pizza-toute-garnie.webp"/><div><span data-en="All-dressed" data-es="Toda guarnecida" data-fr="Toute garnie" style="color:#fff;font-weight:500;">Toute garnie</span><br/><span data-en="Pepperoni, mushrooms and green peppers" data-es="Pepperoni, champiñones y pimiento verde" data-fr="Pepperoni, champignons et poivrons verts" style="font-size:11px;color:var(--text-muted);">Pepperoni, champignons et poivrons verts</span></div></div></td>
 <td style="text-align:center;padding:10px 12px;color:var(--gold);">12,50 $</td>
 <td style="text-align:center;padding:10px 12px;color:var(--gold);">17,20 $</td>
 <td style="text-align:center;padding:10px 12px;color:var(--gold);">23,25 $</td>
@@ -3590,7 +3591,7 @@ if(document.readyState === 'loading'){
 <td style="text-align:center;padding:10px 12px;color:var(--gold);">36,45 $</td>
 </tr>
 <tr class="pizza-row" data-image="images/plats/pizza-speciale-du-moulin.webp" style="border-bottom:1px solid rgba(255,255,255,0.05);background:rgba(255,255,255,0.02);">
-<td style="padding:10px 16px;"><span data-en="Le Moulin Special" data-es="Especial del Moulin" data-fr="Spéciale du Moulin" style="color:#fff;font-weight:500;">Spéciale du Moulin</span> <svg aria-hidden="true" class="item-photo-icon item-photo-icon-inline" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg><br/><span data-en="Mushrooms, green peppers, onions, tomatoes, olives, pepperoni and bacon" data-es="Champiñones, pimiento verde, cebolla, tomate, aceitunas, pepperoni y tocineta" data-fr="Champignons, poivrons verts, oignons, tomates, olives, pepperoni et bacon" style="font-size:11px;color:var(--text-muted);">Champignons, poivrons verts, oignons, tomates, olives, pepperoni et bacon</span></td>
+<td style="padding:10px 16px;"><div class="pizza-name-cell"><img alt="" class="menu-thumb" decoding="async" loading="lazy" src="images/plats/pizza-speciale-du-moulin.webp"/><div><span data-en="Le Moulin Special" data-es="Especial del Moulin" data-fr="Spéciale du Moulin" style="color:#fff;font-weight:500;">Spéciale du Moulin</span><br/><span data-en="Mushrooms, green peppers, onions, tomatoes, olives, pepperoni and bacon" data-es="Champiñones, pimiento verde, cebolla, tomate, aceitunas, pepperoni y tocineta" data-fr="Champignons, poivrons verts, oignons, tomates, olives, pepperoni et bacon" style="font-size:11px;color:var(--text-muted);">Champignons, poivrons verts, oignons, tomates, olives, pepperoni et bacon</span></div></div></td>
 <td style="text-align:center;padding:10px 12px;color:var(--gold);">14,75 $</td>
 <td style="text-align:center;padding:10px 12px;color:var(--gold);">19,50 $</td>
 <td style="text-align:center;padding:10px 12px;color:var(--gold);">26,00 $</td>
@@ -3598,7 +3599,7 @@ if(document.readyState === 'loading'){
 <td style="text-align:center;padding:10px 12px;color:var(--gold);">39,95 $</td>
 </tr>
 <tr class="pizza-row" data-image="images/plats/pizza-fruits-de-mer.webp" style="border-bottom:1px solid rgba(255,255,255,0.05);">
-<td style="padding:10px 16px;"><span data-en="Seafood" data-es="Mariscos" data-fr="Fruits de mer" style="color:#fff;font-weight:500;">Fruits de mer</span> <svg aria-hidden="true" class="item-photo-icon item-photo-icon-inline" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg></td>
+<td style="padding:10px 16px;"><div class="pizza-name-cell"><img alt="" class="menu-thumb" decoding="async" loading="lazy" src="images/plats/pizza-fruits-de-mer.webp"/><div><span data-en="Seafood" data-es="Mariscos" data-fr="Fruits de mer" style="color:#fff;font-weight:500;">Fruits de mer</span><br/><span data-en="Scallops, shrimp and pollock in a homemade sauce" data-es="Vieiras, camarones y abadejo en salsa casera" data-fr="Pétoncles, crevettes et goberge dans une sauce maison" style="font-size:11px;color:var(--text-muted);">Pétoncles, crevettes et goberge dans une sauce maison</span></div></div></td>
 <td style="text-align:center;padding:10px 12px;color:var(--gold);">14,75 $</td>
 <td style="text-align:center;padding:10px 12px;color:var(--gold);">19,50 $</td>
 <td style="text-align:center;padding:10px 12px;color:var(--gold);">26,00 $</td>
