@@ -3539,7 +3539,6 @@ if(document.readyState === 'loading'){
 </div>
 </div>
           <div class="pizza-scroll-wrap" style="position:relative;grid-column:1/-1;">
-<div class="pizza-scroll-hint" data-fr="Défiler pour voir tous les formats et prix →" data-en="Scroll to see all sizes &amp; prices →" data-es="Deslizar para ver todos los tamaños y precios →">Défiler pour voir tous les formats et prix →</div>
 <div class="pizza-scroll" style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
 <table style="width:100%;min-width:560px;border-collapse:collapse;font-size:13px;background:var(--dark2);">
 <thead>
@@ -3612,6 +3611,7 @@ if(document.readyState === 'loading'){
 </tbody>
 </table>
 </div>
+<button type="button" class="pizza-scroll-fab" aria-label="Voir les autres formats et prix"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
           </div>
           <div class="menu-cat">
 <div>
@@ -6021,28 +6021,45 @@ function closeOrderModal(){
 </script>
 
 <style>
-.pizza-scroll-hint{display:none;text-align:right;font-size:11px;font-weight:600;letter-spacing:0.05em;color:var(--gold);padding:0 6px 7px;transition:opacity .35s ease;}
-.pizza-scroll-hint.show{display:block;animation:pizzaNudge 1.5s ease-in-out infinite;}
-.pizza-scroll-hint.fade{opacity:0;pointer-events:none;animation:none;}
-@keyframes pizzaNudge{0%,100%{transform:translateX(0);}50%{transform:translateX(5px);}}
+.pizza-scroll-fab{display:none;position:absolute;top:50%;right:10px;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;background:var(--gold);border:none;cursor:pointer;z-index:5;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,0.5);animation:pizzaFabPulse 1.8s ease-in-out infinite;transition:opacity .25s ease;padding:0;}
+.pizza-scroll-fab.show{display:flex;}
+.pizza-scroll-fab.fade{opacity:0;pointer-events:none;}
+.pizza-scroll-fab svg{width:18px;height:18px;color:#1d1409;}
+.pizza-scroll-fab:active{background:var(--gold-light);}
+@keyframes pizzaFabPulse{0%,100%{box-shadow:0 4px 14px rgba(0,0,0,0.5),0 0 0 0 rgba(201,153,58,0.5);}50%{box-shadow:0 4px 14px rgba(0,0,0,0.5),0 0 0 10px rgba(201,153,58,0);}}
+@media(prefers-reduced-motion:reduce){.pizza-scroll-fab{animation:none;}}
 </style>
 <script>
 (function(){
-  function initPizzaHint(){
+  function initPizzaFab(){
     document.querySelectorAll('.pizza-scroll').forEach(function(sc){
-      var hint = sc.parentElement.querySelector('.pizza-scroll-hint');
-      if(!hint) return;
+      var fab = sc.parentElement.querySelector('.pizza-scroll-fab');
+      if(!fab) return;
       function update(){
-        if(sc.scrollWidth - sc.clientWidth > 8){ hint.classList.remove('fade'); hint.classList.add('show'); }
-        else { hint.classList.remove('show'); }
+        var max = sc.scrollWidth - sc.clientWidth;
+        if(max > 8){
+          fab.classList.add('show');
+          if(sc.scrollLeft >= max - 8){ fab.classList.add('fade'); }
+          else { fab.classList.remove('fade'); }
+        } else {
+          fab.classList.remove('show');
+        }
       }
+      fab.addEventListener('click', function(){
+        sc.scrollBy({left: sc.clientWidth * 0.7, behavior: 'smooth'});
+      });
       update();
       window.addEventListener('resize', update);
-      sc.addEventListener('scroll', function(){ if(sc.scrollLeft > 4){ hint.classList.add('fade'); } }, {passive:true});
+      sc.addEventListener('scroll', update, {passive:true});
+      if('IntersectionObserver' in window){
+        new IntersectionObserver(function(entries){
+          entries.forEach(function(e){ if(e.isIntersecting) update(); });
+        }).observe(sc);
+      }
     });
   }
-  if(document.readyState!=='loading') initPizzaHint();
-  else document.addEventListener('DOMContentLoaded', initPizzaHint);
+  if(document.readyState!=='loading') initPizzaFab();
+  else document.addEventListener('DOMContentLoaded', initPizzaFab);
 })();
 </script>
 </body>
