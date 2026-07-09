@@ -2055,7 +2055,9 @@
     .midi-badge{display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:var(--dark);padding:7px 12px;border-radius:var(--radius);font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap;}
     .midi-badge-alt{background:transparent;color:var(--gold);border:1px solid var(--gold);}
     .midi-badge svg{flex-shrink:0;width:13px;height:13px;}
-    .specials-chevron{color:var(--gold);flex-shrink:0;transition:transform 0.3s ease;}
+    .specials-chevron{width:28px;height:28px;padding:6px;background:var(--gold);border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,0.4);flex-shrink:0;transition:transform 0.3s ease,background 0.2s ease;}
+    .specials-chevron polyline{stroke:#1d1409;stroke-width:2.4;}
+    .specials-toggle:hover .specials-chevron{background:var(--gold-light);}
     .specials-card[data-open="false"] .specials-chevron{transform:rotate(-90deg);}
     .specials-body{padding:0 1.4rem 1.4rem;overflow:hidden;max-height:4000px;opacity:1;transition:max-height 0.45s ease,opacity 0.3s ease,padding 0.3s ease;}
     .specials-card[data-open="false"] .specials-body{max-height:0;opacity:0;padding-top:0;padding-bottom:0;pointer-events:none;}
@@ -2599,7 +2601,9 @@
     #panel-boissons .bois-grid{gap:0;margin-top:1.75rem;position:relative;border:1px solid rgba(201,153,58,0.45);background:#16130F;padding:5px;}
     #panel-boissons .bois-grid::after{content:'';position:absolute;inset:4px;border:1px solid rgba(201,153,58,0.22);pointer-events:none;}
     #panel-boissons .bois-card{grid-column:1/-1;background:transparent;border:none;border-radius:0;overflow:visible;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));}
-    #panel-boissons .bois-card-header{grid-column:1/-1;font-family:var(--font-display);font-size:clamp(17px,2.1vw,21px);font-weight:700;color:var(--text);letter-spacing:0.3px;text-transform:none;text-align:center;background:rgba(201,153,58,0.08);border-bottom:1px solid rgba(201,153,58,0.2);border-top:1px solid rgba(201,153,58,0.2);padding:1.05rem 1.25rem 0.9rem;}
+    #panel-boissons .bois-card-header{grid-column:1/-1;text-align:center;background:rgba(201,153,58,0.08);border-bottom:1px solid rgba(201,153,58,0.2);border-top:1px solid rgba(201,153,58,0.2);padding:1rem 1.25rem 0.95rem;}
+    #panel-boissons .bois-header-plaque{display:inline-block;max-width:100%;background:var(--gold);color:#1d1409;font-family:var(--font-body);font-size:clamp(12px,1.3vw,14px);font-weight:700;letter-spacing:0.2em;text-transform:uppercase;padding:9px 26px;border-radius:var(--radius);line-height:1.3;}
+    @media(max-width:480px){#panel-boissons .bois-header-plaque{font-size:11px;letter-spacing:0.14em;padding:8px 16px;}}
     #panel-boissons .bois-grid > .bois-card:first-child .bois-card-header{border-top:none;}
     #panel-boissons .bois-card-header span + span{font-family:'Outfit',sans-serif;font-size:11px;font-weight:400;letter-spacing:0.05em;color:var(--text-dim);}
     #panel-boissons .bois-row{border-right:1px solid rgba(255,255,255,0.04);}
@@ -3824,12 +3828,13 @@ if(document.readyState === 'loading'){
 <!-- Sous-panel : Apéritifs & Sangria -->
 <!-- Sous-panel : Digestifs -->
 <div class="bois-grid"><div class="bois-card bois-card-compact bois-card-table">
-<div class="bois-card-header" data-en="Draft Beers" data-es="Nuestras Cervezas de Barril" data-fr="Nos Bières en Fût">Nos Bières en Fût</div>
-<div class="bois-row"><div class="bois-name">Budweiser</div><div class="bois-price-cols"><div class="bois-price-col"><div class="bois-price-col-label" data-en="12 oz" data-es="12 oz" data-fr="12 oz">12 oz</div><div class="bois-price">7,50 $</div></div><div class="bois-price-col"><div class="bois-price-col-label" data-en="20 oz" data-es="20 oz" data-fr="20 oz">20 oz</div><div class="bois-price">9,50 $</div></div><div class="bois-price-col"><div class="bois-price-col-label" data-en="Pitcher" data-es="Jarra" data-fr="Pichet">Pichet</div><div class="bois-price">25,45 $</div></div></div></div>
-<div class="bois-row"><div class="bois-name">Chipie Archibald</div><div class="bois-price-cols"><div class="bois-price-col"><div class="bois-price-col-label" data-en="12 oz" data-es="12 oz" data-fr="12 oz">12 oz</div><div class="bois-price">7,50 $</div></div><div class="bois-price-col"><div class="bois-price-col-label" data-en="20 oz" data-es="20 oz" data-fr="20 oz">20 oz</div><div class="bois-price">9,50 $</div></div><div class="bois-price-col"><div class="bois-price-col-label" data-en="Pitcher" data-es="Jarra" data-fr="Pichet">Pichet</div><div class="bois-price">25,45 $</div></div></div></div>
+<div class="bois-card-header"><span class="bois-header-plaque" data-en="Draft Beers" data-es="Nuestras Cervezas de Barril" data-fr="Nos Bières en Fût">Nos Bières en Fût</span></div>
+<div class="bois-row"><div class="bois-name">Budweiser</div><div class="bois-price-cols"><div class="bois-price-col"><div class="bois-price-col-label" data-en="12 oz" data-es="12 oz" data-fr="12 oz">12 oz</div><div class="bois-price">7,50 $</div></div><div class="bois-price-col"><div class="bois-price-col-label" data-en="20 oz" data-es="20 oz" data-fr="20 oz">20 oz</div><div class="bois-price">9,50 $</div></div><div class="bois-price-col"><div class="bois-price-col-label" data-en="½ pitcher" data-es="½ jarra" data-fr="½ pichet">½ pichet</div><div class="bois-price">18,95 $</div></div><div class="bois-price-col"><div class="bois-price-col-label" data-en="Pitcher" data-es="Jarra" data-fr="Pichet">Pichet</div><div class="bois-price">25,45 $</div></div></div></div>
+<div class="bois-row"><div class="bois-name">Chipie Archibald</div><div class="bois-price-cols"><div class="bois-price-col"><div class="bois-price-col-label" data-en="12 oz" data-es="12 oz" data-fr="12 oz">12 oz</div><div class="bois-price">7,50 $</div></div><div class="bois-price-col"><div class="bois-price-col-label" data-en="20 oz" data-es="20 oz" data-fr="20 oz">20 oz</div><div class="bois-price">9,50 $</div></div><div class="bois-price-col"><div class="bois-price-col-label" data-en="½ pitcher" data-es="½ jarra" data-fr="½ pichet">½ pichet</div><div class="bois-price">18,95 $</div></div><div class="bois-price-col"><div class="bois-price-col-label" data-en="Pitcher" data-es="Jarra" data-fr="Pichet">Pichet</div><div class="bois-price">25,45 $</div></div></div></div>
 </div><div class="bois-card">
-<div class="bois-card-header"><span data-en="Bottled Beers" data-es="Nuestras Cervezas en Botella" data-fr="Nos Bières en Bouteille">Nos Bières en Bouteille</span> </div>
-<div class="bois-row"><div><div class="bois-name" data-en="Regular" data-es="Regular" data-fr="Régulière">Régulière</div><div class="bois-sub">Budweiser et Bud Light</div></div><div class="bois-price">8,25 $</div></div>
+<div class="bois-card-header"><span class="bois-header-plaque" data-en="Bottled Beers" data-es="Nuestras Cervezas en Botella" data-fr="Nos Bières en Bouteille">Nos Bières en Bouteille</span> </div>
+<div class="bois-row"><div><div class="bois-name">Budweiser</div></div><div class="bois-price">8,25 $</div></div>
+<div class="bois-row"><div><div class="bois-name">Bud Light</div></div><div class="bois-price">8,25 $</div></div>
 <div class="bois-row"><div><div class="bois-name">Stella Artois</div></div><div class="bois-price">8,25 $</div></div>
 <div class="bois-row"><div><div class="bois-name">Michelob</div></div><div class="bois-price">8,25 $</div></div>
 <div class="bois-row"><div><div class="bois-name">Corona</div></div><div class="bois-price">8,25 $</div></div>
@@ -3839,7 +3844,7 @@ if(document.readyState === 'loading'){
 <div class="bois-row"><div><div class="bois-name" data-en="Joufflue (White ale)" data-es="Joufflue (Blanca)" data-fr="Joufflue (Blanche)">Joufflue (Blanche)</div></div><div class="bois-price">8,75 $</div></div>
 <div class="bois-row"><div><div class="bois-name" data-en="Bleue 0.5 or Bleue" data-es="Bleue 0,5 o Bleue" data-fr="Bleue 0,5 ou Bleue">Bleue 0,5 ou Bleue</div></div><div class="bois-price">8,25 $</div></div>
 </div><div class="bois-card bois-card-table">
-<div class="bois-card-header" data-en="House Wines" data-es="Nuestros Vinos de la Casa" data-fr="Nos Vins Maison">Nos Vins Maison</div>
+<div class="bois-card-header"><span class="bois-header-plaque" data-en="House Wines" data-es="Nuestros Vinos de la Casa" data-fr="Nos Vins Maison">Nos Vins Maison</span></div>
 <div class="bois-row" style="font-size:11px;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,0.06);">
 <div style="flex:1;"></div>
 <div class="bois-price-cols">
@@ -3852,34 +3857,34 @@ if(document.readyState === 'loading'){
 <div class="bois-row"><div><div class="bois-name" data-en="White Chardonnay" data-es="Chardonnay Blanco" data-fr="Chardonnay Blanc">Chardonnay Blanc</div></div><div class="bois-price-cols"><div class="bois-price-col"><div class="bois-price">7,95 $</div></div><div class="bois-price-col"><div class="bois-price">11,25 $</div></div><div class="bois-price-col"><div class="bois-price">19,50 $</div></div><div class="bois-price-col"><div class="bois-price">29,95 $</div></div></div></div>
 <div class="bois-row"><div><div class="bois-name" data-en="Red Merlot" data-es="Merlot Tinto" data-fr="Merlot Rouge">Merlot Rouge</div></div><div class="bois-price-cols"><div class="bois-price-col"><div class="bois-price">7,95 $</div></div><div class="bois-price-col"><div class="bois-price">11,25 $</div></div><div class="bois-price-col"><div class="bois-price">19,50 $</div></div><div class="bois-price-col"><div class="bois-price">29,95 $</div></div></div></div>
 </div><div class="bois-card">
-<div class="bois-card-header" data-en="White Wines" data-es="Nuestros Vinos Blancos" data-fr="Nos Vins Blancs">Nos Vins Blancs</div>
+<div class="bois-card-header"><span class="bois-header-plaque" data-en="White Wines" data-es="Nuestros Vinos Blancos" data-fr="Nos Vins Blancs">Nos Vins Blancs</span></div>
 <div class="bois-row"><div><div class="bois-name">Robertson Winery Chenin Blanc</div><div class="bois-sub" data-en="South Africa · 100% Chenin Blanc" data-es="Sudáfrica · 100% Chenin Blanc" data-fr="Afrique du Sud · 100% Chenin Blanc">Afrique du Sud · 100% Chenin Blanc</div></div><div class="bois-price">28,75 $</div></div>
 <div class="bois-row"><div><div class="bois-name">Campagnola Chardonnay Veneto</div><div class="bois-sub" data-en="Italy, Veneto · 100% Chardonnay" data-es="Italia, Véneto · 100% Chardonnay" data-fr="Italie, Vénétie · 100% Chardonnay">Italie, Vénétie · 100% Chardonnay</div></div><div class="bois-price">32,95 $</div></div>
 </div><div class="bois-card">
-<div class="bois-card-header" data-en="Red Wines" data-es="Nuestros Vinos Tintos" data-fr="Nos Vins Rouges">Nos Vins Rouges</div>
+<div class="bois-card-header"><span class="bois-header-plaque" data-en="Red Wines" data-es="Nuestros Vinos Tintos" data-fr="Nos Vins Rouges">Nos Vins Rouges</span></div>
 <div class="bois-row"><div><div class="bois-name">Folonari Valpolicella</div><div class="bois-sub" data-en="Half bottle" data-es="Media botella" data-fr="Demi-bouteille">Demi-bouteille</div></div><div class="bois-price">21,25 $</div></div>
 <div class="bois-row"><div><div class="bois-name">Robertson Winery Shiraz</div><div class="bois-sub" data-en="South Africa · 100% Shiraz" data-es="Sudáfrica · 100% Shiraz" data-fr="Afrique du Sud · 100% Shiraz">Afrique du Sud · 100% Shiraz</div></div><div class="bois-price">34,25 $</div></div>
 <div class="bois-row"><div><div class="bois-name">Tommasi Valpolicella</div><div class="bois-sub" data-en="Italy, Veneto" data-es="Italia, Véneto" data-fr="Italie, Vénétie">Italie, Vénétie</div></div><div class="bois-price">37,45 $</div></div>
 <div class="bois-row"><div><div class="bois-name">Brouilly Mignot</div><div class="bois-sub" data-en="France, Beaujolais · 100% Gamay" data-es="Francia, Beaujolais · 100% Gamay" data-fr="France, Beaujolais · 100% Gamay">France, Beaujolais · 100% Gamay</div></div><div class="bois-price">42,00 $</div></div>
 </div><div class="bois-card">
-<div class="bois-card-header"><span data-en="Aperitifs" data-es="Nuestros Aperitivos" data-fr="Nos Apéritifs">Nos Apéritifs</span> <span data-en="Glass" data-es="Copa" data-fr="Verre" style="float:right;color:var(--text-dim);">Verre</span></div>
+<div class="bois-card-header"><span class="bois-header-plaque" data-en="Aperitifs" data-es="Nuestros Aperitivos" data-fr="Nos Apéritifs">Nos Apéritifs</span> <span data-en="Glass" data-es="Copa" data-fr="Verre" style="float:right;color:var(--text-dim);">Verre</span></div>
 <div class="bois-row"><div><div class="bois-name" data-en="Saint-Raphaël red or gold" data-es="Saint-Raphaël tinto o dorado" data-fr="Saint-Raphaël rouge ou doré">Saint-Raphaël rouge ou doré</div></div><div class="bois-price">8,95 $</div></div>
 <div class="bois-row"><div><div class="bois-name" data-en="Cinzano red or white" data-es="Cinzano tinto o blanco" data-fr="Cinzano rouge ou blanc">Cinzano rouge ou blanc</div></div><div class="bois-price">8,95 $</div></div>
 <div class="bois-row"><div><div class="bois-name">Bloody Caesar</div></div><div class="bois-price">8,95 $</div></div>
 <div class="bois-row"><div><div class="bois-name">Bloody Mary</div></div><div class="bois-price">8,95 $</div></div>
 <div class="bois-row"><div><div class="bois-name" data-en="White Martini" data-es="Martini Blanco" data-fr="Martini Blanc">Martini Blanc</div></div><div class="bois-price">8,95 $</div></div>
 </div><div class="bois-card bois-card-compact bois-card-table">
-<div class="bois-card-header" data-en="Our Sangria" data-es="Nuestra Sangría" data-fr="Notre Sangria">Notre Sangria</div>
+<div class="bois-card-header"><span class="bois-header-plaque" data-en="Our Sangria" data-es="Nuestra Sangría" data-fr="Notre Sangria">Notre Sangria</span></div>
 <div class="bois-row"><div class="bois-name" data-en="Red or White" data-es="Tinta o Blanca" data-fr="Rouge ou Blanche">Rouge ou Blanche</div><div class="bois-price-cols"><div class="bois-price-col"><div class="bois-price-col-label" data-en="Glass" data-es="Copa" data-fr="Verre">Verre</div><div class="bois-price">8,50 $</div></div><div class="bois-price-col"><div class="bois-price-col-label" data-en="Pitcher" data-es="Jarra" data-fr="Pichet">Pichet</div><div class="bois-price">31,25 $</div></div></div></div>
 </div><div class="bois-card">
-<div class="bois-card-header"><span data-en="Digestifs" data-es="Nuestros Digestivos" data-fr="Nos Digestifs">Nos Digestifs</span> <span data-en="Glass" data-es="Copa" data-fr="Verre" style="float:right;color:var(--text-dim);">Verre</span></div>
+<div class="bois-card-header"><span class="bois-header-plaque" data-en="Digestifs" data-es="Nuestros Digestivos" data-fr="Nos Digestifs">Nos Digestifs</span> <span data-en="Glass" data-es="Copa" data-fr="Verre" style="float:right;color:var(--text-dim);">Verre</span></div>
 <div class="bois-row"><div class="bois-name">Stinger</div><div class="bois-price">8,25 $</div></div>
 <div class="bois-row"><div class="bois-name">Cognac</div><div class="bois-price">8,25 $</div></div>
 <div class="bois-row"><div class="bois-name">Grand Marnier</div><div class="bois-price">8,25 $</div></div>
 <div class="bois-row"><div class="bois-name">Sex on the Beach</div><div class="bois-price">8,25 $</div></div>
 <div class="bois-row"><div class="bois-name" data-en="Baileys, Spanish or Brazilian coffee" data-es="Café Baileys, Español o Brasileño" data-fr="Café Baileys, Espagnol, Brésilien">Café Baileys, Espagnol, Brésilien</div><div class="bois-price">8,25 $</div></div>
 </div><div class="bois-card">
-<div class="bois-card-header" data-en="Hot Beverages" data-es="Bebidas Calientes" data-fr="Boissons Chaudes">Boissons Chaudes</div>
+<div class="bois-card-header"><span class="bois-header-plaque" data-en="Hot Beverages" data-es="Bebidas Calientes" data-fr="Boissons Chaudes">Boissons Chaudes</span></div>
 <div class="bois-row"><div><div class="bois-name" data-en="Coffee" data-es="Café" data-fr="Café">Café</div></div><div class="bois-price">2,95 $</div></div>
 <div class="bois-row"><div><div class="bois-name" data-en="Tea" data-es="Té" data-fr="Thé">Thé</div><div class="bois-sub" data-en="Green or black" data-es="Verde o negro" data-fr="Vert ou noir">Vert ou noir</div></div><div class="bois-price">2,95 $</div></div>
 <div class="bois-row"><div><div class="bois-name" data-en="Herbal tea" data-es="Infusión" data-fr="Tisane">Tisane</div><div class="bois-sub" data-en="Chamomile or peppermint" data-es="Manzanilla o menta" data-fr="Camomille ou menthe poivrée">Camomille ou menthe poivrée</div></div><div class="bois-price">2,95 $</div></div>
@@ -3888,7 +3893,7 @@ if(document.readyState === 'loading'){
 <div class="bois-row"><div><div class="bois-name" data-en="Hot chocolate" data-es="Chocolate caliente" data-fr="Chocolat chaud">Chocolat chaud</div></div><div class="bois-price">4,50 $</div></div>
 <div class="bois-row" data-image="images/boissons/cafe-du-moulin.webp"><div><div class="bois-name" data-en="Le Moulin Coffee" data-es="Café del Moulin" data-fr="Café du Moulin">Café du Moulin</div><div class="bois-sub" data-en="Vanilla-cinnamon or salted caramel" data-es="Vainilla-canela o caramelo salado" data-fr="Vanille-cannelle ou caramel salé">Vanille-cannelle ou caramel salé</div></div><div class="bois-price-wrap"><svg aria-hidden="true" class="item-photo-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg><div class="bois-price">5,95 $</div></div></div>
 </div><div class="bois-card">
-<div class="bois-card-header" data-en="Sodas" data-es="Gaseosas" data-fr="Boissons Gazeuses">Boissons Gazeuses</div>
+<div class="bois-card-header"><span class="bois-header-plaque" data-en="Sodas" data-es="Gaseosas" data-fr="Boissons Gazeuses">Boissons Gazeuses</span></div>
 <div class="bois-row"><div><div class="bois-name">Pepsi</div></div><div class="bois-price">2,95 $</div></div>
 <div class="bois-row"><div><div class="bois-name" data-en="Diet Pepsi" data-es="Pepsi Diet" data-fr="Pepsi Diète">Pepsi Diète</div></div><div class="bois-price">2,95 $</div></div>
 <div class="bois-row"><div><div class="bois-name" data-en="Coke" data-es="Coca-Cola" data-fr="Coke">Coke</div></div><div class="bois-price">2,95 $</div></div><div class="bois-row"><div><div class="bois-name" data-en="Diet Coke" data-es="Coca-Cola Diet" data-fr="Coke Diète">Coke Diète</div></div><div class="bois-price">2,95 $</div></div>
@@ -3899,7 +3904,7 @@ if(document.readyState === 'loading'){
 <div class="bois-row"><div><div class="bois-name" data-en="Brisk iced tea" data-es="Té helado Brisk" data-fr="Thé glacé Brisk">Thé glacé Brisk</div></div><div class="bois-price">2,95 $</div></div>
 <div class="bois-row"><div><div class="bois-name">Ginger Ale</div></div><div class="bois-price">2,95 $</div></div>
 </div><div class="bois-card">
-<div class="bois-card-header" data-en="Waters, Lemonades &amp; Alcohol-Free" data-es="Aguas, Limonadas y Sin Alcohol" data-fr="Eaux, Limonades &amp; Sans Alcool">Eaux, Limonades &amp; Sans Alcool</div>
+<div class="bois-card-header"><span class="bois-header-plaque" data-en="Waters, Lemonades &amp; Alcohol-Free" data-es="Aguas, Limonadas y Sin Alcohol" data-fr="Eaux, Limonades &amp; Sans Alcool">Eaux, Limonades &amp; Sans Alcool</span></div>
 <div class="bois-row"><div><div class="bois-name" data-en="Sparkling water" data-es="Agua con gas" data-fr="Eau pétillante">Eau pétillante</div></div><div class="bois-price">3,95 $</div></div>
 <div class="bois-row"><div><div class="bois-name" data-en="Bottled water" data-es="Botella de agua" data-fr="Bouteille d'eau">Bouteille d'eau</div></div><div class="bois-price">2,25 $</div></div>
 <div class="bois-row"><div><div class="bois-name" data-en="Homemade lemonade" data-es="Limonada casera" data-fr="Limonade maison">Limonade maison</div></div><div class="bois-price">4,50 $</div></div>
