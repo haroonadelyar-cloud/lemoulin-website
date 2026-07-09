@@ -1797,11 +1797,11 @@
     .menu-continuous .menu-grid::after{content:'';position:absolute;inset:4px;border:1px solid rgba(201,153,58,0.22);pointer-events:none;}
     .menu-continuous .menu-cat.is-accordion{display:block;cursor:pointer;}
     .menu-continuous .menu-cat.is-accordion>div{flex:none;min-width:0;}
-    .menu-continuous .menu-cat-title{font-family:var(--font-display);font-size:clamp(17px,2.1vw,21px);font-weight:700;color:var(--text);letter-spacing:0.3px;line-height:1.15;}
-    .menu-continuous .menu-cat-sub{margin:6px 0 0;color:var(--gold);font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:1.4px;line-height:1.5;}
+    .menu-continuous .menu-cat-title{display:inline-block;font-family:var(--font-body);font-size:clamp(12px,1.3vw,14px);font-weight:700;color:#1d1409;background:var(--gold);letter-spacing:0.2em;text-transform:uppercase;padding:9px 26px;border-radius:var(--radius);line-height:1.15;}
+    .menu-continuous .menu-cat-sub{margin:9px 0 0;color:var(--gold);font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:1.4px;line-height:1.5;}
     .menu-continuous .menu-cat.is-accordion::after{position:absolute;right:18px;top:50%;margin:0;transform:translateY(-50%) rotate(45deg);}
     .menu-continuous .menu-cat.is-accordion.is-closed::after{margin:0;transform:translateY(-50%) rotate(-45deg);}
-    @media(max-width:480px){.menu-continuous .menu-cat{padding:1rem 2.2rem 0.85rem;}.menu-continuous .menu-cat-sub{letter-spacing:1px;}}
+    @media(max-width:480px){.menu-continuous .menu-cat{padding:1rem 2.2rem 0.85rem;}.menu-continuous .menu-cat-title{font-size:11px;letter-spacing:0.16em;padding:8px 18px;}.menu-continuous .menu-cat-sub{letter-spacing:1px;}}
 
     .acc-hidden{display:none!important;}
     .menu-item{padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;border-right:1px solid rgba(255,255,255,0.05);border-bottom:1px solid rgba(255,255,255,0.05);background:var(--dark2);transition:background 0.2s;}
@@ -2074,7 +2074,7 @@
     .signature-section-title{font-family:var(--font-display);font-size:clamp(14px,1.6vw,17px);font-weight:700;color:#fff;letter-spacing:0.02em;margin:0;}
     .signature-section-sub{font-size:11px;color:var(--text-muted);line-height:1.4;}
     .signature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0.75rem;}
-    .signature-card{background:linear-gradient(135deg,rgba(201,153,58,0.08) 0%,rgba(201,153,58,0.02) 100%);border:1px solid rgba(201,153,58,0.25);border-radius:var(--radius);padding:0.85rem 0.95rem 0.95rem;position:relative;overflow:hidden;transition:transform 0.25s ease,border-color 0.25s ease,box-shadow 0.25s ease;display:flex;flex-direction:column;gap:0.4rem;cursor:pointer;}
+    .signature-card{background:linear-gradient(135deg,rgba(201,153,58,0.08) 0%,rgba(201,153,58,0.02) 100%);border:1px solid rgba(201,153,58,0.25);border-radius:var(--radius);padding:0.85rem 0.95rem 0.95rem;position:relative;overflow:hidden;transition:transform 0.25s ease,border-color 0.25s ease,box-shadow 0.25s ease;display:grid;grid-template-columns:auto 1fr;column-gap:0.85rem;row-gap:0.32rem;cursor:pointer;}
     .signature-card:hover{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 12px 28px rgba(0,0,0,0.35);}
     .signature-card:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
     .signature-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--gold),transparent);}
@@ -2082,9 +2082,12 @@
     .signature-eyebrow{font-size:9px;letter-spacing:0.26em;color:var(--gold);text-transform:uppercase;font-weight:500;}
     .signature-name{font-family:var(--font-display);font-size:14px;font-weight:700;color:#fff;line-height:1.25;letter-spacing:0.01em;}
     .signature-desc{font-size:11px;color:var(--text-muted);line-height:1.5;}
+    .sig-thumb{grid-row:1/4;grid-column:1;width:74px;height:74px;border-radius:8px;object-fit:cover;border:1px solid rgba(201,153,58,0.3);align-self:center;background:var(--dark2);}
+    .signature-eyebrow,.signature-name,.signature-desc{grid-column:2;}
     @media(max-width:640px){
       .signature-grid{grid-template-columns:1fr;gap:0.55rem;}
       .signature-card{padding:0.8rem 0.9rem 0.85rem;}
+      .sig-thumb{width:64px;height:64px;}
       .signature-name{font-size:13px;}
     }
     /* === Accordéon « Nos coups de cœur » === */
@@ -3336,17 +3339,17 @@ if(document.readyState === 'loading'){
 <span aria-hidden="true" class="signature-toggle-icon">▼</span>
 </div>
 <div class="signature-grid" id="signature-grid-dejeuner">
-<div class="signature-card is-star" data-photo="images/poutines/poutine-dejeuner.webp" data-photo-caption="Poutine déjeuner">
+<div class="signature-card is-star" data-photo="images/poutines/poutine-dejeuner.webp" data-photo-caption="Poutine déjeuner"><img class="sig-thumb" src="images/poutines/poutine-dejeuner.webp" alt="" loading="lazy" decoding="async"/>
 <div class="signature-eyebrow" data-en="Our signature" data-es="Nuestra especialidad" data-fr="Notre signature">Notre signature</div>
 <div class="signature-name" data-en="Breakfast poutine" data-es="Poutine de desayuno" data-fr="Poutine déjeuner">Poutine déjeuner</div>
 <div class="signature-desc" data-en="Bacon, sausages, ham, cheese curds and 1 egg — topped with hollandaise sauce" data-es="Tocineta, salchichas, jamón, queso en granos y 1 huevo — cubierta con salsa holandesa" data-fr="Bacon, saucisses, jambon, fromage en grains et 1 œuf — nappée de sauce hollandaise">Bacon, saucisses, jambon, fromage en grains et 1 œuf — nappée de sauce hollandaise</div>
 </div>
-<div class="signature-card" data-photo="images/dejeuners/2-gaufres-aux-fruits-du-jour.webp" data-photo-caption="2 gaufres aux fruits du jour">
+<div class="signature-card" data-photo="images/dejeuners/2-gaufres-aux-fruits-du-jour.webp" data-photo-caption="2 gaufres aux fruits du jour"><img class="sig-thumb" src="images/dejeuners/2-gaufres-aux-fruits-du-jour.webp" alt="" loading="lazy" decoding="async"/>
 <div class="signature-eyebrow" data-en="The sweet treat" data-es="Lo dulce" data-fr="La douceur">La douceur</div>
 <div class="signature-name" data-en="2 waffles with fruit of the day" data-es="2 waffles con fruta del día" data-fr="2 gaufres aux fruits du jour">2 gaufres aux fruits du jour</div>
 <div class="signature-desc" data-en="Served with fresh fruit of the day and coffee" data-es="Servidas con fruta fresca del día y café" data-fr="Servies avec fruits frais du jour et café">Servies avec fruits frais du jour et café</div>
 </div>
-<div class="signature-card" data-photo="images/dejeuners/bene-brie-champignons-sautes.webp" data-photo-caption="Béné au fromage brie et champignons sautés">
+<div class="signature-card" data-photo="images/dejeuners/bene-brie-champignons-sautes.webp" data-photo-caption="Béné au fromage brie et champignons sautés"><img class="sig-thumb" src="images/dejeuners/bene-brie-champignons-sautes.webp" alt="" loading="lazy" decoding="async"/>
 <div class="signature-eyebrow" data-en="The must-try" data-es="Imperdible" data-fr="L'incontournable">L'incontournable</div>
 <div class="signature-name" data-en="Benedict with brie cheese and sautéed mushrooms" data-es="Benedictinos con queso brie y champiñones salteados" data-fr="Béné au fromage brie et champignons sautés">Béné au fromage brie et champignons sautés</div>
 <div class="signature-desc" data-en="2 poached eggs on English muffin, melty brie cheese and sautéed mushrooms, topped with hollandaise sauce" data-es="2 huevos pochados sobre muffin inglés, queso brie fundido y champiñones salteados, cubiertos con salsa holandesa" data-fr="2 œufs pochés sur muffin anglais, fromage brie fondant et champignons sautés, nappés de sauce hollandaise">2 œufs pochés sur muffin anglais, fromage brie fondant et champignons sautés, nappés de sauce hollandaise</div>
@@ -3491,19 +3494,19 @@ if(document.readyState === 'loading'){
           <span class="signature-toggle-icon" aria-hidden="true">▼</span>
         </div>
         <div class="signature-grid" id="signature-grid-diner">
-          <div class="signature-card is-star" data-photo="images/plats/pizza-speciale-du-moulin.webp" data-photo-caption="Pizza Spéciale du Moulin">
+          <div class="signature-card is-star" data-photo="images/plats/pizza-speciale-du-moulin.webp" data-photo-caption="Pizza Spéciale du Moulin"><img class="sig-thumb" src="images/plats/pizza-speciale-du-moulin.webp" alt="" loading="lazy" decoding="async"/>
             <div class="signature-eyebrow" data-fr="Notre signature" data-en="Our signature" data-es="Nuestra especialidad">Notre signature</div>
             <div class="signature-name" data-fr="Pizza Spéciale du Moulin" data-en="Le Moulin Special Pizza" data-es="Pizza Especial del Moulin">Pizza Spéciale du Moulin</div>
             <div class="signature-desc" data-fr="Champignons, poivrons verts, oignons, tomates, olives, pepperoni et bacon" data-en="Mushrooms, green peppers, onions, tomatoes, olives, pepperoni and bacon" data-es="Champiñones, pimiento verde, cebolla, tomate, aceitunas, pepperoni y tocineta">Champignons, poivrons verts, oignons, tomates, olives, pepperoni et bacon</div>
           </div>
 
-          <div class="signature-card" data-photo="images/plats/crevettes-panees.webp" data-photo-caption="Assiette de crevettes panées">
+          <div class="signature-card" data-photo="images/plats/crevettes-panees.webp" data-photo-caption="Assiette de crevettes panées"><img class="sig-thumb" src="images/plats/crevettes-panees.webp" alt="" loading="lazy" decoding="async"/>
             <div class="signature-eyebrow" data-fr="L'incontournable" data-en="The must-try" data-es="Imperdible">L'incontournable</div>
             <div class="signature-name" data-fr="Assiette de crevettes panées (15 ou 20)" data-en="Breaded shrimp plate (15 or 20)" data-es="Plato de camarones empanizados (15 o 20)">Assiette de crevettes panées (15 ou 20)</div>
             <div class="signature-desc" data-fr="Dorées et croustillantes, servies sur riz, patates grecques et salade" data-en="Golden and crispy, served on rice with Greek potatoes and salad" data-es="Doradas y crujientes, servidas sobre arroz, papas griegas y ensalada">Dorées et croustillantes, servies sur riz, patates grecques et salade</div>
           </div>
 
-          <div class="signature-card" data-photo="images/plats/assiette-pita-poulet.webp" data-photo-caption="Assiette pita au poulet">
+          <div class="signature-card" data-photo="images/plats/assiette-pita-poulet.webp" data-photo-caption="Assiette pita au poulet"><img class="sig-thumb" src="images/plats/assiette-pita-poulet.webp" alt="" loading="lazy" decoding="async"/>
             <div class="signature-eyebrow" data-fr="Le grand favori" data-en="The fan favourite" data-es="La favorita">Le grand favori</div>
             <div class="signature-name" data-fr="Assiette pita au poulet" data-en="Chicken pita plate" data-es="Plato de pita con pollo">Assiette pita au poulet</div>
             <div class="signature-desc" data-fr="Accompagnée de patates grecques et salade César ou jardinière" data-en="Served with Greek potatoes and Caesar or garden salad" data-es="Acompañado de papas griegas y ensalada César o de la casa">Accompagnée de patates grecques et salade César ou jardinière</div>
