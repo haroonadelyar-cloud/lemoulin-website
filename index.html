@@ -1780,6 +1780,13 @@
     .menu-cards-mini .menu-card.is-active{cursor:default;pointer-events:none;}
     .menu-cards-mini .menu-card.is-active .menu-card-label{opacity:0.5;border-color:rgba(201,153,58,0.3);background:rgba(201,153,58,0.04);color:var(--text-dim);}
     .menu-cards-mini .menu-card.is-active:hover{transform:none;}
+    /* Bouton « Menu PDF » — sous les cartes de menu, masqué quand un menu est ouvert */
+    .menu-pdf-cta{display:flex;flex-direction:column;align-items:center;gap:0.85rem;margin-top:2.75rem;text-align:center;}
+    body.menu-panel-open .menu-pdf-cta{display:none!important;}
+    .menu-pdf-note{font-family:var(--font-display);font-style:italic;font-size:17px;color:var(--text-muted);letter-spacing:0.01em;line-height:1.4;}
+    .menu-pdf-btn{display:inline-flex;align-items:center;gap:10px;background:transparent;color:var(--gold);border:1.5px solid var(--gold);border-radius:var(--radius);padding:12px 26px;font-family:var(--font-body);font-size:12px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;text-decoration:none;transition:background 0.2s,color 0.2s,transform 0.2s;}
+    .menu-pdf-btn:hover,.menu-pdf-btn:focus-visible{background:var(--gold);color:var(--dark);transform:translateY(-2px);outline:none;}
+    .menu-pdf-btn svg{flex-shrink:0;}
     .menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));border:1px solid rgba(255,255,255,0.06);}
     .menu-cat{grid-column:1/-1;padding:0.72rem 1.5rem;background:rgba(201,153,58,0.06);border-top:1px solid rgba(201,153,58,0.22);border-bottom:1px solid rgba(201,153,58,0.22);color:var(--gold);}
     .menu-cat-title{font-family:var(--font-display);font-size:clamp(14px,1.5vw,17px);font-weight:700;line-height:1.15;margin:0;color:var(--gold);}
@@ -3293,6 +3300,15 @@ if(document.readyState === 'loading'){
         </div>
         <div class="menu-card-label" data-fr="Voir le menu →" data-en="View menu →" data-es="Ver el menú →">Voir le menu →</div>
       </button>
+    </div>
+
+    <!-- Bouton : voir le menu complet en PDF (nouvel onglet) -->
+    <div class="menu-pdf-cta">
+      <span class="menu-pdf-note" data-fr="Ou consultez le menu complet, tout en photos" data-en="Or browse our full menu, all in photos" data-es="O consulta el menú completo, todo en fotos">Ou consultez le menu complet, tout en photos</span>
+      <a class="menu-pdf-btn" href="menus/menu-souper.pdf" target="_blank" rel="noopener" aria-label="Ouvrir le menu en PDF dans un nouvel onglet">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="17" height="17"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6"/><path d="M9 17h6"/></svg>
+        <span data-fr="Menu PDF" data-en="Menu PDF" data-es="Menú PDF">Menu PDF</span>
+      </a>
     </div>
 
     <!-- Bouton "Retour" flottant — partagé par tous les menus, visible quand on scrolle -->
