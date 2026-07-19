@@ -6076,5 +6076,94 @@ function closeOrderModal(){
   else document.addEventListener('DOMContentLoaded', initPizzaFab);
 })();
 </script>
+
+<!-- === ANIMATIONS AU DÉFILEMENT (reveal on scroll) === -->
+<style>
+.rvl{opacity:0;transform:translateY(26px);transition:opacity 0.7s cubic-bezier(0.22,1,0.36,1),transform 0.7s cubic-bezier(0.22,1,0.36,1);transition-delay:var(--rvl-delay,0s);will-change:opacity,transform;}
+.rvl.rvl-in{opacity:1;transform:translateY(0);}
+.rvl-rule{transform:scaleX(0);transform-origin:left center;}
+.rvl-rule.rvl-in{transform:scaleX(1);}
+@media (prefers-reduced-motion: reduce){
+  .rvl,.rvl-rule{opacity:1!important;transform:none!important;transition:none!important;}
+}
+</style>
+<script>
+(function(){
+  if(!('IntersectionObserver' in window)) return;
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // Éléments animés seuls (fade-up)
+  var singles = [
+    '.section-eyebrow', '.section-title', '.section-desc',
+    '.google-rating', '.reserve-call-card', '.gallery-band',
+    '.branches-header', '#about .about-lead', '#about .section-inner > p'
+  ];
+  // Grilles : les enfants apparaissent en cascade
+  var groups = [
+    '.menu-cards', '.reviews-grid', '.info-grid', '.hours-grid',
+    '.branches-grid', '.gallery-cat-cards', '.signature-grid'
+  ];
+
+  var toObserve = [];
+
+  singles.forEach(function(sel){
+    document.querySelectorAll(sel).forEach(function(el){
+      if(el.closest('.hero')) return;
+      el.classList.add('rvl');
+      toObserve.push(el);
+    });
+  });
+
+  groups.forEach(function(sel){
+    document.querySelectorAll(sel).forEach(function(grid){
+      var kids = Array.prototype.filter.call(grid.children, function(k){
+        return k.nodeType === 1;
+      });
+      kids.forEach(function(k, i){
+        k.classList.add('rvl');
+        k.style.setProperty('--rvl-delay', Math.min(i, 7) * 0.09 + 's');
+        toObserve.push(k);
+      });
+    });
+  });
+
+  // Filets dorés : trait qui se déploie
+  document.querySelectorAll('.gold-rule').forEach(function(el){
+    if(el.closest('.hero')) return;
+    el.classList.add('rvl','rvl-rule');
+    toObserve.push(el);
+  });
+
+  function cleanup(el){
+    el.classList.remove('rvl','rvl-rule','rvl-in');
+    el.style.removeProperty('--rvl-delay');
+    el.style.removeProperty('will-change');
+  }
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting) return;
+      var el = e.target;
+      io.unobserve(el);
+      el.classList.add('rvl-in');
+      // Une fois révélé, on retire tout pour ne pas interférer
+      // avec les transitions/transforms de survol existants.
+      var delay = parseFloat(getComputedStyle(el).transitionDelay) || 0;
+      setTimeout(function(){ cleanup(el); }, (delay + 0.75) * 1000);
+    });
+  }, {rootMargin: '0px 0px -8% 0px', threshold: 0.08});
+
+  toObserve.forEach(function(el){
+    // Déjà bien visible au chargement ? Pas d'animation (évite un flash).
+    var r = el.getBoundingClientRect();
+    var visible = r.top < window.innerHeight * 0.85 && r.bottom > 0 && r.width > 0;
+    if(visible && window.pageYOffset < 40 && r.top < window.innerHeight){
+      cleanup(el);
+    } else {
+      io.observe(el);
+    }
+  });
+})();
+</script>
 </body>
 </html>
