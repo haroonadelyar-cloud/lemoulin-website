@@ -4485,7 +4485,7 @@ if(document.readyState === 'loading'){
       <div data-fr="59 rue Angus Nord" data-en="59 Angus Street North" data-es="59 rue Angus Nord">59 rue Angus Nord</div>
       <div data-fr="East Angus, Québec" data-en="East Angus, Quebec" data-es="East Angus, Quebec">East Angus, Québec</div>
       <a href="tel:+18198324242" style="color:var(--gold);text-decoration:none;font-size:15px;font-weight:500;">(819) 832-4242</a>
-      <a href="/cdn-cgi/l/email-protection#b8d4ddd5d7cdd4d1d6ddd9cbccd9d6dfcdcbf8dfd5d9d1d496dbd7d5" aria-label="Envoyer un courriel" style="color:var(--gold);text-decoration:none;font-size:13px;display:block;margin-top:4px;"><span class="__cf_email__" data-cfemail="e48881898b91888d8a81859790858a839197a48389858d88ca878b89">[email&#160;protected]</span></a>
+      <a href="/cdn-cgi/l/email-protection#9bf7fef6f4eef7f2f5fefae8effaf5fceee8dbfcf6faf2f7b5f8f4f6" aria-label="Envoyer un courriel" style="color:var(--gold);text-decoration:none;font-size:13px;display:block;margin-top:4px;"><span class="__cf_email__" data-cfemail="c1ada4acaeb4ada8afa4a0b2b5a0afa6b4b281a6aca0a8adefa2aeac">[email&#160;protected]</span></a>
     </div>
   </div>
 </div>
@@ -6141,6 +6141,42 @@ nav .nav-logo:hover .mill-logo .blades{transform:rotate(180deg);}
 .menu-item .menu-thumb{transition:transform 0.4s ease;}
 .menu-item:hover .menu-thumb{transform:scale(1.08);}
 
+/* === ANIMATIONS MOBILE / TACTILE === */
+/* M1 : enfoncement au toucher */
+@media (hover: none){
+  .btn-gold,.btn-ghost,.menu-card,.gallery-cat-card,.reserve-call-btn,.gallery-band,.branch-cta,.nav-reserve{transition:transform 0.12s ease;}
+  .btn-gold:active,.btn-ghost:active,.menu-card:active,.gallery-cat-card:active,.reserve-call-btn:active,.gallery-band:active,.branch-cta:active,.nav-reserve:active{transform:scale(0.96);}
+  /* M2 : brillance dorée au tap */
+  .btn-gold:active::after{animation:btnShine 0.65s ease;}
+}
+/* M3 : galerie glissable avec accrochage (mobile) */
+@media (max-width: 768px){
+  .gallery-cat-cards{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:0.85rem;padding-bottom:6px;-webkit-overflow-scrolling:touch;scrollbar-width:none;max-width:none;}
+  .gallery-cat-cards::-webkit-scrollbar{display:none;}
+  .gallery-cat-card{flex:0 0 78%;scroll-snap-align:center;}
+}
+/* M4 : pulsation du bouton téléphone flottant */
+@keyframes fabPulse{0%,100%{box-shadow:0 6px 18px rgba(0,0,0,0.45),0 0 0 0 rgba(201,153,58,0.4);}50%{box-shadow:0 6px 18px rgba(0,0,0,0.45),0 0 0 10px rgba(201,153,58,0);}}
+.fab-phone.is-visible{animation:fabPulse 3.5s ease-in-out infinite;}
+/* M6 : barre de progression de lecture */
+.nav-progress{position:absolute;left:0;bottom:-1px;height:2px;background:var(--gold);width:0;z-index:5;pointer-events:none;}
+/* M7 : nav qui se cache en descendant (mobile) */
+@media (max-width: 1024px){
+  nav{transition:box-shadow 0.35s ease,border-color 0.35s ease,transform 0.3s ease;}
+  nav.nav-hidden{transform:translateY(-100%);}
+}
+/* M8 : liens du menu mobile en décalé */
+@keyframes mFadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+.mobile-menu.open a{animation:mFadeUp 0.4s cubic-bezier(0.22,1,0.36,1) both;}
+.mobile-menu.open a:nth-child(2){animation-delay:0.05s;}
+.mobile-menu.open a:nth-child(3){animation-delay:0.1s;}
+.mobile-menu.open a:nth-child(4){animation-delay:0.15s;}
+.mobile-menu.open a:nth-child(5){animation-delay:0.2s;}
+.mobile-menu.open a:nth-child(n+6){animation-delay:0.25s;}
+/* M10 : badge « Ouvert » du hero façon notification */
+@keyframes heroStatusIn{from{opacity:0;transform:translateY(-14px);}to{opacity:1;transform:translateY(0);}}
+.hero-content > .hero-open-status{animation:heroStatusIn 0.5s cubic-bezier(0.22,1,0.36,1) 0.9s both;}
+
 /* --- Heures : surlignage doré du jour actuel --- */
 .hours-row{transition:background 0.8s ease,padding 0.8s ease;}
 .hours-row.is-today{background:linear-gradient(to right,rgba(201,153,58,0.12),transparent 80%);padding-left:10px;padding-right:10px;border-radius:3px;}
@@ -6161,6 +6197,10 @@ nav .nav-logo:hover .mill-logo .blades{transform:rotate(180deg);}
   nav .mill-logo .blades{transition:none;}
   .hero-actions a[href="#promos-livraison"]{animation:none!important;}
   .menu-item:hover .menu-thumb{transform:none;}
+  .fab-phone.is-visible{animation:none!important;}
+  .mobile-menu.open a{animation:none!important;}
+  .hero-content > .hero-open-status{animation:none!important;}
+  nav.nav-hidden{transform:none;}
 }
 </style>
 <script>
@@ -6256,13 +6296,59 @@ nav .nav-logo:hover .mill-logo .blades{transform:rotate(180deg);}
     sio.observe(wrap);
   });
 
-  // Nav : ombre au défilement
+  // Nav : ombre au défilement + barre de progression + masquage mobile
   var nav = document.querySelector('nav');
   if(nav){
-    var onScroll = function(){ nav.classList.toggle('nav-scrolled', window.pageYOffset > 12); };
+    var progress = document.createElement('span');
+    progress.className = 'nav-progress';
+    progress.setAttribute('aria-hidden', 'true');
+    nav.appendChild(progress);
+    var lastY = 0;
+    var onScroll = function(){
+      var y = window.pageYOffset;
+      nav.classList.toggle('nav-scrolled', y > 12);
+      // M6 : progression de lecture
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.width = (max > 0 ? Math.min(y / max * 100, 100) : 0) + '%';
+      // M7 : cacher la nav en descendant (mobile), sauf si le menu mobile est ouvert
+      var menuOpen = document.querySelector('.mobile-menu.open');
+      if(!menuOpen && y > 250 && y > lastY + 4){ nav.classList.add('nav-hidden'); }
+      else if(y < lastY - 4 || y <= 250 || menuOpen){ nav.classList.remove('nav-hidden'); }
+      lastY = y;
+    };
     window.addEventListener('scroll', onScroll, {passive:true});
     onScroll();
   }
+
+  // M5 : pales du moulin au tap (appareils tactiles)
+  if(window.matchMedia && window.matchMedia('(hover: none)').matches){
+    var logoBlades = document.querySelector('nav .mill-logo .blades');
+    var logoLink = document.querySelector('nav .nav-logo');
+    if(logoBlades && logoLink){
+      var deg = 0;
+      logoLink.addEventListener('click', function(){
+        deg += 180;
+        logoBlades.style.transform = 'rotate(' + deg + 'deg)';
+      });
+    }
+  }
+
+  // M9 : plats en cascade rapide à l'ouverture d'une catégorie
+  document.addEventListener('click', function(e){
+    var card = e.target.closest ? e.target.closest('.menu-card[data-menu-target]') : null;
+    if(!card) return;
+    setTimeout(function(){
+      var panel = document.getElementById('menu-expanded-' + card.getAttribute('data-menu-target'));
+      if(!panel || panel.hidden) return;
+      var items = panel.querySelectorAll('.menu-item, .midi-item');
+      for(var i = 0; i < Math.min(items.length, 8); i++){
+        (function(el, idx){
+          el.style.animation = 'mFadeUp 0.35s cubic-bezier(0.22,1,0.36,1) ' + (idx * 0.05) + 's both';
+          setTimeout(function(){ el.style.animation = ''; }, 1200);
+        })(items[i], i);
+      }
+    }, 80);
+  });
 
   // Icône téléphone : vibre une fois quand le bouton devient visible
   var telIcons = [];
