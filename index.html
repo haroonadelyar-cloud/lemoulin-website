@@ -3009,6 +3009,16 @@ if(document.readyState === 'loading'){
 </style>
 
 <script>
+  // === PROMOS À DURÉE LIMITÉE ===
+  // Masque tout élément [data-expires="AAAA-MM-JJ"] une fois la date passée (le jour indiqué reste inclus).
+  document.addEventListener('DOMContentLoaded', function(){
+    document.querySelectorAll('[data-expires]').forEach(function(el){
+      var p = (el.getAttribute('data-expires')||'').split('-');
+      if(p.length !== 3) return;
+      var end = new Date(+p[0], +p[1]-1, +p[2], 23, 59, 59);
+      if(!isNaN(end) && new Date() > end){ el.remove(); }
+    });
+  });
   window.addEventListener('load', function(){
     var c = document.getElementById('curtain');
     if(!c) return;
@@ -4057,8 +4067,8 @@ if(document.readyState === 'loading'){
     </div>
     <div class="specials-stack">
 
-      <!-- PROMO DÉMÉNAGEMENT (juillet 2026) -->
-      <div class="midi-featured specials-card" data-open="false">
+      <!-- PROMO DÉMÉNAGEMENT (juillet 2026) — data-expires : masquée automatiquement après cette date (AAAA-MM-JJ, dernier jour inclus) -->
+      <div class="midi-featured specials-card" data-open="false" data-expires="2026-07-31">
         <button type="button" class="midi-header specials-toggle" aria-expanded="false" onclick="toggleSpecial(this)">
           <div class="midi-header-left">
             <h3 class="midi-title" data-fr="Promo Déménagement" data-en="Moving Special" data-es="Promo de Mudanza">Promo Déménagement</h3>
@@ -4485,7 +4495,7 @@ if(document.readyState === 'loading'){
       <div data-fr="59 rue Angus Nord" data-en="59 Angus Street North" data-es="59 rue Angus Nord">59 rue Angus Nord</div>
       <div data-fr="East Angus, Québec" data-en="East Angus, Quebec" data-es="East Angus, Quebec">East Angus, Québec</div>
       <a href="tel:+18198324242" style="color:var(--gold);text-decoration:none;font-size:15px;font-weight:500;">(819) 832-4242</a>
-      <a href="mailto:lemoulineastangus@gmail.com" aria-label="Envoyer un courriel" style="color:var(--gold);text-decoration:none;font-size:13px;display:block;margin-top:4px;">lemoulineastangus@gmail.com</a>
+      <a href="/cdn-cgi/l/email-protection#f09c959d9f859c999e95918384919e978583b0979d91999cde939f9d" aria-label="Envoyer un courriel" style="color:var(--gold);text-decoration:none;font-size:13px;display:block;margin-top:4px;"><span class="__cf_email__" data-cfemail="0d6168606278616463686c7e796c636a787e4d6a606c6461236e6260">[email&#160;protected]</span></a>
     </div>
   </div>
 </div>
@@ -4496,7 +4506,7 @@ if(document.readyState === 'loading'){
 </footer>
 
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 function toggleAbout(){
   var more = document.getElementById('aboutMore');
   var btn = document.getElementById('aboutToggle');
