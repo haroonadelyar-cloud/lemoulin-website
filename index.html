@@ -6086,6 +6086,37 @@ function closeOrderModal(){
 @media (prefers-reduced-motion: reduce){
   .rvl,.rvl-rule{opacity:1!important;transform:none!important;transition:none!important;}
 }
+
+/* --- Entrée du hero au chargement (cascade douce) --- */
+@keyframes heroIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+.hero-content > *:not(.moulin-logo){animation:heroIn 0.9s cubic-bezier(0.22,1,0.36,1) both;}
+.hero-content > *:nth-child(2){animation-delay:0.25s;}
+.hero-content > *:nth-child(3){animation-delay:0.38s;}
+.hero-content > *:nth-child(4){animation-delay:0.48s;}
+.hero-content > *:nth-child(5){animation-delay:0.58s;}
+.hero-content > *:nth-child(6){animation-delay:0.68s;}
+.hero-content > *:nth-child(7){animation-delay:0.78s;}
+.hero-content > *:nth-child(8){animation-delay:0.88s;}
+.hero-content > *:nth-child(n+9){animation-delay:0.98s;}
+
+/* --- Brillance dorée sur les boutons pleins au survol --- */
+.btn-gold{position:relative;overflow:hidden;}
+.btn-gold::after{content:'';position:absolute;top:0;left:-80%;width:45%;height:100%;background:linear-gradient(105deg,transparent,rgba(255,255,255,0.35),transparent);transform:skewX(-20deg);pointer-events:none;}
+@keyframes btnShine{from{left:-80%;}to{left:130%;}}
+.btn-gold:hover::after{animation:btnShine 0.65s ease;}
+
+/* --- Barre de navigation : ombre subtile au défilement --- */
+nav{transition:box-shadow 0.35s ease,border-color 0.35s ease;}
+nav.nav-scrolled{box-shadow:0 8px 28px rgba(0,0,0,0.45);border-bottom-color:rgba(201,153,58,0.4);}
+
+/* --- Étoiles Google qui s'allument une à une --- */
+@keyframes starIn{from{opacity:0;transform:scale(0.3);}to{opacity:1;transform:scale(1);}}
+
+@media (prefers-reduced-motion: reduce){
+  .hero-content > *:not(.moulin-logo){animation:none!important;}
+  .btn-gold:hover::after{animation:none!important;}
+  nav{transition:none;}
+}
 </style>
 <script>
 (function(){
@@ -6163,6 +6194,30 @@ function closeOrderModal(){
       io.observe(el);
     }
   });
+
+  // Étoiles Google : allumage séquentiel à l'apparition
+  document.querySelectorAll('.google-rating-stars').forEach(function(wrap){
+    var stars = wrap.querySelectorAll('.star');
+    if(!stars.length) return;
+    var sio = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(!e.isIntersecting) return;
+        sio.unobserve(e.target);
+        stars.forEach(function(s, i){
+          s.style.animation = 'starIn 0.35s cubic-bezier(0.34,1.56,0.64,1) ' + (0.15 + i * 0.13) + 's both';
+        });
+      });
+    }, {threshold: 0.5});
+    sio.observe(wrap);
+  });
+
+  // Nav : ombre au défilement
+  var nav = document.querySelector('nav');
+  if(nav){
+    var onScroll = function(){ nav.classList.toggle('nav-scrolled', window.pageYOffset > 12); };
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+  }
 })();
 </script>
 </body>
