@@ -2459,9 +2459,9 @@
     .hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 2.4s ease-in-out;will-change:opacity;}
     .hero-slide.is-active{opacity:1;}
     .hero-slide img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
-    /* Léger zoom lent sur la photo affichée */
-    .hero-slide.is-active img{animation:heroKenBurns 7s ease-out forwards;}
-    @keyframes heroKenBurns{from{transform:scale(1.0);}to{transform:scale(1.08);}}
+    /* Léger zoom lent sur la photo affichée (continue pendant le fondu de sortie via .is-leaving) */
+    .hero-slide.is-active img,.hero-slide.is-leaving img{animation:heroKenBurns 8s linear forwards;}
+    @keyframes heroKenBurns{from{transform:scale(1.0);}to{transform:scale(1.09);}}
     /* Voile sombre : assombrit le centre pour la lisibilité + chaleur dorée en bas */
     .hero-overlay{position:absolute;inset:0;z-index:1;background:
       radial-gradient(ellipse 110% 80% at 50% 42%, rgba(16,13,10,0.38) 0%, rgba(16,13,10,0.66) 100%),
@@ -2472,7 +2472,7 @@
     .hero-eyebrow{text-shadow:0 1px 8px rgba(0,0,0,0.55);}
     @media (prefers-reduced-motion: reduce){
       .hero-slide{transition:none;}
-      .hero-slide.is-active img{animation:none;transform:none;}
+      .hero-slide.is-active img,.hero-slide.is-leaving img{animation:none;transform:none;}
     }
 
     .about-feature-list{list-style:none;margin-top:1.5rem;}
@@ -3220,12 +3220,12 @@ if(document.readyState === 'loading'){
       <div class="gallery-item" data-photo="images/dejeuners/2-gaufres-aux-fruits-du-jour.webp" data-photo-caption-fr="2 gaufres aux fruits du jour" data-photo-caption-en="2 waffles with fruit of the day" data-photo-caption-es="2 waffles con fruta del día"><img src="images/dejeuners/2-gaufres-aux-fruits-du-jour.webp" alt="2 gaufres aux fruits du jour — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="2 gaufres aux fruits du jour" data-en="2 waffles with fruit of the day" data-es="2 waffles con fruta del día">2 gaufres aux fruits du jour</span></div></div>
       <div class="gallery-item" data-photo="images/dejeuners/2-gaufres-nature-avec-sirop.webp" data-photo-caption-fr="2 gaufres nature avec sirop" data-photo-caption-en="2 plain waffles with syrup" data-photo-caption-es="2 waffles naturales con jarabe"><img src="images/dejeuners/2-gaufres-nature-avec-sirop.webp" alt="2 gaufres nature avec sirop — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="2 gaufres nature avec sirop" data-en="2 plain waffles with syrup" data-es="2 waffles naturales con jarabe">2 gaufres nature avec sirop</span></div></div>
       <div class="gallery-item" data-photo="images/dejeuners/crepe-aux-fruits-du-jour.webp" data-photo-caption-fr="Crêpe aux fruits du jour" data-photo-caption-en="Crêpe with fruit of the day" data-photo-caption-es="Crepe con fruta del día"><img src="images/dejeuners/crepe-aux-fruits-du-jour.webp" alt="Crêpe aux fruits du jour — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Crêpe aux fruits du jour" data-en="Crêpe with fruit of the day" data-es="Crepe con fruta del día">Crêpe aux fruits du jour</span></div></div>
+      <div class="gallery-item" data-photo="images/dejeuners/crepe-bananes-chocolat-noisettes.webp" data-photo-caption-fr="Crêpe aux bananes et chocolat aux noisettes" data-photo-caption-en="Crêpe with bananas and hazelnut chocolate" data-photo-caption-es="Crepa con plátano y chocolate con avellanas"><img src="images/dejeuners/crepe-bananes-chocolat-noisettes.webp" alt="" loading="lazy" decoding="async"></div>
       <div class="gallery-item" data-photo="images/dejeuners/assiette-de-fruits.webp" data-photo-caption-fr="Assiette de fruits" data-photo-caption-en="Fruit plate" data-photo-caption-es="Plato de frutas"><img src="images/dejeuners/assiette-de-fruits.webp" alt="Assiette de fruits — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Assiette de fruits" data-en="Fruit plate" data-es="Plato de frutas">Assiette de fruits</span></div></div>
       <div class="gallery-item" data-photo="images/dejeuners/omelette-fromage.webp" data-photo-caption-fr="Omelette fromage jaune" data-photo-caption-en="Cheddar cheese omelette" data-photo-caption-es="Tortilla de queso amarillo"><img src="images/dejeuners/omelette-fromage.webp" alt="Omelette fromage jaune — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Omelette fromage jaune" data-en="Cheddar cheese omelette" data-es="Tortilla de queso amarillo">Omelette fromage jaune</span></div></div>
       <div class="gallery-item" data-photo="images/dejeuners/bene-saumon-fume.webp" data-photo-caption-fr="Béné au saumon fumé" data-photo-caption-en="Benedict with smoked salmon" data-photo-caption-es="Benedictinos con salmón ahumado"><img src="images/dejeuners/bene-saumon-fume.webp" alt="Béné au saumon fumé — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Béné au saumon fumé" data-en="Benedict with smoked salmon" data-es="Benedictinos con salmón ahumado">Béné au saumon fumé</span></div></div>
       <div class="gallery-item" data-photo="images/dejeuners/bene-3-viandes.webp" data-photo-caption-fr="Béné aux 3 viandes" data-photo-caption-en="Benedict with 3 meats" data-photo-caption-es="Benedictinos con 3 carnes"><img src="images/dejeuners/bene-3-viandes.webp" alt="Béné aux 3 viandes — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Béné aux 3 viandes" data-en="Benedict with 3 meats" data-es="Benedictinos con 3 carnes">Béné aux 3 viandes</span></div></div>
       <div class="gallery-item" data-photo="images/dejeuners/crepe-enfant.webp" data-photo-caption-fr="Crêpe nature, fruits et sirop" data-photo-caption-en="Plain crêpe with fruit and syrup" data-photo-caption-es="Crepe natural con fruta y jarabe"><img src="images/dejeuners/crepe-enfant.webp" alt="Crêpe nature, fruits et sirop — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="Crêpe nature, fruits et sirop" data-en="Plain crêpe with fruit and syrup" data-es="Crepe natural con fruta y jarabe">Crêpe nature, fruits et sirop</span></div></div>
-      <div class="gallery-item" data-photo="images/dejeuners/2-crepes-nature.webp" data-photo-caption-fr="2 crêpes nature avec sirop" data-photo-caption-en="2 plain crêpes with syrup" data-photo-caption-es="2 crepes naturales con jarabe"><img src="images/dejeuners/2-crepes-nature.webp" alt="2 crêpes nature avec sirop — Restaurant Le Moulin" loading="lazy" decoding="async"><div class="gallery-cap"><span data-fr="2 crêpes nature avec sirop" data-en="2 plain crêpes with syrup" data-es="2 crepes naturales con jarabe">2 crêpes nature avec sirop</span></div></div>
     </div>
   </div>
 
@@ -3292,7 +3292,7 @@ if(document.readyState === 'loading'){
       <button type="button" class="menu-card" data-menu-target="dejeuner" aria-label="Voir le menu déjeuner">
         <div class="menu-card-title" data-fr="Déjeuner" data-en="Breakfast" data-es="Desayuno">Déjeuner</div>
         <div class="menu-card-img">
-          <img src="images/dejeuners/2-oeufs-viande-gaufre-aux-fruits.webp" alt="Déjeuner — Restaurant Le Moulin" loading="lazy" decoding="async">
+          <img src="images/dejeuners/bene-jambon-fromage-suisse.webp" alt="Déjeuner — Restaurant Le Moulin" loading="lazy" decoding="async">
         </div>
         <div class="menu-card-label" data-fr="Voir le menu →" data-en="View menu →" data-es="Ver el menú →">Voir le menu →</div>
       </button>
@@ -3328,7 +3328,7 @@ if(document.readyState === 'loading'){
         <button type="button" class="menu-card is-active" aria-current="page" aria-label="Déjeuner (catégorie actuelle)">
           <div class="menu-card-title" data-fr="Déjeuner" data-en="Breakfast" data-es="Desayuno">Déjeuner</div>
           <div class="menu-card-img">
-            <img src="images/dejeuners/2-oeufs-viande-gaufre-aux-fruits.webp" alt="" loading="lazy" decoding="async">
+            <img src="images/dejeuners/bene-jambon-fromage-suisse.webp" alt="" loading="lazy" decoding="async">
           </div>
           <div class="menu-card-label" data-fr="Catégorie actuelle" data-en="Current category" data-es="Categoría actual">Catégorie actuelle</div>
         </button>
@@ -3482,7 +3482,7 @@ if(document.readyState === 'loading'){
         <button type="button" class="menu-card" data-menu-target="dejeuner" aria-label="Voir le menu déjeuner">
           <div class="menu-card-title" data-fr="Déjeuner" data-en="Breakfast" data-es="Desayuno">Déjeuner</div>
           <div class="menu-card-img">
-            <img src="images/dejeuners/2-oeufs-viande-gaufre-aux-fruits.webp" alt="" loading="lazy" decoding="async">
+            <img src="images/dejeuners/bene-jambon-fromage-suisse.webp" alt="" loading="lazy" decoding="async">
           </div>
           <div class="menu-card-label" data-fr="Voir le menu →" data-en="View menu →" data-es="Ver el menú →">Voir le menu →</div>
         </button>
@@ -3814,7 +3814,7 @@ if(document.readyState === 'loading'){
         <button type="button" class="menu-card" data-menu-target="dejeuner" aria-label="Voir le menu déjeuner">
           <div class="menu-card-title" data-fr="Déjeuner" data-en="Breakfast" data-es="Desayuno">Déjeuner</div>
           <div class="menu-card-img">
-            <img src="images/dejeuners/2-oeufs-viande-gaufre-aux-fruits.webp" alt="" loading="lazy" decoding="async">
+            <img src="images/dejeuners/bene-jambon-fromage-suisse.webp" alt="" loading="lazy" decoding="async">
           </div>
           <div class="menu-card-label" data-fr="Voir le menu →" data-en="View menu →" data-es="Ver el menú →">Voir le menu →</div>
         </button>
@@ -3942,7 +3942,7 @@ if(document.readyState === 'loading'){
         <button type="button" class="menu-card" data-menu-target="dejeuner" aria-label="Voir le menu déjeuner">
           <div class="menu-card-title" data-fr="Déjeuner" data-en="Breakfast" data-es="Desayuno">Déjeuner</div>
           <div class="menu-card-img">
-            <img src="images/dejeuners/2-oeufs-viande-gaufre-aux-fruits.webp" alt="" loading="lazy" decoding="async">
+            <img src="images/dejeuners/bene-jambon-fromage-suisse.webp" alt="" loading="lazy" decoding="async">
           </div>
           <div class="menu-card-label" data-fr="Voir le menu →" data-en="View menu →" data-es="Ver el menú →">Voir le menu →</div>
         </button>
@@ -6043,7 +6043,11 @@ function closeOrderModal(){
 
   function next(){
     var upcoming = (current + 1) % slides.length;
-    slides[current].classList.remove('is-active');
+    var leaving = slides[current];
+    // .is-leaving garde le zoom actif pendant le fondu de sortie (sinon l'image « saute »)
+    leaving.classList.add('is-leaving');
+    leaving.classList.remove('is-active');
+    setTimeout(function(){ leaving.classList.remove('is-leaving'); }, 2500);
     slides[upcoming].classList.add('is-active');
     current = upcoming;
     loadSlide((current + 1) % slides.length); // précharge la prochaine
