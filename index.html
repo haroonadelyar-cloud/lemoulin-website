@@ -3019,22 +3019,28 @@ if(document.readyState === 'loading'){
       if(!isNaN(end) && new Date() > end){ el.remove(); }
     });
   });
-  window.addEventListener('load', function(){
+  (function(){
     var c = document.getElementById('curtain');
     if(!c) return;
-    // Etape 1 : apres 2.5s, on fait disparaitre le logo+texte (350ms)
-    setTimeout(function(){
+    // Rideau d'intro : seulement a la premiere visite de la session
+    var seen = false;
+    try { seen = sessionStorage.getItem('moulinCurtainSeen') === '1'; } catch(e){}
+    if(seen){ c.style.display = 'none'; return; }
+    try { sessionStorage.setItem('moulinCurtainSeen', '1'); } catch(e){}
+    function dismiss(){
+      if(c.classList.contains('fading')) return;
       c.classList.add('fading');
-      // Etape 2 : une fois le centre invisible, on ouvre les panneaux (900ms)
       setTimeout(function(){
         c.classList.add('open');
-        // Etape 3 : on retire completement le rideau du flux
-        setTimeout(function(){
-          c.style.display = 'none';
-        }, 950);
+        setTimeout(function(){ c.style.display = 'none'; }, 950);
       }, 350);
-    }, 2500);
-  });
+    }
+    // Depart sur DOMContentLoaded (pas load) : ~1.2s d'affichage du logo
+    if(document.readyState !== 'loading'){ setTimeout(dismiss, 1200); }
+    else { document.addEventListener('DOMContentLoaded', function(){ setTimeout(dismiss, 1200); }); }
+    // Filet de securite : jamais plus de 5s, quoi qu'il arrive
+    setTimeout(dismiss, 5000);
+  })();
 </script>
 
 
@@ -4495,7 +4501,7 @@ if(document.readyState === 'loading'){
       <div data-fr="59 rue Angus Nord" data-en="59 Angus Street North" data-es="59 rue Angus Nord">59 rue Angus Nord</div>
       <div data-fr="East Angus, Québec" data-en="East Angus, Quebec" data-es="East Angus, Quebec">East Angus, Québec</div>
       <a href="tel:+18198324242" style="color:var(--gold);text-decoration:none;font-size:15px;font-weight:500;">(819) 832-4242</a>
-      <a href="/cdn-cgi/l/email-protection#f09c959d9f859c999e95918384919e978583b0979d91999cde939f9d" aria-label="Envoyer un courriel" style="color:var(--gold);text-decoration:none;font-size:13px;display:block;margin-top:4px;"><span class="__cf_email__" data-cfemail="0d6168606278616463686c7e796c636a787e4d6a606c6461236e6260">[email&#160;protected]</span></a>
+      <a href="/cdn-cgi/l/email-protection#92fef7fffde7fefbfcf7f3e1e6f3fcf5e7e1d2f5fff3fbfebcf1fdff" aria-label="Envoyer un courriel" style="color:var(--gold);text-decoration:none;font-size:13px;display:block;margin-top:4px;"><span class="__cf_email__" data-cfemail="9bf7fef6f4eef7f2f5fefae8effaf5fceee8dbfcf6faf2f7b5f8f4f6">[email&#160;protected]</span></a>
     </div>
   </div>
 </div>
