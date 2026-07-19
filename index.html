@@ -2456,7 +2456,7 @@
 
     /* === DIAPORAMA DE FOND (photos de plats) === */
     .hero-slideshow{position:absolute;inset:0;z-index:0;overflow:hidden;background:var(--dark2);}
-    .hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.6s ease-in-out;will-change:opacity;}
+    .hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 2.4s ease-in-out;will-change:opacity;}
     .hero-slide.is-active{opacity:1;}
     .hero-slide img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
     /* Léger zoom lent sur la photo affichée */
@@ -4478,7 +4478,7 @@ if(document.readyState === 'loading'){
       <div data-fr="59 rue Angus Nord" data-en="59 Angus Street North" data-es="59 rue Angus Nord">59 rue Angus Nord</div>
       <div data-fr="East Angus, Québec" data-en="East Angus, Quebec" data-es="East Angus, Quebec">East Angus, Québec</div>
       <a href="tel:+18198324242" style="color:var(--gold);text-decoration:none;font-size:15px;font-weight:500;">(819) 832-4242</a>
-      <a href="mailto:lemoulineastangus@gmail.com" aria-label="Envoyer un courriel" style="color:var(--gold);text-decoration:none;font-size:13px;display:block;margin-top:4px;">lemoulineastangus@gmail.com</a>
+      <a href="/cdn-cgi/l/email-protection#177b727a78627b7e7972766463767970626457707a767e7b3974787a" aria-label="Envoyer un courriel" style="color:var(--gold);text-decoration:none;font-size:13px;display:block;margin-top:4px;"><span class="__cf_email__" data-cfemail="355950585a40595c5b50544641545b524046755258545c591b565a58">[email&#160;protected]</span></a>
     </div>
   </div>
 </div>
@@ -4489,7 +4489,7 @@ if(document.readyState === 'loading'){
 </footer>
 
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 function toggleAbout(){
   var more = document.getElementById('aboutMore');
   var btn = document.getElementById('aboutToggle');
@@ -6112,10 +6112,57 @@ nav.nav-scrolled{box-shadow:0 8px 28px rgba(0,0,0,0.45);border-bottom-color:rgba
 /* --- Étoiles Google qui s'allument une à une --- */
 @keyframes starIn{from{opacity:0;transform:scale(0.3);}to{opacity:1;transform:scale(1);}}
 
+/* --- Panneaux du menu : fondu à l'ouverture d'une catégorie --- */
+@keyframes panelIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+.menu-panel.active{animation:panelIn 0.45s cubic-bezier(0.22,1,0.36,1) both;}
+
+/* --- Lightbox : zoom doux à l'ouverture --- */
+@keyframes lbZoom{from{opacity:0;transform:scale(0.94);}to{opacity:1;transform:scale(1);}}
+.photo-lightbox.is-open .photo-lightbox-inner{animation:lbZoom 0.3s cubic-bezier(0.22,1,0.36,1) both;}
+
+/* --- Prix dorés : éclat au survol d'un plat --- */
+.menu-item .menu-item-price, .midi-item .midi-item-price{transition:text-shadow 0.25s ease,filter 0.25s ease;}
+.menu-item:hover .menu-item-price, .midi-item:hover .midi-item-price{text-shadow:0 0 12px rgba(201,153,58,0.5);filter:brightness(1.15);}
+
+/* --- Nav : soulignement doré du lien de la section visible --- */
+.nav-links > a.nav-active{color:var(--gold);}
+.nav-links > a.nav-active::after{width:100%;}
+
+/* --- Logo moulin (nav) : pales qui tournent au survol --- */
+nav .mill-logo .blades{transform-box:fill-box;transform-origin:center;transition:transform 1.4s cubic-bezier(0.22,1,0.36,1);}
+nav .nav-logo:hover .mill-logo .blades{transform:rotate(180deg);}
+
+/* --- Onglets du menu : trait doré qui glisse --- */
+.menu-tabs{position:relative;}
+.menu-tabs.has-slider .menu-tab.active{border-bottom-color:transparent;}
+.menu-tab-slider{position:absolute;bottom:-1px;height:2px;background:var(--gold);transition:left 0.35s cubic-bezier(0.22,1,0.36,1),width 0.35s cubic-bezier(0.22,1,0.36,1);pointer-events:none;}
+
+/* --- Micro-zoom des vignettes de plats au survol --- */
+.menu-item .menu-thumb{transition:transform 0.4s ease;}
+.menu-item:hover .menu-thumb{transform:scale(1.08);}
+
+/* --- Icône téléphone qui vibre une fois --- */
+@keyframes phoneRing{0%,100%{transform:rotate(0);}15%{transform:rotate(-14deg);}30%{transform:rotate(12deg);}45%{transform:rotate(-8deg);}60%{transform:rotate(6deg);}75%{transform:rotate(-3deg);}}
+
+/* --- Pulsation du bouton Promotions (hero) --- */
+@keyframes promoPulse{0%,100%{box-shadow:0 0 0 0 rgba(201,153,58,0.45);}50%{box-shadow:0 0 0 8px rgba(201,153,58,0);}}
+.hero-actions a[href="#promos-livraison"]{animation:promoPulse 2.4s ease-in-out infinite;}
+
+/* --- Bouton retour en haut --- */
+.back-to-top{position:fixed;bottom:22px;right:22px;width:44px;height:44px;border-radius:50%;background:var(--gold);border:none;cursor:pointer;z-index:300;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,0.5);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity 0.4s ease,transform 0.4s ease,background 0.2s;}
+.back-to-top.show{opacity:1;transform:translateY(0);pointer-events:auto;}
+.back-to-top:hover{background:var(--gold-light);}
+
 @media (prefers-reduced-motion: reduce){
   .hero-content > *:not(.moulin-logo){animation:none!important;}
   .btn-gold:hover::after{animation:none!important;}
   nav{transition:none;}
+  .menu-panel.active,.photo-lightbox.is-open .photo-lightbox-inner{animation:none!important;}
+  nav .mill-logo .blades{transition:none;}
+  .hero-actions a[href="#promos-livraison"]{animation:none!important;}
+  .menu-tab-slider{transition:none;}
+  .menu-item:hover .menu-thumb{transform:none;}
+  .back-to-top{transition:none;}
 }
 </style>
 <script>
@@ -6132,7 +6179,7 @@ nav.nav-scrolled{box-shadow:0 8px 28px rgba(0,0,0,0.45);border-bottom-color:rgba
   // Grilles : les enfants apparaissent en cascade
   var groups = [
     '.menu-cards', '.reviews-grid', '.info-grid', '.hours-grid',
-    '.branches-grid', '.gallery-cat-cards', '.signature-grid'
+    '.branches-grid', '.gallery-cat-cards', '.signature-grid', '.footer-grid'
   ];
 
   var toObserve = [];
@@ -6217,6 +6264,72 @@ nav.nav-scrolled{box-shadow:0 8px 28px rgba(0,0,0,0.45);border-bottom-color:rgba
     var onScroll = function(){ nav.classList.toggle('nav-scrolled', window.pageYOffset > 12); };
     window.addEventListener('scroll', onScroll, {passive:true});
     onScroll();
+  }
+
+  // Onglets du menu : trait doré qui glisse
+  document.querySelectorAll('.menu-tabs').forEach(function(tabs){
+    var slider = document.createElement('span');
+    slider.className = 'menu-tab-slider';
+    tabs.appendChild(slider);
+    tabs.classList.add('has-slider');
+    var place = function(){
+      var act = tabs.querySelector('.menu-tab.active');
+      if(!act){ slider.style.width = '0'; return; }
+      slider.style.left = act.offsetLeft + 'px';
+      slider.style.width = act.offsetWidth + 'px';
+    };
+    place();
+    tabs.addEventListener('click', function(){ setTimeout(place, 0); });
+    window.addEventListener('resize', place);
+  });
+
+  // Icône téléphone : vibre une fois quand le bouton devient visible
+  var telIcons = [];
+  document.querySelectorAll('main a[href^="tel:"] svg').forEach(function(svg){ telIcons.push(svg); });
+  if(telIcons.length){
+    var tio = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(!e.isIntersecting) return;
+        tio.unobserve(e.target);
+        e.target.style.animation = 'phoneRing 0.9s ease 0.4s';
+      });
+    }, {threshold: 0.6});
+    telIcons.forEach(function(svg){ tio.observe(svg); });
+  }
+
+  // Bouton retour en haut
+  var topBtn = document.createElement('button');
+  topBtn.className = 'back-to-top';
+  topBtn.setAttribute('aria-label', 'Retour en haut de la page');
+  topBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1d1409" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"></polyline></svg>';
+  topBtn.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+  document.body.appendChild(topBtn);
+  var topToggle = function(){ topBtn.classList.toggle('show', window.pageYOffset > 900); };
+  window.addEventListener('scroll', topToggle, {passive:true});
+  topToggle();
+
+  // Scrollspy : souligne le lien nav de la section visible
+  var navAnchors = Array.prototype.filter.call(
+    document.querySelectorAll('.nav-links > a[href^="#"]'),
+    function(a){ return !a.classList.contains('nav-phone') && !a.classList.contains('nav-order') && !a.classList.contains('nav-reserve'); }
+  );
+  var spyMap = {};
+  var spyTargets = [];
+  navAnchors.forEach(function(a){
+    var sec = document.querySelector(a.getAttribute('href'));
+    if(sec){ spyMap[sec.id] = a; spyTargets.push(sec); }
+  });
+  if(spyTargets.length){
+    var setActive = function(id){
+      navAnchors.forEach(function(a){ a.classList.remove('nav-active'); });
+      if(id && spyMap[id]) spyMap[id].classList.add('nav-active');
+    };
+    var spy = new IntersectionObserver(function(entries){
+      var best = null;
+      entries.forEach(function(e){ if(e.isIntersecting && (!best || e.intersectionRatio > best.intersectionRatio)) best = e; });
+      if(best) setActive(best.target.id);
+    }, {rootMargin: '-25% 0px -55% 0px', threshold: [0, 0.1, 0.3]});
+    spyTargets.forEach(function(s){ spy.observe(s); });
   }
 })();
 </script>
