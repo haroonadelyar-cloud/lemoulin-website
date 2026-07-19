@@ -4478,7 +4478,7 @@ if(document.readyState === 'loading'){
       <div data-fr="59 rue Angus Nord" data-en="59 Angus Street North" data-es="59 rue Angus Nord">59 rue Angus Nord</div>
       <div data-fr="East Angus, Québec" data-en="East Angus, Quebec" data-es="East Angus, Quebec">East Angus, Québec</div>
       <a href="tel:+18198324242" style="color:var(--gold);text-decoration:none;font-size:15px;font-weight:500;">(819) 832-4242</a>
-      <a href="/cdn-cgi/l/email-protection#177b727a78627b7e7972766463767970626457707a767e7b3974787a" aria-label="Envoyer un courriel" style="color:var(--gold);text-decoration:none;font-size:13px;display:block;margin-top:4px;"><span class="__cf_email__" data-cfemail="355950585a40595c5b50544641545b524046755258545c591b565a58">[email&#160;protected]</span></a>
+      <a href="/cdn-cgi/l/email-protection#e28e878f8d978e8b8c87839196838c859791a2858f838b8ecc818d8f" aria-label="Envoyer un courriel" style="color:var(--gold);text-decoration:none;font-size:13px;display:block;margin-top:4px;"><span class="__cf_email__" data-cfemail="fa969f97958f9693949f9b898e9b949d8f89ba9d979b9396d4999597">[email&#160;protected]</span></a>
     </div>
   </div>
 </div>
@@ -6148,11 +6148,6 @@ nav .nav-logo:hover .mill-logo .blades{transform:rotate(180deg);}
 @keyframes promoPulse{0%,100%{box-shadow:0 0 0 0 rgba(201,153,58,0.45);}50%{box-shadow:0 0 0 8px rgba(201,153,58,0);}}
 .hero-actions a[href="#promos-livraison"]{animation:promoPulse 2.4s ease-in-out infinite;}
 
-/* --- Bouton retour en haut --- */
-.back-to-top{position:fixed;bottom:22px;right:22px;width:44px;height:44px;border-radius:50%;background:var(--gold);border:none;cursor:pointer;z-index:300;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,0.5);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity 0.4s ease,transform 0.4s ease,background 0.2s;}
-.back-to-top.show{opacity:1;transform:translateY(0);pointer-events:auto;}
-.back-to-top:hover{background:var(--gold-light);}
-
 @media (prefers-reduced-motion: reduce){
   .hero-content > *:not(.moulin-logo){animation:none!important;}
   .btn-gold:hover::after{animation:none!important;}
@@ -6162,7 +6157,6 @@ nav .nav-logo:hover .mill-logo .blades{transform:rotate(180deg);}
   .hero-actions a[href="#promos-livraison"]{animation:none!important;}
   .menu-tab-slider{transition:none;}
   .menu-item:hover .menu-thumb{transform:none;}
-  .back-to-top{transition:none;}
 }
 </style>
 <script>
@@ -6296,17 +6290,6 @@ nav .nav-logo:hover .mill-logo .blades{transform:rotate(180deg);}
     }, {threshold: 0.6});
     telIcons.forEach(function(svg){ tio.observe(svg); });
   }
-
-  // Bouton retour en haut
-  var topBtn = document.createElement('button');
-  topBtn.className = 'back-to-top';
-  topBtn.setAttribute('aria-label', 'Retour en haut de la page');
-  topBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1d1409" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"></polyline></svg>';
-  topBtn.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
-  document.body.appendChild(topBtn);
-  var topToggle = function(){ topBtn.classList.toggle('show', window.pageYOffset > 900); };
-  window.addEventListener('scroll', topToggle, {passive:true});
-  topToggle();
 
   // Scrollspy : souligne le lien nav de la section visible
   var navAnchors = Array.prototype.filter.call(
