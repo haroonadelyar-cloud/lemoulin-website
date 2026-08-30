@@ -2324,8 +2324,10 @@
     .ig-btn:hover{background:rgba(214,36,159,0.12);}
     .footer-ig{display:inline-flex;align-items:center;gap:8px;margin-top:0.6rem;color:#E481B8;font-size:12px;text-decoration:none;}
     .about-section{background:var(--dark2);}
-    .about-layout{display:block;margin-top:3rem;}
-    .about-img{border-radius:var(--radius);overflow:hidden;height:420px;}
+    .about-layout{display:grid;grid-template-columns:minmax(0,0.85fr) minmax(0,1.15fr);gap:3.5rem;align-items:start;margin-top:3rem;}
+    .about-media{margin:0;position:sticky;top:90px;}
+    .about-caption{margin-top:0.9rem;font-family:var(--font-display);font-style:italic;font-size:15px;line-height:1.5;color:var(--text-dim);}
+    .about-img{border-radius:var(--radius);overflow:hidden;aspect-ratio:3/2;border:1px solid rgba(201,153,58,0.18);}
     .about-img img{width:100%;height:100%;object-fit:cover;}
     .about-text p{color:var(--text-muted);font-size:15px;line-height:1.9;margin-bottom:1.5rem;}
     .about-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:2rem;}
@@ -2405,7 +2407,8 @@
       /* Sur mobile quand la galerie est repliee, ne montrer que le grand item #1 */
       .gallery-grid.gallery-collapsed .gallery-item:not(:nth-child(1)){display:none;}
       .about-layout,.reservation-layout,.footer-grid{grid-template-columns:minmax(0,1fr);gap:2rem;}
-      .about-img{height:280px;}
+      .about-media{position:static;}
+      .about-img{height:auto;}
       .footer-links{display:flex;flex-wrap:wrap;gap:0.25rem 1.5rem;}
       .footer-links li{margin-bottom:0;}
     }
@@ -4283,6 +4286,10 @@ if(document.readyState === 'loading'){
   <h2 class="section-title" data-fr="À propos" data-en="About us" data-es="Nosotros">À propos</h2>
   <div class="gold-rule"></div>
   <div class="about-layout">
+    <figure class="about-media">
+      <div class="about-img"><img src="images/equipe/famille-adelyar.webp" alt="Maghul, Haroon et Ehsanuddin Adelyar au Restaurant Le Moulin d'East Angus" width="1400" height="934" loading="lazy" decoding="async"></div>
+      <figcaption class="about-caption" data-fr="Maghul, Haroon et Ehsanuddin Adelyar, au Moulin d&#39;East Angus." data-en="Maghul, Haroon and Ehsanuddin Adelyar, at Le Moulin in East Angus." data-es="Maghul, Haroon y Ehsanuddin Adelyar, en Le Moulin de East Angus.">Maghul, Haroon et Ehsanuddin Adelyar, au Moulin d&#39;East Angus.</figcaption>
+    </figure>
     <div class="about-text">
           <p data-fr="L'histoire du Restaurant Le Moulin est avant tout une histoire humaine, celle d'Ehsanuddin Adelyar et de sa femme Maghul. En 2000, le couple quitte l'Afghanistan avec leurs quatre enfants et arrive au Québec sans parler ni français ni anglais, sans connaître personne. Loin de se décourager, Ehsanuddin trouve rapidement un emploi dans un petit restaurant de Sherbrooke, où il apprend son métier avec patience et détermination." data-en="The story of Restaurant Le Moulin is first and foremost a human one — the story of Ehsanuddin Adelyar and his wife Maghul. In 2000, the couple left Afghanistan with their four children and arrived in Quebec speaking neither French nor English, and knowing no one. Undaunted, Ehsanuddin quickly found work in a small restaurant in Sherbrooke, where he learned his trade with patience and determination." data-es="La historia del Restaurante Le Moulin es ante todo una historia humana, la de Ehsanuddin Adelyar y su esposa Maghul. En el año 2000, la pareja dejó Afganistán con sus cuatro hijos y llegó a Quebec sin hablar francés ni inglés, sin conocer a nadie. Lejos de desanimarse, Ehsanuddin encontró rápidamente trabajo en un pequeño restaurante de Sherbrooke, donde aprendió su oficio con paciencia y determinación.">L'histoire du Restaurant Le Moulin est avant tout une histoire humaine, celle d'Ehsanuddin Adelyar et de sa femme Maghul. En 2000, le couple quitte l'Afghanistan avec leurs quatre enfants et arrive au Québec sans parler ni français ni anglais, sans connaître personne. Loin de se décourager, Ehsanuddin trouve rapidement un emploi dans un petit restaurant de Sherbrooke, où il apprend son métier avec patience et détermination.</p>
           <div class="about-more" id="aboutMore" hidden>
@@ -6308,7 +6315,7 @@ nav .nav-logo:hover .mill-logo .blades{transform:rotate(180deg);}
   var singles = [
     '.section-eyebrow', '.section-title', '.section-desc',
     '.google-rating', '.reserve-call-card', '.gallery-band',
-    '.branches-header', '#about .about-lead', '#about .section-inner > p'
+    '.branches-header', '#about .about-lead', '#about .section-inner > p', '#about .about-media'
   ];
   // Grilles : les enfants apparaissent en cascade
   var groups = [
